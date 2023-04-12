@@ -48,10 +48,10 @@
 	</style>
 </head>
 <body>
-	<form action="" method="POST">
-		<label for="sid">SID:</label>
-		<input type="text" id="sid" name="sid" required>
-
+	<form action="/softcopy" enctype="multipart/form-data" method="POST">
+		<label for="title">SID:</label>
+		<input type="text" id="title" name="sid">
+		
 		<label for="title">Title:</label>
 		<input type="text" id="title" name="title">
 
@@ -77,8 +77,8 @@
 		<label for="pageno">Page No:</label>
 		<input type="text" id="pageno" name="pageno">
 
-		<label for="filename">Filename:</label>
-		<input type="text" id="filename" name="filename">
+		<label for="filename">File</label>
+		<input type="file" id="file" name="file">
 
 		<input type="submit" value="Submit">
 	</form>
