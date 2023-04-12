@@ -7,10 +7,12 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="search/searchitem" method="Get">
-        <input name="searchParam" type="text">
-        <button type="submit">Search</button>
-        <button type="submit" formaction="search/author">Author</button>
-    </form>
+    <%@ include file="subSearchComponent.jsp"%>
+    <div>${books}</div>
+    <div>${journals}</div>
+    <div>${magazines}</div>
+    <div>${theses}</div>
+    <div>${softcopies}</div>
+    <div>${searchValue}</div>
 </body>
 </html>

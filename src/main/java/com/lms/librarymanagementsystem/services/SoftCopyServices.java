@@ -1,5 +1,7 @@
 package com.lms.librarymanagementsystem.services;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.lms.librarymanagementsystem.models.SoftCopy;
@@ -15,6 +17,10 @@ public class SoftCopyServices {
 
     public SoftCopy insertOneSoftCopy(SoftCopy softCopy){
         return softCopyRepository.save(softCopy);
+    }
+
+    public List<SoftCopy> findBySearch(String searchParam){
+        return softCopyRepository.findSoftCopyBySearch(searchParam);
     }
 
 }
