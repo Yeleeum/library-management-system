@@ -12,6 +12,6 @@ public interface BooksRepository extends JpaRepository<Books,Integer>{
     @Query(value="SELECT * FROM BOOKS WHERE TITLE LIKE %:PARAM% OR AUTHOR LIKE %:PARAM% OR PUBLISHER LIKE %:PARAM% OR DESCRIPTION LIKE %:PARAM% OR CATEGORY LIKE %:PARAM% OR KEYWORDS LIKE %:PARAM%",nativeQuery = true)
     List<Books> findBookBySearch(@Param("PARAM")String searchParam);
 
-    @Query(value="SELECT * FROM BOOKS WHERE AUTHOR LIKE %:PARAM%",nativeQuery = true)
+    @Query(value="SELECT B.* FROM BOOKS B,CONNECTOR C WHERE B.ITID=C.ITID AND B.AUTHOR LIKE %:PARAM%",nativeQuery = true)
     List<Books> findBookBySearchAuthor(@Param("PARAM")String searchParam);
 }
