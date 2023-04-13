@@ -34,4 +34,8 @@ public class BooksServices {
     public Books findSingleBook(String bookId){
         return booksRepository.getSingleBook(bookId);
     }
+
+    public List<Books> findBySearchPublisher(String searchParam){
+        return booksRepository.findBookBySearchPublisher(searchParam);
+    }
 }

@@ -27,4 +27,8 @@ public class SoftCopyServices {
         return softCopyRepository.findSoftCopyBySearchOwner(searchParam);
     }
 
+    public List<SoftCopy> findBySearchPublisher(String searchParam){
+        return softCopyRepository.findBookBySearchPublisher(searchParam);
+    }
+
 }

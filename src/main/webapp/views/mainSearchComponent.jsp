@@ -15,6 +15,7 @@
         <button type="submit" formaction="search/researcher">Researcher</button>
         <button type="submit" formaction="search/editor">Editor</button>
         <button type="submit" formaction="search/owner">Owner</button>
+        <button type="submit" formaction="search/publisher">Publisher</button>
     </form>
 </body>
 </html>

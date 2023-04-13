@@ -14,4 +14,7 @@ public interface SoftCopyRepository extends JpaRepository<SoftCopy,Integer>{
     
     @Query(value="SELECT * FROM SOFTCOPY WHERE OWNER LIKE %:PARAM%",nativeQuery = true)
     public List<SoftCopy> findSoftCopyBySearchOwner(@Param("PARAM")String searchParam);
+
+    @Query(value="SELECT * FROM SOFTCOPY WHERE PUBLISHER LIKE %:PARAM%",nativeQuery = true)
+    List<SoftCopy> findBookBySearchPublisher(@Param("PARAM")String searchParam);
 }

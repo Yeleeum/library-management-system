@@ -28,6 +28,8 @@
         <button type="submit" formaction="researcher">Researcher</button>
         <button type="submit" formaction="editor">Editor</button>
         <button type="submit" formaction="owner">Owner</button>
+        <button type="submit" formaction="publisher">Publisher</button>
+
     </form>
 </body>
 </html>

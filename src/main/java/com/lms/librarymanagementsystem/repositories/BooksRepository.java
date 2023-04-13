@@ -18,4 +18,7 @@ public interface BooksRepository extends JpaRepository<Books,Integer>{
 
     @Query(value="SELECT * from Books where BID=:PARAM", nativeQuery = true)
     Books getSingleBook(@Param("PARAM")String bookId);
+
+    @Query(value="SELECT * FROM BOOKS WHERE PUBLISHER LIKE %:PARAM%",nativeQuery = true)
+    List<Books> findBookBySearchPublisher(@Param("PARAM")String searchParam);
 }

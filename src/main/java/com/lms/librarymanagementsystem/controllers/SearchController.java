@@ -111,6 +111,20 @@ public class SearchController {
         return "searchResult";
     }
 
+    @GetMapping("/publisher")
+    public String searchByPublisher(String searchParam,Model model){
+        List<Journals> journals=journalsServices.findBySearchPublisher(searchParam);
+        List<Books> books=booksServices.findBySearchPublisher(searchParam);
+        List<Magazines> magazines=magazinesServices.findBySearchPublisher(searchParam);
+        List<SoftCopy> softCopies=softCopyServices.findBySearchPublisher(searchParam);
+        model.addAttribute("books", books);
+        model.addAttribute("journals", journals);
+        model.addAttribute("magazines", magazines);
+        model.addAttribute("softcopies", softCopies);
+        model.addAttribute("searchValue", searchParam);
+        return "searchResult";
+    }
+
     @GetMapping("/books/{bookId}")
     public String getSingleBookByBid(@PathVariable("bookId")String bookId,Model model){
         // return new ResponseEntity<Books>(booksServices.findSingleBook(bookId), HttpStatus.OK);\
