@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<%@page import="com.lms.librarymanagementsystem.models.Books"%>
+<%@page import="java.util.List"%>
 <html lang="en">
 
 <head>
@@ -77,6 +79,7 @@
 </head>
 
 <body>
+    <% Books book = (Books) request.getAttribute("book"); %>
     <header>
         <h1>Book Details</h1>
     </header>
