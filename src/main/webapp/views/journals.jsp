@@ -84,13 +84,13 @@
 		<textarea id="keywords" name="keywords"></textarea>
 
 		<label for="startyear">Start Year:</label>
-		<input type="number" id="startyear" name="startyear">
+		<input type="number" id="startyear" name="startYear">
 
 		<label for="endyear">End Year:</label>
-		<input type="number" id="endyear" name="endyear">
+		<input type="number" id="endyear" name="endYear">
 
 		<label for="pageno">Page No:</label>
-		<input type="number" id="pageno" name="pageno">
+		<input type="number" id="pageno" name="pageNo">
 
 		<label for="stock">Stock:</label>
 		<input type="number" id="stock" name="stock">

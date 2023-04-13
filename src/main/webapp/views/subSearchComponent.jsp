@@ -12,6 +12,9 @@
         <input name="searchParam" type="text" value="<%=searchValue%>">
         <button type="submit">Search</button>
         <button type="submit" formaction="author">Author</button>
+        <button type="submit" formaction="researcher">Researcher</button>
+        <button type="submit" formaction="editor">Editor</button>
+        <button type="submit" formaction="owner">Owner</button>
     </form>
 </body>
 </html>

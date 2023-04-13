@@ -57,7 +57,7 @@
 	</style>
 </head>
 <body>
-	<%@ include file="searchComponent.jsp"%>
+	<%@ include file="mainSearchComponent.jsp"%>
 	<form action="/books" method="POST">
 		<label for="itid">ITID:</label>
 		<input type="text" id="itid" name="itid" required>

@@ -78,7 +78,25 @@ public class SearchController {
     }
 
     @GetMapping("/author")
-    public ResponseEntity<List<Books>> searchByAuthor(String searchParam){
-        return new ResponseEntity<List<Books>>(booksServices.findBySearchAuthor(searchParam),HttpStatus.OK);
+    public String searchByAuthor(String searchParam,Model model){
+        List<Books> books=booksServices.findBySearchAuthor(searchParam);
+        model.addAttribute("books", books);
+        model.addAttribute("searchValue", searchParam);
+        return "searchResult";
+    }
+
+    @GetMapping("/researcher")
+    public ResponseEntity<List<Theses>> searchByReasearcher(String searchParam){
+        return new ResponseEntity<List<Theses>>(thesesServices.findBySearchResearcher(searchParam),HttpStatus.OK);
+    }
+
+    @GetMapping("/editor")
+    public ResponseEntity<List<Journals>> searchByEditor(String searchParam){
+        return new ResponseEntity<List<Journals>>(journalsServices.findBySearchEditor(searchParam),HttpStatus.OK);
+    }
+
+    @GetMapping("/owner")
+    public ResponseEntity<List<SoftCopy>> searchByOwner(String searchParam){
+        return new ResponseEntity<List<SoftCopy>>(softCopyServices.findBySearchOwner(searchParam),HttpStatus.OK);
     }
 }
