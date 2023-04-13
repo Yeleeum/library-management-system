@@ -21,24 +21,62 @@
 %>
 <body>
     <%@ include file="subSearchComponent.jsp"%>
-    <% if((books==null || books.isEmpty())&& (journals==null || journals.isEmpty()) && (magazines==null || magazines.isEmpty()) && (theses==null || theses.isEmpty()) && (softcopies==null ||softcopies.isEmpty())){ %>
-    	<h1>No Content Found</h1>
-    <%}else{ %>
-    <%if(books!=null && !books.isEmpty()){ %>
-	    <div><%=books %></div>
-	<%} %>
-	<%if(journals!=null && !journals.isEmpty()){ %>
-	    <div><%=journals %></div>
-	<%} %>
-	<%if(magazines!=null && !magazines.isEmpty()){ %>
-	    <div><%=magazines %></div>
-	<%} %>
-	<%if(theses!=null && !theses.isEmpty()){ %>
-	    <div><%=theses %></div>
-	<%} %>
-	<%if(softcopies!=null && !softcopies.isEmpty()){ %>
-	    <div><%=softcopies%></div>
-	<%} %>
+		<% if((books==null || books.isEmpty())&& (journals==null || journals.isEmpty()) && (magazines==null || magazines.isEmpty()) && (theses==null || theses.isEmpty()) && (softcopies==null ||softcopies.isEmpty())){ %>
+			<h1>No Content Found</h1>
+		<%}else{ %>
+		<%if(books!=null && !books.isEmpty()){ %>
+			<!-- <div><%=books %></div> -->
+			<% for(Books book : books){ %>
+				<div>
+					<a href="/search/searchitem/<%= book.getBid() %>" >
+						<div>
+							<img src="/uploads/thumbnails/book.jpg" alt="<%= book.getTitle() %>" width="300" height="300">
+						</div>
+					</a>
+					<div>
+							<h3><%= book.getTitle() %> : <%= book.getEdition() %></h3>
+							<h4>Author : <%= book.getAuthor() %></h4>
+							<h4>Published by <%= book.getPublisher() %></h4>
+							<a href="/search/category?searchParam=<%= book.getCategory() %>">#<%= book.getCategory() %></a>
+					</div>
+				</div>
+			<% } %>
+		<%} %>
+		<%if(journals!=null && !journals.isEmpty()){ %>
+			<!-- <div><%=journals %></div> -->
+
+			<% for(Journals journal : journals){ %>
+				<div>
+					<%= journal %>
+				</div>
+			<% } %>
+		<%} %>
+		<%if(magazines!=null && !magazines.isEmpty()){ %>
+			<!-- <div><%=magazines %></div> -->
+			<% for(Magazines magazine : magazines){ %>
+				<div>
+					<%= magazine %>
+				</div>
+			<% } %>
+
+		<%} %>
+		<%if(theses!=null && !theses.isEmpty()){ %>
+			<!-- <div><%=theses %></div> -->
+
+			<% for(Theses thesesItem : theses){ %>
+				<div>
+					<%= thesesItem %>
+				</div>
+			<% } %>
+		<%} %>
+		<%if(softcopies!=null && !softcopies.isEmpty()){ %>
+			<!-- <div><%=softcopies%></div> -->
+			<% for(SoftCopy softcopy : softcopies){ %>
+				<div>
+					<%= softcopy %>
+				</div>
+			<% } %>
+		<%} %>
     <%} %>
 </body>
 </html>
