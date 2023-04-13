@@ -125,6 +125,39 @@ public class SearchController {
         return "searchResult";
     }
 
+    @GetMapping("/category")
+    public String searchByCatagory(String searchParam, Model model){
+        List<Journals> journals=journalsServices.findBySearchCatagory(searchParam);
+        List<Books> books=booksServices.findBySearchCatagory(searchParam);
+        List<Magazines> magazines=magazinesServices.findBySearchCatagory(searchParam);
+        List<Theses> theses=thesesServices.findBySearchCatagory(searchParam);
+        List<SoftCopy> softCopies=softCopyServices.findBySearchCatagory(searchParam);
+        model.addAttribute("books", books);
+        model.addAttribute("journals", journals);
+        model.addAttribute("magazines", magazines);
+        model.addAttribute("theses", theses);
+        model.addAttribute("softcopies", softCopies);
+        model.addAttribute("searchValue", searchParam);
+        return "searchResult";
+    }
+
+    @GetMapping("/category/{category}")
+    public String showFromCatagory(@PathVariable("category")String searchParam, Model model){
+        List<Journals> journals=journalsServices.findBySearchCatagory(searchParam);
+        List<Books> books=booksServices.findBySearchCatagory(searchParam);
+        List<Magazines> magazines=magazinesServices.findBySearchCatagory(searchParam);
+        List<Theses> theses=thesesServices.findBySearchCatagory(searchParam);
+        List<SoftCopy> softCopies=softCopyServices.findBySearchCatagory(searchParam);
+        model.addAttribute("books", books);
+        model.addAttribute("journals", journals);
+        model.addAttribute("magazines", magazines);
+        model.addAttribute("theses", theses);
+        model.addAttribute("softcopies", softCopies);
+        model.addAttribute("searchValue", searchParam);
+        return "searchResult";
+    }
+
+
     @GetMapping("/books/{bookId}")
     public String getSingleBookByBid(@PathVariable("bookId")String bookId,Model model){
         // return new ResponseEntity<Books>(booksServices.findSingleBook(bookId), HttpStatus.OK);\

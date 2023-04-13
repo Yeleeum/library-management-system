@@ -38,4 +38,8 @@ public class BooksServices {
     public List<Books> findBySearchPublisher(String searchParam){
         return booksRepository.findBookBySearchPublisher(searchParam);
     }
+
+    public List<Books> findBySearchCatagory(String searchParam){
+        return booksRepository.findBookBySearchCatagory(searchParam);
+    }
 }

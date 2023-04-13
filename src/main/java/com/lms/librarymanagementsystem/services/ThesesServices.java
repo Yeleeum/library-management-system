@@ -26,4 +26,8 @@ public class ThesesServices {
     public List<Theses> findBySearchResearcher(String searchParam){
         return thesesRepository.findThesesBySearchResearcher(searchParam);
     }
+
+    public List<Theses> findBySearchCatagory(String searchParam){
+        return thesesRepository.findThesesBySearchCatagory(searchParam);
+    }
 }

@@ -24,7 +24,11 @@ public class MagazinesServices {
     }
 
     public List<Magazines> findBySearchPublisher(String searchParam){
-        return magazinesRepository.findBookBySearchPublisher(searchParam);
+        return magazinesRepository.findMagazineBySearchPublisher(searchParam);
+    }
+
+    public List<Magazines> findBySearchCatagory(String searchParam){
+        return magazinesRepository.findMagazineBySearchCatagory(searchParam);
     }
 
 }

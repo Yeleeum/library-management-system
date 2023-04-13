@@ -60,7 +60,7 @@
 								<h3><%= book.getTitle() %> : <%= book.getEdition() %></h3>
 								<h4>Author : <%= book.getAuthor() %></h4>
 								<h4>Published by <%= book.getPublisher() %></h4>
-								<a href="/search/category?searchParam=<%= book.getCategory() %>">#<%= book.getCategory() %></a>
+								<a href="/search/category/<%= book.getCategory() %>">#<%= book.getCategory() %></a>
 						</div>
 					</div>
 				<% } %>
@@ -78,7 +78,7 @@
 								<h3><%= journal.getTitle() %> </h3>
 								<h3>Editor: <%= journal.getEditor() %></h3>
 								<h4>Published by <%= journal.getPublisher() %></h4>
-								<a href="/search/category?searchParam=<%= journal.getCategory() %>">#<%= journal.getCategory() %></a>
+								<a href="/search/category/<%= journal.getCategory() %>">#<%= journal.getCategory() %></a>
 						</div>
 					</div>
 				<% } %>
@@ -103,7 +103,7 @@
 										<span><%= magazine.getSpecialissue() %></span>
 									<% } %>
 								</p>
-								<a href="/search/category?searchParam=<%= magazine.getCategory() %>">#<%= magazine.getCategory() %></a>
+								<a href="/search/category/<%= magazine.getCategory() %>">#<%= magazine.getCategory() %></a>
 						</div>
 					</div>
 				<% } %>
@@ -122,7 +122,7 @@
 								<h4>Researched by <%= thesesItem.getResearcher() %></h4>
 								<h3>Guides: <%= thesesItem.getGuides() %></h3>
 								<h3>Completed on: <%= thesesItem.getCompletedDate() %></h3>
-								<a href="/search/category?searchParam=<%= thesesItem.getCategory() %>">#<%= thesesItem.getCategory() %></a>
+								<a href="/search/category/<%= thesesItem.getCategory() %>">#<%= thesesItem.getCategory() %></a>
 						</div>
 					</div>
 				<% } %>
@@ -140,7 +140,7 @@
 								<h3><%= softcopy.getTitle() %> </h3>
 								<h4>Published by <%= softcopy.getPublisher() %></h4>
 								<h3>Owner: <%= softcopy.getOwner() %></h3>
-								<a href="/search/category?searchParam=<%= softcopy.getCategory() %>">#<%= softcopy.getCategory() %></a>
+								<a href="/search/category/<%= softcopy.getCategory() %>">#<%= softcopy.getCategory() %></a>
 						</div>
 					</div>
 				<% } %>

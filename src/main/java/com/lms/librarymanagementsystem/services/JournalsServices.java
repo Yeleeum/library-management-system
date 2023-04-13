@@ -27,7 +27,11 @@ public class JournalsServices {
         return journalsRepository.findJournalBySearchEditor(searchParam);
     }
     public List<Journals> findBySearchPublisher(String searchParam){
-        return journalsRepository.findBookBySearchPublisher(searchParam);
+        return journalsRepository.findJournalBySearchPublisher(searchParam);
+    }
+
+    public List<Journals> findBySearchCatagory(String searchParam){
+        return journalsRepository.findJournalBySearchCatagory(searchParam);
     }
 }
 
