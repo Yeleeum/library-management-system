@@ -48,7 +48,7 @@ public class SearchController {
 
     @GetMapping
     public String getSearch(){
-        return "mainSearchComponent";
+        return "subSearchComponent";
     }
 
     @GetMapping("/books")
