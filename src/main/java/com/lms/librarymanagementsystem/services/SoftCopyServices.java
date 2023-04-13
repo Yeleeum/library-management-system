@@ -3,7 +3,9 @@ package com.lms.librarymanagementsystem.services;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.lms.librarymanagementsystem.FileHandler.FileHandler;
 import com.lms.librarymanagementsystem.models.SoftCopy;
 import com.lms.librarymanagementsystem.repositories.SoftCopyRepository;
 
@@ -15,7 +17,10 @@ public class SoftCopyServices {
         this.softCopyRepository = softCopyRepository;
     }
 
-    public SoftCopy insertOneSoftCopy(SoftCopy softCopy){
+    public SoftCopy insertOneSoftCopy(SoftCopy softCopy,MultipartFile file){
+        String path="D:\\Java-SpringBoot\\College Project\\librarymanagementsystem\\src\\main\\webapp\\uploads\\SoftCopy";
+        FileHandler.saveFile(file, path);
+        softCopy.setFilename(file.getOriginalFilename());
         return softCopyRepository.save(softCopy);
     }
 

@@ -58,7 +58,7 @@
 </head>
 <body>
 	<%@ include file="mainSearchComponent.jsp"%>
-	<form action="/books" method="POST">
+	<form action="/books" method="POST" enctype="multipart/form-data">
 		<label for="itid">ITID:</label>
 		<input type="text" id="itid" name="itid" required>
 
@@ -72,7 +72,7 @@
 		<input type="text" id="publisher" name="publisher" required>
 
 		<label for="thumbnail">Thumbnail:</label>
-		<input type="text" id="thumbnail" name="thumbnail">
+		<input type="file" id="thumbnail" name="thumbnailfile">
 
 		<label for="description">Description:</label>
 		<textarea id="description" name="description"></textarea>

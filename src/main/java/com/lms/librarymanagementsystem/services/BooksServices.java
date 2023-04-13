@@ -3,7 +3,9 @@ package com.lms.librarymanagementsystem.services;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.lms.librarymanagementsystem.FileHandler.FileHandler;
 import com.lms.librarymanagementsystem.models.Books;
 import com.lms.librarymanagementsystem.repositories.BooksRepository;
 
@@ -15,7 +17,10 @@ public class BooksServices {
         this.booksRepository = booksRepository;
     }
 
-    public Books insertOneBook(Books book){
+    public Books insertOneBook(Books book,MultipartFile file){
+        String path="D:\\Java-SpringBoot\\College Project\\librarymanagementsystem\\src\\main\\webapp\\uploads\\thumbnails";
+        FileHandler.saveFile(file, path);
+        book.setThumbnail(file.getOriginalFilename());
         return booksRepository.save(book);
     }
 

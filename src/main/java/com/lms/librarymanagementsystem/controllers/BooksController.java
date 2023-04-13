@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.lms.librarymanagementsystem.models.Books;
 import com.lms.librarymanagementsystem.models.Connector;
@@ -32,10 +33,9 @@ public class BooksController {
     }
 
     @PostMapping
-    public Books insertBook(Books book){
-        System.out.println(book);
+    public Books insertBook(Books book,MultipartFile thumbnailfile){
         connectorServices.insertOneConnector(new Connector(book.getItid(),"book"));
-        return booksServices.insertOneBook(book);
+        return booksServices.insertOneBook(book,thumbnailfile);
     }
 
     @GetMapping

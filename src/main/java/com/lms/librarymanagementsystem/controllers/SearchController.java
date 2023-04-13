@@ -1,6 +1,6 @@
 package com.lms.librarymanagementsystem.controllers;
 
-import java.util.ArrayList;
+// import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -163,6 +163,13 @@ public class SearchController {
         Books book = booksServices.findSingleBook(bookId);
         model.addAttribute("book", book);
         return "bookDetails";
+    }
+
+    @GetMapping("/journals/{jid}")
+    public String getSingleJournalById(@PathVariable("jid")String jid,Model model){
+        Journals journal=journalsServices.findSingleJournalById(jid);
+        model.addAttribute("journal", journal);
+        return "journalDetails";
     }
 
 }
