@@ -43,7 +43,30 @@
 			padding: 5px 10px;
 			padding-bottom: 10px;
 		}
-		
+
+		.imageContent{
+			box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+			width: 300px;
+			height: 300px;
+			overflow: hidden;
+			background: #000;
+			border-radius: 50%;
+		}
+
+		.imageContent > img {
+			width: 300px;
+			height: 310px;
+		}
+
+		.searchError{
+			width: 100%;
+			margin-top: 7vh;
+			flex-direction: column;
+			display: flex;
+			gap: 10px;
+			justify-content: center;
+			align-items: center;
+		}		
 	</style>
 </head>
 <%
@@ -56,7 +79,7 @@
 <body>
     <%@ include file="subSearchComponent.jsp"%>
 	<% if((books==null || books.isEmpty())&& (journals==null || journals.isEmpty()) && (magazines==null || magazines.isEmpty()) && (theses==null || theses.isEmpty()) && (softcopies==null ||softcopies.isEmpty())){ %>
-		<h1>No Content Found</h1>
+		<%@include file="NoContentFound.jsp"%>
 	<%}else{ %>
 		<div class="view">
 			<%if(books!=null && !books.isEmpty()){ %>
