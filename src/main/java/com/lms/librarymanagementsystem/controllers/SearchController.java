@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+// import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.lms.librarymanagementsystem.models.Books;
@@ -86,17 +87,26 @@ public class SearchController {
     }
 
     @GetMapping("/researcher")
-    public ResponseEntity<List<Theses>> searchByReasearcher(String searchParam){
-        return new ResponseEntity<List<Theses>>(thesesServices.findBySearchResearcher(searchParam),HttpStatus.OK);
+    public String searchByReasearcher(String searchParam,Model model){
+        List<Theses> theses=thesesServices.findBySearchResearcher(searchParam);
+        model.addAttribute("theses", theses);
+        model.addAttribute("searchValue", searchParam);
+        return "searchResult";
     }
 
     @GetMapping("/editor")
-    public ResponseEntity<List<Journals>> searchByEditor(String searchParam){
-        return new ResponseEntity<List<Journals>>(journalsServices.findBySearchEditor(searchParam),HttpStatus.OK);
+    public String searchByEditor(String searchParam,Model model){
+        List<Journals> journals=journalsServices.findBySearchEditor(searchParam);
+        model.addAttribute("journals", journals);
+        model.addAttribute("searchValue", searchParam);
+        return "searchResult";
     }
 
     @GetMapping("/owner")
-    public ResponseEntity<List<SoftCopy>> searchByOwner(String searchParam){
-        return new ResponseEntity<List<SoftCopy>>(softCopyServices.findBySearchOwner(searchParam),HttpStatus.OK);
+    public String searchByOwner(String searchParam,Model model){
+        List<SoftCopy> softCopies=softCopyServices.findBySearchOwner(searchParam);
+        model.addAttribute("softcopies", softCopies);
+        model.addAttribute("searchValue", searchParam);
+        return "searchResult";
     }
 }

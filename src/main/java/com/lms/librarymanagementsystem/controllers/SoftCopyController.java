@@ -26,8 +26,8 @@ public class SoftCopyController {
 
     @PostMapping
     public SoftCopy insertSoftCopy(SoftCopy softCopy,MultipartFile file){
-        // String path="D:\\Java-SpringBoot\\College Project\\librarymanagementsystem\\src\\main\\webapp\\uploads\\SoftCopy";
-        String path="D:\\6th sem\\Project\\Library-management-system\\src\\main\\webapp\\uploads\\SoftCopy";
+        String path="D:\\Java-SpringBoot\\College Project\\librarymanagementsystem\\src\\main\\webapp\\uploads\\SoftCopy";
+        // String path="D:\\6th sem\\Project\\Library-management-system\\src\\main\\webapp\\uploads\\SoftCopy";
         FileHandler.saveFile(file, path);
         softCopy.setFilename(file.getOriginalFilename());
         return softCopyServices.insertOneSoftCopy(softCopy);
