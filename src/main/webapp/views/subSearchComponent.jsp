@@ -5,6 +5,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        form {
+            background-color: #333;
+            color: #fff;
+            padding: 1rem;
+        }
+    </style>
 </head>
 <body>
     <% String searchValue=((String) request.getAttribute("searchValue"))==null?"":(String) request.getAttribute("searchValue");%>

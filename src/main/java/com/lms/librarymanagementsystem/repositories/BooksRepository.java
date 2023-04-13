@@ -2,6 +2,7 @@ package com.lms.librarymanagementsystem.repositories;
 
 import java.util.List;
 
+import org.hibernate.mapping.Value;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -14,4 +15,7 @@ public interface BooksRepository extends JpaRepository<Books,Integer>{
 
     @Query(value="SELECT B.* FROM BOOKS B,CONNECTOR C WHERE B.ITID=C.ITID AND B.AUTHOR LIKE %:PARAM%",nativeQuery = true)
     List<Books> findBookBySearchAuthor(@Param("PARAM")String searchParam);
+
+    @Query(value="SELECT * from Books where BID=:PARAM", nativeQuery = true)
+    Books getSingleBook(@Param("PARAM")String bookId);
 }

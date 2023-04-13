@@ -48,10 +48,7 @@
 	</style>
 </head>
 <body>
-	<form action="" method="POST">
-		<label for="tid">TID:</label>
-		<input type="text" id="tid" name="tid" required>
-
+	<form action="/theses" method="POST">
 		<label for="itid">ITID:</label>
 		<input type="text" id="itid" name="itid" required>
 

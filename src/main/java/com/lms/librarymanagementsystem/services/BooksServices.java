@@ -30,4 +30,8 @@ public class BooksServices {
     public List<Books> findBySearchAuthor(String searchParam){
         return booksRepository.findBookBySearchAuthor(searchParam);
     }
+
+    public Books findSingleBook(String bookId){
+        return booksRepository.getSingleBook(bookId);
+    }
 }

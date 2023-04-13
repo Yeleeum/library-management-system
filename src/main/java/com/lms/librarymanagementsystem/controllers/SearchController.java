@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 // import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -108,5 +109,13 @@ public class SearchController {
         model.addAttribute("softcopies", softCopies);
         model.addAttribute("searchValue", searchParam);
         return "searchResult";
+    }
+
+    @GetMapping("/books/{bookId}")
+    public String getSingleBookByBid(@PathVariable("bookId")String bookId,Model model){
+        // return new ResponseEntity<Books>(booksServices.findSingleBook(bookId), HttpStatus.OK);\
+        Books book = booksServices.findSingleBook(bookId);
+        model.addAttribute("book", book);
+        return "bookDetails";
     }
 }
