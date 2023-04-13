@@ -1,40 +1,3 @@
-<!-- <!DOCTYPE html>
-<%@page import="com.lms.librarymanagementsystem.models.Books"%>
-<%@page import="java.util.List"%>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <% Books book = (Books) request.getAttribute("book"); %>
-    <div>
-        <div>
-            <img src="/uploads/thumbnails/book.jpg" alt="<%= book.getTitle() %>" width="300" height="300">
-            <h1><%= book.getPageno() %></h1>
-        </div>
-
-        <div>
-            <h2><%= book.getTitle() %></h2>
-            <h6 align="right"><%= book.getTitle() %></h6>
-            <h4><%= book.getEdition() %></h4>
-            <pre><b>Category :</b> <%= book.getCategory() %></pre>
-            <span><b>Stock : </b><%= book.getStock() %></span>
-            <p><strong>Auther : </strong> <%= book.getAuthor() %></p>
-            <p><b>Published by : </b><%= book.getPublisher() %></p>
-            <div readonly style="border: 2px solid black;">
-                <%= book.getDescription() %>
-                
-                <pre>#<%= book.getKeywords() %></pre>
-            </div>
-
-        </div>
-    </div>
-</body>
-</html> -->
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -101,6 +64,15 @@
         .book-details p {
             margin-bottom: 1rem;
         }
+
+        button{
+            padding: 10px 20px;
+            background: #000;
+            color: #fff;
+            font-weight: bolder;
+            border-radius: 10px;
+            cursor: pointer;
+        }
     </style>
 </head>
 
@@ -127,7 +99,10 @@
             <p></p>
             <p>Category: <%= book.getCategory() %>
             </p>
-            <!-- <button>Add to Cart</button> -->
+            <div>
+                <button>Borrow</button>
+                <button>Return</button>
+            </div>
         </div>
     </div>
     <div  class="description">

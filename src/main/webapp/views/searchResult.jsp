@@ -43,12 +43,12 @@
 %>
 <body>
     <%@ include file="subSearchComponent.jsp"%>
-		<% if((books==null || books.isEmpty())&& (journals==null || journals.isEmpty()) && (magazines==null || magazines.isEmpty()) && (theses==null || theses.isEmpty()) && (softcopies==null ||softcopies.isEmpty())){ %>
-			<h1>No Content Found</h1>
-		<%}else{ %>
-		<%if(books!=null && !books.isEmpty()){ %>
+	<% if((books==null || books.isEmpty())&& (journals==null || journals.isEmpty()) && (magazines==null || magazines.isEmpty()) && (theses==null || theses.isEmpty()) && (softcopies==null ||softcopies.isEmpty())){ %>
+		<h1>No Content Found</h1>
+	<%}else{ %>
+			<%if(books!=null && !books.isEmpty()){ %>
+				<div class="books">
 			<!-- <div><%=books %></div> -->
-			<div class="books">
 				<% for(Books book : books){ %>
 					<div class="booksCard">
 						<a href="/search/books/<%= book.getBid() %>" >
@@ -64,11 +64,9 @@
 						</div>
 					</div>
 				<% } %>
-			</div>
 		<%} %>
 		<%if(journals!=null && !journals.isEmpty()){ %>
 			<!-- <div><%=journals %></div> -->
-			<div class="books">
 				<% for(Journals journal : journals){ %>
 					<div class="booksCard">
 						<a href="/search/journals/<%= journal.getJid() %>" >
@@ -84,11 +82,9 @@
 						</div>
 					</div>
 				<% } %>
-			</div>
 		<%} %>
 		<%if(magazines!=null && !magazines.isEmpty()){ %>
 			<!-- <div><%=magazines %></div> -->
-			<div class="books">
 				<% for(Magazines magazine : magazines){ %>
 					<div class="booksCard">
 						<a href="/search/journals/<%= magazine.getMid() %>" >
@@ -111,11 +107,9 @@
 						</div>
 					</div>
 				<% } %>
-			</div>
 		<% } %>
 		<%if(theses!=null && !theses.isEmpty()){ %>
 			<!-- <div><%=theses %></div> -->
-			<div class="books">
 				<% for(Theses thesesItem : theses){ %>
 					<div class="booksCard">
 						<a href="/search/journals/<%= thesesItem.getTid() %>" >
@@ -132,12 +126,10 @@
 						</div>
 					</div>
 				<% } %>
-			</div>
 		<%} %>
 		<%if(softcopies!=null && !softcopies.isEmpty()){ %>
 			<!-- <div><%=softcopies%></div> -->
-			<div class="books">
-				<% for(SoftCopy softcopy : softcopies){ %>
+			<% for(SoftCopy softcopy : softcopies){ %>
 					<div class="booksCard">
 						<a href="/search/journals/<%= softcopy.getSid() %>" >
 							<div>
@@ -152,8 +144,8 @@
 						</div>
 					</div>
 				<% } %>
-			</div>
-		<% } %>
+			<% } %>
+		</div>
     <%} %>
 </body>
 </html>
