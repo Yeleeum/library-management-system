@@ -15,6 +15,8 @@
         }
 
         body {
+            width: 100%;
+            overflow-x: hidden;
             font-family: Arial, sans-serif;
             line-height: 1.5;
         }
@@ -43,7 +45,9 @@
 
         .description{
             width: 100%;
-            padding: 0.5rem 1.5em;
+            /* padding: 0.5rem 1.5em; */
+            padding-top: 0.5rem;
+            padding-left: 1.5rem;
         }
 
         .descArea{
@@ -56,6 +60,7 @@
             border-radius: 10px;
             max-width: 300px;
             margin-right: 2rem;
+            box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
         }
 
         .book-details h2 {
