@@ -157,7 +157,6 @@ public class SearchController {
         return "searchResult";
     }
 
-
     @GetMapping("/books/{bookId}")
     public String getSingleBookByBid(@PathVariable("bookId")String bookId,Model model){
         // return new ResponseEntity<Books>(booksServices.findSingleBook(bookId), HttpStatus.OK);\
@@ -165,4 +164,5 @@ public class SearchController {
         model.addAttribute("book", book);
         return "bookDetails";
     }
+
 }

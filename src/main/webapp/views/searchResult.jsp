@@ -47,6 +47,7 @@
 		<h1>No Content Found</h1>
 	<%}else{ %>
 			<%if(books!=null && !books.isEmpty()){ %>
+				<h1>Books</h1>
 				<div class="books">
 			<!-- <div><%=books %></div> -->
 				<% for(Books book : books){ %>
@@ -66,6 +67,7 @@
 				<% } %>
 		<%} %>
 		<%if(journals!=null && !journals.isEmpty()){ %>
+		<h1>Jourrnals</h1>
 			<!-- <div><%=journals %></div> -->
 				<% for(Journals journal : journals){ %>
 					<div class="booksCard">
@@ -84,6 +86,7 @@
 				<% } %>
 		<%} %>
 		<%if(magazines!=null && !magazines.isEmpty()){ %>
+		<h1>Magazines</h1>
 			<!-- <div><%=magazines %></div> -->
 				<% for(Magazines magazine : magazines){ %>
 					<div class="booksCard">
@@ -109,6 +112,7 @@
 				<% } %>
 		<% } %>
 		<%if(theses!=null && !theses.isEmpty()){ %>
+		<h1>Theses</h1>
 			<!-- <div><%=theses %></div> -->
 				<% for(Theses thesesItem : theses){ %>
 					<div class="booksCard">
@@ -128,6 +132,7 @@
 				<% } %>
 		<%} %>
 		<%if(softcopies!=null && !softcopies.isEmpty()){ %>
+		<h1>Softcopies</h1>
 			<!-- <div><%=softcopies%></div> -->
 			<% for(SoftCopy softcopy : softcopies){ %>
 					<div class="booksCard">

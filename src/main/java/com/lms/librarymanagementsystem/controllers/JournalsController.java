@@ -1,6 +1,9 @@
 package com.lms.librarymanagementsystem.controllers;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,6 +34,16 @@ public class JournalsController {
     public Journals insertJournal(Journals journal){
         connectorServices.insertOneConnector(new Connector(journal.getItid(),"journal"));
         return JournalsServices.insertOneJournal(journal);
+    }
+
+    @GetMapping("/search")
+    public String getJournalsBySearch(String searchParam,Model model){
+        List<Journals> journals=JournalsServices.findBySearch(searchParam);
+        model.addAttribute("journals", journals);
+        model.addAttribute("searchValue", searchParam);
+        model.addAttribute("type", "journals");
+        return "searchResult";
+
     }
     
 
