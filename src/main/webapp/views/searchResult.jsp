@@ -12,23 +12,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 	<style>
+		.view{
+			padding: 2vw;
+		}
+
 		.books{
-			margin-top: 10px;
 			display: flex;
-			justify-content: center;
+			gap: 3vh;
+			justify-content: flex-start;
 			align-items: center;
-			gap: 10px;
+			margin-top: 10px;
 			flex-wrap: wrap;
+			margin-bottom: 5vh;
 		}
 		
 		.booksCard{
+			width: 1457px;
+			height: max-content;
+			width: fit-content;
 			border-radius: 10px;
 			overflow: hidden;
-			background-color: rgb(212, 210, 210);
+			background-color: rgb(255, 255, 255);
+			box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 		}
-
+		
 		.bookDetails{
-			padding: 0 10px;
+			width: 220px;
+			word-wrap: break-word;
+			word-break: break-all;
+			padding: 5px 10px;
 			padding-bottom: 10px;
 		}
 		
@@ -46,8 +58,9 @@
 	<% if((books==null || books.isEmpty())&& (journals==null || journals.isEmpty()) && (magazines==null || magazines.isEmpty()) && (theses==null || theses.isEmpty()) && (softcopies==null ||softcopies.isEmpty())){ %>
 		<h1>No Content Found</h1>
 	<%}else{ %>
+		<div class="view">
 			<%if(books!=null && !books.isEmpty()){ %>
-				<h1>Books</h1>
+				<h1><i class="fa-solid fa-book" style="color: #4c0dde;"></i> Books</h1>
 				<div class="books">
 			<!-- <div><%=books %></div> -->
 				<% for(Books book : books){ %>
@@ -65,10 +78,12 @@
 						</div>
 					</div>
 				<% } %>
+			</div>
 		<%} %>
 		<%if(journals!=null && !journals.isEmpty()){ %>
-		<h1>Jourrnals</h1>
+		<h1><i class="fa-solid fa-book-journal-whills" style="color: #286ce2;"></i> Journals</h1>
 			<!-- <div><%=journals %></div> -->
+			<div class="books">
 				<% for(Journals journal : journals){ %>
 					<div class="booksCard">
 						<a href="/search/journals/<%= journal.getJid() %>" >
@@ -84,10 +99,12 @@
 						</div>
 					</div>
 				<% } %>
+			</div>
 		<%} %>
 		<%if(magazines!=null && !magazines.isEmpty()){ %>
-		<h1>Magazines</h1>
+		<h1><i class="fa-solid fa-newspaper" style="color: #1441be;"></i> Magazines</h1>
 			<!-- <div><%=magazines %></div> -->
+			<div class="books">
 				<% for(Magazines magazine : magazines){ %>
 					<div class="booksCard">
 						<a href="/search/journals/<%= magazine.getMid() %>" >
@@ -110,10 +127,12 @@
 						</div>
 					</div>
 				<% } %>
+			</div>
 		<% } %>
 		<%if(theses!=null && !theses.isEmpty()){ %>
-		<h1>Theses</h1>
+		<h1><i class="fa-solid fa-microscope" style="color: #535de0;"></i> Theses</h1>
 			<!-- <div><%=theses %></div> -->
+			<div class="books">
 				<% for(Theses thesesItem : theses){ %>
 					<div class="booksCard">
 						<a href="/search/journals/<%= thesesItem.getTid() %>" >
@@ -130,10 +149,12 @@
 						</div>
 					</div>
 				<% } %>
+			</div>
 		<%} %>
 		<%if(softcopies!=null && !softcopies.isEmpty()){ %>
-		<h1>Softcopies</h1>
 			<!-- <div><%=softcopies%></div> -->
+			<h1><i class="fa-solid fa-file-pdf" style="color: #360dec;"></i> Softcopies</h1>
+		<div class="books">
 			<% for(SoftCopy softcopy : softcopies){ %>
 					<div class="booksCard">
 						<a href="/search/journals/<%= softcopy.getSid() %>" >
@@ -151,6 +172,6 @@
 				<% } %>
 			<% } %>
 		</div>
-    <%} %>
+    <% } %>
 </body>
 </html>

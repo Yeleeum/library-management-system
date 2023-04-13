@@ -21,7 +21,7 @@
 
         /* Header Styles */
         header {
-            background-color: #333;
+            background-color: #525252;
             color: #fff;
             padding: 1rem;
         }
