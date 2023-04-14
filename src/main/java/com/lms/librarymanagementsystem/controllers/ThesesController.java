@@ -1,6 +1,9 @@
 package com.lms.librarymanagementsystem.controllers;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,6 +33,15 @@ public class ThesesController {
     public Theses insertTheses(Theses theses){
         connectorServices.insertOneConnector(new Connector(theses.getItid(),"theses"));
         return ThesesServices.insertOneTheses(theses);
+    }
+
+    @GetMapping("/search")
+    public String getThesesBySearch(String searchParam,Model model){
+        List<Theses> Theses=ThesesServices.findBySearch(searchParam);
+        model.addAttribute("theses", Theses);
+        model.addAttribute("searchValue", searchParam);
+        model.addAttribute("type", "Theses");
+        return "searchResult";
     }
 
 }

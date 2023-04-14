@@ -29,7 +29,7 @@
 	<%}else{ %>
 		<div class="view">
 			<%if(books!=null && !books.isEmpty()){ %>
-				<h1><i class="fa-solid fa-book" style="color: #4c0dde;"></i> Books</h1>
+				<h1 class="typeheader"><i class="fa-solid fa-book" style="color: #4c0dde;"></i> Books</h1>
 				<div class="books">
 			<!-- <div><%=books %></div> -->
 				<% for(Books book : books){ %>
@@ -50,7 +50,7 @@
 			</div>
 		<%} %>
 		<%if(journals!=null && !journals.isEmpty()){ %>
-		<h1><i class="fa-solid fa-book-journal-whills" style="color: #286ce2;"></i> Journals</h1>
+		<h1 class="typeheader"><i class="fa-solid fa-book-journal-whills" style="color: #286ce2;"></i> Journals</h1>
 			<!-- <div><%=journals %></div> -->
 			<div class="books">
 				<% for(Journals journal : journals){ %>
@@ -71,12 +71,12 @@
 			</div>
 		<%} %>
 		<%if(magazines!=null && !magazines.isEmpty()){ %>
-		<h1><i class="fa-solid fa-newspaper" style="color: #1441be;"></i> Magazines</h1>
+		<h1 class="typeheader"><i class="fa-solid fa-newspaper" style="color: #1441be;"></i> Magazines</h1>
 			<!-- <div><%=magazines %></div> -->
 			<div class="books">
 				<% for(Magazines magazine : magazines){ %>
 					<div class="booksCard">
-						<a href="/search/journals/<%= magazine.getMid() %>" >
+						<a href="/search/magazines/<%= magazine.getMid() %>" >
 							<div>
 								<img src="/uploads/thumbnails/book.jpg" alt="<%= magazine.getTitle() %>" width="300" height="300">
 							</div>
@@ -99,12 +99,12 @@
 			</div>
 		<% } %>
 		<%if(theses!=null && !theses.isEmpty()){ %>
-		<h1><i class="fa-solid fa-microscope" style="color: #535de0;"></i> Theses</h1>
+		<h1 class="typeheader"><i class="fa-solid fa-microscope" style="color: #535de0;"></i> Theses</h1>
 			<!-- <div><%=theses %></div> -->
 			<div class="books">
 				<% for(Theses thesesItem : theses){ %>
 					<div class="booksCard">
-						<a href="/search/journals/<%= thesesItem.getTid() %>" >
+						<a href="/search/theses/<%= thesesItem.getTid() %>" >
 							<div>
 								<img src="/uploads/thumbnails/book.jpg" alt="<%= thesesItem.getTitle() %>" width="300" height="300">
 							</div>
@@ -122,11 +122,11 @@
 		<%} %>
 		<%if(softcopies!=null && !softcopies.isEmpty()){ %>
 			<!-- <div><%=softcopies%></div> -->
-			<h1><i class="fa-solid fa-file-pdf" style="color: #360dec;"></i> Softcopies</h1>
+			<h1 class="typeheader"><i class="fa-solid fa-file-pdf" style="color: #360dec;"></i> Softcopies</h1>
 		<div class="books">
 			<% for(SoftCopy softcopy : softcopies){ %>
 					<div class="booksCard">
-						<a href="/search/journals/<%= softcopy.getSid() %>" >
+						<a href="/search/softcopy/<%= softcopy.getSid() %>" >
 							<div>
 								<img src="/uploads/thumbnails/book.jpg" alt="<%= softcopy.getTitle() %>" width="300" height="300">
 							</div>

@@ -1,6 +1,9 @@
 package com.lms.librarymanagementsystem.controllers;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,5 +30,14 @@ public class SoftCopyController {
     @PostMapping
     public SoftCopy insertSoftCopy(SoftCopy softCopy,MultipartFile file){
         return softCopyServices.insertOneSoftCopy(softCopy,file);
+    }
+
+    @GetMapping("/search")
+    public String getSoftCopyBySearch(String searchParam,Model model){
+        List<SoftCopy> softCopies=softCopyServices.findBySearch(searchParam);
+        model.addAttribute("softcopies", softCopies);
+        model.addAttribute("searchValue", searchParam);
+        model.addAttribute("type", "SoftCopy");
+        return "searchResult";
     }
 }

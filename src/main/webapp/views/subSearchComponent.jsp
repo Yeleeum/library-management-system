@@ -23,6 +23,9 @@
         <div>
             <button type="submit" formaction="/books/search" form="search">Books</button>
             <button type="submit" formaction="/journals/search" form="search">Journals</button>
+            <button type="submit" formaction="/magazines/search" form="search">Magazines</button>
+            <button type="submit" formaction="/theses/search" form="search">Theses</button>
+            <button type="submit" formaction="/softcopy/search" form="search">SoftCopy</button>
             <%if(type!=null){%>
                 <br><br>
                 <div class="exclusivfilter">
