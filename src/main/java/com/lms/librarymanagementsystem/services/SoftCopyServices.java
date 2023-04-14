@@ -18,7 +18,10 @@ public class SoftCopyServices {
     }
 
     public SoftCopy insertOneSoftCopy(SoftCopy softCopy,MultipartFile file){
-        String path="D:\\Java-SpringBoot\\College Project\\librarymanagementsystem\\src\\main\\webapp\\uploads\\SoftCopy";
+        // String path="D:\\Java-SpringBoot\\College Project\\librarymanagementsystem\\src\\main\\webapp\\uploads\\SoftCopy";
+        String currentDirectory = System.getProperty("user.dir");
+        String path= currentDirectory + "\\src\\main\\webapp\\uploads\\SoftCopy";
+        System.out.println(path);
         FileHandler.saveFile(file, path);
         softCopy.setFilename(file.getOriginalFilename());
         return softCopyRepository.save(softCopy);
