@@ -30,6 +30,9 @@ public class Theses {
     @Column(name = "description", columnDefinition = "TEXT")
     private String description;
 
+    @Column(name = "thumbnail", length = 200,nullable = true)
+    private String thumbnail;
+
     @Column(name = "category")
     private String category;
 
@@ -54,13 +57,14 @@ public class Theses {
     public Theses() {
     }
 
-    public Theses(Integer tid, String itid, String title, String researcher, String guides, String description, String category, String keywords, String completedDate, String place, String abstractContent, Integer pageNo, Integer stock) {
+    public Theses(Integer tid, String itid, String title, String researcher, String guides, String description, String thumbnail, String category, String keywords, String completedDate, String place, String abstractContent, Integer pageNo, Integer stock) {
         this.tid = tid;
         this.itid = itid;
         this.title = title;
         this.researcher = researcher;
         this.guides = guides;
         this.description = description;
+        this.thumbnail = thumbnail;
         this.category = category;
         this.keywords = keywords;
         this.completedDate = completedDate;
@@ -68,6 +72,15 @@ public class Theses {
         this.abstractContent = abstractContent;
         this.pageNo = pageNo;
         this.stock = stock;
+    }
+
+
+    public String getThumbnail() {
+        return this.thumbnail;
+    }
+
+    public void setThumbnail(String thumbnail) {
+        this.thumbnail = thumbnail;
     }
 
     public Integer getTid() {

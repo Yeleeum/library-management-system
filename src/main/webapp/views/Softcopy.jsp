@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>Softcopy</title>
-	<link rel="stylesheet" href="/css/forms/softcopy.css">
+	<link rel="stylesheet" href="/css/forms/softcopy.css" enctype="multipart/form-data">
 </head>
 <body>
 	<form action="/softcopy" enctype="multipart/form-data" method="POST">
@@ -20,6 +20,9 @@
 
 		<label for="description">Description:</label>
 		<input type="text" id="description" name="description">
+
+		<label for="thumbnail">Thumbnail:</label>
+		<input type="file" id="thumbnail" name="thumbnailfile">
 
 		<label for="category">Category:</label>
 		<select id="category" name="category">

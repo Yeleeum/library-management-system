@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.lms.librarymanagementsystem.models.Connector;
 import com.lms.librarymanagementsystem.models.Magazines;
@@ -32,9 +33,9 @@ public class MagazinesController {
     }
 
     @PostMapping
-    public Magazines insertMagazine(Magazines magazine){
+    public Magazines insertMagazine(Magazines magazine,MultipartFile thumbnailfile){
         connectorServices.insertOneConnector(new Connector(magazine.getItid(),"magazine"));
-        return MagazinesServices.insertOneMagazine(magazine);
+        return MagazinesServices.insertOneMagazine(magazine,thumbnailfile);
     }
 
     @GetMapping("/search")

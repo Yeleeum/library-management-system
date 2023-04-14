@@ -28,8 +28,8 @@ public class SoftCopyController {
     }
 
     @PostMapping
-    public SoftCopy insertSoftCopy(SoftCopy softCopy,MultipartFile file){
-        return softCopyServices.insertOneSoftCopy(softCopy,file);
+    public SoftCopy insertSoftCopy(SoftCopy softCopy,MultipartFile file,MultipartFile thumbnailfile){
+        return softCopyServices.insertOneSoftCopy(softCopy,file,thumbnailfile);
     }
 
     @GetMapping("/search")

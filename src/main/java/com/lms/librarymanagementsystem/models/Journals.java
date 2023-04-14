@@ -30,6 +30,9 @@ public class Journals {
     @Column(name = "description", columnDefinition = "TEXT")
     private String description;
 
+    @Column(name = "thumbnail", length = 200,nullable = true)
+    private String thumbnail;
+
     @Column(name = "category")
     private String category;
 
@@ -51,19 +54,29 @@ public class Journals {
     public Journals() {
     }
 
-    public Journals(Integer jid, String itid, String title, String publisher, String editor, String description, String category, String keywords, Integer startYear, Integer endYear, Integer pageNo, Integer stock) {
+
+    public Journals(Integer jid, String itid, String title, String publisher, String editor, String description, String thumbnail, String category, String keywords, Integer startYear, Integer endYear, Integer pageNo, Integer stock) {
         this.jid = jid;
         this.itid = itid;
         this.title = title;
         this.publisher = publisher;
         this.editor = editor;
         this.description = description;
+        this.thumbnail = thumbnail;
         this.category = category;
         this.keywords = keywords;
         this.startYear = startYear;
         this.endYear = endYear;
         this.pageNo = pageNo;
         this.stock = stock;
+    }
+
+    public String getThumbnail() {
+        return this.thumbnail;
+    }
+
+    public void setThumbnail(String thumbnail) {
+        this.thumbnail = thumbnail;
     }
 
     public Integer getJid() {

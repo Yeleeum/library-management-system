@@ -3,7 +3,9 @@ package com.lms.librarymanagementsystem.services;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.lms.librarymanagementsystem.FileHandler.FileHandler;
 import com.lms.librarymanagementsystem.models.*;
 import com.lms.librarymanagementsystem.repositories.MagazinesRepository;
 
@@ -15,7 +17,11 @@ public class MagazinesServices {
         this.magazinesRepository = magazinesRepository;
     }
 
-    public Magazines insertOneMagazine(Magazines magazine){
+    public Magazines insertOneMagazine(Magazines magazine,MultipartFile file){
+        String currentDirectory = System.getProperty("user.dir");
+        String path= currentDirectory + "\\src\\main\\webapp\\uploads\\thumbnails";
+        FileHandler.saveFile(file, path);
+        magazine.setThumbnail(file.getOriginalFilename());
         return magazinesRepository.save(magazine);
     }
 

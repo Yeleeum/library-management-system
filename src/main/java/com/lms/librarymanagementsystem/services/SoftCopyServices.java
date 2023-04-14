@@ -17,13 +17,16 @@ public class SoftCopyServices {
         this.softCopyRepository = softCopyRepository;
     }
 
-    public SoftCopy insertOneSoftCopy(SoftCopy softCopy,MultipartFile file){
+    public SoftCopy insertOneSoftCopy(SoftCopy softCopy,MultipartFile file,MultipartFile thumbnail){
         // String path="D:\\Java-SpringBoot\\College Project\\librarymanagementsystem\\src\\main\\webapp\\uploads\\SoftCopy";
         String currentDirectory = System.getProperty("user.dir");
         String path= currentDirectory + "\\src\\main\\webapp\\uploads\\SoftCopy";
         System.out.println(path);
         FileHandler.saveFile(file, path);
         softCopy.setFilename(file.getOriginalFilename());
+        path= currentDirectory + "\\src\\main\\webapp\\uploads\\thumbnails";
+        FileHandler.saveFile(thumbnail, path);
+        softCopy.setThumbnail(thumbnail.getOriginalFilename());
         return softCopyRepository.save(softCopy);
     }
 

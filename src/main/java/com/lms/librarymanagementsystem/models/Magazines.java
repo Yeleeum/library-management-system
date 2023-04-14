@@ -33,6 +33,9 @@ public class Magazines {
     @Column(name = "description", columnDefinition = "TEXT")
     private String description;
 
+    @Column(name = "thumbnail", length = 200,nullable = true)
+    private String thumbnail;
+
     @Column(name = "frequency")
     private String frequency;
 
@@ -51,7 +54,7 @@ public class Magazines {
     public Magazines() {
     }
 
-    public Magazines(Integer mid, String itid, String title, String publisher, String issuedate, String issuenumber, String description, String frequency, String keywords, String specialissue, String category, Integer stock) {
+    public Magazines(Integer mid, String itid, String title, String publisher, String issuedate, String issuenumber, String description, String thumbnail, String frequency, String keywords, String specialissue, String category, Integer stock) {
         this.mid = mid;
         this.itid = itid;
         this.title = title;
@@ -59,11 +62,21 @@ public class Magazines {
         this.issuedate = issuedate;
         this.issuenumber = issuenumber;
         this.description = description;
+        this.thumbnail = thumbnail;
         this.frequency = frequency;
         this.keywords = keywords;
         this.specialissue = specialissue;
         this.category = category;
         this.stock = stock;
+    }
+
+
+    public String getThumbnail() {
+        return this.thumbnail;
+    }
+
+    public void setThumbnail(String thumbnail) {
+        this.thumbnail = thumbnail;
     }
 
     public Integer getMid() {
