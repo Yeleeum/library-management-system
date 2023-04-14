@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="/css/forms/journals.css">
 </head>
 <body>
-	<form action="/journals" method="POST">
+	<form action="/journals" method="POST" enctype="multipart/form-data">
 		<label for="itid">ITID:</label>
 		<input type="text" id="itid" name="itid" required>
 
@@ -20,6 +20,9 @@
 
 		<label for="description">Description:</label>
 		<textarea id="description" name="description"></textarea>
+
+		<label for="thumbnail">Thumbnail:</label>
+		<input type="file" id="thumbnail" name="thumbnailfile">
 
 		<label for="category">Category:</label>
 		<select id="category" name="category">

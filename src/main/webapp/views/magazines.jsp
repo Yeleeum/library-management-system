@@ -5,7 +5,7 @@
 	<link rel="stylesheet" href="/css/forms/magazines.css">
 </head>
 <body>
-	<form action="/magazines" method="POST">
+	<form action="/magazines" method="POST" enctype="multipart/form-data">
 
 		<label for="itid">ITID:</label>
 		<input type="text" id="itid" name="itid" required>
@@ -24,6 +24,9 @@
 
 		<label for="description">Description:</label>
 		<input type="text" id="description" name="description">
+
+		<label for="thumbnail">Thumbnail:</label>
+		<input type="file" id="thumbnail" name="thumbnailfile">
 
 		<label for="frequency">Frequency:</label>
 		<input type="text" id="frequency" name="frequency">

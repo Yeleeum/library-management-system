@@ -3,7 +3,9 @@ package com.lms.librarymanagementsystem.services;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.lms.librarymanagementsystem.FileHandler.FileHandler;
 import com.lms.librarymanagementsystem.models.Journals;
 import com.lms.librarymanagementsystem.repositories.JournalsRepository;
 
@@ -15,7 +17,11 @@ public class JournalsServices {
         this.journalsRepository = journalsRepository;
     }
 
-    public Journals insertOneJournal(Journals journal){
+    public Journals insertOneJournal(Journals journal,MultipartFile file){
+        String currentDirectory = System.getProperty("user.dir");
+        String path= currentDirectory + "\\src\\main\\webapp\\uploads\\thumbnails";
+        FileHandler.saveFile(file, path);
+        journal.setThumbnail(file.getOriginalFilename());
         return journalsRepository.save(journal);
     }
 

@@ -23,6 +23,9 @@ public class SoftCopy {
     @Column(name="description")
     private String description;
 
+    @Column(name = "thumbnail", length = 200,nullable = true)
+    private String thumbnail;
+
     @Column(name="category")
     private String category;
 
@@ -38,17 +41,27 @@ public class SoftCopy {
     public SoftCopy() {
     }
 
-    public SoftCopy(String sid, String title, String owner, String publisher, String description, String category, String keywords, Integer pageno, String filename) {
+    public SoftCopy(String sid, String title, String owner, String publisher, String description, String thumbnail, String category, String keywords, Integer pageno, String filename) {
         this.sid = sid;
         this.title = title;
         this.owner = owner;
         this.publisher = publisher;
         this.description = description;
+        this.thumbnail = thumbnail;
         this.category = category;
         this.keywords = keywords;
         this.pageno = pageno;
         this.filename = filename;
     }
+
+    public String getThumbnail() {
+        return this.thumbnail;
+    }
+
+    public void setThumbnail(String thumbnail) {
+        this.thumbnail = thumbnail;
+    }
+
 
     public String getSid() {
         return this.sid;

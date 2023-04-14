@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.lms.librarymanagementsystem.models.Connector;
 import com.lms.librarymanagementsystem.models.Journals;
@@ -31,9 +32,9 @@ public class JournalsController {
     }
 
     @PostMapping
-    public Journals insertJournal(Journals journal){
+    public Journals insertJournal(Journals journal,MultipartFile thumbnailfile){
         connectorServices.insertOneConnector(new Connector(journal.getItid(),"journal"));
-        return JournalsServices.insertOneJournal(journal);
+        return JournalsServices.insertOneJournal(journal,thumbnailfile);
     }
 
     @GetMapping("/search")

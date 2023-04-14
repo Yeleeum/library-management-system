@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.lms.librarymanagementsystem.models.Connector;
 import com.lms.librarymanagementsystem.models.Theses;
@@ -30,9 +31,9 @@ public class ThesesController {
     }
 
     @PostMapping
-    public Theses insertTheses(Theses theses){
+    public Theses insertTheses(Theses theses,MultipartFile thumbnailfile){
         connectorServices.insertOneConnector(new Connector(theses.getItid(),"theses"));
-        return ThesesServices.insertOneTheses(theses);
+        return ThesesServices.insertOneTheses(theses,thumbnailfile);
     }
 
     @GetMapping("/search")
