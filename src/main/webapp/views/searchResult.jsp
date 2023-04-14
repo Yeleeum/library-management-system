@@ -9,65 +9,10 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-	<style>
-		.view{
-			padding: 2vw;
-		}
-
-		.books{
-			display: flex;
-			gap: 3vh;
-			justify-content: flex-start;
-			align-items: center;
-			margin-top: 10px;
-			flex-wrap: wrap;
-			margin-bottom: 5vh;
-		}
-		
-		.booksCard{
-			width: 1457px;
-			height: max-content;
-			width: fit-content;
-			border-radius: 10px;
-			overflow: hidden;
-			background-color: rgb(255, 255, 255);
-			box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-		}
-		
-		.bookDetails{
-			width: 220px;
-			word-wrap: break-word;
-			word-break: break-all;
-			padding: 5px 10px;
-			padding-bottom: 10px;
-		}
-
-		.imageContent{
-			box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
-			width: 300px;
-			height: 300px;
-			overflow: hidden;
-			background: #000;
-			border-radius: 50%;
-		}
-
-		.imageContent > img {
-			width: 300px;
-			height: 310px;
-		}
-
-		.searchError{
-			width: 100%;
-			margin-top: 7vh;
-			flex-direction: column;
-			display: flex;
-			gap: 10px;
-			justify-content: center;
-			align-items: center;
-		}		
-	</style>
+	<link rel="stylesheet" href="/css/style.css">
 </head>
 <%
 	List<Books> books=(List<Books>) request.getAttribute("books");
@@ -77,7 +22,8 @@
 	List<SoftCopy> softcopies=(List<SoftCopy>) request.getAttribute("softcopies");
 %>
 <body>
-    <%@ include file="subSearchComponent.jsp"%>
+    <div class="searchview">
+		<%@ include file="subSearchComponent.jsp"%>
 	<% if((books==null || books.isEmpty())&& (journals==null || journals.isEmpty()) && (magazines==null || magazines.isEmpty()) && (theses==null || theses.isEmpty()) && (softcopies==null ||softcopies.isEmpty())){ %>
 		<%@include file="NoContentFound.jsp"%>
 	<%}else{ %>
@@ -196,5 +142,6 @@
 			<% } %>
 		</div>
     <% } %>
+	</div>
 </body>
 </html>
