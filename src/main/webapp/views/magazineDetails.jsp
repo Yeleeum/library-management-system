@@ -11,8 +11,9 @@
 
 <body>
     <% Magazines magazine = (Magazines) request.getAttribute("magazine"); %>
-    <header>
-        <h1>Journal Details</h1>
+    <header style="width: 100%; display: flex; justify-content: space-between; align-items: center;">
+        <h1>Magazine Details</h1>
+        <%@include file="mainSearchComponent.jsp"%>
     </header>
 
     <div class="book-details">

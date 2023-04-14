@@ -25,7 +25,7 @@ body {
     right: 2vw;
     top: 2vh;
     font-size: 40px;
-    color: #fff;
+    color: #000000;
     font-weight: bold;
     cursor: pointer;
 }
@@ -35,7 +35,7 @@ body {
     transition: all 1s cubic-bezier(0.215, 0.610, 0.355, 1);
 }
 
-#pdfViewArea > div >  object {
+#pdfViewArea > div >  iframe {
     width: 100vw;
     height: 100vh;
 }

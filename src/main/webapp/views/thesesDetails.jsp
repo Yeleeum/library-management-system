@@ -11,8 +11,9 @@
 
 <body>
     <% Theses theses = (Theses) request.getAttribute("theses"); %>
-    <header>
+    <header style="width: 100%; display: flex; justify-content: space-between; align-items: center;">
         <h1>Theses Details</h1>
+        <%@include file="mainSearchComponent.jsp"%>
     </header>
 
     <div class="book-details">

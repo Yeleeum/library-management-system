@@ -85,8 +85,9 @@
 
 <body>
     <% Journals journal = (Journals) request.getAttribute("journal"); %>
-    <header>
+    <header style="width: 100%; display: flex; justify-content: space-between; align-items: center;">
         <h1>Journal Details</h1>
+        <%@include file="mainSearchComponent.jsp"%>
     </header>
 
     <div class="book-details">
