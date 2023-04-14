@@ -31,6 +31,10 @@ public class ThesesServices {
         return thesesRepository.findThesesBySearchCatagory(searchParam);
     }
 
+    public Theses findSingleThesesById(String tid){
+        return thesesRepository.findSingleThesesById(tid);
+    }
+
     public List<Theses> findBySearchTitle(String searchParam){
         return thesesRepository.findThesesBySearchTitle(searchParam);
     }

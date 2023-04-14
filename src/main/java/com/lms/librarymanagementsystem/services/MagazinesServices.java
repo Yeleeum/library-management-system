@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.lms.librarymanagementsystem.models.Magazines;
+import com.lms.librarymanagementsystem.models.*;
 import com.lms.librarymanagementsystem.repositories.MagazinesRepository;
 
 @Service
@@ -29,6 +29,10 @@ public class MagazinesServices {
 
     public List<Magazines> findBySearchCatagory(String searchParam){
         return magazinesRepository.findMagazineBySearchCatagory(searchParam);
+    }
+
+    public Magazines findSingleMagazineById(String mid){
+        return magazinesRepository.findSingleMagazineById(mid);
     }
 
     public List<Magazines> findBySearchTitle(String searchParam){

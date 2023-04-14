@@ -188,4 +188,24 @@ public class SearchController {
         return "journalDetails";
     }
 
+    @GetMapping("/magazines/{mid}")
+    public String getSingleMagazineById(@PathVariable("mid")String mid,Model model){
+        Magazines magazine=magazinesServices.findSingleMagazineById(mid);
+        model.addAttribute("magazine", magazine);
+        return "magazineDetails";
+    }
+
+    @GetMapping("/theses/{tid}")
+    public String getSingleThesesById(@PathVariable("tid")String tid,Model model){
+        Theses theses=thesesServices.findSingleThesesById(tid);
+        model.addAttribute("theses", theses);
+        return "thesesDetails";
+    }
+
+    @GetMapping("/softcopy/{sid}")
+    public String getSingleSoftCopyById(@PathVariable("sid")String sid,Model model){
+        SoftCopy softcopy=softCopyServices.findSingleSoftCopyById(sid);
+        model.addAttribute("softcopy", softcopy);
+        return "softCopyDetails";
+    }
 }

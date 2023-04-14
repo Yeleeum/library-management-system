@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>Theses</title>
-	<link rel="stylesheet" href="css/forms/theses.css">
+	<link rel="stylesheet" href="/css/forms/theses.css">
 </head>
 <body>
 	<form action="/theses" method="POST">

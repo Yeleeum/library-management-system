@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>Books</title>
-	<link rel="stylesheet" href="css/forms/books.css">
+	<link rel="stylesheet" href="/css/forms/books.css">
 </head>
 <body>
 	<%@ include file="mainSearchComponent.jsp"%>

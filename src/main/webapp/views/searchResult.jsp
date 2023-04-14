@@ -23,7 +23,7 @@
 %>
 <body>
     <div class="searchview">
-		<%@ include file="subSearchComponent.jsp"%>
+	<%@ include file="subSearchComponent.jsp"%>
 	<% if((books==null || books.isEmpty())&& (journals==null || journals.isEmpty()) && (magazines==null || magazines.isEmpty()) && (theses==null || theses.isEmpty()) && (softcopies==null ||softcopies.isEmpty())){ %>
 		<%@include file="NoContentFound.jsp"%>
 	<%}else{ %>

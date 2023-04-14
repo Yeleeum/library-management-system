@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<%@page import="com.lms.librarymanagementsystem.models.Books"%>
+<%@page import="com.lms.librarymanagementsystem.models.*"%>
 <%@page import="java.util.List"%>
 <html lang="en">
 
@@ -10,29 +10,23 @@
 </head>
 
 <body>
-    <% Books book = (Books) request.getAttribute("book"); %>
+    <% Theses theses = (Theses) request.getAttribute("theses"); %>
     <header>
-        <h1>Book Details</h1>
+        <h1>Theses Details</h1>
     </header>
 
     <div class="book-details">
         <img src="/uploads/thumbnails/book.jpg" alt="Book Cover">
         <div>
             <h2>
-                <%= book.getTitle() %>
+                <%= theses.getTitle() %>
             </h2>
-            <p>Author: <%= book.getAuthor() %>
-            </p>
-            <p>Edition: <%= book.getEdition() %>
-            </p>
-            <p>Stock: <%= book.getStock() %></p>
-            <p>Publisher: <%= book.getPublisher() %>
-            </p>
-            <p>Pages: <%= book.getPageno() %>
-            </p>
-            <p></p>
-            <p>Category: <%= book.getCategory() %>
-            </p>
+            <p>Researcher: <%= theses.getResearcher() %></p>
+            <p>Guides: <%= theses.getGuides() %></p>
+            <p>Completed On: <%= theses.getCompletedDate() %></p></p>
+            <p>Place: <%= theses.getPlace() %></p>
+            <p>Abstract: <%= theses.getAbstractContent() %></p>
+            <p>Page No: <%= theses.getPageNo() %></p>
             <div>
                 <button>Borrow</button>
                 <button>Return</button>
@@ -42,9 +36,9 @@
     <div  class="description">
         <h1><u>Description</u></h1>
         <div class="descArea" readonly>
-            <%= book.getDescription() %>
+            <%= theses.getDescription() %>
             
-            <pre>#<%= book.getKeywords() %></pre>
+            <pre>#<%= theses.getKeywords() %></pre>
         </div>
     </div>
 

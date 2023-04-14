@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>Magazines</title>
-	<link rel="stylesheet" href="css/forms/magazines.css">
+	<link rel="stylesheet" href="/css/forms/magazines.css">
 </head>
 <body>
 	<form action="/magazines" method="POST">

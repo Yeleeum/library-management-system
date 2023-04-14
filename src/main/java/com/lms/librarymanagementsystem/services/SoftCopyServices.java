@@ -47,4 +47,7 @@ public class SoftCopyServices {
         return softCopyRepository.findSoftCopyBySearchTitle(searchParam);
     }
 
+    public SoftCopy findSingleSoftCopyById(String sid){
+        return softCopyRepository.findSingleSoftCopyById(sid);
+    }
 }

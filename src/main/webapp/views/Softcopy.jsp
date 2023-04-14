@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>Softcopy</title>
-	<link rel="stylesheet" href="css/forms/softcopy.css">
+	<link rel="stylesheet" href="/css/forms/softcopy.css">
 </head>
 <body>
 	<form action="/softcopy" enctype="multipart/form-data" method="POST">
