@@ -61,6 +61,15 @@ public class BooksController {
         return "searchResult";
     }
 
+    @GetMapping("/title")
+    public String getBooksByTitle(String searchParam,Model model){
+        List<Books> books=booksServices.findBySearchTitle(searchParam);
+        model.addAttribute("books", books);
+        model.addAttribute("searchValue", searchParam);
+        model.addAttribute("type", "books");
+        return "searchResult";
+    }
+
 
     // @GetMapping
     // public ResponseEntity<List<Books>> findAllBooks(){

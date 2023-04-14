@@ -45,6 +45,15 @@ public class JournalsController {
         return "searchResult";
 
     }
+
+    @GetMapping("/title")
+    public String getJournalsByTitle(String searchParam,Model model){
+        List<Journals> journals=JournalsServices.findBySearchTitle(searchParam);
+        model.addAttribute("journals", journals);
+        model.addAttribute("searchValue", searchParam);
+        model.addAttribute("type", "journals");
+        return "searchResult";
+    }
     
 
 }

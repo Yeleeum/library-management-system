@@ -24,4 +24,7 @@ public interface BooksRepository extends JpaRepository<Books,Integer>{
     
     @Query(value="SELECT * FROM BOOKS WHERE CATEGORY LIKE %:PARAM%",nativeQuery = true)
     List<Books> findBookBySearchCatagory(@Param("PARAM")String searchParam);
+    
+    @Query(value="SELECT * FROM BOOKS WHERE TITLE LIKE %:PARAM%",nativeQuery = true)
+    List<Books> findBookBySearchTitle(@Param("PARAM")String searchParam);
 }

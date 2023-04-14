@@ -37,7 +37,16 @@ public class SoftCopyController {
         List<SoftCopy> softCopies=softCopyServices.findBySearch(searchParam);
         model.addAttribute("softcopies", softCopies);
         model.addAttribute("searchValue", searchParam);
-        model.addAttribute("type", "SoftCopy");
+        model.addAttribute("type", "softcopy");
+        return "searchResult";
+    }
+
+    @GetMapping("/title")
+    public String getSoftCopyByTitle(String searchParam,Model model){
+        List<SoftCopy> softCopies=softCopyServices.findBySearchTitle(searchParam);
+        model.addAttribute("softcopies", softCopies);
+        model.addAttribute("searchValue", searchParam);
+        model.addAttribute("type", "softcopy");
         return "searchResult";
     }
 }

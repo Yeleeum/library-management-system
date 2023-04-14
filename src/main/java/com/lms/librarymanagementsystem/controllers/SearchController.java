@@ -126,12 +126,28 @@ public class SearchController {
     }
 
     @GetMapping("/category")
-    public String searchByCatagory(String searchParam, Model model){
+    public String searchByCategory(String searchParam, Model model){
         List<Journals> journals=journalsServices.findBySearchCatagory(searchParam);
         List<Books> books=booksServices.findBySearchCatagory(searchParam);
         List<Magazines> magazines=magazinesServices.findBySearchCatagory(searchParam);
         List<Theses> theses=thesesServices.findBySearchCatagory(searchParam);
         List<SoftCopy> softCopies=softCopyServices.findBySearchCatagory(searchParam);
+        model.addAttribute("books", books);
+        model.addAttribute("journals", journals);
+        model.addAttribute("magazines", magazines);
+        model.addAttribute("theses", theses);
+        model.addAttribute("softcopies", softCopies);
+        model.addAttribute("searchValue", searchParam);
+        return "searchResult";
+    }
+
+    @GetMapping("/title")
+    public String searchByTitle(String searchParam, Model model){
+        List<Journals> journals=journalsServices.findBySearchTitle(searchParam);
+        List<Books> books=booksServices.findBySearchTitle(searchParam);
+        List<Magazines> magazines=magazinesServices.findBySearchTitle(searchParam);
+        List<Theses> theses=thesesServices.findBySearchTitle(searchParam);
+        List<SoftCopy> softCopies=softCopyServices.findBySearchTitle(searchParam);
         model.addAttribute("books", books);
         model.addAttribute("journals", journals);
         model.addAttribute("magazines", magazines);

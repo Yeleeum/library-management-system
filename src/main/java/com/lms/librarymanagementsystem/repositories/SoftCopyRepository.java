@@ -20,4 +20,7 @@ public interface SoftCopyRepository extends JpaRepository<SoftCopy,Integer>{
 
     @Query(value="SELECT * FROM SOFTCOPY WHERE CATEGORY LIKE %:PARAM%",nativeQuery = true)
     List<SoftCopy> findSoftCopyBySearchCatagory(@Param("PARAM")String searchParam);
+
+    @Query(value="SELECT * FROM SOFTCOPY WHERE TITLE LIKE %:PARAM%",nativeQuery = true)
+    List<SoftCopy> findSoftCopyBySearchTitle(@Param("PARAM")String searchParam);
 }

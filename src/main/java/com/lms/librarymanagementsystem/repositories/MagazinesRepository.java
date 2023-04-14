@@ -17,4 +17,7 @@ public interface MagazinesRepository extends JpaRepository<Magazines,Integer>{
 
     @Query(value="SELECT * FROM MAGAZINES WHERE CATEGORY LIKE %:PARAM%",nativeQuery = true)
     List<Magazines> findMagazineBySearchCatagory(@Param("PARAM")String searchParam);
+
+    @Query(value="SELECT * FROM MAGAZINES WHERE TITLE LIKE %:PARAM%",nativeQuery = true)
+    List<Magazines> findMagazineBySearchTitle(@Param("PARAM")String searchParam);
 }

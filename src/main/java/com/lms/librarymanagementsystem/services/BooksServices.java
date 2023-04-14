@@ -49,4 +49,8 @@ public class BooksServices {
     public List<Books> findBySearchCatagory(String searchParam){
         return booksRepository.findBookBySearchCatagory(searchParam);
     }
+
+    public List<Books> findBySearchTitle(String searchParam){
+        return booksRepository.findBookBySearchTitle(searchParam);
+    }
 }

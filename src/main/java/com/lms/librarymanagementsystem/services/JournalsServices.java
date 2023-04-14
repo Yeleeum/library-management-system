@@ -37,6 +37,10 @@ public class JournalsServices {
     public Journals findSingleJournalById(String jid){
         return journalsRepository.findSingleJournalById(jid);
     }
+
+    public List<Journals> findBySearchTitle(String searchParam){
+        return journalsRepository.findJournalBySearchTitle(searchParam);
+    }
 }
 
 

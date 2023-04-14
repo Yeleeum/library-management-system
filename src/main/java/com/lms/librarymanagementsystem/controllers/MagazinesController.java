@@ -42,7 +42,16 @@ public class MagazinesController {
         List<Magazines> magazines=MagazinesServices.findBySearch(searchParam);
         model.addAttribute("magazines", magazines);
         model.addAttribute("searchValue", searchParam);
-        model.addAttribute("type", "Magazines");
+        model.addAttribute("type", "magazines");
+        return "searchResult";
+    }
+
+    @GetMapping("/title")
+    public String getMagazinesByTitle(String searchParam,Model model){
+        List<Magazines> magazines=MagazinesServices.findBySearchTitle(searchParam);
+        model.addAttribute("magazines", magazines);
+        model.addAttribute("searchValue", searchParam);
+        model.addAttribute("type", "magazines");
         return "searchResult";
     }
 

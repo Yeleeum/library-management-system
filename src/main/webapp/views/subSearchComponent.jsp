@@ -34,12 +34,17 @@
                         <%if(type.equals("books")){%>
                             <button type="submit" formaction="/books/author" form="search">Author</button>
                             <button type="submit" formaction="/books/publisher" form="search">Publisher</button>
+                            <button type="submit" formaction="/books/title" form="search">Title</button>
                         <%}else if(type.equals("journals")){%>
                             <button type="submit" formaction="/journals/author" form="search">Author</button>
                             <button type="submit" formaction="/journals/publisher" form="search">Publisher</button>
+                            <button type="submit" formaction="/journals/title" form="search">Title</button>
                         <%}else if(type.equals("magazines")){%>
+                            <button type="submit" formaction="/magazines/title" form="search">Title</button>
                         <%}else if(type.equals("theses")){%>
+                            <button type="submit" formaction="/theses/title" form="search">Title</button>
                         <%}else if(type.equals("softcopy")){%>
+                            <button type="submit" formaction="/softcopy/title" form="search">Title</button>
                         <%}%>
                 </div>
             <%}%>
@@ -54,6 +59,7 @@
                 <button type="submit" formaction="/search/owner" form="search">Owner</button>
                 <button type="submit" formaction="/search/publisher" form="search">Publisher</button>
                 <button type="submit" formaction="/search/category" form="search">Category</button>
+                <button type="submit" formaction="/search/title" form="search">Title</button>
             </div>
         </div>
     </section>

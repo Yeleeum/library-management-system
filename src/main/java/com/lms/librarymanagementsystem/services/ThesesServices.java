@@ -30,4 +30,8 @@ public class ThesesServices {
     public List<Theses> findBySearchCatagory(String searchParam){
         return thesesRepository.findThesesBySearchCatagory(searchParam);
     }
+
+    public List<Theses> findBySearchTitle(String searchParam){
+        return thesesRepository.findThesesBySearchTitle(searchParam);
+    }
 }

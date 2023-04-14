@@ -43,4 +43,8 @@ public class SoftCopyServices {
         return softCopyRepository.findSoftCopyBySearchCatagory(searchParam);
     }
 
+    public List<SoftCopy> findBySearchTitle(String searchParam){
+        return softCopyRepository.findSoftCopyBySearchTitle(searchParam);
+    }
+
 }

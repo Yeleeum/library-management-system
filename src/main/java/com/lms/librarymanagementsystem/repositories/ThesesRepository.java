@@ -17,4 +17,7 @@ public interface ThesesRepository extends JpaRepository<Theses,Integer>{
 
     @Query(value="SELECT * FROM THESES WHERE CATEGORY LIKE %:PARAM%",nativeQuery = true)
     List<Theses> findThesesBySearchCatagory(@Param("PARAM")String searchParam);
+
+    @Query(value="SELECT * FROM THESES WHERE TITLE LIKE %:PARAM%",nativeQuery = true)
+    List<Theses> findThesesBySearchTitle(@Param("PARAM")String searchParam);
 }

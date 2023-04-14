@@ -40,7 +40,16 @@ public class ThesesController {
         List<Theses> Theses=ThesesServices.findBySearch(searchParam);
         model.addAttribute("theses", Theses);
         model.addAttribute("searchValue", searchParam);
-        model.addAttribute("type", "Theses");
+        model.addAttribute("type", "theses");
+        return "searchResult";
+    }
+
+    @GetMapping("/title")
+    public String getThesesByTitle(String searchParam,Model model){
+        List<Theses> theses=ThesesServices.findBySearchTitle(searchParam);
+        model.addAttribute("theses", theses);
+        model.addAttribute("searchValue", searchParam);
+        model.addAttribute("type", "theses");
         return "searchResult";
     }
 
