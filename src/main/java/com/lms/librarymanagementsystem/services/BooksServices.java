@@ -18,7 +18,9 @@ public class BooksServices {
     }
 
     public Books insertOneBook(Books book,MultipartFile file){
-        String path="D:\\Java-SpringBoot\\College Project\\librarymanagementsystem\\src\\main\\webapp\\uploads\\thumbnails";
+        // String path="D:\\Java-SpringBoot\\College Project\\librarymanagementsystem\\src\\main\\webapp\\uploads\\thumbnails";
+        String currentDirectory = System.getProperty("user.dir");
+        String path= currentDirectory + "\\src\\main\\webapp\\uploads\\thumbnails";
         FileHandler.saveFile(file, path);
         book.setThumbnail(file.getOriginalFilename());
         return booksRepository.save(book);
