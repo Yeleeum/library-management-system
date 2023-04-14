@@ -48,6 +48,7 @@
             <pre>#<%= book.getKeywords() %></pre>
         </div>
     </div>
+    <%@ include file="alternativeSoftCopy.jsp"%>
 
 </body>
 

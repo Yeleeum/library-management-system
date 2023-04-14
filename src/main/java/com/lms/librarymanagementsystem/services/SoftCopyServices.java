@@ -53,4 +53,8 @@ public class SoftCopyServices {
     public SoftCopy findSingleSoftCopyById(String sid){
         return softCopyRepository.findSingleSoftCopyById(sid);
     }
+
+    public List<SoftCopy> findRelatedSoftCopy(String ITID){
+        return softCopyRepository.findAlternativeSoftCopy(ITID);
+    }
 }

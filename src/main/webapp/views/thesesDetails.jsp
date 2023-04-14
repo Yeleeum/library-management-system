@@ -42,6 +42,7 @@
             <pre>#<%= theses.getKeywords() %></pre>
         </div>
     </div>
+    <%@ include file="alternativeSoftCopy.jsp"%>
 
 </body>
 

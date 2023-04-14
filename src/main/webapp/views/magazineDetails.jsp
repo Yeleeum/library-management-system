@@ -42,6 +42,7 @@
             <pre>#<%= magazine.getKeywords() %></pre>
         </div>
     </div>
+    <%@ include file="alternativeSoftCopy.jsp"%>
 
 </body>
 

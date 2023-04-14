@@ -117,6 +117,7 @@
             <pre>#<%= journal.getKeywords() %></pre>
         </div>
     </div>
+    <%@ include file="alternativeSoftCopy.jsp"%>
 
 </body>
 

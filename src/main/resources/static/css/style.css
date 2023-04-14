@@ -210,3 +210,7 @@ input[type=text]:focus {
     justify-content: center;
     align-items: center;
 }
+
+.Alternative{
+    padding: 30px;
+}

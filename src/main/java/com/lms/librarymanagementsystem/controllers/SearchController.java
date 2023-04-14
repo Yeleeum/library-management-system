@@ -177,7 +177,9 @@ public class SearchController {
     public String getSingleBookByBid(@PathVariable("bookId")String bookId,Model model){
         // return new ResponseEntity<Books>(booksServices.findSingleBook(bookId), HttpStatus.OK);\
         Books book = booksServices.findSingleBook(bookId);
+        List<SoftCopy> softCopies=softCopyServices.findRelatedSoftCopy(book.getItid());
         model.addAttribute("book", book);
+        model.addAttribute("softcopies", softCopies);
         return "bookDetails";
     }
 
@@ -185,6 +187,8 @@ public class SearchController {
     public String getSingleJournalById(@PathVariable("jid")String jid,Model model){
         Journals journal=journalsServices.findSingleJournalById(jid);
         model.addAttribute("journal", journal);
+        List<SoftCopy> softCopies=softCopyServices.findRelatedSoftCopy(journal.getItid());
+        model.addAttribute("softcopies", softCopies);
         return "journalDetails";
     }
 
@@ -192,6 +196,8 @@ public class SearchController {
     public String getSingleMagazineById(@PathVariable("mid")String mid,Model model){
         Magazines magazine=magazinesServices.findSingleMagazineById(mid);
         model.addAttribute("magazine", magazine);
+        List<SoftCopy> softCopies=softCopyServices.findRelatedSoftCopy(magazine.getItid());
+        model.addAttribute("softcopies", softCopies);
         return "magazineDetails";
     }
 
@@ -199,6 +205,8 @@ public class SearchController {
     public String getSingleThesesById(@PathVariable("tid")String tid,Model model){
         Theses theses=thesesServices.findSingleThesesById(tid);
         model.addAttribute("theses", theses);
+        List<SoftCopy> softCopies=softCopyServices.findRelatedSoftCopy(theses.getItid());
+        model.addAttribute("softcopies", softCopies);
         return "thesesDetails";
     }
 
