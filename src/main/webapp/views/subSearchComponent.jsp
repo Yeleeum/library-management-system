@@ -36,7 +36,7 @@
                             <button type="submit" formaction="/books/publisher" form="search">Publisher</button>
                             <button type="submit" formaction="/books/title" form="search">Title</button>
                         <%}else if(type.equals("journals")){%>
-                            <button type="submit" formaction="/journals/author" form="search">Author</button>
+                            <button type="submit" formaction="/journals/editor" form="search">Editor</button>
                             <button type="submit" formaction="/journals/publisher" form="search">Publisher</button>
                             <button type="submit" formaction="/journals/title" form="search">Title</button>
                         <%}else if(type.equals("magazines")){%>

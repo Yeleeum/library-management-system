@@ -61,6 +61,15 @@ public class BooksController {
         return "searchResult";
     }
 
+    @GetMapping("/publisher")
+    public String getBooksByPublisher(String searchParam,Model model){
+        List<Books> books=booksServices.findBySearchPublisher(searchParam);
+        model.addAttribute("books", books);
+        model.addAttribute("searchValue", searchParam);
+        model.addAttribute("type", "books");
+        return "searchResult";
+    }
+
     @GetMapping("/title")
     public String getBooksByTitle(String searchParam,Model model){
         List<Books> books=booksServices.findBySearchTitle(searchParam);

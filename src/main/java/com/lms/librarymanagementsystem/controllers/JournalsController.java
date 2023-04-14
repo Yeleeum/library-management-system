@@ -47,6 +47,24 @@ public class JournalsController {
 
     }
 
+    @GetMapping("/editor")
+    public String getJournalsByAuthor(String searchParam,Model model){
+        List<Journals> journals=JournalsServices.findBySearchEditor(searchParam);
+        model.addAttribute("journals", journals);
+        model.addAttribute("searchValue", searchParam);
+        model.addAttribute("type", "journals");
+        return "searchResult";
+    }
+
+    @GetMapping("/publisher")
+    public String getJournalsByPublisher(String searchParam,Model model){
+        List<Journals> journals=JournalsServices.findBySearchPublisher(searchParam);
+        model.addAttribute("journals", journals);
+        model.addAttribute("searchValue", searchParam);
+        model.addAttribute("type", "journals");
+        return "searchResult";
+    }
+
     @GetMapping("/title")
     public String getJournalsByTitle(String searchParam,Model model){
         List<Journals> journals=JournalsServices.findBySearchTitle(searchParam);
