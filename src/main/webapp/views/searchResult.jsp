@@ -36,7 +36,7 @@
 					<div class="booksCard">
 						<a href="/search/books/<%= book.getBid() %>" >
 							<div>
-								<img src="/uploads/thumbnails/<%= book.getThumbnail() %>" alt="<%= book.getTitle() %>" width="300" height="300">
+								<img src="/uploads/thumbnails/book.jpg" alt="<%= book.getTitle() %>" width="300" height="300">
 							</div>
 						</a>
 						<div class="bookDetails">

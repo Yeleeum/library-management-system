@@ -103,7 +103,7 @@ input[type=text]{
 }
 
 input[type=text]:focus{
-    border: 3px solid #3dc5ffce;
+    outline: 3px solid #3dc5ffce;
 }
 
 .headerview {
@@ -133,12 +133,14 @@ input[type=text]:focus{
 
 .books{
     display: flex;
-    gap: 3vh;
-    justify-content: flex-start;
+    /* column-gap: 5vw;*/
+    row-gap: 3vh; 
+    justify-content: space-between;
     align-items: center;
     margin-top: 10px;
     flex-wrap: wrap;
     margin-bottom: 5vh;
+    padding:0px 30px;
 }
 
 .booksCard{
