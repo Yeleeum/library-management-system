@@ -9,21 +9,19 @@
 </head>
 
 <body>
-    <form action="/registration/persoanldetails" method="post">
-        <input type="text" placeholder="Enter Username" class="usernameinput" required>
+    <form action="/registration/personaldetails" method="post">
+        <input type="text" placeholder="Enter Username" class="usernameinput" name="username" required>
         <button type="submit" class="proceed">Proceed</button>
         <h3 class="trueusername" hidden="true">You can use this username</h3>
         <h3 class="falseusername" hidden="true">Username already in use</h3>
     </form>
 </body>
 <script>
-    const usernameinput = document.querySelector('.usernameinput');
+    const usernameinput = document.querySelector('.usernameinput')
     const trueusername = document.querySelector('.trueusername')
     const falseusername = document.querySelector('.falseusername')
     const proceed = document.querySelector('.proceed')
     usernameinput.addEventListener('input', () => {
-        console.log(usernameinput.value.length)
-
         let username = new URLSearchParams()
         username.append('username', usernameinput.value)
         var uri = "http://localhost:8080/registration/checkusername"
@@ -49,7 +47,7 @@
                     proceed.disabled = true
                 }
             })
-            .catch(error => console.error(error));
+            .catch(error => console.error(error))
     })
 </script>
 

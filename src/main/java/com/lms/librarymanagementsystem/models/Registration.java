@@ -55,13 +55,13 @@ public class Registration {
     private String approved;
 
     @Column(name = "REJECTIONMSG")
-    private int rejectionmsg;
+    private Integer rejectionmsg;
 
 
     public Registration() {
     }
 
-    public Registration(int rsid, String username, String password, String profilePicture, String firstName, String lastName, String gender, String dob, String phone, String email, String category, String paid, String transaction, String approved, int rejectionmsg) {
+    public Registration(int rsid, String username, String password, String profilePicture, String firstName, String lastName, String gender, String dob, String phone, String email, String category, String paid, String transaction, String approved, Integer rejectionmsg) {
         this.rsid = rsid;
         this.username = username;
         this.password = password;
@@ -191,11 +191,11 @@ public class Registration {
         this.approved = approved;
     }
 
-    public int getRejectionmsg() {
+    public Integer getRejectionmsg() {
         return this.rejectionmsg;
     }
 
-    public void setRejectionmsg(int rejectionmsg) {
+    public void setRejectionmsg(Integer rejectionmsg) {
         this.rejectionmsg = rejectionmsg;
     }
 
