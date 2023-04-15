@@ -1,12 +1,9 @@
--- CREATE Database `librarymanagementsystem`;
-use `librarymanagementsystem`;
-
 -- phpMyAdmin SQL Dump
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 14, 2023 at 06:38 PM
+-- Generation Time: Apr 15, 2023 at 10:59 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -35,6 +32,15 @@ CREATE TABLE `alternative` (
   `ITID` varchar(100) NOT NULL,
   `SID` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `alternative`
+--
+
+INSERT INTO `alternative` (`AID`, `ITID`, `SID`) VALUES
+(1, 'I03', 'Moja'),
+(2, 'I03', 'I765'),
+(3, 'I8978', 'Moja');
 
 -- --------------------------------------------------------
 
@@ -67,7 +73,6 @@ INSERT INTO `books` (`bid`, `itid`, `title`, `author`, `publisher`, `thumbnail`,
 (2, 'I02', 'hello', 'hello', 'hello', 'hello.jpg', 'hello', 'c++', 'c++,c', 'new', 45, 4, 'fg'),
 (4, 'I03', 'hello', 'hello', 'hello', 'hello.jpg', 'hello', 'c++', 'c++,c,new\r\n', 'new', 45, 4, 'fg'),
 (5, 'I04', 'Maza', 'new', 'hu', 'http://localhost:8080/books', 'wow', 'Bengali', 'huiii', '3', 34, 34, 'DF'),
-(6, 'I04', 'Maza', 'new', 'hu', 'http://localhost:8080/books', 'wow', 'Bengali', 'huiii', '3', 34, 34, 'DF'),
 (7, 'I0909', 'er', 'we', 'we', '273459962_1636113900055442_7228868579176044961_n.jpg', 'we', 'we', 'we', '3', 3, 3, '3');
 
 -- --------------------------------------------------------
@@ -165,6 +170,43 @@ INSERT INTO `magazines` (`mid`, `itid`, `title`, `publisher`, `issuedate`, `issu
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `message`
+--
+
+CREATE TABLE `message` (
+  `MSID` int(11) NOT NULL,
+  `USERNAME` varchar(100) DEFAULT NULL,
+  `CONTENT` longtext DEFAULT NULL,
+  `STATUS` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `registration`
+--
+
+CREATE TABLE `registration` (
+  `RSID` int(11) NOT NULL,
+  `USERNAME` varchar(100) NOT NULL,
+  `PASSWORD` varchar(100) NOT NULL,
+  `PROFILEPICTURE` varchar(100) DEFAULT NULL,
+  `FIRSTNAME` varchar(100) DEFAULT NULL,
+  `LASTNAME` varchar(100) DEFAULT NULL,
+  `GENDER` varchar(100) DEFAULT NULL,
+  `DOB` varchar(100) DEFAULT NULL,
+  `PHONE` varchar(100) DEFAULT NULL,
+  `EMAIL` varchar(100) DEFAULT NULL,
+  `CATEGORY` varchar(100) DEFAULT NULL,
+  `PAID` varchar(100) DEFAULT NULL,
+  `TRANSACTION` varchar(100) DEFAULT NULL,
+  `APPROVED` varchar(100) DEFAULT NULL,
+  `REJECTIONMSG` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `softcopy`
 --
 
@@ -225,6 +267,26 @@ INSERT INTO `theses` (`tid`, `itid`, `title`, `researcher`, `guides`, `descripti
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `USERNAME` varchar(100) NOT NULL,
+  `PASSWORD` varchar(100) NOT NULL,
+  `PROFILEPICTURE` varchar(100) DEFAULT NULL,
+  `FIRSTNAME` varchar(100) DEFAULT NULL,
+  `LASTNAME` varchar(100) DEFAULT NULL,
+  `GENDER` varchar(100) DEFAULT NULL,
+  `DOB` date DEFAULT NULL,
+  `PHONE` varchar(100) DEFAULT NULL,
+  `EMAIL` varchar(100) DEFAULT NULL,
+  `CATEGORY` varchar(100) DEFAULT NULL,
+  `MEMBERSHIP` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `user_file`
 --
 
@@ -258,7 +320,7 @@ ALTER TABLE `alternative`
 --
 ALTER TABLE `books`
   ADD PRIMARY KEY (`bid`),
-  ADD KEY `itid` (`itid`);
+  ADD UNIQUE KEY `itid` (`itid`);
 
 --
 -- Indexes for table `connector`
@@ -271,14 +333,27 @@ ALTER TABLE `connector`
 --
 ALTER TABLE `journals`
   ADD PRIMARY KEY (`jid`),
-  ADD KEY `itid` (`itid`);
+  ADD UNIQUE KEY `itid` (`itid`);
 
 --
 -- Indexes for table `magazines`
 --
 ALTER TABLE `magazines`
   ADD PRIMARY KEY (`mid`),
-  ADD KEY `itid` (`itid`);
+  ADD UNIQUE KEY `itid` (`itid`);
+
+--
+-- Indexes for table `message`
+--
+ALTER TABLE `message`
+  ADD PRIMARY KEY (`MSID`);
+
+--
+-- Indexes for table `registration`
+--
+ALTER TABLE `registration`
+  ADD PRIMARY KEY (`RSID`),
+  ADD KEY `REJECTIONMSG` (`REJECTIONMSG`);
 
 --
 -- Indexes for table `softcopy`
@@ -291,7 +366,13 @@ ALTER TABLE `softcopy`
 --
 ALTER TABLE `theses`
   ADD PRIMARY KEY (`tid`),
-  ADD KEY `itid` (`itid`);
+  ADD UNIQUE KEY `itid` (`itid`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`USERNAME`);
 
 --
 -- Indexes for table `user_file`
@@ -307,7 +388,7 @@ ALTER TABLE `user_file`
 -- AUTO_INCREMENT for table `alternative`
 --
 ALTER TABLE `alternative`
-  MODIFY `AID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `AID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `books`
@@ -328,6 +409,18 @@ ALTER TABLE `magazines`
   MODIFY `mid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `message`
+--
+ALTER TABLE `message`
+  MODIFY `MSID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `registration`
+--
+ALTER TABLE `registration`
+  MODIFY `RSID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `theses`
 --
 ALTER TABLE `theses`
@@ -341,32 +434,38 @@ ALTER TABLE `theses`
 -- Constraints for table `alternative`
 --
 ALTER TABLE `alternative`
-  ADD CONSTRAINT `alternative_ibfk_1` FOREIGN KEY (`ITID`) REFERENCES `connector` (`itid`),
-  ADD CONSTRAINT `alternative_ibfk_2` FOREIGN KEY (`SID`) REFERENCES `softcopy` (`sid`);
+  ADD CONSTRAINT `alternative_ibfk_3` FOREIGN KEY (`ITID`) REFERENCES `connector` (`itid`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `alternative_ibfk_4` FOREIGN KEY (`SID`) REFERENCES `softcopy` (`sid`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `books`
 --
 ALTER TABLE `books`
-  ADD CONSTRAINT `books_ibfk_1` FOREIGN KEY (`itid`) REFERENCES `connector` (`itid`);
+  ADD CONSTRAINT `books_ibfk_1` FOREIGN KEY (`itid`) REFERENCES `connector` (`itid`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `journals`
 --
 ALTER TABLE `journals`
-  ADD CONSTRAINT `journals_ibfk_1` FOREIGN KEY (`itid`) REFERENCES `connector` (`itid`);
+  ADD CONSTRAINT `journals_ibfk_1` FOREIGN KEY (`itid`) REFERENCES `connector` (`itid`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `magazines`
 --
 ALTER TABLE `magazines`
-  ADD CONSTRAINT `magazines_ibfk_1` FOREIGN KEY (`itid`) REFERENCES `connector` (`itid`);
+  ADD CONSTRAINT `magazines_ibfk_1` FOREIGN KEY (`itid`) REFERENCES `connector` (`itid`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `registration`
+--
+ALTER TABLE `registration`
+  ADD CONSTRAINT `registration_ibfk_1` FOREIGN KEY (`REJECTIONMSG`) REFERENCES `message` (`MSID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `theses`
 --
 ALTER TABLE `theses`
-  ADD CONSTRAINT `theses_ibfk_1` FOREIGN KEY (`itid`) REFERENCES `connector` (`itid`);
+  ADD CONSTRAINT `theses_ibfk_1` FOREIGN KEY (`itid`) REFERENCES `connector` (`itid`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
