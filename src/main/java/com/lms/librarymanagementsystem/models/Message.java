@@ -21,7 +21,7 @@ public class Message {
     @Column(name = "CONTENT", columnDefinition = "LONGTEXT")
     private String content;
 
-    @Column(name = "STATUS", length = 100)
+    @Column(name = "STATUS", length = 100,nullable = true)
     private String status;
 
 

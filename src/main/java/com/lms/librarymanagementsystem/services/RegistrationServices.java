@@ -32,4 +32,16 @@ public class RegistrationServices {
         return registrationRepository.save(registration);
     }
 
+    public List<Registration> getPending(String paid){
+        return registrationRepository.getPendingRequests(paid);
+    }
+
+    public Integer updateApproval(String status,Integer rsid){
+        return registrationRepository.updateApprovedByRsid(status, rsid);
+    }
+
+    public Integer addRejectionMessageByRsid(Integer msid,Integer rsid){
+        return registrationRepository.updateRejectionMessageByRsid(msid, rsid);
+    }
+
 }
