@@ -35,7 +35,8 @@
 
                             <div>
                                 <button id="clickToView">View Pdf</button>
-                                <a href="/uploads/SoftCopy/<%= softcopy.getFilename() %>" download=""><button>Download
+                                <a href="/uploads/SoftCopy/<%= softcopy.getFilename() %>"
+                                    onclick="sendDownloadDetails()" download><button>Download
                                         Pdf</button></a>
                             </div>
                         </div>
@@ -50,14 +51,17 @@
                     </div>
             </div>
             <div id="pdfViewArea">
-                <i class="fa-solid fa-multiply" id="Cross"></i>
+                <i class="fa-solid fa-multiply" title="close" id="Cross"></i>
+                <a href="/uploads/SoftCopy/<%= softcopy.getFilename() %>" onclick="sendDownloadDetails()"
+                    title="pdf download" download><i class="fa-solid fa-file-download" id="downloadbtn"></i></a>
                 <div id="object">
                     <!-- <object data="/uploads/SoftCopy/<%= softcopy.getFilename() %>#toolbar=0"
                         oncontextmenu="return false;" type="application/pdf">
                         <p>Unable to display PDF file. <a href="/uploads/SoftCopy/<%= softcopy.getFilename() %>"
                                 download>Hello</a> instead.</p>
                     </object> -->
-                    <iframe id="myiframe" contextmenu="return false;" src="http://localhost:8080/uploads/SoftCopy/<%= softcopy.getFilename() %>#toolbar=0"></iframe>
+                    <iframe id="myiframe" contextmenu="return false;"
+                        src="http://localhost:8080/uploads/SoftCopy/<%= softcopy.getFilename() %>#toolbar=0"></iframe>
                 </div>
             </div>
         </body>
@@ -66,26 +70,32 @@
             let pdfViewArea = document.getElementById('pdfViewArea');
             let ObjectElement = document.getElementById('object');
             let clickToView = document.getElementById('clickToView');
-            let iframecontent = document.getElementById('myiframe').contentWindow.document;
+            // let iframecontent = document.getElementById('myiframe').contentWindow.document;
             let Cross = document.getElementById('Cross');
 
-            console.log(iframecontent)
 
-            // document.onmousedown = disableRightclick;
-            // var message = "Right click not allowed !!";
-            // function disableRightclick(evt) {
-            //     if (evt.button == 2) {
-            //         alert(message);
-            //         return false;
-            //     }
-            // }
-            // window.onload = function() {
-            //     document.addEventListener("contextmenu", function(e) {
-            //         e.preventDefault();
-            //     }, false);
-            // }
-
-            
+            const sendDownloadDetails = () => {
+                const data = {
+                    "SID": "<%= softcopy.getSid() %>",
+                    "DATE": Date.now()
+                }
+                console.log(data)
+                if (confirm("Download ?")) {
+                    var uri = "http://localhost:8080/user/download"
+                    fetch(uri, {
+                        method: 'POST',
+                        body: JSON.stringify(data),
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    })
+                        .then(response => response.json())
+                        .then(data => console.log(data))
+                        .catch(error => console.error(error));
+                } else {
+                    event.preventDefault();
+                }
+            }
 
             clickToView.addEventListener('click', (e) => {
                 mainArea.style.display = "none";

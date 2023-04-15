@@ -25,7 +25,17 @@ body {
     right: 2vw;
     top: 2vh;
     font-size: 40px;
-    color: #000000;
+    color: #ff2020;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#downloadbtn{
+    position: absolute;
+    right: 6vw;
+    top: 2vh;
+    font-size: 40px;
+    color: #6efa3f;
     font-weight: bold;
     cursor: pointer;
 }
