@@ -13,7 +13,7 @@ public class Message {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "MSID")
-    private int msid;
+    private Integer msid;
 
     @Column(name = "USERNAME", length = 100)
     private String username;
@@ -28,18 +28,18 @@ public class Message {
     public Message() {
     }
 
-    public Message(int msid, String username, String content, String status) {
+    public Message(Integer msid, String username, String content, String status) {
         this.msid = msid;
         this.username = username;
         this.content = content;
         this.status = status;
     }
 
-    public int getMsid() {
+    public Integer getMsid() {
         return this.msid;
     }
 
-    public void setMsid(int msid) {
+    public void setMsid(Integer msid) {
         this.msid = msid;
     }
 

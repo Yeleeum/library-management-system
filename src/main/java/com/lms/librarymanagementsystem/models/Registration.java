@@ -13,7 +13,7 @@ public class Registration {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "RSID")
-    private int rsid;
+    private Integer rsid;
 
     @Column(name = "USERNAME", length = 100)
     private String username;
@@ -61,7 +61,7 @@ public class Registration {
     public Registration() {
     }
 
-    public Registration(int rsid, String username, String password, String profilePicture, String firstName, String lastName, String gender, String dob, String phone, String email, String category, String paid, String transaction, String approved, Integer rejectionmsg) {
+    public Registration(Integer rsid, String username, String password, String profilePicture, String firstName, String lastName, String gender, String dob, String phone, String email, String category, String paid, String transaction, String approved, Integer rejectionmsg) {
         this.rsid = rsid;
         this.username = username;
         this.password = password;
@@ -79,11 +79,11 @@ public class Registration {
         this.rejectionmsg = rejectionmsg;
     }
 
-    public int getRsid() {
+    public Integer getRsid() {
         return this.rsid;
     }
 
-    public void setRsid(int rsid) {
+    public void setRsid(Integer rsid) {
         this.rsid = rsid;
     }
 
