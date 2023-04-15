@@ -1,6 +1,7 @@
 package com.lms.librarymanagementsystem.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -42,6 +43,10 @@ public class RegistrationServices {
 
     public Integer addRejectionMessageByRsid(Integer msid,Integer rsid){
         return registrationRepository.updateRejectionMessageByRsid(msid, rsid);
+    }
+
+    public Registration getOneRegistration(Integer rsid){
+        return registrationRepository.getRegistrationByID(rsid);
     }
 
 }

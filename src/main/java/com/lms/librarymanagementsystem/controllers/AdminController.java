@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.lms.librarymanagementsystem.models.Message;
 import com.lms.librarymanagementsystem.models.Registration;
+import com.lms.librarymanagementsystem.models.Users;
 import com.lms.librarymanagementsystem.services.MessageServices;
 import com.lms.librarymanagementsystem.services.RegistrationServices;
 import com.lms.librarymanagementsystem.services.UsersServices;
@@ -48,6 +49,8 @@ public class AdminController {
     @PostMapping("/approveuser")
     public String approveUser(Integer rsid,String pay){
         registrationServices.updateApproval("approved", rsid);
+        Registration registration=registrationServices.getOneRegistration(rsid);
+        usersServices.insertOnUser(new Users(registration.getUsername(), registration.getPassword(), registration.getProfilePicture(), registration.getFirstName(), registration.getLastName(), registration.getGender(), registration.getDob(), registration.getPhone(), registration.getEmail(), registration.getCategory(), "active"));
         return "redirect:./viewpending/"+pay.toLowerCase();
     }
 
