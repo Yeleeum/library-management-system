@@ -50,9 +50,15 @@ public class RegistrationController {
     }
 
     @PostMapping("/submitregister")
-    public String submitPersonalDetails(Registration registration,MultipartFile profilepicturefile){
+    public String submitPersonalDetails(Registration registration,MultipartFile profilepicturefile,Model model){
         System.out.println(registration);
-        return "submitted";
+        registrationServices.insertOneRegistration(registration,profilepicturefile);
+        String message="Your request has been submitted. Visit the admin to pay and complete the process.";
+        if(registration.getPaid().equals("paid")){
+           message="Your request has been submitted. You will be able to log in once the admin approves the application";
+        }
+        model.addAttribute("message", message);
+        return "registrationRequestSubmitted";
     }
 
 }

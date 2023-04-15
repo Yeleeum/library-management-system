@@ -8,7 +8,7 @@
 
 <body>
     <h1>User Registration Form</h1>
-    <form action="/registration/submitregister" method="post">
+    <form action="/registration/submitregister" method="post" enctype="multipart/form-data">
         <div class="beforepayment">
             <label for="username">Username:</label>
             <input type="text" placeholder="Enter Username" class="usernameinput" id="username" name="username"
@@ -22,10 +22,10 @@
             <input type="file" id="profilepicture" name="profilepicturefile">
             <br>
             <label for="firstname">First Name:</label>
-            <input type="text" id="firstname" name="firstname" required>
+            <input type="text" id="firstname" name="firstName" required>
             <br>
             <label for="lastname">Last Name:</label>
-            <input type="text" id="lastname" name="lastname" required>
+            <input type="text" id="lastname" name="lastName" required>
             <br>
             <label for="gender">Gender:</label>
             <select id="gender" name="gender">

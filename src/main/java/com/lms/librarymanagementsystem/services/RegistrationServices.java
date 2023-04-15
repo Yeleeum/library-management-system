@@ -4,9 +4,12 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.lms.librarymanagementsystem.FileHandler.FileHandler;
+import com.lms.librarymanagementsystem.models.Registration;
 import com.lms.librarymanagementsystem.repositories.RegistrationRepository;
 
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 @Transactional
@@ -19,6 +22,14 @@ public class RegistrationServices {
 
     public List<String> findPendingApprovedUsernames(){
         return registrationRepository.getPendingApprovedUsernames();
+    }
+
+    public Registration insertOneRegistration(Registration registration,MultipartFile file){
+        String currentDirectory = System.getProperty("user.dir");
+        String path= currentDirectory + "\\src\\main\\webapp\\uploads\\profilePictures";
+        FileHandler.saveFile(file, path);
+        registration.setProfilePicture(file.getOriginalFilename());
+        return registrationRepository.save(registration);
     }
 
 }
