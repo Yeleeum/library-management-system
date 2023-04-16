@@ -3,74 +3,109 @@
 
 <head>
     <title>User Registration Form</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" type="text/css" href="/css/forms/registration-form.css">
 </head>
 
 
 <body>
-    <h1>User Registration Form</h1>
-    <form action="/registration/submitregister" method="post" enctype="multipart/form-data">
-        <div class="beforepayment">
-            <label for="username">Username:</label>
-            <input type="text" placeholder="Enter Username" class="usernameinput" id="username" name="username"
-                required>
-            <h3 class="trueusername" hidden="true">You can use this username</h3>
-            <h3 class="falseusername" hidden="true">Username already in use</h3> <br>
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
-            <br>
-            <label for="profilepicture">Profile Picture:</label>
-            <input type="file" id="profilepicture" name="profilepicturefile">
-            <br>
-            <label for="firstname">First Name:</label>
-            <input type="text" id="firstname" name="firstName" required>
-            <br>
-            <label for="lastname">Last Name:</label>
-            <input type="text" id="lastname" name="lastName" required>
-            <br>
-            <label for="gender">Gender:</label>
-            <select id="gender" name="gender">
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-                <option value="other">Other</option>
-            </select>
-            <br>
-            <label for="dob">Date of Birth:</label>
-            <input type="date" id="dob" name="dob">
-            <br>
-            <label for="phone">Phone:</label>
-            <input type="text" id="phone" name="phone" required>
-            <br>
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
-            <br>
-            <label for="category">Category:</label>
-            <select id="category" name="category">
-                <option value="student">Student</option>
-                <option value="teacher">Teacher</option>
-                <option value="researcher">Researcher</option>
-                <option value="regular" selected>Regular</option>
-            </select>
-        </div>
-        <br>
-        <div class="paymentform" hidden>
-            <label for="paymentmode">Payment Mode</label>
-            <select id="paymentmode" name="paymentmode">
-                <option value="online">online</option>
-                <option value="offline" selected>offline</option>
-            </select>
-            <br>
-            <input type="text" id="paid" name="paid" value="unpaid" hidden>
-            <br>
-            <div class="Transactionform" hidden>
-                <label for="transaction">Transaction:</label>
-                <input type="text" id="transaction" name="transaction">
-                <br>
+    <div id="view">
+        <div class="imageContainer">
+            <h1>User Registration Form</h1>
+            <img src="/img/library.png" alt="">
+            <div class="btn">
+                <button>Donate Pdf</button>
             </div>
         </div>
-        <input type="text" id="approved" name="approved" hidden="true" value="pending">
-        <input type="submit" value="Submit and Visit Admin For Payment" class="ultimateSubmit" hidden="true">
-    </form>
-    <button class="Proceed">Proceed</button>
+        <div class="form">
+            <form action="/registration/submitregister" method="post" enctype="multipart/form-data">
+                <div class="beforepayment">
+                    <div class="mb-10">
+                        <label for="username">Username:</label>
+                        <input type="text" class="input-text usernameinput" placeholder="Enter Username"
+                            class="usernameinput" id="username" name="username" required>
+                        <p class="trueusername" hidden="true" style="color: rgb(0, 207, 0); margin-top: 3px;">You can use this username <i class="fa-solid fa-check"></i></p>
+                        <p class="falseusername" hidden="true" style="color: rgb(216, 0, 0); margin-top: 3px;">Username already in use <i class="fa-solid fa-multiply"></i></p>
+                    </div>
+                    <label for="password">Password:</label>
+                    <div class="passwordField">
+                        <input type="password" id="password" name="password" required>
+                        <i class="fa-solid fa-eye eye" onclick="togglePassword()"></i>
+                    </div>
+                    <label for="profilepicture">Profile Picture:</label>
+                    <div class="mb-10 file-upload">
+                        <input class="label" type="file" id="profilepicture" name="profilepicturefile">
+                    </div>
+                    <div id="name" class="mb-10">
+                        <div>
+                            <label for="firstname">First Name:</label>
+                            <input type="text" id="firstname" name="firstName" required>
+                        </div>
+
+                        <div>
+                            <label for="lastname">Last Name:</label>
+                            <input type="text" id="lastname" name="lastName" required>
+                        </div>
+                    </div>
+                    <div  class="mb-10" style="display: flex; justify-content: space-between; gap: 6%; align-items: center; width: 100%;">
+                        <div style="width: 100%;">
+                            <label for="gender">Gender:</label>
+                            <select id="gender" name="gender">
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+
+                        <div style="width: 100%;">
+                            <label for="dob" class="doblabel">Date of Birth:</label>
+                            <input type="date" id="dob" name="dob">
+                        </div>
+                    </div>
+                    <div  class="mb-10">
+                        <label for="phone">Phone:</label>
+                        <input type="tel" class="input-text" id="phone" name="phone" required>
+                    </div>
+                    <div  class="mb-10">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div  class="mb-10">
+                        <label for="category">Category:</label>
+                        <select id="category" name="category">
+                            <option value="student">Student</option>
+                            <option value="teacher">Teacher</option>
+                            <option value="researcher">Researcher</option>
+                            <option value="regular" selected>Regular</option>
+                        </select>
+                    </div>
+                </div>
+                <br>
+                <div class="paymentform mb-10" hidden>
+                    <label for="paymentmode">Payment Mode</label>
+                    <select id="paymentmode" name="paymentmode">
+                        <option value="online">online</option>
+                        <option value="offline" selected>offline</option>
+                    </select>
+
+                    <input type="text" class="input-text" id="paid" name="paid" value="unpaid" hidden>
+
+                    <div class="Transactionform" hidden>
+                        <label for="transaction">Transaction:</label>
+                        <input type="text" class="input-text" id="transaction" name="transaction">
+
+                    </div>
+                </div>
+                <input type="text" class="input-text" id="approved" name="approved" hidden="true" value="pending">
+                <input type="submit" value="Submit and Visit Admin For Payment" class="ultimateSubmit" hidden="true">
+            </form>
+            <div class="nextStep">
+                <button class="Proceed">Proceed</button>
+            </div>
+        </div>
+    </div>
 </body>
 <script>
     // const username = document.querySelector('#username')
@@ -175,12 +210,25 @@
     var validEmailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
     const checkProceed = () => {
-        proceed.disabled = !(username.value.length > 0 && password.value.length > 0 && firstname.value.length > 0 && lastname.value.length > 0 && email.value.length> 0 && email.value.match(validEmailRegex) && phone.value.length > 0);
+        proceed.disabled = !(username.value.length > 0 && password.value.length > 0 && firstname.value.length > 0 && lastname.value.length > 0 && email.value.length > 0 && email.value.match(validEmailRegex) && phone.value.length > 0);
     };
+
+    function togglePassword() {
+        var password = document.getElementById("password");
+        if (password.type === "password") {
+            password.type = "text";
+            document.querySelector(".eye").classList.remove('fa-eye');
+            document.querySelector(".eye").classList.add('fa-eye-slash');
+        } else {
+            password.type = "password";
+            document.querySelector(".eye").classList.remove('fa-eye-slash');
+            document.querySelector(".eye").classList.add('fa-eye');
+        }
+    }
 
     checkProceed();
 
-    const requiredFields = [username, password, firstname, lastname,email, phone];
+    const requiredFields = [username, password, firstname, lastname, email, phone];
 
     requiredFields.forEach(item => {
         item.addEventListener('input', checkProceed);

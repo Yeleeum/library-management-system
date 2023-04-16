@@ -1,0 +1,269 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: rgb(223, 222, 222);
+    font-family: Arial, sans-serif;
+}
+
+.btn > button {
+    padding: 10px 20px;
+    background: #0069d9;
+    color: white;
+    outline: none;
+    border: none;
+    border-radius: 20px;
+    font-weight: 700;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    cursor: pointer;
+}
+
+#view {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.imageContainer {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+.imageContainer img {
+    width: 100%;
+}
+
+h1 {
+    text-align: center;
+    /* margin-top: 50px; */
+}
+
+.form {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: aliceblue;
+}
+
+.mb-10 {
+    margin-bottom: 10px;
+}
+
+#name {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2vw;
+    width: 100%;
+}
+
+#name>div>#firstname,
+#name>div>#lastname {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    outline: none;
+}
+
+#name>div>#firstname:focus,
+#name>div>#lastname:focus {
+    outline: 3px solid #8fd4ffd6;
+}
+
+form {
+    width: 70%;
+}
+
+form label {
+    display: inline-block;
+    width: 120px;
+
+}
+
+form .input-text,
+form input[type=email],
+form select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid #ccc;
+
+    box-sizing: border-box;
+}
+
+form .input-text:focus,
+form input[type=email]:focus,
+form select:focus {
+    outline: 3px solid #8fd4ffd6;
+}
+
+input[type=file] {}
+
+.file-upload {
+    width: 100%;
+    position: relative;
+    display: inline-block;
+}
+
+.file-upload input[type="file"] {
+    width: 100%;
+    outline: 1px solid #ccc;
+    text-align: center;
+    display: inline-block;
+    background: white;
+    color: #000000;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.file-upload input[type="file"]::-webkit-file-upload-button {
+    background: #0069d9;
+    font-weight: bold;
+    outline: none;
+    border: none;
+    border-radius: 4px 1px 1px 4px;
+    cursor: pointer;
+    color: rgb(255, 255, 255);
+    padding: 1em;
+    margin-right: 1vw;
+}
+
+
+form input[type=submit] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+form input[type=submit]:hover {
+    background-color: #45a049;
+}
+
+form .beforepayment h3 {
+    color: green;
+}
+
+form .falseusername {
+    color: red;
+}
+
+form .paymentform label {
+    display: inline-block;
+    width: 120px;
+
+}
+
+form .paymentform select {}
+
+form .Transactionform label {
+    display: inline-block;
+    width: 120px;
+
+}
+
+form .Transactionform input[type=text] {}
+
+form .Transactionform input[type=text]:focus {
+    outline: 3px solid #8fd4ffd6;
+}
+
+.Proceed {
+    width: 70%;
+    background-color: #008CBA;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 20px;
+    /* margin-top: 20px; */
+}
+
+.Proceed:hover {
+    background-color: #006f8b;
+}
+
+.ultimateSubmit {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+}
+
+.ultimateSubmit:hover {
+    background-color: #45a049;
+}
+
+.nextStep {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#dob {
+    width: 100%;
+    outline: 1px solid #ccc;
+    padding: 8px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.passwordField {
+    width: 100%;
+    background: white;
+    border-radius: 4px;
+    display: flex;
+    border: 2px solid #ccc;
+    margin-bottom: 10px;
+    align-items: center;
+}
+
+.passwordField:focus-within {
+    outline: 3px solid #8fd4ffd6;
+}
+
+#password {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    background: transparent;
+}
+
+.fa-eye, .fa-eye-slash {
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+#dob:focus {
+    border: none;
+    outline: 3px solid #8fd4ffd6;
+}
