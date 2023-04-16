@@ -21,31 +21,32 @@ public class RegistrationServices {
         this.registrationRepository = registrationRepository;
     }
 
-    public List<String> findPendingApprovedUsernames(){
+    public List<String> findPendingApprovedUsernames() {
         return registrationRepository.getPendingApprovedUsernames();
     }
 
-    public Registration insertOneRegistration(Registration registration,MultipartFile file){
+    public Registration insertOneRegistration(Registration registration, MultipartFile file) {
         String currentDirectory = System.getProperty("user.dir");
-        String path= currentDirectory + "\\src\\main\\webapp\\uploads\\profilePictures";
-        FileHandler.saveFile(file, path);
-        registration.setProfilePicture(file.getOriginalFilename());
+        String path = currentDirectory + "\\src\\main\\webapp\\uploads\\profilePictures";
+        if (file != null) {
+            FileHandler.saveFile(file, path);
+            registration.setProfilePicture(file.getOriginalFilename());
+        }
+        if (registration.getDob().equals("")) {
+            registration.setDob(null);
+        }
         return registrationRepository.save(registration);
     }
 
-    public List<Registration> getPending(String paid){
+    public List<Registration> getPending(String paid) {
         return registrationRepository.getPendingRequests(paid);
     }
 
-    public Integer updateApproval(String status,Integer rsid){
+    public Integer updateApproval(String status, Integer rsid) {
         return registrationRepository.updateApprovedByRsid(status, rsid);
     }
 
-    public Integer addRejectionMessageByRsid(Integer msid,Integer rsid){
-        return registrationRepository.updateRejectionMessageByRsid(msid, rsid);
-    }
-
-    public Registration getOneRegistration(Integer rsid){
+    public Registration getOneRegistration(Integer rsid) {
         return registrationRepository.getRegistrationByID(rsid);
     }
 

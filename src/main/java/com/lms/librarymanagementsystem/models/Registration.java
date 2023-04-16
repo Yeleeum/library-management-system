@@ -54,14 +54,10 @@ public class Registration {
     @Column(name = "APPROVED", length = 100)
     private String approved;
 
-    @Column(name = "REJECTIONMSG")
-    private Integer rejectionmsg;
-
-
     public Registration() {
     }
 
-    public Registration(Integer rsid, String username, String password, String profilePicture, String firstName, String lastName, String gender, String dob, String phone, String email, String category, String paid, String transaction, String approved, Integer rejectionmsg) {
+    public Registration(Integer rsid, String username, String password, String profilePicture, String firstName, String lastName, String gender, String dob, String phone, String email, String category, String paid, String transaction, String approved) {
         this.rsid = rsid;
         this.username = username;
         this.password = password;
@@ -76,7 +72,6 @@ public class Registration {
         this.paid = paid;
         this.transaction = transaction;
         this.approved = approved;
-        this.rejectionmsg = rejectionmsg;
     }
 
     public Integer getRsid() {
@@ -191,13 +186,6 @@ public class Registration {
         this.approved = approved;
     }
 
-    public Integer getRejectionmsg() {
-        return this.rejectionmsg;
-    }
-
-    public void setRejectionmsg(Integer rejectionmsg) {
-        this.rejectionmsg = rejectionmsg;
-    }
 
     @Override
     public String toString() {
@@ -216,7 +204,6 @@ public class Registration {
             ", paid='" + getPaid() + "'" +
             ", transaction='" + getTransaction() + "'" +
             ", approved='" + getApproved() + "'" +
-            ", rejectionmsg='" + getRejectionmsg() + "'" +
             "}";
     }
 

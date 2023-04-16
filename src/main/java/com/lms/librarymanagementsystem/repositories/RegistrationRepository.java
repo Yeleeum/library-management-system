@@ -21,9 +21,6 @@ public interface RegistrationRepository extends JpaRepository<Registration,Integ
     @Query(value="UPDATE REGISTRATION SET APPROVED=:STATUS WHERE RSID=:RSID",nativeQuery = true)
     Integer updateApprovedByRsid(@Param("STATUS")String status,@Param("RSID")Integer rsid);
 
-    @Modifying
-    @Query(value="UPDATE REGISTRATION SET REJECTIONMSG=:MSID WHERE RSID=:RSID",nativeQuery = true)
-    Integer updateRejectionMessageByRsid(@Param("MSID")Integer msid,@Param("RSID")Integer rsid);
 
     @Query(value="Select * from registration where rsid=:rsid",nativeQuery = true)
     Registration getRegistrationByID(@Param("rsid")Integer rsid);

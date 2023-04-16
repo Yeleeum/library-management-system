@@ -41,7 +41,7 @@
             <input type="text" id="phone" name="phone" required>
             <br>
             <label for="email">Email:</label>
-            <input type="email" id="email" name="email">
+            <input type="email" id="email" name="email" required>
             <br>
             <label for="category">Category:</label>
             <select id="category" name="category">
@@ -68,7 +68,6 @@
             </div>
         </div>
         <input type="text" id="approved" name="approved" hidden="true" value="pending">
-        <input type="number" id="rejectionmsg" name="rejectionmsg" hidden="true">
         <input type="submit" value="Submit and Visit Admin For Payment" class="ultimateSubmit" hidden="true">
     </form>
     <button class="Proceed">Proceed</button>
@@ -159,6 +158,7 @@
     const password = getElement('#password');
     const firstname = getElement('#firstname');
     const lastname = getElement('#lastname');
+    const email = getElement('#email');
     const phone = getElement('#phone');
     const proceed = getElement('.Proceed');
     const beforepayment = getElement('.beforepayment');
@@ -172,13 +172,15 @@
     const trueusername = getElement('.trueusername');
     const falseusername = getElement('.falseusername');
 
+    var validEmailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
     const checkProceed = () => {
-        proceed.disabled = !(username.value.length > 0 && password.value.length > 0 && firstname.value.length > 0 && lastname.value.length > 0 && phone.value.length > 0);
+        proceed.disabled = !(username.value.length > 0 && password.value.length > 0 && firstname.value.length > 0 && lastname.value.length > 0 && email.value.length> 0 && email.value.match(validEmailRegex) && phone.value.length > 0);
     };
 
     checkProceed();
 
-    const requiredFields = [username, password, firstname, lastname, phone];
+    const requiredFields = [username, password, firstname, lastname,email, phone];
 
     requiredFields.forEach(item => {
         item.addEventListener('input', checkProceed);
