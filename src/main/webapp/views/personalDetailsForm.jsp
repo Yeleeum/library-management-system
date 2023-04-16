@@ -16,7 +16,11 @@
             <h1>User Registration Form</h1>
             <img src="/img/library.png" alt="">
             <div class="btn">
-                <button>Donate Pdf</button>
+                <button>Donate Book</button>
+                <button>Donate Journal</button>
+                <button>Donate Theses</button>
+                <button>Donate Magazine</button>
+                <button>Donate PDF</button>
             </div>
         </div>
         <div class="form">
@@ -66,7 +70,7 @@
                     </div>
                     <div  class="mb-10">
                         <label for="phone">Phone:</label>
-                        <input type="tel" class="input-text" id="phone" name="phone" required>
+                        <input type="number" class="input-text" id="phone" name="phone" required>
                     </div>
                     <div  class="mb-10">
                         <label for="email">Email:</label>
@@ -211,6 +215,12 @@
 
     const checkProceed = () => {
         proceed.disabled = !(username.value.length > 0 && password.value.length > 0 && firstname.value.length > 0 && lastname.value.length > 0 && email.value.length > 0 && email.value.match(validEmailRegex) && phone.value.length > 0);
+
+        if(proceed.disabled){
+            proceed.style = "filter: brightness(0.7);";
+        } else {
+            proceed.style = "";
+        }
     };
 
     function togglePassword() {

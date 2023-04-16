@@ -9,7 +9,7 @@ body {
     font-family: Arial, sans-serif;
 }
 
-.btn > button {
+.btn>button {
     padding: 10px 20px;
     background: #0069d9;
     color: white;
@@ -19,6 +19,11 @@ body {
     font-weight: 700;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
     cursor: pointer;
+    margin: 10px 0;
+}
+
+.btn>button:hover {
+    background: #0000d9;
 }
 
 #view {
@@ -113,7 +118,7 @@ form select:focus {
     outline: 3px solid #8fd4ffd6;
 }
 
-input[type=file] {}
+/* input[type=file] {} */
 
 .file-upload {
     width: 100%;
@@ -172,7 +177,7 @@ form .paymentform label {
 
 }
 
-form .paymentform select {}
+/* form .paymentform select {} */
 
 form .Transactionform label {
     display: inline-block;
@@ -180,7 +185,7 @@ form .Transactionform label {
 
 }
 
-form .Transactionform input[type=text] {}
+/* form .Transactionform input[type=text] {} */
 
 form .Transactionform input[type=text]:focus {
     outline: 3px solid #8fd4ffd6;
@@ -203,6 +208,7 @@ form .Transactionform input[type=text]:focus {
 }
 
 .ultimateSubmit {
+    font-size: 20px;
     width: 100%;
     background-color: #4CAF50;
     color: white;
@@ -213,6 +219,12 @@ form .Transactionform input[type=text]:focus {
     margin-top: 20px;
     margin-bottom: 20px;
 
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 .ultimateSubmit:hover {
@@ -258,7 +270,8 @@ form .Transactionform input[type=text]:focus {
     background: transparent;
 }
 
-.fa-eye, .fa-eye-slash {
+.fa-eye,
+.fa-eye-slash {
     margin-right: 10px;
     cursor: pointer;
 }
