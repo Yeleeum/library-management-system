@@ -259,6 +259,7 @@
     paymentmode.addEventListener('input', () => {
         Transactionform.hidden = paymentmode.value !== "online";
         transaction.required = paymentmode.value === "online";
+        transaction.value=paymentmode.value==="offline"?"":transaction.value
         paid.value = (paymentmode.value === "online") ? "paid" : "unpaid";
         ultimateSubmit.value = (paymentmode.value === "online") ? "Submit" : "Submit and Visit Admin For Payment";
     });
