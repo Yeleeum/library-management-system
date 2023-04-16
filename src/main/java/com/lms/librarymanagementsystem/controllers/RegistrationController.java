@@ -14,7 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.lms.librarymanagementsystem.models.Registration;
-import com.lms.librarymanagementsystem.services.MessageServices;
+// import com.lms.librarymanagementsystem.services.EmailServices;
+// import com.lms.librarymanagementsystem.services.MessageServices;
 import com.lms.librarymanagementsystem.services.RegistrationServices;
 
 
@@ -22,11 +23,10 @@ import com.lms.librarymanagementsystem.services.RegistrationServices;
 @RequestMapping("/registration")
 public class RegistrationController {
     private RegistrationServices registrationServices;
-    private MessageServices messageServices;
 
-    public RegistrationController(RegistrationServices registrationServices, MessageServices messageServices) {
+
+    public RegistrationController(RegistrationServices registrationServices) {
         this.registrationServices = registrationServices;
-        this.messageServices = messageServices;
     }
 
     @GetMapping

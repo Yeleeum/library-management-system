@@ -60,9 +60,9 @@
 	</table>
     <form action="/admin/rejectuser" method="post" class="rejection" hidden>
         <input type="number"  name="rsid" class="rejectionrsid" hidden >
-        <input type="text"  name="username" class="username" hidden >
+        <!-- <input type="text"  name="username" class="username" hidden > -->
         <input type="text" value="<%=(String)request.getAttribute("category")%>" name="pay" hidden>
-        <textarea name="content"></textarea>
+        <textarea name="message"></textarea>
         <button>Send Message</button>
     </form>
     <button onclick="hideForm()"  class="Cancelbtn"hidden >Cancel</button>
@@ -70,13 +70,13 @@
 </body>
 <script defer>
     const rejection=document.querySelector('.rejection');
-    const user=document.querySelector('.username');
+    // const user=document.querySelector('.username');
     const rejectionrsid=document.querySelector('.rejectionrsid')
     const cancelbtn=document.querySelector('.Cancelbtn')
 
     function createRejectForm(rsid,username){
         rejectionrsid.value=parseInt(rsid)
-        user.value=username
+        // user.value=username
         rejection.hidden=false
         cancelbtn.hidden=false
     }

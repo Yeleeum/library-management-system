@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.lms.librarymanagementsystem.models.Message;
 import com.lms.librarymanagementsystem.models.Registration;
 import com.lms.librarymanagementsystem.models.Users;
+import com.lms.librarymanagementsystem.services.EmailServices;
 import com.lms.librarymanagementsystem.services.MessageServices;
 import com.lms.librarymanagementsystem.services.RegistrationServices;
 import com.lms.librarymanagementsystem.services.UsersServices;
@@ -20,13 +21,13 @@ import com.lms.librarymanagementsystem.services.UsersServices;
 public class AdminController {
     private RegistrationServices registrationServices;
     private UsersServices usersServices;
-    private MessageServices messageServices;
+    private EmailServices emailServices;
 
 
-    public AdminController(RegistrationServices registrationServices, UsersServices usersServices, MessageServices messageServices) {
+    public AdminController(RegistrationServices registrationServices, UsersServices usersServices, EmailServices emailServices) {
         this.registrationServices = registrationServices;
         this.usersServices = usersServices;
-        this.messageServices = messageServices;
+        this.emailServices = emailServices;
     }
 
     
@@ -55,11 +56,11 @@ public class AdminController {
     }
 
     @PostMapping("/rejectuser")
-    public String rejectUser(Integer rsid,Message message,String pay){
+    public String rejectUser(Integer rsid,String message,String pay){
+        Registration registration=registrationServices.getOneRegistration(rsid);
+        String content="Dear! "+registration.getFirstName()+" ,your application has been rejected due to the reason: "+message+". You can visit the admin for further information.";
+        emailServices.sendMail(registration.getEmail(), "Rejection of Application", content);
         registrationServices.updateApproval("rejected", rsid);
-        message.setStatus("unseen");
-        Message message2=messageServices.inserOneMessage(message);
-        registrationServices.addRejectionMessageByRsid(message2.getMsid(), rsid);
         return "redirect:./viewpending/"+pay.toLowerCase();
     }
 }
