@@ -219,7 +219,7 @@
     var validEmailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
     const checkProceed = () => {
-        proceed.disabled = !(username.value.length > 0 && password.value.length > 0 && firstname.value.length > 0 && lastname.value.length > 0 && email.value.length > 0 && email.value.match(validEmailRegex) && phone.value.length > 0);
+        proceed.disabled = !(username.value.length > 0 && !trueusername.hidden && password.value.length > 0 && firstname.value.length > 0 && lastname.value.length > 0 && email.value.length > 0 && email.value.match(validEmailRegex) && phone.value.length > 0);
 
         if(proceed.disabled){
             proceed.style = "filter: brightness(0.7);";
@@ -280,7 +280,7 @@
                 } else {
                     trueusername.hidden = true;
                     falseusername.hidden = false;
-                    proceed.disabled = true;
+                    checkProceed();
                 }
                 if (usernameinput.value.length === 0) {
                     trueusername.hidden = true;
