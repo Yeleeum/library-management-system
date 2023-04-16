@@ -1,5 +1,7 @@
 package com.lms.librarymanagementsystem.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -24,6 +26,10 @@ public class UsersServices {
         String content="Dear! "+user.getFirstName()+" ,your application has been approved. You can log in to view your profile.";
         emailServices.sendMail(user.getEmail(), "Approval of Application", content);
         return usersRepository.save(user);
+    }
+
+    public List<Users> findUserByUsernamePassword(String username,String password){
+        return usersRepository.getUserByUsernamePassword(username, password);
     }
 
 }
