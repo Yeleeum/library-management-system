@@ -8,11 +8,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.lms.librarymanagementsystem.models.Message;
+// import com.lms.librarymanagementsystem.models.Message;
 import com.lms.librarymanagementsystem.models.Registration;
 import com.lms.librarymanagementsystem.models.Users;
 import com.lms.librarymanagementsystem.services.EmailServices;
-import com.lms.librarymanagementsystem.services.MessageServices;
+// import com.lms.librarymanagementsystem.services.MessageServices;
 import com.lms.librarymanagementsystem.services.RegistrationServices;
 import com.lms.librarymanagementsystem.services.UsersServices;
 
