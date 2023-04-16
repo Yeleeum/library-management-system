@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 15, 2023 at 10:59 AM
+-- Generation Time: Apr 16, 2023 at 10:15 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -194,15 +194,35 @@ CREATE TABLE `registration` (
   `FIRSTNAME` varchar(100) DEFAULT NULL,
   `LASTNAME` varchar(100) DEFAULT NULL,
   `GENDER` varchar(100) DEFAULT NULL,
-  `DOB` varchar(100) DEFAULT NULL,
+  `DOB` date DEFAULT NULL,
   `PHONE` varchar(100) DEFAULT NULL,
   `EMAIL` varchar(100) DEFAULT NULL,
   `CATEGORY` varchar(100) DEFAULT NULL,
   `PAID` varchar(100) DEFAULT NULL,
   `TRANSACTION` varchar(100) DEFAULT NULL,
-  `APPROVED` varchar(100) DEFAULT NULL,
-  `REJECTIONMSG` int(11) DEFAULT NULL
+  `APPROVED` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `registration`
+--
+
+INSERT INTO `registration` (`RSID`, `USERNAME`, `PASSWORD`, `PROFILEPICTURE`, `FIRSTNAME`, `LASTNAME`, `GENDER`, `DOB`, `PHONE`, `EMAIL`, `CATEGORY`, `PAID`, `TRANSACTION`, `APPROVED`) VALUES
+(2, 'new2', 'new', 'new.png', 'new', 'new', 'male', '2023-03-02', '90', 'hjk', 'St', 'paid', 'bhjk', 'rejected'),
+(3, 'new3', 'new', 'new.png', 'new', 'new', 'male', '2023-03-02', '90', 'hjk', 'St', 'paid', 'bhjk', 'approved'),
+(4, 'new4', '1234', 'noor kata (1).png', NULL, NULL, 'male', '2023-03-29', '07003512645', 'sinchannandy54@gmail.com', 'student', 'unpaid', '', 'pending'),
+(5, 'new5', '1234', 'White and Black Modern Twitter Header.png', 'Sinchan', 'Nandy', 'male', '2023-04-04', '07003512645', 'sinchannandy54@gmail.com', 'student', 'unpaid', '', 'rejected'),
+(6, 'new6', '1234', 'Untitled design.png', 'Sinchan', 'Nandy', 'male', '2023-04-04', '07003512645', 'sinchannandy54@gmail.com', 'student', 'unpaid', '', 'approved'),
+(7, 'new6', '1234', 'Untitled design.png', 'Sinchan', 'Nandy', 'male', '2023-04-04', '07003512645', 'sinchannandy54@gmail.com', 'student', 'unpaid', '', 'rejected'),
+(8, 'new7', '123', 'Untitled design.png', 'Sinchan', 'Nandy', 'male', '2023-04-04', '07003512645', 'sinchannandy54@gmail.com', 'student', 'paid', 'b679', 'approved'),
+(9, '10min', '45', 'IMG-20220311-WA0006-02.jpeg', 'Sinchan', 'Nandy', 'male', '2023-04-04', '07003512645', 'sinchannandy54@gmail.com', 'student', 'unpaid', '', 'approved'),
+(10, '10min', '89', 'IMG-20220311-WA0006-02.jpeg', 'Sinchan', 'Nandy', 'male', '2023-04-04', '07003512645', 'joh53506@zslsz.com', 'student', 'unpaid', '', 'pending'),
+(11, '10min2', '56', 'IMG-20220311-WA0006-02.jpeg', 'Sinchan', 'Nandy', 'male', '2023-04-04', '07003512645', 'joh53506@zslsz.com', 'student', 'unpaid', '', 'approved'),
+(12, 'ayush', 'rt', 'IMG-20220311-WA0006-02.jpeg', 'Ayush', 'Singh', 'male', '2023-04-04', '07003512645', 'hiayushsingh.co.in@gmail.com', 'student', 'unpaid', '', 'rejected'),
+(13, 'new8', '34', 'White and Black Modern Twitter Header.png', 'Sinchan', 'Nandy', 'male', '2023-03-29', '07003512645', 'hjk@hjl.com', 'regular', 'unpaid', '', 'approved'),
+(14, 'er', 'er', '', 'Sinchan', 'Nandy', 'male', NULL, '07003512645', 'sinchannandy54@gmail.com', 'teacher', 'unpaid', '', 'pending'),
+(15, 'er3', 'er', '', 'Sinchan', 'Nandy', 'male', NULL, '07003512645', 'sinchannandy54@gmail.com', 'teacher', 'unpaid', '', 'pending'),
+(16, 'er2', '2', 'Untitled design.png', 'Sinchan', 'Nandy', 'male', NULL, '07003512645', 'sinchannandy54@gmail.com', 'regular', 'unpaid', '', 'pending');
 
 -- --------------------------------------------------------
 
@@ -284,6 +304,17 @@ CREATE TABLE `users` (
   `MEMBERSHIP` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`USERNAME`, `PASSWORD`, `PROFILEPICTURE`, `FIRSTNAME`, `LASTNAME`, `GENDER`, `DOB`, `PHONE`, `EMAIL`, `CATEGORY`, `MEMBERSHIP`) VALUES
+('10min', '45', 'IMG-20220311-WA0006-02.jpeg', 'Sinchan', 'Nandy', 'male', '2023-04-04', '07003512645', 'sinchannandy54@gmail.com', 'student', 'active'),
+('10min2', '56', 'IMG-20220311-WA0006-02.jpeg', 'Sinchan', 'Nandy', 'male', '2023-04-04', '07003512645', 'joh53506@zslsz.com', 'student', 'active'),
+('new6', '1234', 'Untitled design.png', 'Sinchan', 'Nandy', 'male', '2023-04-04', '07003512645', 'sinchannandy54@gmail.com', 'student', 'active'),
+('new7', '123', 'Untitled design.png', 'Sinchan', 'Nandy', 'male', '2023-04-04', '07003512645', 'sinchannandy54@gmail.com', 'student', 'active'),
+('new8', '34', 'White and Black Modern Twitter Header.png', 'Sinchan', 'Nandy', 'male', '2023-03-29', '07003512645', 'hjk@hjl.com', 'regular', 'active');
+
 -- --------------------------------------------------------
 
 --
@@ -346,14 +377,14 @@ ALTER TABLE `magazines`
 -- Indexes for table `message`
 --
 ALTER TABLE `message`
-  ADD PRIMARY KEY (`MSID`);
+  ADD PRIMARY KEY (`MSID`),
+  ADD KEY `USERNAME` (`USERNAME`);
 
 --
 -- Indexes for table `registration`
 --
 ALTER TABLE `registration`
-  ADD PRIMARY KEY (`RSID`),
-  ADD KEY `REJECTIONMSG` (`REJECTIONMSG`);
+  ADD PRIMARY KEY (`RSID`);
 
 --
 -- Indexes for table `softcopy`
@@ -412,13 +443,13 @@ ALTER TABLE `magazines`
 -- AUTO_INCREMENT for table `message`
 --
 ALTER TABLE `message`
-  MODIFY `MSID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `MSID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `registration`
 --
 ALTER TABLE `registration`
-  MODIFY `RSID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `RSID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `theses`
@@ -456,10 +487,10 @@ ALTER TABLE `magazines`
   ADD CONSTRAINT `magazines_ibfk_1` FOREIGN KEY (`itid`) REFERENCES `connector` (`itid`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `registration`
+-- Constraints for table `message`
 --
-ALTER TABLE `registration`
-  ADD CONSTRAINT `registration_ibfk_1` FOREIGN KEY (`REJECTIONMSG`) REFERENCES `message` (`MSID`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `message`
+  ADD CONSTRAINT `message_ibfk_1` FOREIGN KEY (`USERNAME`) REFERENCES `users` (`USERNAME`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `theses`
