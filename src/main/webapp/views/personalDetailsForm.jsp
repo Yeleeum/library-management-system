@@ -27,13 +27,13 @@
             <form action="/registration/submitregister" method="post" enctype="multipart/form-data">
                 <div class="beforepayment">
                     <div class="mb-10">
-                        <label for="username">Username:</label>
+                        <label for="username">Username<span style="color: red; font-weight: bold;">*</span> :</label>
                         <input type="text" class="input-text usernameinput" placeholder="Enter Username"
                             class="usernameinput" id="username" name="username" required>
                         <p class="trueusername" hidden="true" style="color: rgb(0, 207, 0); margin-top: 3px;">You can use this username <i class="fa-solid fa-check"></i></p>
                         <p class="falseusername" hidden="true" style="color: rgb(216, 0, 0); margin-top: 3px;">Username already in use <i class="fa-solid fa-multiply"></i></p>
                     </div>
-                    <label for="password">Password:</label>
+                    <label for="password">Password<span style="color: red; font-weight: bold;">*</span> :</label>
                     <div class="passwordField">
                         <input type="password" id="password" name="password" required>
                         <i class="fa-solid fa-eye eye" onclick="togglePassword()"></i>
@@ -44,12 +44,12 @@
                     </div>
                     <div id="name" class="mb-10">
                         <div>
-                            <label for="firstname">First Name:</label>
+                            <label for="firstname">First Name<span style="color: red; font-weight: bold;">*</span> :</label>
                             <input type="text" id="firstname" name="firstName" required>
                         </div>
 
                         <div>
-                            <label for="lastname">Last Name:</label>
+                            <label for="lastname">Last Name<span style="color: red; font-weight: bold;">*</span> :</label>
                             <input type="text" id="lastname" name="lastName" required>
                         </div>
                     </div>
@@ -73,7 +73,7 @@
                         <input type="number" class="input-text" id="phone" name="phone" required>
                     </div>
                     <div  class="mb-10">
-                        <label for="email">Email:</label>
+                        <label for="email">Email<span style="color: red; font-weight: bold;">*</span> :</label>
                         <input type="email" id="email" name="email" required>
                     </div>
                     <div  class="mb-10">
@@ -88,17 +88,22 @@
                 </div>
                 <br>
                 <div class="paymentform mb-10" hidden>
-                    <label for="paymentmode">Payment Mode</label>
-                    <select id="paymentmode" name="paymentmode">
-                        <option value="online">online</option>
-                        <option value="offline" selected>offline</option>
+                    <label for="paymentmode">Payment Mode<span style="color: red; font-weight: bold;">*</span> </label>
+                    <select id="paymentmode" name="paymentmode" required>
+                        <option value="online">Online</option>
+                        <option value="offline" selected>Offline</option>
                     </select>
 
                     <input type="text" class="input-text" id="paid" name="paid" value="unpaid" hidden>
 
                     <div class="Transactionform" hidden>
-                        <label for="transaction">Transaction:</label>
-                        <input type="text" class="input-text" id="transaction" name="transaction">
+                        <div class="qrcode">
+                            <p>Pay using this QR</p>
+                            <br>
+                            <img src="/img/QR.jpg" alt="QRCode">
+                        </div>
+                        <label for="transaction">Transaction<span style="color: red; font-weight: bold;">*</span> :</label>
+                        <input type="text" class="input-text" id="transaction" name="transaction" placeholder="Kindly put your payment transaction id here....">
 
                     </div>
                 </div>

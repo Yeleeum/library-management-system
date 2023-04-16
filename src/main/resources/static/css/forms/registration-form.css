@@ -5,7 +5,8 @@
 }
 
 body {
-    background: rgb(223, 222, 222);
+    /* background: rgb(223, 222, 222); */
+    background: #191a21;
     font-family: Arial, sans-serif;
 }
 
@@ -27,6 +28,7 @@ body {
 }
 
 #view {
+
     width: 100%;
     height: 100vh;
     display: flex;
@@ -37,6 +39,7 @@ body {
 }
 
 .imageContainer {
+    color: aliceblue;
     width: 50%;
     display: flex;
     flex-direction: column;
@@ -48,6 +51,7 @@ body {
 
 .imageContainer img {
     width: 100%;
+    filter: drop-shadow(-4px 0px 46px #0A1AC0);
 }
 
 h1 {
@@ -279,4 +283,18 @@ input::-webkit-inner-spin-button {
 #dob:focus {
     border: none;
     outline: 3px solid #8fd4ffd6;
+}
+
+.qrcode {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.qrcode>img {
+    width: 200px;
+    height: 200px;
+    border-radius: 10px;
 }
