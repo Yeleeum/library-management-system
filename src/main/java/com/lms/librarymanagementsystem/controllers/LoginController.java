@@ -25,9 +25,9 @@ public class LoginController {
         this.registrationServices = registrationServices;
     }
 
-    @GetMapping("/users")
-    public String getUserLoginForm(){
-        return "userLogin";
+    @GetMapping
+    public String getLoginForm(){
+        return "login";
     }
 
     @PostMapping("/users")
