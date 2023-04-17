@@ -50,4 +50,11 @@ public class RegistrationServices {
         return registrationRepository.getRegistrationByID(rsid);
     }
 
+    public List<Registration> findUserByUsernamePasswordPending(String username,String password){
+        return registrationRepository.getUserByUsernamePasswordPending(username, password);
+    }
+    public List<Registration> findUserByUsernamePasswordRejected(String username,String password){
+        return registrationRepository.getUserByUsernamePasswordRejected(username, password);
+    }
+
 }

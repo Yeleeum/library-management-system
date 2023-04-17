@@ -24,4 +24,10 @@ public interface RegistrationRepository extends JpaRepository<Registration,Integ
 
     @Query(value="Select * from registration where rsid=:rsid",nativeQuery = true)
     Registration getRegistrationByID(@Param("rsid")Integer rsid);
+
+    @Query(value="SELECT * FROM REGISTRATION WHERE USERNAME=:USERNAME AND PASSWORD=:PASSWORD AND APPROVED='pending'", nativeQuery=true)
+    public List<Registration> getUserByUsernamePasswordPending(@Param("USERNAME")String username,@Param("PASSWORD")String password);
+
+    @Query(value="SELECT * FROM REGISTRATION WHERE USERNAME=:USERNAME AND PASSWORD=:PASSWORD AND APPROVED='rejected'", nativeQuery=true)
+    public List<Registration> getUserByUsernamePasswordRejected(@Param("USERNAME")String username,@Param("PASSWORD")String password);
 }
