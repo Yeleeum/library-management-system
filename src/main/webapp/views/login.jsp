@@ -150,8 +150,13 @@
 
         /* Modal Content/Box */
         .modal-content {
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: space-between;
+            align-items: center;
             border-radius: 10px;
-            background-color: #fefefe;
+            /* background-color: #fefefe; */
+            background-color: #2f3140f2;
             margin: 15% auto;
             /* 15% from the top and centered */
             padding: 20px;
@@ -162,15 +167,17 @@
 
         /* Close Button */
         .close {
-            color: #000;
+            display: inline;
+            color: aliceblue;
             float: right;
             font-size: 30px;
             font-weight: bold;
+            margin-bottom: 10px;
         }
 
         .close:hover,
         .close:focus {
-            color: black;
+            color: rgb(222, 222, 222);
             text-decoration: none;
             cursor: pointer;
         }
@@ -181,18 +188,8 @@
     <div id="myModal" class="modal">
         <div class="modal-content">
             <span class="close" id="cross">&times;</span>
-            <p id="modal-text">
-            <p>Your Request is Still Pending. You will be notify shortly via email,
-                check the email frquently </p>
-            <br>
-            <p>
-                Admin has Rejected your application,
-                check your mail inbox to know more.
-            </p>
-            <br>
-            <p>
-                wrong username or password given
-            </p>
+            <p id="modal-text" style="display: inline;">
+
             </p>
         </div>
     </div>
@@ -203,8 +200,8 @@
                 <img src="/img/user.png" alt="" width="100" height="100">
             </div>
             <h2>User Login</h2>
-            <input type="text" name="username" placeholder="Username">
-            <input type="password" name="password" placeholder="Password">
+            <input type="text" name="username" placeholder="Username" id="username">
+            <input type="password" name="password" placeholder="Password" id="password">
             <button type="submit" id="userbtn">Login</button>
         </div>
         <div class="form">
@@ -222,30 +219,75 @@
     // Get the modal
     var modal = document.getElementById("myModal");
 
+    var username = document.getElementById('username')
+    var password = document.getElementById('password')
+
     // Get the <span> element that closes the modal
     var crossIcon = document.getElementById("cross");
 
     // When the user clicks the button to submit the login request
     document.getElementById("userbtn").addEventListener('click', () => {
         // Show the modal
-        modal.style.display = "block";
+        // URL and data to be sent in the request
+        let usernameParams = new URLSearchParams();
+        usernameParams.append('username', username.value);
+        usernameParams.append('password', password.value);
+        const url = 'http://localhost:8080/login/users';
 
-        // Update the modal text with the approval status
-        document.getElementById("modal-text").innerHTML = "Your login request has been sent for approval. Please wait for the admin to approve or reject your request.";
+        // Fetch options
+        const options = {
+            method: 'POST',
+            body: usernameParams
+        };
 
-        // When the user clicks on <span> (x), close the modal
-        crossIcon.addEventListener('click', () => {
-            modal.style.display = "none";
-        });
+        // Send POST request
+        fetch(url, options)
+            .then(response => { return response.text() })
+            .then(data => {
+                // console.log(data); // Handle the response data
+                modal.style.display = "block";
 
-        // When the user clicks anywhere outside of the modal, close it
-        window.addEventListener('click', (event) => {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        });
+                // Update the modal text with the approval status
+                document.getElementById("modal-text").innerHTML = "Your login request has been sent for approval. Please wait for the admin to approve or reject your request.";
 
-        
+                // When the user clicks on <span> (x), close the modal
+                crossIcon.addEventListener('click', () => {
+                    modal.style.display = "none";
+                });
+
+                // When the user clicks anywhere outside of the modal, close it
+                window.addEventListener('click', (event) => {
+                    if (event.target == modal) {
+                        modal.style.display = "none";
+                    }
+                });
+
+                if (data === "pending") {
+                    document.getElementById('modal-text').innerHTML = `<p style="color: yellow; display: inline;">Your Request is Still Pending. You will be notify shortly via email, check the email frquently </p>`;
+                } else if (data === "rejected") {
+                    document.getElementById('modal-text').innerHTML = `<p style="color: #ff5f85; display: inline;">Admin has Rejected your application,
+                    check your mail inbox to know more.</p>`;
+                } else if (data === "not found") {
+                    document.getElementById('modal-text').innerHTML = `<p style="color: red; display: inline;">Wrong username or password given</p>`;
+                } else {
+                    window.location.href = "http://localhost:8080/user";
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+
+        /* Your Request is Still Pending. You will be notify shortly via email,
+                check the email frquently </p>
+            <br>
+            <p>
+                Admin has Rejected your application,
+                check your mail inbox to know more.
+            </p>
+            <br>
+            <p>
+                wrong username or password given */
+
     });
 
 </script>

@@ -2,6 +2,8 @@ package com.lms.librarymanagementsystem.controllers;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,21 +34,21 @@ public class LoginController {
     }
 
     @PostMapping("/users")
-    public String userLogin(String username,String password,HttpServletRequest req){
+    public ResponseEntity<String> userLogin(String username,String password,HttpServletRequest req){
         List<Users> users=usersServices.findUserByUsernamePassword(username, password);
         if(!users.isEmpty()){
             SessionHandler.setSession(req, username, "nonadmin");
-            return "logged";
+            return new ResponseEntity<String>("logged", HttpStatus.OK);
         }
         List<Registration> registrationspending=registrationServices.findUserByUsernamePasswordPending(username, password);
         if(!registrationspending.isEmpty()){
-            return "pending";
+            return new ResponseEntity<String>("pending", HttpStatus.OK);
         }
         List<Registration> registrationsrejected=registrationServices.findUserByUsernamePasswordRejected(username, password);
         if(!registrationsrejected.isEmpty()){
-            return "rejected";
+            return new ResponseEntity<String>("rejected", HttpStatus.OK);
         }
-        return "not found";
+        return new ResponseEntity<String>("not found", HttpStatus.NOT_FOUND);
     }
     
 }
