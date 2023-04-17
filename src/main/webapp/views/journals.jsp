@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="/css/forms/journals.css">
 </head>
 <body>
-	<form action="/journals" method="POST" enctype="multipart/form-data">
+	<form action="/admin/addjournal" method="POST" enctype="multipart/form-data">
 		<label for="itid">ITID:</label>
 		<input type="text" id="itid" name="itid" required>
 

@@ -7,13 +7,16 @@ import com.lms.librarymanagementsystem.FileHandler.SessionHandler;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
 @Component
-public class AdminInterceptor implements HandlerInterceptor{
+public class LoginInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest req, HttpServletResponse res, Object handler) throws Exception {
-        if (SessionHandler.getAccessSession(req)!=null && SessionHandler.getAccessSession(req).equals("admin")) {
+        if (!SessionHandler.checkSession(req)) {
             return true;
+        } else if (SessionHandler.getAccessSession(req).equals("admin")) {
+            res.sendRedirect("/admin");
         }else{
-            res.sendRedirect("/login");
+            res.sendRedirect("/user");
         }
         return false;
     }

@@ -27,16 +27,16 @@ public class MagazinesController {
         this.connectorServices = connectorServices;
     }
 
-    @GetMapping
-    public String getMagazineForm(){
-        return "magazines";
-    }
+    // @GetMapping
+    // public String getMagazineForm(){
+    //     return "magazines";
+    // }
 
-    @PostMapping
-    public Magazines insertMagazine(Magazines magazine,MultipartFile thumbnailfile){
-        connectorServices.insertOneConnector(new Connector(magazine.getItid(),"magazine"));
-        return MagazinesServices.insertOneMagazine(magazine,thumbnailfile);
-    }
+    // @PostMapping
+    // public Magazines insertMagazine(Magazines magazine,MultipartFile thumbnailfile){
+    //     connectorServices.insertOneConnector(new Connector(magazine.getItid(),"magazine"));
+    //     return MagazinesServices.insertOneMagazine(magazine,thumbnailfile);
+    // }
 
     @GetMapping("/search")
     public String getMagazinesBySearch(String searchParam,Model model){

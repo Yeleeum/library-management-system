@@ -5,7 +5,7 @@
 	<link rel="stylesheet" href="/css/forms/theses.css">
 </head>
 <body>
-	<form action="/theses" method="POST" enctype="multipart/form-data">
+	<form action="/admin/addtheses" method="POST" enctype="multipart/form-data">
 		<label for="itid">ITID:</label>
 		<input type="text" id="itid" name="itid" required>
 

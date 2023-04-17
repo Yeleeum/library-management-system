@@ -25,16 +25,16 @@ public class ThesesController {
         this.connectorServices = connectorServices;
     }
 
-    @GetMapping
-    public String getThesesForm(){
-        return "theses";
-    }
+    // @GetMapping
+    // public String getThesesForm(){
+    //     return "theses";
+    // }
 
-    @PostMapping
-    public Theses insertTheses(Theses theses,MultipartFile thumbnailfile){
-        connectorServices.insertOneConnector(new Connector(theses.getItid(),"theses"));
-        return ThesesServices.insertOneTheses(theses,thumbnailfile);
-    }
+    // @PostMapping
+    // public Theses insertTheses(Theses theses,MultipartFile thumbnailfile){
+    //     connectorServices.insertOneConnector(new Connector(theses.getItid(),"theses"));
+    //     return ThesesServices.insertOneTheses(theses,thumbnailfile);
+    // }
 
     @GetMapping("/search")
     public String getThesesBySearch(String searchParam,Model model){

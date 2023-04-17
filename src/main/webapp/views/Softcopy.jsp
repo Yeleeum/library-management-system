@@ -5,7 +5,7 @@
 	<link rel="stylesheet" href="/css/forms/softcopy.css" enctype="multipart/form-data">
 </head>
 <body>
-	<form action="/softcopy" enctype="multipart/form-data" method="POST">
+	<form action="/admin/addsoftcopy" enctype="multipart/form-data" method="POST">
 		<label for="title">SID:</label>
 		<input type="text" id="title" name="sid">
 		

@@ -6,7 +6,7 @@
 </head>
 <body>
 	<%@ include file="mainSearchComponent.jsp"%>
-	<form action="/books" method="POST" enctype="multipart/form-data">
+	<form action="/admin/addbook" method="POST" enctype="multipart/form-data">
 		<label for="itid">ITID:</label>
 		<input type="text" id="itid" name="itid" required>
 

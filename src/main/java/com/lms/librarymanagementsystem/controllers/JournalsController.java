@@ -26,16 +26,16 @@ public class JournalsController {
         this.connectorServices = connectorServices;
     }
 
-    @GetMapping
-    public String getJournalForm(){
-        return "journals";
-    }
+    // @GetMapping
+    // public String getJournalForm(){
+    //     return "journals";
+    // }
 
-    @PostMapping
-    public Journals insertJournal(Journals journal,MultipartFile thumbnailfile){
-        connectorServices.insertOneConnector(new Connector(journal.getItid(),"journal"));
-        return JournalsServices.insertOneJournal(journal,thumbnailfile);
-    }
+    // @PostMapping
+    // public Journals insertJournal(Journals journal,MultipartFile thumbnailfile){
+    //     connectorServices.insertOneConnector(new Connector(journal.getItid(),"journal"));
+    //     return JournalsServices.insertOneJournal(journal,thumbnailfile);
+    // }
 
     @GetMapping("/search")
     public String getJournalsBySearch(String searchParam,Model model){

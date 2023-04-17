@@ -32,16 +32,16 @@ public class BooksController {
         this.connectorServices = connectorServices;
     }
 
-    @PostMapping
-    public Books insertBook(Books book,MultipartFile thumbnailfile){
-        connectorServices.insertOneConnector(new Connector(book.getItid(),"book"));
-        return booksServices.insertOneBook(book,thumbnailfile);
-    }
+    // @PostMapping
+    // public Books insertBook(Books book,MultipartFile thumbnailfile){
+    //     connectorServices.insertOneConnector(new Connector(book.getItid(),"book"));
+    //     return booksServices.insertOneBook(book,thumbnailfile);
+    // }
 
-    @GetMapping
-    public String getBookForm(){
-        return "books";
-    }
+    // @GetMapping
+    // public String getBookForm(){
+    //     return "books";
+    // }
 
     @GetMapping("/search")
     public String getBooksBySearch(String searchParam,Model model){

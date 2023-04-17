@@ -22,15 +22,15 @@ public class SoftCopyController {
         this.softCopyServices = softCopyServices;
     }
 
-    @GetMapping
-    public String getSoftCopyForm(){
-        return "Softcopy";
-    }
+    // @GetMapping
+    // public String getSoftCopyForm(){
+    //     return "Softcopy";
+    // }
 
-    @PostMapping
-    public SoftCopy insertSoftCopy(SoftCopy softCopy,MultipartFile file,MultipartFile thumbnailfile){
-        return softCopyServices.insertOneSoftCopy(softCopy,file,thumbnailfile);
-    }
+    // @PostMapping
+    // public SoftCopy insertSoftCopy(SoftCopy softCopy,MultipartFile file,MultipartFile thumbnailfile){
+    //     return softCopyServices.insertOneSoftCopy(softCopy,file,thumbnailfile);
+    // }
 
     @GetMapping("/search")
     public String getSoftCopyBySearch(String searchParam,Model model){
