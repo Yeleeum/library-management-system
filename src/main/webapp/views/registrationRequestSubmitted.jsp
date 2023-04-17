@@ -78,7 +78,7 @@
         }, 1000)
 
         setTimeout(() => {
-            window.location.href = "http://localhost:8080/login/users"
+            window.location.href = "http://localhost:8080/login"
         }, 10000)
     </script>
 </html>

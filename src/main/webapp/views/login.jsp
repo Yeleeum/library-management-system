@@ -241,6 +241,8 @@
                 <i class="fa-solid fa-eye eye" onclick='togglePassword("password", "eye")'></i>
             </div>
             <button type="submit" id="userbtn">Login</button>
+            <br>
+            <span>Don't have an Account ? <a href="/registration">Register</a></span>
         </div>
         <div class="form">
             <div class="profileContainer">
@@ -255,6 +257,8 @@
                 <i class="fa-solid fa-eye adeye" onclick='togglePassword("adminpassword", "adeye")'></i>
             </div>
             <button type="submit" id="adminbtn">Login</button>
+            <br>
+            <br>
         </div>
     </div>
 </body>

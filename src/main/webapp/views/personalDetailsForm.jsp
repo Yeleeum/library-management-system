@@ -113,89 +113,91 @@
             <div class="nextStep">
                 <button class="Proceed">Proceed</button>
             </div>
+            <br>
+            <span>Already have an Account ? <a href="/login">Login</a></span>
         </div>
     </div>
 </body>
 <script>
-    // const username = document.querySelector('#username')
-    // const password = document.querySelector('#password')
-    // const firstname = document.querySelector('#firstname')
-    // const lastname = document.querySelector('#lastname')
-    // const phone = document.querySelector('#phone')
-    // const proceed = document.querySelector('.Proceed')
-    // const beforepayment = document.querySelector('.beforepayment')
-    // const paymentform = document.querySelector('.paymentform')
-    // const paymentmode = document.querySelector('#paymentmode')
-    // const Transactionform = document.querySelector('.Transactionform')
-    // const ultimateSubmit = document.querySelector('.ultimateSubmit')
-    // const paid = document.querySelector('#paid')
-    // const transaction = document.querySelector('#transaction')
+    /* const username = document.querySelector('#username')
+    const password = document.querySelector('#password')
+    const firstname = document.querySelector('#firstname')
+    const lastname = document.querySelector('#lastname')
+    const phone = document.querySelector('#phone')
+    const proceed = document.querySelector('.Proceed')
+    const beforepayment = document.querySelector('.beforepayment')
+    const paymentform = document.querySelector('.paymentform')
+    const paymentmode = document.querySelector('#paymentmode')
+    const Transactionform = document.querySelector('.Transactionform')
+    const ultimateSubmit = document.querySelector('.ultimateSubmit')
+    const paid = document.querySelector('#paid')
+    const transaction = document.querySelector('#transaction')
 
-    // function checkProceed() {
-    //     if (username.value.length == 0 || password.value.length == 0 || firstname.value.length == 0 || lastname.value.length == 0 || phone.value.length == 0) {
-    //         proceed.disabled = true
-    //     } else {
-    //         proceed.disabled = false
-    //     }
-    // }
+    function checkProceed() {
+        if (username.value.length == 0 || password.value.length == 0 || firstname.value.length == 0 || lastname.value.length == 0 || phone.value.length == 0) {
+            proceed.disabled = true
+        } else {
+            proceed.disabled = false
+        }
+    }
 
-    // checkProceed()
+    checkProceed()
 
 
 
-    // const requiredFields = [username, password, firstname, lastname, phone]
+    const requiredFields = [username, password, firstname, lastname, phone]
 
-    // requiredFields.forEach(item => {
-    //     item.addEventListener('input', () => {
-    //         checkProceed()
-    //     })
-    // })
+    requiredFields.forEach(item => {
+        item.addEventListener('input', () => {
+            checkProceed()
+        })
+    })
 
-    // proceed.addEventListener('click', () => {
-    //     beforepayment.hidden = beforepayment.hidden ? false : true
-    //     paymentform.hidden = beforepayment.hidden ? false : true
-    //     ultimateSubmit.hidden = ultimateSubmit.hidden ? false : true
-    //     proceed.innerHTML = proceed.innerHTML == "Proceed" ? "Back" : "Proceed"
-    // })
+    proceed.addEventListener('click', () => {
+        beforepayment.hidden = beforepayment.hidden ? false : true
+        paymentform.hidden = beforepayment.hidden ? false : true
+        ultimateSubmit.hidden = ultimateSubmit.hidden ? false : true
+        proceed.innerHTML = proceed.innerHTML == "Proceed" ? "Back" : "Proceed"
+    })
 
-    // paymentmode.addEventListener('input', () => {
-    //     Transactionform.hidden = paymentmode.value == "online" ? false : true
-    //     transaction.required = paymentmode.value == "online" ? true : false
-    //     paid.value = paymentmode.value == "online" ? "paid" : "unpaid"
-    //     ultimateSubmit.value = paymentmode.value == "online" ? "Submit" : "Submit and Visit Admin For Payment"
-    // })
+    paymentmode.addEventListener('input', () => {
+        Transactionform.hidden = paymentmode.value == "online" ? false : true
+        transaction.required = paymentmode.value == "online" ? true : false
+        paid.value = paymentmode.value == "online" ? "paid" : "unpaid"
+        ultimateSubmit.value = paymentmode.value == "online" ? "Submit" : "Submit and Visit Admin For Payment"
+    })
 
-    // const usernameinput = document.querySelector('.usernameinput')
-    // const trueusername = document.querySelector('.trueusername')
-    // const falseusername = document.querySelector('.falseusername')
-    // // const proceed = document.querySelector('.proceed')
-    // usernameinput.addEventListener('input', () => {
-    //     let username = new URLSearchParams()
-    //     username.append('username', usernameinput.value)
-    //     var uri = "http://localhost:8080/registration/checkusername"
-    //     fetch(uri, {
-    //         method: 'POST',
-    //         body: username,
-    //     })
-    //         .then(response => response.json())
-    //         .then(data => {
-    //             if (data) {
-    //                 console.log(data)
-    //                 trueusername.hidden = false
-    //                 falseusername.hidden = true
-    //                 checkProceed()
-    //             } else {
-    //                 trueusername.hidden = true
-    //                 falseusername.hidden = false
-    //                 proceed.disabled = true
-    //             }
-    //             if (usernameinput.value.length == 0) {
-    //                 trueusername.hidden = true
-    //                 falseusername.hidden = true
-    //             }
-    //         })
-    //         .catch(error => console.error(error))
-    // })
+    const usernameinput = document.querySelector('.usernameinput')
+    const trueusername = document.querySelector('.trueusername')
+    const falseusername = document.querySelector('.falseusername')
+    // const proceed = document.querySelector('.proceed')
+    usernameinput.addEventListener('input', () => {
+        let username = new URLSearchParams()
+        username.append('username', usernameinput.value)
+        var uri = "http://localhost:8080/registration/checkusername"
+        fetch(uri, {
+            method: 'POST',
+            body: username,
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data) {
+                    console.log(data)
+                    trueusername.hidden = false
+                    falseusername.hidden = true
+                    checkProceed()
+                } else {
+                    trueusername.hidden = true
+                    falseusername.hidden = false
+                    proceed.disabled = true
+                }
+                if (usernameinput.value.length == 0) {
+                    trueusername.hidden = true
+                    falseusername.hidden = true
+                }
+            })
+            .catch(error => console.error(error))
+    }) */
     const getElement = (selector) => document.querySelector(selector); // Helper function to get DOM elements
 
     const username = getElement('#username');
