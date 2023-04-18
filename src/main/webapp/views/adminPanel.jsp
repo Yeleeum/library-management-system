@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-
+    <%@page import="com.lms.librarymanagementsystem.models.Registration"%>
+    <%@page import="java.util.List"%>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,7 +12,10 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="/css/admin.css">
 </head>
-
+<%
+    List<Registration> registrations=(List<Registration>)request.getAttribute("registrations");
+        int noOfRegistrations=(int)request.getAttribute("noOfRegistrations");
+%>
 <body>
     <div class="container">
         <div class="leftContainer" id="sidebar">
@@ -135,7 +139,7 @@
                                 <img src="/img/admin/pending.png" class="icons" alt="">
                             </div>
                             <div>
-                                <h1>34</h1>
+                                <h1><%=noOfRegistrations%></h1>
                                 <p>Pending Registrations</p>
                             </div>
                         </div>
@@ -187,7 +191,22 @@
                                 <th>CATEGORY</th>
                                 <th>PAID</th>
                             </tr>
-                            <tr>
+                            <%for(Registration registration:registrations){%>
+                                <tr>
+                                <td><%=registration.getUsername()%></td>
+                                <td><%=registration.getFirstName()%></td>
+                                <td><%=registration.getLastName()%></td>
+                                <td><%=registration.getGender()%></td>
+                                <td><%=registration.getPhone()%></td>
+                                <td><%=registration.getEmail()%></td>
+                                <td><%=registration.getCategory()%></td>
+                                <td>
+                                    <button class='btn btn-<%=registration.getPaid().equals("paid")?"green":"red"%>'>
+                                        <%=registration.getPaid()%>
+                                    </button>
+                                </td>
+                            </tr>
+                            <!-- <tr>
                                 <td>ayushSingh123</td>
                                 <td>Ayush</td>
                                 <td>Singh</td>
@@ -256,11 +275,12 @@
                                         Paid
                                     </button>
                                 </td>
-                            </tr>
+                            </tr> -->
+                            <%}%>
                         </table>
-                        <button class="btn">
+                        <a href="/admin/viewpending/paid" class="btn">
                             view all
-                        </button>
+                        </a>
                     </div>
                 </div>
             </main>

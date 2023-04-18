@@ -57,8 +57,12 @@ public class RegistrationServices {
         return registrationRepository.getUserByUsernamePasswordRejected(username, password);
     }
 
-    public List<Registration> findTopPendings(String query){
-        return registrationRepository.getTopPendings(query);
+    public List<Registration> findTopPendings(){
+        return registrationRepository.getTopPendings();
+    }
+
+    public List<Registration> findAllPending(){
+        return registrationRepository.getAllPending();
     }
 
     

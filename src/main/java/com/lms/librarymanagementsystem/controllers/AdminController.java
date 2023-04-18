@@ -70,8 +70,10 @@ public class AdminController {
     public String getProfile(HttpServletRequest req, Model model){
         // System.out.println(SessionHandler.getUserSession(req));
         // System.out.println(SessionHandler.getAccessSession(req));
-        String query = "SELECT * FROM registration WHERE APPROVED='pending' ORDER BY RSID DESC LIMIT 5";
-        List<Registration> top5Registrations = registrationServices.findTopPendings(query);
+        List<Registration> top5Registrations = registrationServices.findTopPendings();
+        List<Registration> registrations=registrationServices.findAllPending();
+        model.addAttribute("registrations", top5Registrations);
+        model.addAttribute("noOfRegistrations", registrations.size());
         System.out.println(top5Registrations);
         return "adminPanel";
     }
