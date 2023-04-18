@@ -30,4 +30,7 @@ public interface RegistrationRepository extends JpaRepository<Registration,Integ
 
     @Query(value="SELECT * FROM REGISTRATION WHERE USERNAME=:USERNAME AND PASSWORD=:PASSWORD AND APPROVED='rejected'", nativeQuery=true)
     public List<Registration> getUserByUsernamePasswordRejected(@Param("USERNAME")String username,@Param("PASSWORD")String password);
+
+    @Query(value = "#{#query}", nativeQuery = true)
+    List<Registration> getTopPendings(@Param("query")String query);
 }

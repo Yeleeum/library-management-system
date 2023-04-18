@@ -67,9 +67,12 @@ public class AdminController {
     }
 
     @GetMapping
-    public String getProfile(HttpServletRequest req){
-        System.out.println(SessionHandler.getUserSession(req));
-        System.out.println(SessionHandler.getAccessSession(req));
+    public String getProfile(HttpServletRequest req, Model model){
+        // System.out.println(SessionHandler.getUserSession(req));
+        // System.out.println(SessionHandler.getAccessSession(req));
+        String query = "SELECT * FROM registration WHERE APPROVED='pending' ORDER BY RSID DESC LIMIT 5";
+        List<Registration> top5Registrations = registrationServices.findTopPendings(query);
+        System.out.println(top5Registrations);
         return "adminPanel";
     }
 
