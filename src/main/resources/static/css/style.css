@@ -15,40 +15,7 @@ body {
     background-color: rgba(164, 163, 163, 0.819);
 }
 
-#pdfViewArea {
-    position: relative;
-    display: none;
-}
 
-#Cross{
-    position: absolute;
-    right: 2vw;
-    top: 2vh;
-    font-size: 40px;
-    color: #ff2020;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-#downloadbtn{
-    position: absolute;
-    right: 6vw;
-    top: 2vh;
-    font-size: 40px;
-    color: #6efa3f;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-#Cross:hover{
-    transform: rotate(90deg);
-    transition: all 1s cubic-bezier(0.215, 0.610, 0.355, 1);
-}
-
-#pdfViewArea > div >  iframe {
-    width: 100vw;
-    height: 100vh;
-}
 
 /* BookDetails */
 

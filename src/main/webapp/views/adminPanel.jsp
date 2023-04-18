@@ -36,8 +36,8 @@
                                 <i class="fa-solid fa-angle-down" id="clickToExpand"></i>
                             </div>
                             <ul id="sublinks" class="submenulinks">
-                                <li>Paid</li>
-                                <li>UnPaid</li>
+                                <li><a class="submenu-links" href="/admin/viewpending/paid">Paid</a></li>
+                                <li><a class="submenu-links" href="/admin/viewpending/unpaid">UnPaid</a></li>
                             </ul>
                         </li>
                         <li>Manage Renewals</li>
@@ -47,10 +47,10 @@
                                 <i class="fa-solid fa-angle-down" id="clickToExpand"></i>
                             </div>
                             <ul id="sublinks" class="submenulinks">
-                                <li>Form 1</li>
-                                <li>Form 2</li>
-                                <li>Form 3</li>
-                                <li>Form 4</li>
+                                <li><a class="submenu-links" href="/">Form 1</a></li>
+                                <li><a class="submenu-links" href="/">Form 2</a></li>
+                                <li><a class="submenu-links" href="/">Form 3</a></li>
+                                <li><a class="submenu-links" href="/">Form 4</a></li>
                             </ul>
                         </li>
                         <li>
@@ -59,10 +59,12 @@
                                 <i class="fa-solid fa-angle-down" id="clickToExpand"></i>
                             </div>
                             <ul id="sublinks" class="submenulinks">
-                                <li>Edit 1</li>
-                                <li>Edit 2</li>
-                                <li>Edit 3</li>
-                                <li>Edit 4</li>
+                                <li><a class="submenu-links" href="/">Edit Books</a></li>
+                                <li><a class="submenu-links" href="/">Edit Journals</a></li>
+                                <li><a class="submenu-links" href="/">Edit Theses</a></li>
+                                <li><a class="submenu-links" href="/">Edit Magazines</a></li>
+                                <li><a class="submenu-links" href="/">Edit Softcopies</a></li>
+                                <li><a class="submenu-links" href="/">Edit Alternatives</a></li>
                             </ul>
                         </li>
                         <li>Manage Donations</li>
@@ -77,23 +79,21 @@
             <header class="header">
                 <div class="header-inner-wrapper">
                     <h1>Library Management System</h1>
+                    <%@include file="mainSearchComponent.jsp"%>
                     <div class="header-right-content">
+                        
                         <div class="notifications">
                             <i class="fa-solid fa-bell" id="notifications-icon"></i>
                             <span id="notifications-dot"></span>
                             <div class="notifications-area">
-                                <div id="notifications-content">
-                                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quis cumque itaque
-                                </div>
-                                <div id="notifications-content">
-                                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quis cumque itaque
-                                </div>
-                                <div id="notifications-content">
-                                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quis cumque itaque
-                                </div>
-                                <div id="notifications-content">
-                                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quis cumque itaque
-                                </div>
+                                <%for(Registration registration:registrations){%>
+                                    <div id="notifications-content">
+                                        <p>
+                                            <%=registration.getFirstName()%> <%=registration.getLastName()%>
+                                            registered today, <%=registration.getPaid().equals("paid")?"and successfully completed the payment":"but has not yet completed the payment"%>
+                                        </p>
+                                    </div> 
+                                <%}%>
                             </div>
                         </div>
                         <div class="adminAccount">
@@ -206,78 +206,9 @@
                                     </button>
                                 </td>
                             </tr>
-                            <!-- <tr>
-                                <td>ayushSingh123</td>
-                                <td>Ayush</td>
-                                <td>Singh</td>
-                                <td>Male</td>
-                                <td>6291769942</td>
-                                <td>ayush@gmail.com</td>
-                                <td>Book</td>
-                                <td>
-                                    <button class="btn btn-red">
-                                        Unpaid
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>sinchanNandi</td>
-                                <td>Sinchan</td>
-                                <td>Nandi</td>
-                                <td>Male</td>
-                                <td>1234567891</td>
-                                <td>sinchan@gmail.com</td>
-                                <td>Journal</td>
-                                <td>
-                                    <button class="btn btn-green">
-                                        Paid
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>MayaBoudi123</td>
-                                <td>Maya</td>
-                                <td>Boudi</td>
-                                <td>Female</td>
-                                <td>4736327883</td>
-                                <td>maya.boudi@gmail.com</td>
-                                <td>magazine</td>
-                                <td>
-                                    <button class="btn btn-green">
-                                        Paid
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Biswajit@123</td>
-                                <td>Biswajit</td>
-                                <td>Saha</td>
-                                <td>Male</td>
-                                <td>7388278822</td>
-                                <td>AndreaBiswa@gmail.com</td>
-                                <td>theses</td>
-                                <td>
-                                    <button class="btn btn-red">
-                                        Unpaid
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>AhanaBacchu100</td>
-                                <td>Ahana</td>
-                                <td>Munna</td>
-                                <td>Male</td>
-                                <td>8745324576</td>
-                                <td>souhana@gmail.com</td>
-                                <td>100men</td>
-                                <td>
-                                    <button class="btn btn-green">
-                                        Paid
-                                    </button>
-                                </td>
-                            </tr> -->
                             <%}%>
                         </table>
+                        <br>
                         <a href="/admin/viewpending/paid" class="btn">
                             view all
                         </a>
@@ -315,23 +246,3 @@
 </script>
 
 </html>
-
-
-
-<!-- <!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-
-<body>
-    <form action="/logout" method="post">
-        <button>Log Out</button>
-    </form>
-</body>
-
-</html> -->
