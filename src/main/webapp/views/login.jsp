@@ -378,7 +378,7 @@
         let usernameParams = new URLSearchParams();
         usernameParams.append('username', adminusername.value);
         usernameParams.append('password', adminpassword.value);
-        const url = 'http://localhost:8080/login/users';
+        const url = 'http://localhost:8080/login/admin';
 
         // Fetch options
         const options = {
