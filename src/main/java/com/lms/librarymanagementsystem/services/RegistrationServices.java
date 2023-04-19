@@ -28,7 +28,7 @@ public class RegistrationServices {
     public Registration insertOneRegistration(Registration registration, MultipartFile file) {
         String currentDirectory = System.getProperty("user.dir");
         String path = currentDirectory + "\\src\\main\\webapp\\uploads\\profilePictures";
-        if (file != null) {
+        if (file!=null && !file.isEmpty()) {
             FileHandler.saveFile(file, path);
             registration.setProfilePicture(file.getOriginalFilename());
         }

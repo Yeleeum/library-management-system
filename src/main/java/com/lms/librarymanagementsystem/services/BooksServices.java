@@ -20,7 +20,7 @@ public class BooksServices {
     }
 
     public Books insertOneBook(Books book, MultipartFile file) {
-        if (file != null) {
+        if (file!=null && !file.isEmpty()) {
             String currentDirectory = System.getProperty("user.dir");
             String path = currentDirectory + "\\src\\main\\webapp\\uploads\\thumbnails";
             FileHandler.saveFile(file, path);

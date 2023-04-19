@@ -20,7 +20,7 @@ public class ThesesServices {
     }
 
     public Theses insertOneTheses(Theses theses, MultipartFile file) {
-        if (file != null) {
+        if (file!=null && !file.isEmpty()) {
             String currentDirectory = System.getProperty("user.dir");
             String path = currentDirectory + "\\src\\main\\webapp\\uploads\\thumbnails";
             System.out.println(path);

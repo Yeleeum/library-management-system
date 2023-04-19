@@ -23,11 +23,11 @@ public class SoftCopyServices {
         String currentDirectory = System.getProperty("user.dir");
         String path = currentDirectory + "\\src\\main\\webapp\\uploads\\SoftCopy";
         System.out.println(path);
-        if (file != null) {
+        if (file!=null && !file.isEmpty()) {
             FileHandler.saveFile(file, path);
             softCopy.setFilename(file.getOriginalFilename());
         }
-        if (thumbnail != null) {
+        if (thumbnail!=null && !thumbnail.isEmpty()) {
             path = currentDirectory + "\\src\\main\\webapp\\uploads\\thumbnails";
             FileHandler.saveFile(thumbnail, path);
             softCopy.setThumbnail(thumbnail.getOriginalFilename());
