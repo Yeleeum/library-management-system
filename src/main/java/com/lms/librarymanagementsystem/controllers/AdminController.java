@@ -115,7 +115,8 @@ public class AdminController {
     }
 
     @GetMapping("/addbook")
-    public String getBookForm() {
+    public String getBookForm(Model model) {
+        model.addAttribute("activity", "add");
         return "books";
     }
 
@@ -126,7 +127,8 @@ public class AdminController {
     }
 
     @GetMapping("/addjournal")
-    public String getJournalForm() {
+    public String getJournalForm(Model model) {
+        model.addAttribute("activity", "add");
         return "journals";
     }
 
@@ -137,7 +139,8 @@ public class AdminController {
     }
 
     @GetMapping("/addtheses")
-    public String getThesesForm() {
+    public String getThesesForm(Model model) {
+        model.addAttribute("activity", "add");
         return "theses";
     }
 
@@ -148,7 +151,8 @@ public class AdminController {
     }
 
     @GetMapping("/addmagazine")
-    public String getMagazineForm() {
+    public String getMagazineForm(Model model) {
+        model.addAttribute("activity", "add");
         return "magazines";
     }
 
@@ -159,7 +163,8 @@ public class AdminController {
     }
 
     @GetMapping("/addsoftcopy")
-    public String getSoftCopyForm() {
+    public String getSoftCopyForm(Model model) {
+        model.addAttribute("activity", "add");
         return "Softcopy";
     }
 
@@ -189,7 +194,55 @@ public class AdminController {
     public String editBooksCopy(@PathVariable String bid, Model model) {
         Books book = booksServices.findSingleBook(bid);
         model.addAttribute("book", book);
+        model.addAttribute("activity", "edit");
         return "books";
+    }
+
+    @PostMapping("/edit/books")
+    public String editBooksCopySave(Books books,MultipartFile thumbnailfile){
+        booksServices.insertOneBook(books, thumbnailfile);
+        return "redirect:/search/books/"+books.getBid();
+    }
+
+    @GetMapping("/edit/journals/{jid}")
+    public String editJournalsCopy(@PathVariable String jid, Model model) {
+        Journals journals = journalsServices.findSingleJournalById(jid);
+        model.addAttribute("journal", journals);
+        model.addAttribute("activity", "edit");
+        return "journals";
+    }
+
+    @PostMapping("/edit/journals")
+    public String editJournalsCopySave(Journals journals,MultipartFile thumbnailfile){
+        journalsServices.insertOneJournal(journals, thumbnailfile);
+        return "redirect:/search/journals/"+journals.getJid();
+    }
+
+    @GetMapping("/edit/theses/{tid}")
+    public String editThesesCopy(@PathVariable String tid, Model model) {
+        Theses theses = thesesServices.findSingleThesesById(tid);
+        model.addAttribute("theses", theses);
+        model.addAttribute("activity", "edit");
+        return "theses";
+    }
+
+    @PostMapping("/edit/theses")
+    public String editThesesCopySave(Theses theses,MultipartFile thumbnailfile){
+        thesesServices.insertOneTheses(theses, thumbnailfile);
+        return "redirect:/search/theses/"+theses.getTid();
+    }
+    @GetMapping("/edit/magazines/{mid}")
+    public String editMagazinesCopy(@PathVariable String mid, Model model) {
+        Magazines magazines = magazinesServices.findSingleMagazineById(mid);
+        model.addAttribute("magazines", magazines);
+        model.addAttribute("activity", "edit");
+        return "magazines";
+    }
+
+    @PostMapping("/edit/magazines")
+    public String editMagazinesCopySave(Magazines magazines,MultipartFile thumbnailfile){
+        magazinesServices.insertOneMagazine(magazines, thumbnailfile);
+        return "redirect:/search/magazines/"+magazines.getMid();
     }
 
 }
