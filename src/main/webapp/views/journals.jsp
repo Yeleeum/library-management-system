@@ -1,52 +1,64 @@
 <!DOCTYPE html>
+<%@page import="com.lms.librarymanagementsystem.models.Journals" %>
+<%@page import="java.util.List" %>
 <html>
+
 <head>
 	<title>Journals</title>
-    <link rel="stylesheet" href="/css/forms/journals.css">
+	<link rel="stylesheet" href="/css/forms/books.css">
 </head>
 <body>
-	<form action="/admin/addjournal" method="POST" enctype="multipart/form-data">
-		<label for="itid">ITID:</label>
-		<input type="text" id="itid" name="itid" required>
+	<% Journals journal = (Journals) request.getAttribute("journal"); %>
+	<% String activity=(String) request.getAttribute("activity"); %>
+	<form action='/admin<%=activity.equals("edit")?"/edit/books":"/addbook"%>' method="POST" enctype="multipart/form-data">
+		<div class="left-container">
+			<% if(activity.equals("edit")) { %>
+				<input id="prevthumbnail" value='<%= (journal == null) ? "" : journal.getThumbnail() %>' name="thumbnail" hidden/>
+			<% } %>
+			<label for="thumbnail">Thumbnail:</label>
+			<img id="imageContainer" src='/uploads/thumbnails/<%= (journal == null) ? "" : journal.getThumbnail() %>' alt="">
+			<input type="file" class="fileInput" id="thumbnail" name="thumbnailfile">
+		</div>
+		<div class="right-container">
+			<% if(activity.equals("edit")) { %>
+				<input type="text" hidden id="bid" name="bid" value='<%= (journal == null) ? "" : journal.getJid() %>'>
+			<% } %>
+			<label for="itid">ITID:</label>
+			<input type="text" id="itid" name="itid" value='<%= (journal == null) ? "" : journal.getItid() %>' required>
 
-		<label for="title">Title:</label>
-		<input type="text" id="title" name="title" required>
+			<label for="title">Title:</label>
+			<input type="text" id="title" name="title" value='<%= (journal == null) ? "" : journal.getTitle() %>' required>
 
-		<label for="publisher">Publisher:</label>
-		<input type="text" id="publisher" name="publisher" required>
+			<label for="publisher">Publisher:</label>
+			<input type="text" id="publisher" name="publisher" value='<%= (journal == null) ? "" : journal.getPublisher() %>' required>
 
-		<label for="editor">Editor:</label>
-		<input type="text" id="editor" name="editor">
+			<label for="editor">Editor:</label>
+			<input type="text" id="editor" name="editor" value='<%= (journal == null) ? "" : journal.getEditor() %>'>
 
-		<label for="description">Description:</label>
-		<textarea id="description" name="description"></textarea>
+			<label for="description">Description:</label>
+			<textarea id="description" name="description"><%= (journal == null) ? "" : journal.getDescription() %></textarea>
 
-		<label for="thumbnail">Thumbnail:</label>
-		<input type="file" id="thumbnail" name="thumbnailfile">
+			<label for="category">Category:</label>
+			<input type="text" id="category" name="category" value='<%= (journal == null) ? "" : journal.getCategory() %>'>
 
-		<label for="category">Category:</label>
-		<select id="category" name="category">
-			<option value="option1">Option 1</option>
-			<option value="option2">Option 2</option>
-			<option value="option3">Option 3</option>
-		</select>
+			<label for="keywords">Keywords:</label>
+			<textarea id="keywords" name="keywords"><%= (journal == null) ? "" : journal.getKeywords() %></textarea>
 
-		<label for="keywords">Keywords:</label>
-		<textarea id="keywords" name="keywords"></textarea>
+			<label for="startyear">Start Year:</label>
+			<input type="number" id="startyear" name="startYear" value='<%= (journal == null) ? "" : journal.getStartYear() %>'>
 
-		<label for="startyear">Start Year:</label>
-		<input type="number" id="startyear" name="startYear">
+			<label for="endyear">End Year:</label>
+			<input type="number" id="endyear" name="endYear" value='<%= (journal == null) ? "" : journal.getEndYear() %>'>
 
-		<label for="endyear">End Year:</label>
-		<input type="number" id="endyear" name="endYear">
+			<label for="pageno">Page No:</label>
+			<input type="number" id="pageno" name="pageNo" value='<%= (journal == null) ? "" : journal.getPageNo() %>'>
 
-		<label for="pageno">Page No:</label>
-		<input type="number" id="pageno" name="pageNo">
+			<label for="stock">Stock:</label>
+			<input type="number" id="stock" name="stock" value='<%= (journal == null) ? "" : journal.getStock() %>'>
 
-		<label for="stock">Stock:</label>
-		<input type="number" id="stock" name="stock">
-
-		<input type="submit" value="Submit">
+			<input type="submit" value="Submit">
+		</div>
 	</form>
 </body>
+<script src="imagehandler.js"></script>
 </html>

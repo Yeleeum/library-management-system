@@ -107,7 +107,7 @@
             <p>Start Year: <%= journal.getStartYear() %></p>
             <p>End Year: <%= journal.getEndYear()%> </p>
             <div>
-                <% String type = "journal"; %>
+                <% String type = "journals"; %>
                 <% int id = journal.getJid(); %>
                 <%@include file="itemAction.jsp" %>
             </div>
