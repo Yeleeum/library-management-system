@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="/css/admin.css">
 </head>
 <%
-    List<Registration> registrations=(List<Registration>)request.getAttribute("registrations");
+        List<Registration> registrations=(List<Registration>)request.getAttribute("registrations");
         int noOfRegistrations=(int)request.getAttribute("noOfRegistrations");
 %>
 <body>
@@ -86,6 +86,7 @@
                             <i class="fa-solid fa-bell" id="notifications-icon"></i>
                             <span id="notifications-dot"></span>
                             <div class="notifications-area">
+                               <% if( !(registrations == null || registrations.isEmpty()) ) { %>
                                 <%for(Registration registration:registrations){%>
                                     <div id="notifications-content">
                                         <p>
@@ -94,6 +95,13 @@
                                         </p>
                                     </div> 
                                 <%}%>
+                               <% } else { %>
+                                <div id="notifications-content">
+                                    <p>
+                                        No Notifications Found!
+                                    </p>
+                                </div> 
+                               <% } %>
                             </div>
                         </div>
                         <div class="adminAccount">
@@ -191,7 +199,8 @@
                                 <th>CATEGORY</th>
                                 <th>PAID</th>
                             </tr>
-                            <%for(Registration registration:registrations){%>
+                            <% if( !(registrations == null || registrations.isEmpty()) ) { %>
+                                <%for(Registration registration:registrations){%>
                                 <tr>
                                 <td><%=registration.getUsername()%></td>
                                 <td><%=registration.getFirstName()%></td>
@@ -207,6 +216,9 @@
                                 </td>
                             </tr>
                             <%}%>
+                            <% } else { %>
+                                <td colspan="8" style="text-align: left; font-weight: bolder; color: rgb(214, 6, 6);">No Data Found!</td>
+                            <% } %>
                         </table>
                         <br>
                         <a href="/admin/viewpending/paid" class="btn">
