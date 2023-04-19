@@ -132,7 +132,7 @@
                 modal.style.display = "block";
 
                 // Update the modal text with the approval status
-                document.getElementById("modal-text").innerHTML = "Your login request has been sent for approval. Please wait for the admin to approve or reject your request.";
+                document.getElementById("modal-text").innerHTML = "Logging in....";
 
                 // When the user clicks on <span> (x), close the modal
                 crossIcon.addEventListener('click', () => {
@@ -171,6 +171,8 @@
         usernameParams.append('username', adminusername.value);
         usernameParams.append('password', adminpassword.value);
         const url = 'http://localhost:8080/login/admin';
+
+        document.getElementById("modal-text").innerHTML = "Logging in....";
 
         // Fetch options
         const options = {

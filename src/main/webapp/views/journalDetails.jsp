@@ -107,8 +107,9 @@
             <p>Start Year: <%= journal.getStartYear() %></p>
             <p>End Year: <%= journal.getEndYear()%> </p>
             <div>
-                <button>Borrow</button>
-                <button>Return</button>
+                <% String type = "journal"; %>
+                <% int id = book.getJid(); %>
+                <%@include file="itemAction.jsp" %>
             </div>
         </div>
     </div>

@@ -32,8 +32,9 @@
             <p>Special Issue: <%= magazine.getSpecialissue() %></p>
             <p>Stock: <%= magazine.getStock() %></p>
             <div>
-                <button>Borrow</button>
-                <button>Return</button>
+                <% String type = "magazine"; %>
+                <% int id = book.getMid(); %>
+                <%@include file="itemAction.jsp" %>
             </div>
         </div>
     </div>

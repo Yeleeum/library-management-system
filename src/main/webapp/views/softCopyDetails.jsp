@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <%@page import="com.lms.librarymanagementsystem.models.*" %>
+<%@page import="com.lms.librarymanagementsystem.FileHandler.SessionHandler"%>
     <%@page import="java.util.List" %>
         <html lang="en">
 
@@ -35,10 +36,18 @@
                             </p>
 
                             <div>
+                                
+                                <% if(SessionHandler.getAccessSession(request).equals("admin")) {%>
+                                    <form action="" method="get">
+                                        <button formaction="/admin/edit/softcopy/<%= softcopy.getSid() %>">Edit</button>
+                                        <button formaction="/admin/delete/softcopy/<%= softcopy.getSid() %>">Delete</button>
+                                    </form>
+                                <% } else { %>
                                 <button id="clickToView">View Pdf</button>
                                 <a href="/uploads/SoftCopy/<%= softcopy.getFilename() %>"
                                     onclick="sendDownloadDetails()" download><button>Download
                                         Pdf</button></a>
+                                <% } %>
                             </div>
                         </div>
                     </div>

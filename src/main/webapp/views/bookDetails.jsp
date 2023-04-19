@@ -19,6 +19,7 @@
         <%@include file="mainSearchComponent.jsp"%>
     </header>
 
+    
     <div class="book-details">
         <img src="/uploads/thumbnails/book.jpg" alt="Book Cover">
         <div>
@@ -38,8 +39,9 @@
             <p>Category: <%= book.getCategory() %>
             </p>
             <div>
-                <button>Borrow</button>
-                <button>Return</button>
+                <% String type = "books"; %>
+                <% int id = book.getBid(); %>
+                <%@include file="itemAction.jsp" %>
             </div>
         </div>
     </div>

@@ -32,8 +32,9 @@
             <p>Abstract: <%= theses.getAbstractContent() %></p>
             <p>Page No: <%= theses.getPageNo() %></p>
             <div>
-                <button>Borrow</button>
-                <button>Return</button>
+                <% String type = "theses"; %>
+                <% int id = book.getTid(); %>
+                <%@include file="itemAction.jsp" %>
             </div>
         </div>
     </div>

@@ -5,10 +5,12 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.fasterxml.jackson.annotation.JsonCreator.Mode;
 import com.lms.librarymanagementsystem.FileHandler.SessionHandler;
 import com.lms.librarymanagementsystem.models.Books;
 import com.lms.librarymanagementsystem.models.Connector;
@@ -67,11 +69,11 @@ public class AdminController {
     }
 
     @GetMapping
-    public String getProfile(HttpServletRequest req, Model model){
+    public String getProfile(HttpServletRequest req, Model model) {
         // System.out.println(SessionHandler.getUserSession(req));
         // System.out.println(SessionHandler.getAccessSession(req));
         List<Registration> top5Registrations = registrationServices.findTopPendings();
-        List<Registration> registrations=registrationServices.findAllPending();
+        List<Registration> registrations = registrationServices.findAllPending();
         model.addAttribute("registrations", top5Registrations);
         model.addAttribute("noOfRegistrations", registrations.size());
         System.out.println(top5Registrations);
@@ -169,5 +171,21 @@ public class AdminController {
     public SoftCopy insertSoftCopy(SoftCopy softCopy, MultipartFile file, MultipartFile thumbnailfile) {
         return softCopyServices.insertOneSoftCopy(softCopy, file, thumbnailfile);
     }
+
     // @PostMapping("/addalternative")
+
+    @GetMapping("/edit/softcopy/{sid}")
+    public String editSoftCopy(@PathVariable String sid, Model model) {
+        SoftCopy softcopy = softCopyServices.findSingleSoftCopyById(sid);
+        model.addAttribute("softcopy", softcopy);
+        System.out.println(softcopy);
+        return "Softcopy";
+    }
+
+    @GetMapping("/edit/books/{bid}")
+    public String editBooksCopy(@PathVariable String bid, Model model) {
+        Books book = booksServices.findSingleBook(bid);
+        model.addAttribute("book", book);
+        return "books";
+    }
 }
