@@ -185,8 +185,8 @@ public class AdminController {
     }
 
     @PostMapping("/edit/softcopy")
-    public String editSoftCopySave(SoftCopy softCopy,MultipartFile file,MultipartFile thumbnail){
-        softCopyServices.insertOneSoftCopy(softCopy, file, thumbnail);
+    public String editSoftCopySave(SoftCopy softCopy,MultipartFile file,MultipartFile thumbnailfile){
+        softCopyServices.insertOneSoftCopy(softCopy, file, thumbnailfile);
         return "redirect:/search/softcopy/"+softCopy.getSid();
     }
 
@@ -234,7 +234,7 @@ public class AdminController {
     @GetMapping("/edit/magazines/{mid}")
     public String editMagazinesCopy(@PathVariable String mid, Model model) {
         Magazines magazines = magazinesServices.findSingleMagazineById(mid);
-        model.addAttribute("magazines", magazines);
+        model.addAttribute("magazine", magazines);
         model.addAttribute("activity", "edit");
         return "magazines";
     }

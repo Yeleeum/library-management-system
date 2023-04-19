@@ -36,7 +36,7 @@
 					<div class="booksCard">
 						<a href="/search/books/<%= book.getBid() %>" >
 							<div>
-								<img src="/uploads/thumbnails/book.jpg" alt="<%= book.getTitle() %>" width="300" height="300">
+								<img src="/uploads/thumbnails/<%=book.getThumbnail()%>" alt="<%= book.getTitle() %>" width="300" height="300">
 							</div>
 						</a>
 						<div class="bookDetails">
@@ -57,7 +57,7 @@
 					<div class="booksCard">
 						<a href="/search/journals/<%= journal.getJid() %>" >
 							<div>
-								<img src="/uploads/thumbnails/book.jpg" alt="<%= journal.getTitle() %>" width="300" height="300">
+								<img src="/uploads/thumbnails/<%=journal.getThumbnail()%>" alt="<%= journal.getTitle() %>" width="300" height="300">
 							</div>
 						</a>
 						<div class="bookDetails">
@@ -78,7 +78,7 @@
 					<div class="booksCard">
 						<a href="/search/magazines/<%= magazine.getMid() %>" >
 							<div>
-								<img src="/uploads/thumbnails/book.jpg" alt="<%= magazine.getTitle() %>" width="300" height="300">
+								<img src="/uploads/thumbnails/<%=magazine.getThumbnail()%>" alt="<%= magazine.getTitle() %>" width="300" height="300">
 							</div>
 						</a>
 						<div class="bookDetails">
@@ -106,7 +106,7 @@
 					<div class="booksCard">
 						<a href="/search/theses/<%= thesesItem.getTid() %>" >
 							<div>
-								<img src="/uploads/thumbnails/book.jpg" alt="<%= thesesItem.getTitle() %>" width="300" height="300">
+								<img src="/uploads/thumbnails/<%=thesesItem.getThumbnail()%>" alt="<%= thesesItem.getTitle() %>" width="300" height="300">
 							</div>
 						</a>
 						<div class="bookDetails">
@@ -128,7 +128,7 @@
 					<div class="booksCard">
 						<a href="/search/softcopy/<%= softcopy.getSid() %>" >
 							<div>
-								<img src="/uploads/thumbnails/book.jpg" alt="<%= softcopy.getTitle() %>" width="300" height="300">
+								<img src="/uploads/thumbnails/<%=softcopy.getThumbnail()%>" alt="<%= softcopy.getTitle() %>" width="300" height="300">
 							</div>
 						</a>
 						<div class="bookDetails">

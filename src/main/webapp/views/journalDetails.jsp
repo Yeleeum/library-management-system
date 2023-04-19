@@ -94,7 +94,7 @@
     </header>
 
     <div class="book-details">
-        <img src="/uploads/thumbnails/book.jpg" alt="Book Cover">
+        <img src="/uploads/thumbnails/<%=journal.getThumbnail()%>" alt="Book Cover">
         <div>
             <h2>
                 <%= journal.getTitle() %>

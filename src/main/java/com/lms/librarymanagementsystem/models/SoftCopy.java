@@ -135,6 +135,7 @@ public class SoftCopy {
         this.filename = filename;
     }
 
+
     @Override
     public String toString() {
         return "{" +
@@ -143,10 +144,12 @@ public class SoftCopy {
             ", owner='" + getOwner() + "'" +
             ", publisher='" + getPublisher() + "'" +
             ", description='" + getDescription() + "'" +
+            ", thumbnail='" + getThumbnail() + "'" +
             ", category='" + getCategory() + "'" +
             ", keywords='" + getKeywords() + "'" +
             ", pageno='" + getPageno() + "'" +
             ", filename='" + getFilename() + "'" +
             "}";
     }
+
 }

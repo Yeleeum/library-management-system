@@ -43,14 +43,16 @@
                         <li>Manage Renewals</li>
                         <li>
                             <div class="sublinks-Container">
-                                <span>Forms</span>
+                                <span>Add Items</span>
                                 <i class="fa-solid fa-angle-down" id="clickToExpand"></i>
                             </div>
                             <ul id="sublinks" class="submenulinks">
-                                <li><a class="submenu-links" href="/">Form 1</a></li>
-                                <li><a class="submenu-links" href="/">Form 2</a></li>
-                                <li><a class="submenu-links" href="/">Form 3</a></li>
-                                <li><a class="submenu-links" href="/">Form 4</a></li>
+                                <li><a class="submenu-links" href="/admin/addbook">Add Book</a></li>
+                                <li><a class="submenu-links" href="/admin/addJournal">Add Journal</a></li>
+                                <li><a class="submenu-links" href="/admin/addtheses">Add Theses</a></li>
+                                <li><a class="submenu-links" href="/admin/addmagazine">Add Magazine</a></li>
+                                <li><a class="submenu-links" href="/admin/addsoftcopy">Add SoftCopy</a></li>
+                                <li><a class="submenu-links" href="/admin/addalternative">Add Alternative</a></li>
                             </ul>
                         </li>
                         <li>
@@ -59,12 +61,12 @@
                                 <i class="fa-solid fa-angle-down" id="clickToExpand"></i>
                             </div>
                             <ul id="sublinks" class="submenulinks">
-                                <li><a class="submenu-links" href="/">Edit Books</a></li>
-                                <li><a class="submenu-links" href="/">Edit Journals</a></li>
-                                <li><a class="submenu-links" href="/">Edit Theses</a></li>
-                                <li><a class="submenu-links" href="/">Edit Magazines</a></li>
-                                <li><a class="submenu-links" href="/">Edit Softcopies</a></li>
-                                <li><a class="submenu-links" href="/">Edit Alternatives</a></li>
+                                <li><a class="submenu-links" href="/books/search?searchParam=">Edit Books</a></li>
+                                <li><a class="submenu-links" href="/journals/search?searchParam=">Edit Journals</a></li>
+                                <li><a class="submenu-links" href="/theses/search?searchParam=">Edit Theses</a></li>
+                                <li><a class="submenu-links" href="/magazines/search?searchParam=">Edit Magazines</a></li>
+                                <li><a class="submenu-links" href="/softcopies/search?searchParam=">Edit Softcopies</a></li>
+                                <li><a class="submenu-links" href="/search/searchitem?searchParam=">Edit Alternatives</a></li>
                             </ul>
                         </li>
                         <li>Manage Donations</li>

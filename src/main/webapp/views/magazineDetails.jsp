@@ -20,7 +20,7 @@
     </header>
 
     <div class="book-details">
-        <img src="/uploads/thumbnails/book.jpg" alt="Book Cover">
+        <img src="/uploads/thumbnails/<%=magazine.getThumbnail()%>" alt="Book Cover">
         <div>
             <h2>
                 <%= magazine.getTitle() %>
@@ -32,8 +32,8 @@
             <p>Special Issue: <%= magazine.getSpecialissue() %></p>
             <p>Stock: <%= magazine.getStock() %></p>
             <div>
-                <% String type = "magazine"; %>
-                <% int id = journal.getMid(); %>
+                <% String type = "magazines"; %>
+                <% int id = magazine.getMid(); %>
                 <%@include file="itemAction.jsp" %>
             </div>
         </div>

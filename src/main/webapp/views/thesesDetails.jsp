@@ -20,7 +20,7 @@
     </header>
 
     <div class="book-details">
-        <img src="/uploads/thumbnails/book.jpg" alt="Book Cover">
+        <img src="/uploads/thumbnails/<%=theses.getThumbnail()%>" alt="Book Cover">
         <div>
             <h2>
                 <%= theses.getTitle() %>
@@ -33,7 +33,7 @@
             <p>Page No: <%= theses.getPageNo() %></p>
             <div>
                 <% String type = "theses"; %>
-                <% int id = journal.getTid(); %>
+                <% int id = theses.getTid(); %>
                 <%@include file="itemAction.jsp" %>
             </div>
         </div>
