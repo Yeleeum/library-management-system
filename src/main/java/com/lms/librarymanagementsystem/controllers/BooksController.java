@@ -67,11 +67,4 @@ public class BooksController {
         model.addAttribute("type", "books");
         return "searchResult";
     }
-
-
-    // @GetMapping
-    // public ResponseEntity<List<Books>> findAllBooks(){
-    //     System.out.println(booksServices.getAllBooks());
-    //     return new ResponseEntity<List<Books>>(booksServices.getAllBooks(),HttpStatus.OK);
-    // }
 }
