@@ -19,44 +19,47 @@ public class SoftCopyServices {
         this.softCopyRepository = softCopyRepository;
     }
 
-    public SoftCopy insertOneSoftCopy(SoftCopy softCopy,MultipartFile file,MultipartFile thumbnail){
-        // String path="D:\\Java-SpringBoot\\College Project\\librarymanagementsystem\\src\\main\\webapp\\uploads\\SoftCopy";
+    public SoftCopy insertOneSoftCopy(SoftCopy softCopy, MultipartFile file, MultipartFile thumbnail) {
         String currentDirectory = System.getProperty("user.dir");
-        String path= currentDirectory + "\\src\\main\\webapp\\uploads\\SoftCopy";
+        String path = currentDirectory + "\\src\\main\\webapp\\uploads\\SoftCopy";
         System.out.println(path);
-        FileHandler.saveFile(file, path);
-        softCopy.setFilename(file.getOriginalFilename());
-        path= currentDirectory + "\\src\\main\\webapp\\uploads\\thumbnails";
-        FileHandler.saveFile(thumbnail, path);
-        softCopy.setThumbnail(thumbnail.getOriginalFilename());
+        if (file != null) {
+            FileHandler.saveFile(file, path);
+            softCopy.setFilename(file.getOriginalFilename());
+        }
+        if (thumbnail != null) {
+            path = currentDirectory + "\\src\\main\\webapp\\uploads\\thumbnails";
+            FileHandler.saveFile(thumbnail, path);
+            softCopy.setThumbnail(thumbnail.getOriginalFilename());
+        }
         return softCopyRepository.save(softCopy);
     }
 
-    public List<SoftCopy> findBySearch(String searchParam){
+    public List<SoftCopy> findBySearch(String searchParam) {
         return softCopyRepository.findSoftCopyBySearch(searchParam);
     }
 
-    public List<SoftCopy> findBySearchOwner(String searchParam){
+    public List<SoftCopy> findBySearchOwner(String searchParam) {
         return softCopyRepository.findSoftCopyBySearchOwner(searchParam);
     }
 
-    public List<SoftCopy> findBySearchPublisher(String searchParam){
+    public List<SoftCopy> findBySearchPublisher(String searchParam) {
         return softCopyRepository.findSoftCopyBySearchPublisher(searchParam);
     }
 
-    public List<SoftCopy> findBySearchCatagory(String searchParam){
+    public List<SoftCopy> findBySearchCatagory(String searchParam) {
         return softCopyRepository.findSoftCopyBySearchCatagory(searchParam);
     }
 
-    public List<SoftCopy> findBySearchTitle(String searchParam){
+    public List<SoftCopy> findBySearchTitle(String searchParam) {
         return softCopyRepository.findSoftCopyBySearchTitle(searchParam);
     }
 
-    public SoftCopy findSingleSoftCopyById(String sid){
+    public SoftCopy findSingleSoftCopyById(String sid) {
         return softCopyRepository.findSingleSoftCopyById(sid);
     }
 
-    public List<SoftCopy> findRelatedSoftCopy(String ITID){
+    public List<SoftCopy> findRelatedSoftCopy(String ITID) {
         return softCopyRepository.findAlternativeSoftCopy(ITID);
     }
 }

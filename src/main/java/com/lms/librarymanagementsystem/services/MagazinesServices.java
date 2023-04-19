@@ -19,31 +19,33 @@ public class MagazinesServices {
         this.magazinesRepository = magazinesRepository;
     }
 
-    public Magazines insertOneMagazine(Magazines magazine,MultipartFile file){
-        String currentDirectory = System.getProperty("user.dir");
-        String path= currentDirectory + "\\src\\main\\webapp\\uploads\\thumbnails";
-        FileHandler.saveFile(file, path);
-        magazine.setThumbnail(file.getOriginalFilename());
+    public Magazines insertOneMagazine(Magazines magazine, MultipartFile file) {
+        if (file != null) {
+            String currentDirectory = System.getProperty("user.dir");
+            String path = currentDirectory + "\\src\\main\\webapp\\uploads\\thumbnails";
+            FileHandler.saveFile(file, path);
+            magazine.setThumbnail(file.getOriginalFilename());
+        }
         return magazinesRepository.save(magazine);
     }
 
-    public List<Magazines> findBySearch(String searchParam){
+    public List<Magazines> findBySearch(String searchParam) {
         return magazinesRepository.findMagazineBySearch(searchParam);
     }
 
-    public List<Magazines> findBySearchPublisher(String searchParam){
+    public List<Magazines> findBySearchPublisher(String searchParam) {
         return magazinesRepository.findMagazineBySearchPublisher(searchParam);
     }
 
-    public List<Magazines> findBySearchCatagory(String searchParam){
+    public List<Magazines> findBySearchCatagory(String searchParam) {
         return magazinesRepository.findMagazineBySearchCatagory(searchParam);
     }
 
-    public Magazines findSingleMagazineById(String mid){
+    public Magazines findSingleMagazineById(String mid) {
         return magazinesRepository.findSingleMagazineById(mid);
     }
 
-    public List<Magazines> findBySearchTitle(String searchParam){
+    public List<Magazines> findBySearchTitle(String searchParam) {
         return magazinesRepository.findMagazineBySearchTitle(searchParam);
     }
 

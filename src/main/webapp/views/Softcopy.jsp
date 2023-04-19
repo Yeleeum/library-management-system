@@ -7,8 +7,11 @@
 	<link rel="stylesheet" href="/css/forms/softcopy.css" enctype="multipart/form-data">
 </head>
 <body>
-	<% SoftCopy softcopy=(SoftCopy) request.getAttribute("softcopy"); %>
-	<form action="/admin/addsoftcopy" enctype="multipart/form-data" method="POST">
+	<% 
+		SoftCopy softcopy=(SoftCopy) request.getAttribute("softcopy"); 
+		String activity=(String) request.getAttribute("activity");
+	%>
+	<form action='/admin<%=activity.equals("edit")?"/edit/softcopy":"/addsoftcopy"%>' enctype="multipart/form-data" method="POST">
 		<label for="title">SID:</label>
 		<input type="text" id="title" value='<%= (softcopy == null) ? "" : softcopy.getSid() %>' name="sid">
 		

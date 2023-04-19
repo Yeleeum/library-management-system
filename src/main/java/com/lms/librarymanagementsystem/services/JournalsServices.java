@@ -14,41 +14,42 @@ import com.lms.librarymanagementsystem.repositories.JournalsRepository;
 @Transactional
 public class JournalsServices {
     private JournalsRepository journalsRepository;
-    
+
     public JournalsServices(JournalsRepository journalsRepository) {
         this.journalsRepository = journalsRepository;
     }
 
-    public Journals insertOneJournal(Journals journal,MultipartFile file){
-        String currentDirectory = System.getProperty("user.dir");
-        String path= currentDirectory + "\\src\\main\\webapp\\uploads\\thumbnails";
-        FileHandler.saveFile(file, path);
-        journal.setThumbnail(file.getOriginalFilename());
+    public Journals insertOneJournal(Journals journal, MultipartFile file) {
+        if (file != null) {
+            String currentDirectory = System.getProperty("user.dir");
+            String path = currentDirectory + "\\src\\main\\webapp\\uploads\\thumbnails";
+            FileHandler.saveFile(file, path);
+            journal.setThumbnail(file.getOriginalFilename());
+        }
         return journalsRepository.save(journal);
     }
 
-    public List<Journals> findBySearch(String searchParam){
+    public List<Journals> findBySearch(String searchParam) {
         return journalsRepository.findJournalBySearch(searchParam);
     }
 
-    public List<Journals> findBySearchEditor(String searchParam){
+    public List<Journals> findBySearchEditor(String searchParam) {
         return journalsRepository.findJournalBySearchEditor(searchParam);
     }
-    public List<Journals> findBySearchPublisher(String searchParam){
+
+    public List<Journals> findBySearchPublisher(String searchParam) {
         return journalsRepository.findJournalBySearchPublisher(searchParam);
     }
 
-    public List<Journals> findBySearchCatagory(String searchParam){
+    public List<Journals> findBySearchCatagory(String searchParam) {
         return journalsRepository.findJournalBySearchCatagory(searchParam);
     }
 
-    public Journals findSingleJournalById(String jid){
+    public Journals findSingleJournalById(String jid) {
         return journalsRepository.findSingleJournalById(jid);
     }
 
-    public List<Journals> findBySearchTitle(String searchParam){
+    public List<Journals> findBySearchTitle(String searchParam) {
         return journalsRepository.findJournalBySearchTitle(searchParam);
     }
 }
-
-

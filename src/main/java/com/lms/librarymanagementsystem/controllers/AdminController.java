@@ -10,13 +10,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.fasterxml.jackson.annotation.JsonCreator.Mode;
-import com.lms.librarymanagementsystem.FileHandler.SessionHandler;
 import com.lms.librarymanagementsystem.models.Books;
 import com.lms.librarymanagementsystem.models.Connector;
 import com.lms.librarymanagementsystem.models.Journals;
 import com.lms.librarymanagementsystem.models.Magazines;
-// import com.lms.librarymanagementsystem.models.Message;
 import com.lms.librarymanagementsystem.models.Registration;
 import com.lms.librarymanagementsystem.models.SoftCopy;
 import com.lms.librarymanagementsystem.models.Theses;
@@ -28,7 +25,6 @@ import com.lms.librarymanagementsystem.services.ConnectorServices;
 import com.lms.librarymanagementsystem.services.EmailServices;
 import com.lms.librarymanagementsystem.services.JournalsServices;
 import com.lms.librarymanagementsystem.services.MagazinesServices;
-// import com.lms.librarymanagementsystem.services.MessageServices;
 import com.lms.librarymanagementsystem.services.RegistrationServices;
 import com.lms.librarymanagementsystem.services.SoftCopyServices;
 import com.lms.librarymanagementsystem.services.ThesesServices;
@@ -172,14 +168,21 @@ public class AdminController {
         return softCopyServices.insertOneSoftCopy(softCopy, file, thumbnailfile);
     }
 
-    // @PostMapping("/addalternative")
+    // Edit Routes
 
     @GetMapping("/edit/softcopy/{sid}")
     public String editSoftCopy(@PathVariable String sid, Model model) {
         SoftCopy softcopy = softCopyServices.findSingleSoftCopyById(sid);
         model.addAttribute("softcopy", softcopy);
+        model.addAttribute("activity", "edit");
         System.out.println(softcopy);
         return "Softcopy";
+    }
+
+    @PostMapping("/edit/softcopy")
+    public String editSoftCopySave(SoftCopy softCopy,MultipartFile file,MultipartFile thumbnail){
+        softCopyServices.insertOneSoftCopy(softCopy, file, thumbnail);
+        return "redirect:/search/softcopy/"+softCopy.getSid();
     }
 
     @GetMapping("/edit/books/{bid}")
