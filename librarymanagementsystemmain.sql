@@ -1,3 +1,7 @@
+DROP DATABASE librarymanagementsystem;
+CREATE DATABASE librarymanagementsystem;
+use librarymanagementsystem;
+
 -- phpMyAdmin SQL Dump
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
