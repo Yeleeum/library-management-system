@@ -181,7 +181,6 @@ public class AdminController {
 
     @PostMapping("/edit/softcopy")
     public String editSoftCopySave(SoftCopy softCopy,MultipartFile file,MultipartFile thumbnail){
-        // System.out.println(file.isEmpty());
         softCopyServices.insertOneSoftCopy(softCopy, file, thumbnail);
         return "redirect:/search/softcopy/"+softCopy.getSid();
     }
