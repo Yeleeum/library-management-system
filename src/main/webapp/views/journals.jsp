@@ -10,7 +10,7 @@
 <body>
 	<% Journals journal = (Journals) request.getAttribute("journal"); %>
 	<% String activity=(String) request.getAttribute("activity"); %>
-	<form action='/admin<%=activity.equals("edit")?"/edit/books":"/addbook"%>' method="POST" enctype="multipart/form-data">
+	<form action='/admin<%=activity.equals("edit")?"/edit/journals":"/addjournal"%>' method="POST" enctype="multipart/form-data">
 		<div class="left-container">
 			<% if(activity.equals("edit")) { %>
 				<input id="prevthumbnail" value='<%= (journal == null) ? "" : journal.getThumbnail() %>' name="thumbnail" hidden/>
@@ -21,7 +21,7 @@
 		</div>
 		<div class="right-container">
 			<% if(activity.equals("edit")) { %>
-				<input type="text" hidden id="bid" name="bid" value='<%= (journal == null) ? "" : journal.getJid() %>'>
+				<input type="number" hidden id="jid" name="jid" value='<%= (journal == null) ? null : journal.getJid() %>'>
 			<% } %>
 			<label for="itid">ITID:</label>
 			<input type="text" id="itid" name="itid" value='<%= (journal == null) ? "" : journal.getItid() %>' required>
@@ -45,20 +45,20 @@
 			<textarea id="keywords" name="keywords"><%= (journal == null) ? "" : journal.getKeywords() %></textarea>
 
 			<label for="startyear">Start Year:</label>
-			<input type="number" id="startyear" name="startYear" value='<%= (journal == null) ? "" : journal.getStartYear() %>'>
+			<input type="number" id="startyear" name="startYear" value='<%= (journal == null) ? null: journal.getStartYear() %>'>
 
 			<label for="endyear">End Year:</label>
-			<input type="number" id="endyear" name="endYear" value='<%= (journal == null) ? "" : journal.getEndYear() %>'>
+			<input type="number" id="endyear" name="endYear" value='<%= (journal == null) ? null : journal.getEndYear() %>'>
 
 			<label for="pageno">Page No:</label>
-			<input type="number" id="pageno" name="pageNo" value='<%= (journal == null) ? "" : journal.getPageNo() %>'>
+			<input type="number" id="pageno" name="pageNo" value='<%= (journal == null) ? null : journal.getPageNo() %>'>
 
 			<label for="stock">Stock:</label>
-			<input type="number" id="stock" name="stock" value='<%= (journal == null) ? "" : journal.getStock() %>'>
+			<input type="number" id="stock" name="stock" value='<%= (journal == null) ? null : journal.getStock() %>'>
 
 			<input type="submit" value="Submit">
 		</div>
 	</form>
 </body>
-<script src="imagehandler.js"></script>
+<script src="/js/imagehandler.js"></script>
 </html>

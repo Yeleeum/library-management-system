@@ -22,7 +22,7 @@
 
 		<div class="right-container">
 			<% if(activity.equals("edit")) { %>
-				<input type="text" hidden id="bid" name="bid" value='<%= (book == null) ? "" : book.getBid() %>'>
+				<input type="number" hidden id="bid" name="bid" value='<%= (book == null) ? null : book.getBid() %>'>
 			<% } %>
 			<label for="itid">ITID:</label>
 			<input type="text" id="itid" name="itid" value='<%= (book == null) ? "" : book.getItid() %>' required>
