@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 16, 2023 at 10:15 AM
+-- Generation Time: Apr 19, 2023 at 10:41 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -20,6 +20,24 @@ SET time_zone = "+00:00";
 --
 -- Database: `librarymanagementsystem`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin`
+--
+
+CREATE TABLE `admin` (
+  `username` varchar(100) NOT NULL,
+  `password` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`username`, `password`) VALUES
+('test', 'test');
 
 -- --------------------------------------------------------
 
@@ -78,6 +96,22 @@ INSERT INTO `books` (`bid`, `itid`, `title`, `author`, `publisher`, `thumbnail`,
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `borrow`
+--
+
+CREATE TABLE `borrow` (
+  `BRID` int(100) NOT NULL,
+  `USERNAME` varchar(100) DEFAULT NULL,
+  `ITID` varchar(100) DEFAULT NULL,
+  `BORROWDATE` date DEFAULT NULL,
+  `RETURNDATE` date DEFAULT NULL,
+  `STATUS` varchar(100) DEFAULT NULL,
+  `APPROVED` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `connector`
 --
 
@@ -104,7 +138,21 @@ INSERT INTO `connector` (`itid`, `type`) VALUES
 ('I10', 'journal'),
 ('I876', 'theses'),
 ('I8978', 'theses'),
-('I960', 'book');
+('I960', 'book'),
+('ty', 'journal');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `fine`
+--
+
+CREATE TABLE `fine` (
+  `FID` int(11) NOT NULL,
+  `Username` varchar(100) DEFAULT NULL,
+  `Finedate` date DEFAULT NULL,
+  `Amount` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -136,7 +184,8 @@ INSERT INTO `journals` (`jid`, `itid`, `title`, `publisher`, `editor`, `descript
 (1, 'I05', 'great', 'me', 'vh', 'kuch vi', NULL, 'option1', 'c++', NULL, NULL, NULL, 3),
 (2, 'I08', 'New', 'New', 'New', 'df', NULL, 'option2', 'Java', NULL, NULL, NULL, 3),
 (3, 'I09', 'Something', 'ke dkhe', 'wow', 'jio', NULL, 'option3', 'Java,Prog', NULL, NULL, NULL, 1),
-(4, 'I10', '1', '1', '1', '1', NULL, 'option1', '1', 2003, 2023, 1, 1);
+(4, 'I10', '1', '1', '1', '1', NULL, 'option1', '1', 2003, 2023, 1, 1),
+(5, 'ty', 'tyu', 'ty', 'ht', 'bg', 'Untitled design.png', 'option2', 'fb', 335, 456, 4, 4);
 
 -- --------------------------------------------------------
 
@@ -183,6 +232,21 @@ CREATE TABLE `message` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `payment`
+--
+
+CREATE TABLE `payment` (
+  `PID` int(11) NOT NULL,
+  `Username` varchar(100) DEFAULT NULL,
+  `paydate` date DEFAULT NULL,
+  `Amount` varchar(100) DEFAULT NULL,
+  `TRANSACTION` varchar(100) DEFAULT NULL,
+  `Approved` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `registration`
 --
 
@@ -222,7 +286,10 @@ INSERT INTO `registration` (`RSID`, `USERNAME`, `PASSWORD`, `PROFILEPICTURE`, `F
 (13, 'new8', '34', 'White and Black Modern Twitter Header.png', 'Sinchan', 'Nandy', 'male', '2023-03-29', '07003512645', 'hjk@hjl.com', 'regular', 'unpaid', '', 'approved'),
 (14, 'er', 'er', '', 'Sinchan', 'Nandy', 'male', NULL, '07003512645', 'sinchannandy54@gmail.com', 'teacher', 'unpaid', '', 'pending'),
 (15, 'er3', 'er', '', 'Sinchan', 'Nandy', 'male', NULL, '07003512645', 'sinchannandy54@gmail.com', 'teacher', 'unpaid', '', 'pending'),
-(16, 'er2', '2', 'Untitled design.png', 'Sinchan', 'Nandy', 'male', NULL, '07003512645', 'sinchannandy54@gmail.com', 'regular', 'unpaid', '', 'pending');
+(16, 'er2', '2', 'Untitled design.png', 'Sinchan', 'Nandy', 'male', NULL, '07003512645', 'sinchannandy54@gmail.com', 'regular', 'unpaid', '', 'pending'),
+(17, 'sinchan@2002', '2002', 'noor kata (1).png', 'Sinchan', 'Nandy', 'male', '2023-04-17', '07003512645', 'sinchannandy54@gmail.com', 'regular', 'unpaid', '', 'approved'),
+(18, 'new2', '2', '', 'Sinchan', 'Nandy', 'male', NULL, '07003512645', 'sinchannandy54@gmail.com', 'regular', 'unpaid', '', 'rejected'),
+(19, 'fhj1080', 'mazaaya', '20210401_124518-01.jpeg', 'Sinchan', 'Nandy', 'male', '2023-04-18', '07003512645', 'sinchannandy54@gmail.com', 'researcher', 'paid', 'uffaladaitaka', 'pending');
 
 -- --------------------------------------------------------
 
@@ -313,7 +380,8 @@ INSERT INTO `users` (`USERNAME`, `PASSWORD`, `PROFILEPICTURE`, `FIRSTNAME`, `LAS
 ('10min2', '56', 'IMG-20220311-WA0006-02.jpeg', 'Sinchan', 'Nandy', 'male', '2023-04-04', '07003512645', 'joh53506@zslsz.com', 'student', 'active'),
 ('new6', '1234', 'Untitled design.png', 'Sinchan', 'Nandy', 'male', '2023-04-04', '07003512645', 'sinchannandy54@gmail.com', 'student', 'active'),
 ('new7', '123', 'Untitled design.png', 'Sinchan', 'Nandy', 'male', '2023-04-04', '07003512645', 'sinchannandy54@gmail.com', 'student', 'active'),
-('new8', '34', 'White and Black Modern Twitter Header.png', 'Sinchan', 'Nandy', 'male', '2023-03-29', '07003512645', 'hjk@hjl.com', 'regular', 'active');
+('new8', '34', 'White and Black Modern Twitter Header.png', 'Sinchan', 'Nandy', 'male', '2023-03-29', '07003512645', 'hjk@hjl.com', 'regular', 'active'),
+('sinchan@2002', '2002', 'noor kata (1).png', 'Sinchan', 'Nandy', 'male', '2023-04-17', '07003512645', 'sinchannandy54@gmail.com', 'regular', 'active');
 
 -- --------------------------------------------------------
 
@@ -339,6 +407,12 @@ INSERT INTO `user_file` (`username`, `filename`, `password`) VALUES
 --
 
 --
+-- Indexes for table `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`username`);
+
+--
 -- Indexes for table `alternative`
 --
 ALTER TABLE `alternative`
@@ -354,10 +428,25 @@ ALTER TABLE `books`
   ADD UNIQUE KEY `itid` (`itid`);
 
 --
+-- Indexes for table `borrow`
+--
+ALTER TABLE `borrow`
+  ADD PRIMARY KEY (`BRID`),
+  ADD KEY `USERNAME` (`USERNAME`),
+  ADD KEY `ITID` (`ITID`);
+
+--
 -- Indexes for table `connector`
 --
 ALTER TABLE `connector`
   ADD PRIMARY KEY (`itid`);
+
+--
+-- Indexes for table `fine`
+--
+ALTER TABLE `fine`
+  ADD PRIMARY KEY (`FID`),
+  ADD KEY `fk_user` (`Username`);
 
 --
 -- Indexes for table `journals`
@@ -379,6 +468,13 @@ ALTER TABLE `magazines`
 ALTER TABLE `message`
   ADD PRIMARY KEY (`MSID`),
   ADD KEY `USERNAME` (`USERNAME`);
+
+--
+-- Indexes for table `payment`
+--
+ALTER TABLE `payment`
+  ADD PRIMARY KEY (`PID`),
+  ADD KEY `Username` (`Username`);
 
 --
 -- Indexes for table `registration`
@@ -428,10 +524,22 @@ ALTER TABLE `books`
   MODIFY `bid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
+-- AUTO_INCREMENT for table `borrow`
+--
+ALTER TABLE `borrow`
+  MODIFY `BRID` int(100) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `fine`
+--
+ALTER TABLE `fine`
+  MODIFY `FID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `journals`
 --
 ALTER TABLE `journals`
-  MODIFY `jid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `jid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `magazines`
@@ -446,10 +554,16 @@ ALTER TABLE `message`
   MODIFY `MSID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `payment`
+--
+ALTER TABLE `payment`
+  MODIFY `PID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `registration`
 --
 ALTER TABLE `registration`
-  MODIFY `RSID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `RSID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `theses`
@@ -475,6 +589,19 @@ ALTER TABLE `books`
   ADD CONSTRAINT `books_ibfk_1` FOREIGN KEY (`itid`) REFERENCES `connector` (`itid`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Constraints for table `borrow`
+--
+ALTER TABLE `borrow`
+  ADD CONSTRAINT `borrow_ibfk_1` FOREIGN KEY (`USERNAME`) REFERENCES `users` (`USERNAME`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `borrow_ibfk_2` FOREIGN KEY (`ITID`) REFERENCES `connector` (`itid`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `fine`
+--
+ALTER TABLE `fine`
+  ADD CONSTRAINT `fk_user` FOREIGN KEY (`Username`) REFERENCES `users` (`USERNAME`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Constraints for table `journals`
 --
 ALTER TABLE `journals`
@@ -493,6 +620,12 @@ ALTER TABLE `message`
   ADD CONSTRAINT `message_ibfk_1` FOREIGN KEY (`USERNAME`) REFERENCES `users` (`USERNAME`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Constraints for table `payment`
+--
+ALTER TABLE `payment`
+  ADD CONSTRAINT `payment_ibfk_1` FOREIGN KEY (`Username`) REFERENCES `users` (`USERNAME`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Constraints for table `theses`
 --
 ALTER TABLE `theses`
@@ -502,9 +635,3 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
-/* admin table */
-CREATE TABLE admin (
-    username varchar(100) PRIMARY KEY,
-    password varchar(100) NOT NULL
-);
