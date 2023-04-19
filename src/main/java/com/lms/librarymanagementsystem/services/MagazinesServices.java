@@ -3,6 +3,7 @@ package com.lms.librarymanagementsystem.services;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.lms.librarymanagementsystem.FileHandler.FileHandler;
@@ -10,6 +11,7 @@ import com.lms.librarymanagementsystem.models.*;
 import com.lms.librarymanagementsystem.repositories.MagazinesRepository;
 
 @Service
+@Transactional
 public class MagazinesServices {
     private MagazinesRepository magazinesRepository;
 
