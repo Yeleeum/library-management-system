@@ -19,7 +19,7 @@ public class Borrow {
     private String username;
 
     @Column(name = "ITID")
-    private Connector connector;
+    private String connector;
 
     @Column(name = "BORROWDATE")
     private String borrowDate;
@@ -36,7 +36,7 @@ public class Borrow {
     public Borrow() {
     }
 
-    public Borrow(Integer brid, String username, Connector connector, String borrowDate, String returnDate, String status, String approved) {
+    public Borrow(Integer brid, String username, String connector, String borrowDate, String returnDate, String status, String approved) {
         this.brid = brid;
         this.username = username;
         this.connector = connector;
@@ -62,11 +62,11 @@ public class Borrow {
         this.username = username;
     }
 
-    public Connector getConnector() {
+    public String getConnector() {
         return this.connector;
     }
 
-    public void setConnector(Connector connector) {
+    public void setConnector(String connector) {
         this.connector = connector;
     }
 

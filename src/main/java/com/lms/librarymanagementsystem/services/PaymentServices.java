@@ -3,12 +3,15 @@ package com.lms.librarymanagementsystem.services;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.lms.librarymanagementsystem.repositories.PaymentRepository;
+
 @Service
 @Transactional
 public class PaymentServices {
-    private PaymentServices paymentServices;
+   private PaymentRepository paymentRepository;
 
-    public PaymentServices(PaymentServices paymentServices) {
-        this.paymentServices = paymentServices;
+    public PaymentServices(PaymentRepository paymentRepository) {
+        this.paymentRepository = paymentRepository;
     }
+
 }
