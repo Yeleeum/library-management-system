@@ -5,9 +5,9 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+// import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.multipart.MultipartFile;
+// import org.springframework.web.multipart.MultipartFile;
 
 // import com.lms.librarymanagementsystem.FileHandler.FileHandler;
 import com.lms.librarymanagementsystem.models.SoftCopy;
@@ -22,15 +22,6 @@ public class SoftCopyController {
         this.softCopyServices = softCopyServices;
     }
 
-    // @GetMapping
-    // public String getSoftCopyForm(){
-    //     return "Softcopy";
-    // }
-
-    // @PostMapping
-    // public SoftCopy insertSoftCopy(SoftCopy softCopy,MultipartFile file,MultipartFile thumbnailfile){
-    //     return softCopyServices.insertOneSoftCopy(softCopy,file,thumbnailfile);
-    // }
 
     @GetMapping("/search")
     public String getSoftCopyBySearch(String searchParam,Model model){

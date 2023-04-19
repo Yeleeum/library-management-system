@@ -6,11 +6,11 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+// import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.multipart.MultipartFile;
+// import org.springframework.web.multipart.MultipartFile;
 
-import com.lms.librarymanagementsystem.models.Connector;
+// import com.lms.librarymanagementsystem.models.Connector;
 import com.lms.librarymanagementsystem.models.Magazines;
 import com.lms.librarymanagementsystem.services.ConnectorServices;
 import com.lms.librarymanagementsystem.services.MagazinesServices;
@@ -26,17 +26,6 @@ public class MagazinesController {
         this.MagazinesServices = MagazinesServices;
         this.connectorServices = connectorServices;
     }
-
-    // @GetMapping
-    // public String getMagazineForm(){
-    //     return "magazines";
-    // }
-
-    // @PostMapping
-    // public Magazines insertMagazine(Magazines magazine,MultipartFile thumbnailfile){
-    //     connectorServices.insertOneConnector(new Connector(magazine.getItid(),"magazine"));
-    //     return MagazinesServices.insertOneMagazine(magazine,thumbnailfile);
-    // }
 
     @GetMapping("/search")
     public String getMagazinesBySearch(String searchParam,Model model){

@@ -5,11 +5,11 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+// import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.multipart.MultipartFile;
+// import org.springframework.web.multipart.MultipartFile;
 
-import com.lms.librarymanagementsystem.models.Connector;
+// import com.lms.librarymanagementsystem.models.Connector;
 import com.lms.librarymanagementsystem.models.Journals;
 import com.lms.librarymanagementsystem.services.ConnectorServices;
 import com.lms.librarymanagementsystem.services.JournalsServices;
@@ -25,17 +25,6 @@ public class JournalsController {
         this.JournalsServices = JournalsServices;
         this.connectorServices = connectorServices;
     }
-
-    // @GetMapping
-    // public String getJournalForm(){
-    //     return "journals";
-    // }
-
-    // @PostMapping
-    // public Journals insertJournal(Journals journal,MultipartFile thumbnailfile){
-    //     connectorServices.insertOneConnector(new Connector(journal.getItid(),"journal"));
-    //     return JournalsServices.insertOneJournal(journal,thumbnailfile);
-    // }
 
     @GetMapping("/search")
     public String getJournalsBySearch(String searchParam,Model model){

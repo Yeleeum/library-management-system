@@ -5,11 +5,11 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+// import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.multipart.MultipartFile;
+// import org.springframework.web.multipart.MultipartFile;
 
-import com.lms.librarymanagementsystem.models.Connector;
+// import com.lms.librarymanagementsystem.models.Connector;
 import com.lms.librarymanagementsystem.models.Theses;
 import com.lms.librarymanagementsystem.services.ConnectorServices;
 import com.lms.librarymanagementsystem.services.ThesesServices;
@@ -24,17 +24,6 @@ public class ThesesController {
         this.ThesesServices = ThesesServices;
         this.connectorServices = connectorServices;
     }
-
-    // @GetMapping
-    // public String getThesesForm(){
-    //     return "theses";
-    // }
-
-    // @PostMapping
-    // public Theses insertTheses(Theses theses,MultipartFile thumbnailfile){
-    //     connectorServices.insertOneConnector(new Connector(theses.getItid(),"theses"));
-    //     return ThesesServices.insertOneTheses(theses,thumbnailfile);
-    // }
 
     @GetMapping("/search")
     public String getThesesBySearch(String searchParam,Model model){

@@ -10,12 +10,12 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+// import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.multipart.MultipartFile;
+// import org.springframework.web.multipart.MultipartFile;
 
 import com.lms.librarymanagementsystem.models.Books;
-import com.lms.librarymanagementsystem.models.Connector;
+// import com.lms.librarymanagementsystem.models.Connector;
 import com.lms.librarymanagementsystem.services.BooksServices;
 import com.lms.librarymanagementsystem.services.ConnectorServices;
 
@@ -31,17 +31,6 @@ public class BooksController {
         this.booksServices = booksServices;
         this.connectorServices = connectorServices;
     }
-
-    // @PostMapping
-    // public Books insertBook(Books book,MultipartFile thumbnailfile){
-    //     connectorServices.insertOneConnector(new Connector(book.getItid(),"book"));
-    //     return booksServices.insertOneBook(book,thumbnailfile);
-    // }
-
-    // @GetMapping
-    // public String getBookForm(){
-    //     return "books";
-    // }
 
     @GetMapping("/search")
     public String getBooksBySearch(String searchParam,Model model){
