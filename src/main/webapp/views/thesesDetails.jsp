@@ -33,7 +33,7 @@
             <p>Page No: <%= theses.getPageNo() %></p>
             <div>
                 <% String type = "theses"; %>
-                <% int id = book.getTid(); %>
+                <% int id = journal.getTid(); %>
                 <%@include file="itemAction.jsp" %>
             </div>
         </div>

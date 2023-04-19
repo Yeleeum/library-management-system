@@ -33,7 +33,7 @@
             <p>Stock: <%= magazine.getStock() %></p>
             <div>
                 <% String type = "magazine"; %>
-                <% int id = book.getMid(); %>
+                <% int id = journal.getMid(); %>
                 <%@include file="itemAction.jsp" %>
             </div>
         </div>
