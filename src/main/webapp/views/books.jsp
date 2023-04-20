@@ -2,7 +2,6 @@
 <%@page import="com.lms.librarymanagementsystem.models.Books"%>
 <%@page import="java.util.List"%>
 <%@page import="com.lms.librarymanagementsystem.models.Registration"%>
-<%@page import="java.util.List"%>
 <html>
 <head>
 	<title>Books</title>
