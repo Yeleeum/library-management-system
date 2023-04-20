@@ -14,10 +14,10 @@ public interface BorrowRepository extends JpaRepository<Borrow,Integer> {
     @Query(value="SELECT * FROM BORROW WHERE APPROVED='pending'",nativeQuery = true)
     List<Borrow> getPending();
 
-    @Query(value="SELECT * FROM BORROW WHERE USERNAME=:username AND STATUS='notreturned'",nativeQuery = true)
+    @Query(value="SELECT * FROM BORROW WHERE USERNAME=:username AND STATUS='notreturned' AND APPROVED!='rejected'",nativeQuery = true)
     List<Borrow> getUnReturnedByUsername(@Param("username")String username);
     
-    @Query(value="SELECT * FROM BORROW WHERE USERNAME=:username AND ITID=:itid AND STATUS='notreturned'",nativeQuery = true)
+    @Query(value="SELECT * FROM BORROW WHERE USERNAME=:username AND ITID=:itid AND STATUS='notreturned' AND APPROVED!='rejected'",nativeQuery = true)
     List<Borrow> getUnReturnedByItidByUsername(@Param("itid")String itid,@Param("username")String username);
 
     @Query(value="SELECT * FROM BORROW WHERE APPROVED='pending'",nativeQuery = true)
