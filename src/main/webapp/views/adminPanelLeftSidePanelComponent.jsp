@@ -45,7 +45,7 @@
                         <li><a class="submenu-links" href="/journals/search?searchParam=">Edit Journals</a></li>
                         <li><a class="submenu-links" href="/theses/search?searchParam=">Edit Theses</a></li>
                         <li><a class="submenu-links" href="/magazines/search?searchParam=">Edit Magazines</a></li>
-                        <li><a class="submenu-links" href="/softcopies/search?searchParam=">Edit Softcopies</a></li>
+                        <li><a class="submenu-links" href="/softcopy/search?searchParam=">Edit Softcopies</a></li>
                         <li><a class="submenu-links" href="/search/searchitem?searchParam=">Edit Alternatives</a></li>
                     </ul>
                 </li>
