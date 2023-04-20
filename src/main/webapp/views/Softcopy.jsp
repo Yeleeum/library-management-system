@@ -58,7 +58,7 @@
 				value='<%= (softcopy == null) ? "" : softcopy.getThumbnail() %>' accept=".jpg, .png"
 				name="thumbnailfile">
 			<br><br>
-			<iframe id="prevpdfviewer" src='/uploads/SoftCopy/<%= (softcopy == null) ? "" : softcopy.getFilename() %>#toolbar=0' frameborder="0"></iframe>
+			<% if(activity.equals("edit")) { %><iframe id="prevpdfviewer" src='/uploads/SoftCopy/<%= (softcopy == null) ? "" : softcopy.getFilename() %>#toolbar=0' frameborder="0"></iframe><% } %>
 			<div id="pdfContainer"></div>
 			<label for="filename">File</label>
 			<input type="file" id="file" accept=".pdf" value='<%= (softcopy == null) ? "" : softcopy.getFilename() %>'

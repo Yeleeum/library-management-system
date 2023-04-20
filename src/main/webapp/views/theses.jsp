@@ -142,10 +142,10 @@
 			<input type="text" id="place" value='<%= (theses == null) ? "" : theses.getPlace() %>' name="place">
 	
 			<label for="abstract">Abstract:</label>
-			<input type="text" id="abstract" value='<%= (theses == null) ? "" : theses.getAbstractContent() %>' name="abstract">
+			<input type="text" id="abstract" value='<%= (theses == null) ? "" : theses.getAbstractContent() %>' name="abstractContent">
 	
 			<label for="pageno">Page No:</label>
-			<input type="text" id="pageno" value='<%= (theses == null) ? "" : theses.getPageNo() %>' name="pageno">
+			<input type="number" id="pageno" value='<%= (theses == null) ? "" : theses.getPageNo() %>' name="pageNo">
 
 			<label for="stock">Stock:</label>
 			<input type="number" id="stock" value='<%= (theses == null) ? null: theses.getStock() %>' name="stock">
