@@ -269,9 +269,9 @@ main {
     margin-right: 8px;
 }
 
-.breadCrumbs>p>span:nth-child(3) {
+.breadCrumbs>p>span {
     margin-left: 8px;
-    opacity: 0.5;
+    opacity: 0.8;
 }
 
 .breadCrumbs>p>a:hover {

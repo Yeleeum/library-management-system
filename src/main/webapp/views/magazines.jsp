@@ -75,6 +75,26 @@
 		<%@include file="adminPanelLeftSidePanelComponent.jsp"%>
 		<div class="rightContainer">
 			<%@include file="adminPanelHeaderComponent.jsp"%>
+			<div class="breadCrumbs" style="margin-left:30px;">
+				<p>
+					<a href="#">Home</a>
+					<i class="fa-solid fa-angle-right"></i>
+					<span>Dashboard</span>
+					<% if(activity.equals("edit")) { %>
+						<i class="fa-solid fa-angle-right"></i>
+						<span>Edit Items</span>
+						<i class="fa-solid fa-angle-right"></i>
+						<span>Edit Magazine</span>
+						<i class="fa-solid fa-angle-right"></i>
+						<span><%= (magazine == null) ? null : magazine.getMid() %></span>
+					<%}else{%>
+						<i class="fa-solid fa-angle-right"></i>
+						<span>Add Items</span>
+						<i class="fa-solid fa-angle-right"></i>
+						<span>Add Magazine</span>
+					<%}%>
+				</p>
+			</div>
 	<form action='/admin<%=activity.equals("edit")?"/edit/magazines":"/addmagazine"%>' method="POST" enctype="multipart/form-data" class="bookForm">
 		<div class="left-container">
 			<% if(activity.equals("edit")) { %>
