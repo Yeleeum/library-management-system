@@ -8,7 +8,7 @@
         <div class="links">
             <ul class="inner-links">
                 <li>Dashboard</li>
-                <li>Borrowed Books</li>
+                <li><a href="/admin/pendingborrow">Pending Borrow Requests</a></li>
                 <li>Returned Books</li>
                 <li>
                     <div class="sublinks-Container">

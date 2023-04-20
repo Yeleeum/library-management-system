@@ -2,6 +2,8 @@ package com.lms.librarymanagementsystem.controllers;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,7 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.lms.librarymanagementsystem.FileHandler.SessionHandler;
 import com.lms.librarymanagementsystem.models.Books;
+import com.lms.librarymanagementsystem.models.Borrow;
 import com.lms.librarymanagementsystem.models.Connector;
 import com.lms.librarymanagementsystem.models.Journals;
 import com.lms.librarymanagementsystem.models.Magazines;
@@ -21,6 +25,7 @@ import com.lms.librarymanagementsystem.models.Users;
 import com.lms.librarymanagementsystem.services.AdminServices;
 import com.lms.librarymanagementsystem.services.AlternativeServices;
 import com.lms.librarymanagementsystem.services.BooksServices;
+import com.lms.librarymanagementsystem.services.BorrowServices;
 import com.lms.librarymanagementsystem.services.ConnectorServices;
 import com.lms.librarymanagementsystem.services.EmailServices;
 import com.lms.librarymanagementsystem.services.JournalsServices;
@@ -46,11 +51,12 @@ public class AdminController {
     private ThesesServices thesesServices;
     private SoftCopyServices softCopyServices;
     private AdminServices adminServices;
+    private BorrowServices borrowServices;
 
     public AdminController(RegistrationServices registrationServices, UsersServices usersServices,
             EmailServices emailServices, AlternativeServices alternativeServices, BooksServices booksServices,
             ConnectorServices connectorServices, JournalsServices journalsServices, MagazinesServices magazinesServices,
-            ThesesServices thesesServices, SoftCopyServices softCopyServices, AdminServices adminServices) {
+            ThesesServices thesesServices, SoftCopyServices softCopyServices, AdminServices adminServices,BorrowServices borrowServices) {
         this.registrationServices = registrationServices;
         this.usersServices = usersServices;
         this.emailServices = emailServices;
@@ -62,6 +68,7 @@ public class AdminController {
         this.thesesServices = thesesServices;
         this.softCopyServices = softCopyServices;
         this.adminServices = adminServices;
+        this.borrowServices = borrowServices;
     }
 
     @GetMapping
@@ -70,8 +77,11 @@ public class AdminController {
         // System.out.println(SessionHandler.getAccessSession(req));
         List<Registration> top5Registrations = registrationServices.findTopPendings();
         List<Registration> registrations = registrationServices.findAllPending();
+        List<Borrow> borrows=borrowServices.findPending();
         model.addAttribute("registrations", top5Registrations);
         model.addAttribute("noOfRegistrations", registrations.size());
+        model.addAttribute("borrows", borrows);
+        model.addAttribute("noOfPendingBorrow", borrows.size());
         System.out.println(top5Registrations);
         return "adminPanel";
     }
@@ -121,9 +131,10 @@ public class AdminController {
     }
 
     @PostMapping("/addbook")
-    public Books insertBook(Books book, MultipartFile thumbnailfile) {
+    public String insertBook(Books book, MultipartFile thumbnailfile) {
         connectorServices.insertOneConnector(new Connector(book.getItid(), "book"));
-        return booksServices.insertOneBook(book, thumbnailfile);
+        Books bookInserted= booksServices.insertOneBook(book, thumbnailfile);
+        return "redirect:/search/books/"+bookInserted.getBid();
     }
 
     @GetMapping("/addjournal")
@@ -133,9 +144,10 @@ public class AdminController {
     }
 
     @PostMapping("/addjournal")
-    public Journals insertJournal(Journals journal, MultipartFile thumbnailfile) {
+    public String insertJournal(Journals journal, MultipartFile thumbnailfile) {
         connectorServices.insertOneConnector(new Connector(journal.getItid(), "journal"));
-        return journalsServices.insertOneJournal(journal, thumbnailfile);
+        Journals journalInserted= journalsServices.insertOneJournal(journal, thumbnailfile);
+        return "redirect:/search/journals/"+journalInserted.getJid();
     }
 
     @GetMapping("/addtheses")
@@ -145,9 +157,11 @@ public class AdminController {
     }
 
     @PostMapping("/addtheses")
-    public Theses insertTheses(Theses theses, MultipartFile thumbnailfile) {
+    public String insertTheses(Theses theses, MultipartFile thumbnailfile) {
         connectorServices.insertOneConnector(new Connector(theses.getItid(), "theses"));
-        return thesesServices.insertOneTheses(theses, thumbnailfile);
+        Theses thesesInserted= thesesServices.insertOneTheses(theses, thumbnailfile);
+        return "redirect:/search/theses/"+thesesInserted.getTid();
+
     }
 
     @GetMapping("/addmagazine")
@@ -157,9 +171,11 @@ public class AdminController {
     }
 
     @PostMapping("/addmagazine")
-    public Magazines insertMagazine(Magazines magazine, MultipartFile thumbnailfile) {
+    public String insertMagazine(Magazines magazine, MultipartFile thumbnailfile) {
         connectorServices.insertOneConnector(new Connector(magazine.getItid(), "magazine"));
-        return magazinesServices.insertOneMagazine(magazine, thumbnailfile);
+        Magazines magazineInserted= magazinesServices.insertOneMagazine(magazine, thumbnailfile);
+        return "redirect:/search/magazines/"+magazineInserted.getMid();
+
     }
 
     @GetMapping("/addsoftcopy")
@@ -169,8 +185,10 @@ public class AdminController {
     }
 
     @PostMapping("/addsoftcopy")
-    public SoftCopy insertSoftCopy(SoftCopy softCopy, MultipartFile file, MultipartFile thumbnailfile) {
-        return softCopyServices.insertOneSoftCopy(softCopy, file, thumbnailfile);
+    public String insertSoftCopy(SoftCopy softCopy, MultipartFile file, MultipartFile thumbnailfile) {
+        SoftCopy softcopyInserted= softCopyServices.insertOneSoftCopy(softCopy, file, thumbnailfile);
+        return "redirect:/search/softcopy/"+softcopyInserted.getSid();
+
     }
 
     // Edit Routes
@@ -243,6 +261,19 @@ public class AdminController {
     public String editMagazinesCopySave(Magazines magazines,MultipartFile thumbnailfile){
         magazinesServices.insertOneMagazine(magazines, thumbnailfile);
         return "redirect:/search/magazines/"+magazines.getMid();
+    }
+
+    @GetMapping("/pendingborrow")
+    public String getPendingBorrowTable(Model model){
+        List<Borrow> borrows=borrowServices.findPending();
+        model.addAttribute("borrows", borrows);
+        return "pendingBorrows";
+    }
+
+    @PostMapping("/borrowaction")
+    public ResponseEntity<String> performBorrowAction(String action,String itid,String username){
+        borrowServices.performAction(action, username, itid);
+        return new ResponseEntity<String>("true", HttpStatus.OK);
     }
 
 }

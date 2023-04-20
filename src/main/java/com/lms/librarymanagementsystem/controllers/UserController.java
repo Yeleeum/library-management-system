@@ -35,7 +35,7 @@ public class UserController {
     @PostMapping("/checkborrow")
     public ResponseEntity<String> checkBorrow(String itid,HttpServletRequest req){
         String username=SessionHandler.getUserSession(req);
-        if(borrowServices.findUnReturned(username).size()<2 && borrowServices.findUnReturnedByItid(itid,username).isEmpty()){
+        if(borrowServices.findUnReturnedByUsername(username).size()<2 && borrowServices.findUnReturnedByItidByUsername(itid,username).isEmpty()){
             return new ResponseEntity<String>("true",HttpStatus.OK);
         }
         return new ResponseEntity<String>("false",HttpStatus.OK);

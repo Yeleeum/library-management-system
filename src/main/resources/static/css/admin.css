@@ -86,6 +86,10 @@ a {
     align-items: center;
 }
 
+.inner-links > li > a{
+    color: white;
+}
+
 .sublinks-Container>span {
     word-wrap: break-word;
     word-break: break-all;

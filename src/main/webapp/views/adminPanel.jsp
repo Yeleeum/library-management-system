@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <%@page import="com.lms.librarymanagementsystem.models.Registration"%>
+    <%@page import="com.lms.librarymanagementsystem.models.Borrow"%>
     <%@page import="java.util.List"%>
 <head>
     <meta charset="UTF-8">
@@ -15,6 +16,8 @@
 <%
         List<Registration> registrations=(List<Registration>)request.getAttribute("registrations");
         int noOfRegistrations=(int)request.getAttribute("noOfRegistrations");
+        int noOfPendingBorrow=(int)request.getAttribute("noOfPendingBorrow");
+        
 %>
 <body>
     <div class="container">
@@ -62,7 +65,7 @@
                                 <img src="/img/admin/borrow.png" class="icons" alt="">
                             </div>
                             <div>
-                                <h1>8</h1>
+                                <h1><%=noOfPendingBorrow%></h1>
                                 <p>Pending Borrows</p>
                             </div>
                         </div>
