@@ -34,6 +34,7 @@
             <div>
                 <% String type = "magazines"; %>
                 <% int id = magazine.getMid(); %>
+                <% String itid=magazine.getItid();%>
                 <%@include file="itemAction.jsp" %>
             </div>
         </div>

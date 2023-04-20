@@ -109,6 +109,7 @@
             <div>
                 <% String type = "journals"; %>
                 <% int id = journal.getJid(); %>
+                <% String itid=journal.getItid();%>
                 <%@include file="itemAction.jsp" %>
             </div>
         </div>

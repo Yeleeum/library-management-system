@@ -34,6 +34,7 @@
             <div>
                 <% String type = "theses"; %>
                 <% int id = theses.getTid(); %>
+                <% String itid=theses.getItid();%>
                 <%@include file="itemAction.jsp" %>
             </div>
         </div>
