@@ -150,7 +150,7 @@
 			<label for="stock">Stock:</label>
 			<input type="number" id="stock" value='<%= (theses == null) ? null: theses.getStock() %>' name="stock">
 
-			<input type="submit" value="Submit">
+			<input type="submit" value='<%= activity.equals("edit") ? "Update" : "Submit" %>'>
 		</div>
 	</form>
 </div>

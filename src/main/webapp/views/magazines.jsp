@@ -142,7 +142,7 @@
 			<label for="stock">Stock:</label>
 			<input type="number" id="stock" value='<%= (magazine == null) ? null: magazine.getStock() %>' name="stock">
 
-			<input type="submit" value="Submit">
+			<input type="submit" value='<%= activity.equals("edit") ? "Update" : "Submit" %>'>
 		</div>
 	</form>
 </div>

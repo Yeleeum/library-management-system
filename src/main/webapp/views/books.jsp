@@ -94,7 +94,7 @@
 			<label for="location">Location:</label>
 			<input type="text" id="location" name="location" value='<%= (book == null) ? "" : book.getLocation() %>' required>
 	
-			<input type="submit" value="Submit">
+			<input type="submit" value='<%= activity.equals("edit") ? "Update" : "Submit" %>'>
 		</div>
 	</form>
 </div>
