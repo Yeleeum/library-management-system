@@ -18,109 +18,12 @@
 %>
 <body>
     <div class="container">
-        <div class="leftContainer" id="sidebar">
-            <div class="sidebar-inner-wrapper">
-                <div class="logo">
-                    <!-- goes organisation logo -->
-                    <img src="/img/admin/mmcc.jpg" alt="organisation-logo">
-                </div>
-
-                <div class="links">
-                    <ul class="inner-links">
-                        <li>Dashboard</li>
-                        <li>Borrowed Books</li>
-                        <li>Returned Books</li>
-                        <li>
-                            <div class="sublinks-Container">
-                                <span>Manage Registrations</span>
-                                <i class="fa-solid fa-angle-down" id="clickToExpand"></i>
-                            </div>
-                            <ul id="sublinks" class="submenulinks">
-                                <li><a class="submenu-links" href="/admin/viewpending/paid">Paid</a></li>
-                                <li><a class="submenu-links" href="/admin/viewpending/unpaid">UnPaid</a></li>
-                            </ul>
-                        </li>
-                        <li>Manage Renewals</li>
-                        <li>
-                            <div class="sublinks-Container">
-                                <span>Add Items</span>
-                                <i class="fa-solid fa-angle-down" id="clickToExpand"></i>
-                            </div>
-                            <ul id="sublinks" class="submenulinks">
-                                <li><a class="submenu-links" href="/admin/addbook">Add Book</a></li>
-                                <li><a class="submenu-links" href="/admin/addJournal">Add Journal</a></li>
-                                <li><a class="submenu-links" href="/admin/addtheses">Add Theses</a></li>
-                                <li><a class="submenu-links" href="/admin/addmagazine">Add Magazine</a></li>
-                                <li><a class="submenu-links" href="/admin/addsoftcopy">Add SoftCopy</a></li>
-                                <li><a class="submenu-links" href="/admin/addalternative">Add Alternative</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <div class="sublinks-Container">
-                                <span>Edit Items</span>
-                                <i class="fa-solid fa-angle-down" id="clickToExpand"></i>
-                            </div>
-                            <ul id="sublinks" class="submenulinks">
-                                <li><a class="submenu-links" href="/books/search?searchParam=">Edit Books</a></li>
-                                <li><a class="submenu-links" href="/journals/search?searchParam=">Edit Journals</a></li>
-                                <li><a class="submenu-links" href="/theses/search?searchParam=">Edit Theses</a></li>
-                                <li><a class="submenu-links" href="/magazines/search?searchParam=">Edit Magazines</a></li>
-                                <li><a class="submenu-links" href="/softcopies/search?searchParam=">Edit Softcopies</a></li>
-                                <li><a class="submenu-links" href="/search/searchitem?searchParam=">Edit Alternatives</a></li>
-                            </ul>
-                        </li>
-                        <li>Manage Donations</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+        <%@ include file="adminPanelLeftSidePanelComponent.jsp"%>
         <!-- sidebar ends -->
 
         <div class="rightContainer">
             <!-- Admin Panel header -->
-            <header class="header">
-                <div class="header-inner-wrapper">
-                    <h1>Library Management System</h1>
-                    <%@include file="mainSearchComponent.jsp"%>
-                    <div class="header-right-content">
-                        
-                        <div class="notifications">
-                            <i class="fa-solid fa-bell" id="notifications-icon"></i>
-                            <span id="notifications-dot"></span>
-                            <div class="notifications-area">
-                               <% if( !(registrations == null || registrations.isEmpty()) ) { %>
-                                <%for(Registration registration:registrations){%>
-                                    <div id="notifications-content">
-                                        <p>
-                                            <%=registration.getFirstName()%> <%=registration.getLastName()%>
-                                            registered today, <%=registration.getPaid().equals("paid")?"and successfully completed the payment":"but has not yet completed the payment"%>
-                                        </p>
-                                    </div> 
-                                <%}%>
-                               <% } else { %>
-                                <div id="notifications-content">
-                                    <p>
-                                        No Notifications Found!
-                                    </p>
-                                </div> 
-                               <% } %>
-                            </div>
-                        </div>
-                        <div class="adminAccount">
-                            <img src="/img/admin/admin.png" id="adminAccount-icon" alt="">
-                            <i class="fa-solid fa-play fa-rotate-270 arrow"></i>
-                            <ul class="account-options">
-                                <li><a href=""><i class="fa-solid fa-user"></i> Account</a></li>
-                                <li>
-                                    <form action="/logout" method="post">
-                                        <button style="border: none; background-color: transparent; cursor: pointer;"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
-                                    </form>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </header>
+            <%@include file="adminPanelHeaderComponent.jsp"%>
 
             <!-- Admin Panel Details -->
             <!-- 
@@ -232,31 +135,6 @@
         </div>
     </div>
 </body>
-<script>  
-    let clickToExpand = Array.from(document.querySelectorAll('#clickToExpand'));
-    let collapseMenu = Array.from(document.querySelectorAll(".submenulinks"));
-    var isExpanded = Array(collapseMenu.length).fill(false);
-    var collapseActionCombine = clickToExpand.map((clickToExpand, index) => {
-        return [clickToExpand, collapseMenu[index], isExpanded[index]]
-    })
-
-    collapseActionCombine.forEach(Element => {
-        Element[0].addEventListener("click", (e) => {
-            Element[1].style = Element[2] ? "" : "overflow: visible";
-            Element[1].style = Element[2] ? "" : "height: fit-content";
-            Element[2] = !Element[2];
-            Element[2] ? Element[0].classList.replace("fa-angle-down", "fa-angle-up") : Element[0].classList.replace("fa-angle-up", "fa-angle-down");
-
-            collapseActionCombine.forEach(element => {
-                if (element != Element) {
-                    element[1].style = "";
-                    element[1].style = "";
-                    element[2] = false;
-                    element[2] ? element[0].classList.replace("fa-angle-down", "fa-angle-up") : element[0].classList.replace("fa-angle-up", "fa-angle-down");
-                }
-            })
-        })
-    })
-</script>
+<script src="/js/adminPanel.js"></script>
 
 </html>
