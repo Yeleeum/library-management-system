@@ -11,7 +11,7 @@
 			<div class="booksCard">
 				<a href="/search/softcopy/<%= softcopy.getSid() %>" >
 					<div>
-						<img src="/uploads/thumbnails/book.jpg" alt="<%= softcopy.getTitle() %>" width="300" height="300">
+						<img src="/uploads/thumbnails/<%= softcopy.getThumbnail() %>" alt="<%= softcopy.getTitle() %>" width="300" height="300">
 					</div>
 				</a>
 				<div class="bookDetails">
