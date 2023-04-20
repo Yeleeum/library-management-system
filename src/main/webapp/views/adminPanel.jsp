@@ -126,8 +126,11 @@
                             <% } %>
                         </table>
                         <br>
-                        <a href="/admin/viewpending/paid" class="btn">
-                            view all
+                        <a style="margin-right: 10px;" href="/admin/viewpending/paid" class="btn">
+                            View all Paid
+                        </a> 
+                        <a href="/admin/viewpending/unpaid" class="btn">
+                            View all Unpaid
                         </a>
                     </div>
                 </div>
