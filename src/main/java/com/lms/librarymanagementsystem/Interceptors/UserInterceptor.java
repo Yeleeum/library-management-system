@@ -3,7 +3,7 @@ package com.lms.librarymanagementsystem.Interceptors;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
-import com.lms.librarymanagementsystem.FileHandler.SessionHandler;
+import com.lms.librarymanagementsystem.Handlers.SessionHandler;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

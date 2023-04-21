@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.lms.librarymanagementsystem.FileHandler.FileHandler;
+import com.lms.librarymanagementsystem.Handlers.FileHandler;
 import com.lms.librarymanagementsystem.models.*;
 import com.lms.librarymanagementsystem.repositories.MagazinesRepository;
 

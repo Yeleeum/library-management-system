@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.lms.librarymanagementsystem.FileHandler.SessionHandler;
+import com.lms.librarymanagementsystem.Handlers.SessionHandler;
 import com.lms.librarymanagementsystem.models.Borrow;
 import com.lms.librarymanagementsystem.services.BorrowServices;
 import com.lms.librarymanagementsystem.services.UsersServices;

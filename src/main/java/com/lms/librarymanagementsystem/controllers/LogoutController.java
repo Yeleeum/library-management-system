@@ -4,7 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.lms.librarymanagementsystem.FileHandler.SessionHandler;
+import com.lms.librarymanagementsystem.Handlers.SessionHandler;
 
 import jakarta.servlet.http.HttpServletRequest;
 

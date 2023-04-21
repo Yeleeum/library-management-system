@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.lms.librarymanagementsystem.FileHandler.FileHandler;
+import com.lms.librarymanagementsystem.Handlers.FileHandler;
 import com.lms.librarymanagementsystem.models.Registration;
 import com.lms.librarymanagementsystem.repositories.RegistrationRepository;
 

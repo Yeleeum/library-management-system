@@ -23,14 +23,18 @@ public class Fine {
     @Column(name = "amount")
     private Integer amount;
 
+    @Column(name = "paid")
+    private String paid;
+
     public Fine() {
     }
 
-    public Fine(Integer fid, String username, String fineDate, Integer amount) {
+    public Fine(Integer fid, String username, String fineDate, Integer amount,String paid) {
         this.fid = fid;
         this.username = username;
         this.fineDate = fineDate;
         this.amount = amount;
+        this.paid = paid;
     }
 
     public Integer getFid() {
@@ -65,6 +69,15 @@ public class Fine {
         this.amount = amount;
     }
 
+    public String getPaid() {
+        return this.paid;
+    }
+
+    public void setPaid(String paid) {
+        this.paid = paid;
+    }
+
+
     @Override
     public String toString() {
         return "{" +
@@ -72,6 +85,8 @@ public class Fine {
             ", username='" + getUsername() + "'" +
             ", fineDate='" + getFineDate() + "'" +
             ", amount='" + getAmount() + "'" +
+            ", paid='" + getPaid() + "'" +
             "}";
     }
+
 }

@@ -1,4 +1,4 @@
-package com.lms.librarymanagementsystem.FileHandler;
+package com.lms.librarymanagementsystem.Handlers;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
