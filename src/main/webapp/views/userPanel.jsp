@@ -81,8 +81,12 @@
                             <small class="small-text">Expires on <%=user.getMembershipexpire()%></small>
                             <div class="status">
                                 <p>
-                                    <span class="fa-solid fa-dot-circle" style="color: rgb(0, 250, 0);"></span>
-                                    <span>Active</span>
+                                   <% if(user.getMembership().equals("active")){%>
+                                        <span class="fa-solid fa-dot-circle" style="color: rgb(0, 250, 0);"></span>
+                                    <%}else{%>
+                                        <span class="fa-solid fa-dot-circle" style="color: rgb(255, 0, 0);"></span>
+                                    <%}%>
+                                    <span><%=user.getMembership().toUpperCase()%></span>
                                 </p>
                             </div>
                         </div>
