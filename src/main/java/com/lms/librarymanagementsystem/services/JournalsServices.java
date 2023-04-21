@@ -52,4 +52,12 @@ public class JournalsServices {
     public List<Journals> findBySearchTitle(String searchParam) {
         return journalsRepository.findJournalBySearchTitle(searchParam);
     }
+
+    public Integer decreaseStock(String ITID){
+        return journalsRepository.decreaseStock(ITID);
+    }
+    
+    public Integer increaseStock(String ITID){
+        return journalsRepository.increaseStock(ITID);
+    }
 }

@@ -23,9 +23,7 @@
             const newDateObj = new Date(dateObj.getTime() + (15 * 24 * 60 * 60 * 1000));
             return convertToMySQLDate(newDateObj);
         }
-
-        
-        
+     
         let checkborrowparam=new URLSearchParams();
         checkborrowparam.append("itid",'<%=itid%>')
 
@@ -59,12 +57,12 @@
         
         function  performborrow(){
             fetch("http://localhost:8080/user/borrow",borrowperformoptions)
-        .then(response => response.json())
-        .then(data=> {
-                if(data){
-                    checkBorrow('<%=itid%>')
-                }
-        })
+            .then(response => response.json())
+            .then(data=> {
+                    if(data){
+                        checkBorrow('<%=itid%>')
+                    }
+                })
         }
         checkBorrow('<%=itid%>')
     }else{

@@ -49,4 +49,12 @@ public class MagazinesServices {
         return magazinesRepository.findMagazineBySearchTitle(searchParam);
     }
 
+    public Integer decreaseStock(String ITID){
+        return magazinesRepository.decreaseStock(ITID);
+    }
+    
+    public Integer increaseStock(String ITID){
+        return magazinesRepository.increaseStock(ITID);
+    }
+
 }

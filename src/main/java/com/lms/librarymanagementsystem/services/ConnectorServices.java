@@ -18,4 +18,8 @@ public class ConnectorServices {
     public Connector insertOneConnector(Connector connector){
         return connectorRepository.save(connector);
     }
+
+    public String getType(String ITID){
+        return connectorRepository.getType(ITID);
+    }
 }

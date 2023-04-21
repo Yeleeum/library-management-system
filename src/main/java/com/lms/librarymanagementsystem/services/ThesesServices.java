@@ -49,4 +49,12 @@ public class ThesesServices {
     public List<Theses> findBySearchTitle(String searchParam) {
         return thesesRepository.findThesesBySearchTitle(searchParam);
     }
+
+    public Integer decreaseStock(String ITID){
+        return thesesRepository.decreaseStock(ITID);
+    }
+    
+    public Integer increaseStock(String ITID){
+        return thesesRepository.increaseStock(ITID);
+    }
 }

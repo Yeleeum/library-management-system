@@ -56,4 +56,12 @@ public class BooksServices {
     public List<Books> findBySearchTitle(String searchParam) {
         return booksRepository.findBookBySearchTitle(searchParam);
     }
+
+    public Integer decreaseStock(String ITID){
+        return booksRepository.decreaseStock(ITID);
+    }
+    
+    public Integer increaseStock(String ITID){
+        return booksRepository.increaseStock(ITID);
+    }
 }

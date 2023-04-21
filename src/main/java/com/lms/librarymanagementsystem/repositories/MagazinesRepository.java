@@ -3,6 +3,7 @@ package com.lms.librarymanagementsystem.repositories;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -23,4 +24,12 @@ public interface MagazinesRepository extends JpaRepository<Magazines,Integer>{
 
     @Query(value="SELECT * FROM MAGAZINES WHERE MID=:MID",nativeQuery = true)
     Magazines findSingleMagazineById(@Param("MID")String mid);
+
+    @Modifying
+    @Query(value="UPDATE MAGAZINES SET STOCK=STOCK-1 WHERE ITID=:ITID",nativeQuery = true)
+    Integer decreaseStock(@Param("ITID")String ITID);
+    
+    @Modifying
+    @Query(value="UPDATE MAGAZINES SET STOCK=STOCK+1 WHERE ITID=:ITID",nativeQuery = true)
+    Integer increaseStock(@Param("ITID")String ITID);
 }

@@ -273,6 +273,16 @@ public class AdminController {
     @PostMapping("/borrowaction")
     public ResponseEntity<String> performBorrowAction(String action,String itid,String username){
         borrowServices.performAction(action, username, itid);
+        String type=connectorServices.getType(itid);
+        if(type.equals("book")){
+            booksServices.decreaseStock(itid);
+        }else if(type.equals("journal")){
+            journalsServices.decreaseStock(itid);
+        }else if(type.equals("magazine")){
+            magazinesServices.decreaseStock(itid);
+        }else{
+            thesesServices.decreaseStock(itid);
+        }
         return new ResponseEntity<String>("true", HttpStatus.OK);
     }
 

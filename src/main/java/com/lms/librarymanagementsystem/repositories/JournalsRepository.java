@@ -3,6 +3,7 @@ package com.lms.librarymanagementsystem.repositories;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -26,4 +27,12 @@ public interface JournalsRepository extends JpaRepository<Journals,Integer> {
 
     @Query(value="SELECT * FROM JOURNALS WHERE TITLE LIKE %:PARAM%",nativeQuery = true)
     List<Journals> findJournalBySearchTitle(@Param("PARAM")String searchParam);
+
+    @Modifying
+    @Query(value="UPDATE JOURNALS SET STOCK=STOCK-1 WHERE ITID=:ITID",nativeQuery = true)
+    Integer decreaseStock(@Param("ITID")String ITID);
+    
+    @Modifying
+    @Query(value="UPDATE JOURNALS SET STOCK=STOCK+1 WHERE ITID=:ITID",nativeQuery = true)
+    Integer increaseStock(@Param("ITID")String ITID);
 }

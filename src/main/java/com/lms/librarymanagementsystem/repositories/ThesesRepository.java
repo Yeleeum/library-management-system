@@ -3,6 +3,7 @@ package com.lms.librarymanagementsystem.repositories;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -23,4 +24,12 @@ public interface ThesesRepository extends JpaRepository<Theses,Integer>{
 
     @Query(value="SELECT * FROM THESES WHERE TID=:TID",nativeQuery = true)
     Theses findSingleThesesById(@Param("TID")String mid);
+
+    @Modifying
+    @Query(value="UPDATE THESES SET STOCK=STOCK-1 WHERE ITID=:ITID",nativeQuery = true)
+    Integer decreaseStock(@Param("ITID")String ITID);
+    
+    @Modifying
+    @Query(value="UPDATE THESES SET STOCK=STOCK+1 WHERE ITID=:ITID",nativeQuery = true)
+    Integer increaseStock(@Param("ITID")String ITID);
 }

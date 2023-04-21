@@ -4,6 +4,7 @@ import java.util.List;
 
 // import org.hibernate.mapping.Value;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -27,4 +28,12 @@ public interface BooksRepository extends JpaRepository<Books,Integer>{
     
     @Query(value="SELECT * FROM BOOKS WHERE TITLE LIKE %:PARAM%",nativeQuery = true)
     List<Books> findBookBySearchTitle(@Param("PARAM")String searchParam);
+
+    @Modifying
+    @Query(value="UPDATE BOOKS SET STOCK=STOCK-1 WHERE ITID=:ITID",nativeQuery = true)
+    Integer decreaseStock(@Param("ITID")String ITID);
+    
+    @Modifying
+    @Query(value="UPDATE BOOKS SET STOCK=STOCK+1 WHERE ITID=:ITID",nativeQuery = true)
+    Integer increaseStock(@Param("ITID")String ITID);
 }
