@@ -42,6 +42,7 @@
                 <% String type = "books"; %>
                 <% int id = book.getBid(); %>
                 <% String itid=book.getItid();%>
+                <% Integer stock=book.getStock();%>
                 <%@include file="itemAction.jsp" %>
             </div>
         </div>

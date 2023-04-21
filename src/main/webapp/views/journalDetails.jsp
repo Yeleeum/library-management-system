@@ -110,6 +110,7 @@
                 <% String type = "journals"; %>
                 <% int id = journal.getJid(); %>
                 <% String itid=journal.getItid();%>
+                <% Integer stock=journal.getStock();%>
                 <%@include file="itemAction.jsp" %>
             </div>
         </div>

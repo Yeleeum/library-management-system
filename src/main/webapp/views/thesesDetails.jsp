@@ -35,6 +35,7 @@
                 <% String type = "theses"; %>
                 <% int id = theses.getTid(); %>
                 <% String itid=theses.getItid();%>
+                <% Integer stock=theses.getStock();%>
                 <%@include file="itemAction.jsp" %>
             </div>
         </div>
