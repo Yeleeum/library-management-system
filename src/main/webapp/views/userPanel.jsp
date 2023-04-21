@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<%@ page import="com.lms.librarymanagementsystem.models.Users" %>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,18 +11,20 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>user</title>
 </head>
-
+<%
+    Users user=(Users)request.getAttribute("user");
+%>
 <body>
     <div class="container">
         <div class="inner-wrapper">
             <div class="sidebar">
                 <div class="sidebar-inner-wrapper">
                     <div class="image-container">
-                        <img src="/img/admin.png" alt="">
+                        <img src="/uploads/profilePictures/<%=user.getProfilePicture()%>" alt="">
                     </div>
                     <div class="profile">
                         <div class="profile-dropdown">
-                            <span>Ayush Kumar Singh</span>
+                            <span><%=user.getUsername()%></span>
                             <i class="fa-solid fa-caret-down arrow" style="cursor: pointer;"
                                 onclick="toggleDropdown()"></i>
                         </div>
@@ -57,7 +59,7 @@
                     <h2>Library management system</h2>
                     <%@include file="mainSearchComponent.jsp"%>
                     <div class="user-profile-piture">
-                        <img src="/img/admin.png" alt="user">
+                        <img src="/uploads/profilePictures/<%=user.getProfilePicture()%>" alt="">
                         <div class="hover-dropdown">
                             <span><i class="fa-solid fa-user" style="margin-right: 10px;"></i>Account</span>
                             <hr>
@@ -68,7 +70,7 @@
                 </header>
 
                 <div class="dismissible-alert shadow-md">
-                    <p><strong>welcome Back</strong> <span> Mr. Ayush Kumar Singh</span></p>
+                    <p><strong>welcome Back</strong> <span><%=user.getFirstName()%> <%=user.getLastName()%></span></p>
                     <i class="fa-solid fa-multiply" onclick="hideContainer('dismissible-alert')"></i>
                 </div>
 
@@ -76,7 +78,7 @@
                     <div class="user-inner-container">
                         <div class="membership-details">
                             <h1>Membership Status</h1>
-                            <small class="small-text">Expires on 21-03-2024</small>
+                            <small class="small-text">Expires on <%=user.getMembershipexpire()%></small>
                             <div class="status">
                                 <p>
                                     <span class="fa-solid fa-dot-circle" style="color: rgb(0, 250, 0);"></span>

@@ -182,6 +182,10 @@ i {
     position: relative;
 }
 
+.user-profile-piture > img{
+    border-radius: 50%;
+}
+
 .user-profile-piture:hover>.hover-dropdown,
 .hover-dropdown:hover {
     display: block;

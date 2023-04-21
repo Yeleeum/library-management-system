@@ -3,12 +3,14 @@ package com.lms.librarymanagementsystem.controllers;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.lms.librarymanagementsystem.Handlers.SessionHandler;
 import com.lms.librarymanagementsystem.models.Borrow;
+import com.lms.librarymanagementsystem.models.Users;
 import com.lms.librarymanagementsystem.services.BorrowServices;
 import com.lms.librarymanagementsystem.services.FineServices;
 import com.lms.librarymanagementsystem.services.UsersServices;
@@ -29,9 +31,11 @@ public class UserController {
     }
 
     @GetMapping
-    public String getProfile(HttpServletRequest req){
+    public String getProfile(HttpServletRequest req,Model model){
         System.out.println(SessionHandler.getUserSession(req));
         System.out.println(SessionHandler.getAccessSession(req));
+        Users user=usersServices.findUserByUsername(SessionHandler.getUserSession(req));
+        model.addAttribute("user", user);
         return "userPanel";
     }
 

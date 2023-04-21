@@ -29,4 +29,9 @@ public class UsersServices {
         return usersRepository.getUserByUsernamePassword(username, password);
     }
 
+    public Users findUserByUsername(String username){
+        return usersRepository.getUserByUsername(username);
+    }
+
+
 }
