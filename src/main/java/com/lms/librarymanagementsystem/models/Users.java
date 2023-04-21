@@ -42,11 +42,14 @@ public class Users {
     @Column(name = "MEMBERSHIP", length = 100)
     private String membership;
 
+    @Column(name = "MEMBERSHIPEXPIRE")
+    private String membershipexpire;
+
 
     public Users() {
     }
 
-    public Users(String username, String password, String profilePicture, String firstName, String lastName, String gender, String dob, String phone, String email, String category, String membership) {
+    public Users(String username, String password, String profilePicture, String firstName, String lastName, String gender, String dob, String phone, String email, String category, String membership,String membershipexpire) {
         this.username = username;
         this.password = password;
         this.profilePicture = profilePicture;
@@ -58,6 +61,7 @@ public class Users {
         this.email = email;
         this.category = category;
         this.membership = membership;
+        this.membershipexpire = membershipexpire;
     }
 
     public String getUsername() {
@@ -148,6 +152,15 @@ public class Users {
         this.membership = membership;
     }
 
+
+    public String getMembershipexpire() {
+        return this.membershipexpire;
+    }
+
+    public void setMembershipexpire(String membershipexpire) {
+        this.membershipexpire = membershipexpire;
+    }
+
     @Override
     public String toString() {
         return "{" +
@@ -162,7 +175,9 @@ public class Users {
             ", email='" + getEmail() + "'" +
             ", category='" + getCategory() + "'" +
             ", membership='" + getMembership() + "'" +
+            ", membershipexpire='" + getMembershipexpire() + "'" +
             "}";
     }
+
 
 }

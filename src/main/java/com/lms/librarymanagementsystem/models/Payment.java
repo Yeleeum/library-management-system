@@ -29,16 +29,20 @@ public class Payment {
     @Column(name = "approved")
     private String approved;
 
+    @Column(name = "paid")
+    private String paid;
+
     public Payment() {
     }
 
-    public Payment(Integer pid, String username, String paydate, Integer amount, String transaction, String approved) {
+    public Payment(Integer pid, String username, String paydate, Integer amount, String transaction, String approved,String paid) {
         this.pid = pid;
         this.username = username;
         this.paydate = paydate;
         this.amount = amount;
         this.transaction = transaction;
         this.approved = approved;
+        this.paid = paid;
     }
 
     public Integer getPid() {
@@ -89,6 +93,14 @@ public class Payment {
         this.approved = approved;
     }
 
+    public String getPaid() {
+        return this.paid;
+    }
+
+    public void setPaid(String paid) {
+        this.paid = paid;
+    }
+
     @Override
     public String toString() {
         return "{" +
@@ -98,6 +110,8 @@ public class Payment {
             ", amount='" + getAmount() + "'" +
             ", transaction='" + getTransaction() + "'" +
             ", approved='" + getApproved() + "'" +
+            ", paid='" + getPaid() + "'" +
             "}";
     }
+
 }

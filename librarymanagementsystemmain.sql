@@ -7,7 +7,7 @@ use librarymanagementsystem;
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 19, 2023 at 10:41 AM
+-- Generation Time: Apr 21, 2023 at 04:28 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -91,11 +91,13 @@ CREATE TABLE `books` (
 --
 
 INSERT INTO `books` (`bid`, `itid`, `title`, `author`, `publisher`, `thumbnail`, `description`, `category`, `keywords`, `edition`, `pageno`, `stock`, `location`) VALUES
-(1, 'I01', 'new', 'new', 'new', 'new.png', 'new new new', 'Java', 'java,prog', 'new', 300, 4, 'aB'),
-(2, 'I02', 'hello', 'hello', 'hello', 'hello.jpg', 'hello', 'c++', 'c++,c', 'new', 45, 4, 'fg'),
-(4, 'I03', 'hello', 'hello', 'hello', 'hello.jpg', 'hello', 'c++', 'c++,c,new\r\n', 'new', 45, 4, 'fg'),
-(5, 'I04', 'Maza', 'new', 'hu', 'http://localhost:8080/books', 'wow', 'Bengali', 'huiii', '3', 34, 34, 'DF'),
-(7, 'I0909', 'er', 'we', 'we', '273459962_1636113900055442_7228868579176044961_n.jpg', 'we', 'we', 'we', '3', 3, 3, '3');
+(1, 'I01', 'new', 'new', 'new', 'Untitled design.png', 'new new new', 'Java', 'java,prog', 'new', 300, 4, 'aB'),
+(2, 'I02', 'hello', 'hello', 'hello', 'Texturelabs_Pattern_129S.png', 'hello', 'c++', 'c++,c', 'new', 45, 4, 'fg'),
+(4, 'I03', 'hello', 'hello', 'hello', 'Untitled design.png', 'hello', 'c++,java', 'c++,c,new\r\n', 'new', 45, 4, 'fg'),
+(5, 'I04', 'Maza', 'new', 'hu', 'crew-neck-t-shirt-mockup-of-a-man-smiling-at-a-studio-28953 (1).png', 'wow', 'Bengali', 'huiii', '3', 34, 34, 'DF'),
+(7, 'I0909', 'er', 'we', 'we', '273459962_1636113900055442_7228868579176044961_n.jpg', 'we', 'we', 'we', '3', 3, 3, '3'),
+(8, 'I9789', 'My Book', 'me', 'ami re', 'Screenshot 2023-03-08 220519.png', 'nei kichu', 'khub valo', 'valo re', '4', 45, 0, '45'),
+(9, 'I87987', 'My new Book', 'wow', 'wow2', 'Screenshot (15).png', 'nwi', 'vag', 'er', '4', 4, 4, '4');
 
 -- --------------------------------------------------------
 
@@ -113,6 +115,18 @@ CREATE TABLE `borrow` (
   `APPROVED` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `borrow`
+--
+
+INSERT INTO `borrow` (`BRID`, `USERNAME`, `ITID`, `BORROWDATE`, `RETURNDATE`, `STATUS`, `APPROVED`) VALUES
+(1, '10min', 'I01', '2023-04-20', '2023-05-05', 'notreturned', 'approved'),
+(2, '10min', 'I02', '2023-04-21', '2023-05-06', 'notreturned', 'rejected'),
+(3, '10min', 'I01', '2023-04-21', '2023-05-06', 'notreturned', 'approved'),
+(4, '10min', 'ty', '2023-04-21', '2023-05-06', 'notreturned', 'rejected'),
+(5, '10min', 'I02', '2023-04-21', '2023-05-06', 'notreturned', 'rejected'),
+(6, '10min', 'I9789', '2023-04-21', '2023-05-06', 'notreturned', 'approved');
+
 -- --------------------------------------------------------
 
 --
@@ -129,7 +143,7 @@ CREATE TABLE `connector` (
 --
 
 INSERT INTO `connector` (`itid`, `type`) VALUES
-('I01', 'books'),
+('I01', 'book'),
 ('i02', 'book'),
 ('I03', 'book'),
 ('I04', 'book'),
@@ -139,10 +153,15 @@ INSERT INTO `connector` (`itid`, `type`) VALUES
 ('I08', 'journal'),
 ('I09', 'journal'),
 ('I0909', 'book'),
+('I098979', 'journal'),
 ('I10', 'journal'),
+('I420', 'theses'),
 ('I876', 'theses'),
+('I876545', 'theses'),
+('I87987', 'book'),
 ('I8978', 'theses'),
 ('I960', 'book'),
+('I9789', 'book'),
 ('ty', 'journal');
 
 -- --------------------------------------------------------
@@ -155,7 +174,8 @@ CREATE TABLE `fine` (
   `FID` int(11) NOT NULL,
   `Username` varchar(100) DEFAULT NULL,
   `Finedate` date DEFAULT NULL,
-  `Amount` varchar(100) DEFAULT NULL
+  `Amount` varchar(100) DEFAULT NULL,
+  `PAID` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -185,11 +205,12 @@ CREATE TABLE `journals` (
 --
 
 INSERT INTO `journals` (`jid`, `itid`, `title`, `publisher`, `editor`, `description`, `thumbnail`, `category`, `keywords`, `startyear`, `endyear`, `pageno`, `stock`) VALUES
-(1, 'I05', 'great', 'me', 'vh', 'kuch vi', NULL, 'option1', 'c++', NULL, NULL, NULL, 3),
-(2, 'I08', 'New', 'New', 'New', 'df', NULL, 'option2', 'Java', NULL, NULL, NULL, 3),
-(3, 'I09', 'Something', 'ke dkhe', 'wow', 'jio', NULL, 'option3', 'Java,Prog', NULL, NULL, NULL, 1),
-(4, 'I10', '1', '1', '1', '1', NULL, 'option1', '1', 2003, 2023, 1, 1),
-(5, 'ty', 'tyu', 'ty', 'ht', 'bg', 'Untitled design.png', 'option2', 'fb', 335, 456, 4, 4);
+(1, 'I05', 'great', 'me', 'vh', 'kuch vi', 'Untitled design.png', 'option1', 'c++', NULL, NULL, NULL, 3),
+(2, 'I08', 'New', 'New', 'New', 'df', 'istockphoto-942526180-170667a.jpg', 'option2', 'Java', NULL, NULL, NULL, 3),
+(3, 'I09', 'Something', 'ke dkhe', 'wow', 'jio', 'LMSTABLEUPDATED3.0.png', 'option3', 'Java,Prog', NULL, NULL, NULL, 1),
+(4, 'I10', '1', '1', '1', '1', 'LMSTABLEUPDATED3.0.png', 'option1', '1', 2003, 2023, 1, 1),
+(5, 'ty', 'tyu', 'ty', 'ht', 'bg', 'mockup-of-an-11-oz-coffee-mug-from-three-different-angles-27883 (22).png', 'option2', 'fb3', 335, 456, 4, 4),
+(9, 'I098979', 'something', 'why', 'why not', 'why not why', 'LMSTABLEUPDATED3.0.png', 'everything', 'great', 67, 2023, 4, 1);
 
 -- --------------------------------------------------------
 
@@ -218,7 +239,7 @@ CREATE TABLE `magazines` (
 --
 
 INSERT INTO `magazines` (`mid`, `itid`, `title`, `publisher`, `issuedate`, `issuenumber`, `description`, `thumbnail`, `frequency`, `keywords`, `specialissue`, `category`, `stock`) VALUES
-(1, 'I06', 'Anandamela', 'ABP', '2022-03-13', '34', '45', NULL, '4', 'c++', 'no', 'option2', 3);
+(1, 'I06', 'Anandamela', 'ABP', '2022-03-13', '341', '45', 'White and Black Modern Twitter Header.png', '4', 'c++', 'no', 'option2', 3);
 
 -- --------------------------------------------------------
 
@@ -245,7 +266,8 @@ CREATE TABLE `payment` (
   `paydate` date DEFAULT NULL,
   `Amount` varchar(100) DEFAULT NULL,
   `TRANSACTION` varchar(100) DEFAULT NULL,
-  `Approved` varchar(100) DEFAULT NULL
+  `Approved` varchar(100) DEFAULT NULL,
+  `paid` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -284,7 +306,7 @@ INSERT INTO `registration` (`RSID`, `USERNAME`, `PASSWORD`, `PROFILEPICTURE`, `F
 (7, 'new6', '1234', 'Untitled design.png', 'Sinchan', 'Nandy', 'male', '2023-04-04', '07003512645', 'sinchannandy54@gmail.com', 'student', 'unpaid', '', 'rejected'),
 (8, 'new7', '123', 'Untitled design.png', 'Sinchan', 'Nandy', 'male', '2023-04-04', '07003512645', 'sinchannandy54@gmail.com', 'student', 'paid', 'b679', 'approved'),
 (9, '10min', '45', 'IMG-20220311-WA0006-02.jpeg', 'Sinchan', 'Nandy', 'male', '2023-04-04', '07003512645', 'sinchannandy54@gmail.com', 'student', 'unpaid', '', 'approved'),
-(10, '10min', '89', 'IMG-20220311-WA0006-02.jpeg', 'Sinchan', 'Nandy', 'male', '2023-04-04', '07003512645', 'joh53506@zslsz.com', 'student', 'unpaid', '', 'pending'),
+(10, '10min', '89', 'IMG-20220311-WA0006-02.jpeg', 'Sinchan', 'Nandy', 'male', '2023-04-04', '07003512645', 'joh53506@zslsz.com', 'student', 'unpaid', '', 'approved'),
 (11, '10min2', '56', 'IMG-20220311-WA0006-02.jpeg', 'Sinchan', 'Nandy', 'male', '2023-04-04', '07003512645', 'joh53506@zslsz.com', 'student', 'unpaid', '', 'approved'),
 (12, 'ayush', 'rt', 'IMG-20220311-WA0006-02.jpeg', 'Ayush', 'Singh', 'male', '2023-04-04', '07003512645', 'hiayushsingh.co.in@gmail.com', 'student', 'unpaid', '', 'rejected'),
 (13, 'new8', '34', 'White and Black Modern Twitter Header.png', 'Sinchan', 'Nandy', 'male', '2023-03-29', '07003512645', 'hjk@hjl.com', 'regular', 'unpaid', '', 'approved'),
@@ -293,7 +315,11 @@ INSERT INTO `registration` (`RSID`, `USERNAME`, `PASSWORD`, `PROFILEPICTURE`, `F
 (16, 'er2', '2', 'Untitled design.png', 'Sinchan', 'Nandy', 'male', NULL, '07003512645', 'sinchannandy54@gmail.com', 'regular', 'unpaid', '', 'pending'),
 (17, 'sinchan@2002', '2002', 'noor kata (1).png', 'Sinchan', 'Nandy', 'male', '2023-04-17', '07003512645', 'sinchannandy54@gmail.com', 'regular', 'unpaid', '', 'approved'),
 (18, 'new2', '2', '', 'Sinchan', 'Nandy', 'male', NULL, '07003512645', 'sinchannandy54@gmail.com', 'regular', 'unpaid', '', 'rejected'),
-(19, 'fhj1080', 'mazaaya', '20210401_124518-01.jpeg', 'Sinchan', 'Nandy', 'male', '2023-04-18', '07003512645', 'sinchannandy54@gmail.com', 'researcher', 'paid', 'uffaladaitaka', 'pending');
+(19, 'fhj1080', 'mazaaya', '20210401_124518-01.jpeg', 'Sinchan', 'Nandy', 'male', '2023-04-18', '07003512645', 'sinchannandy54@gmail.com', 'researcher', 'paid', 'uffaladaitaka', 'pending'),
+(20, 'user', 'user', '2.png', 'Sinchan', 'Nandy', 'male', '2023-04-19', '07003512645', 'sinchannandy54@gmail.com', 'regular', 'paid', 'you', 'approved'),
+(21, 'Ahana@baccha', 'Soumenamar', NULL, 'Ahana', 'Manna', 'female', '2023-04-20', '07003512645', 'ahanamanna1234@gmail.com', 'teacher', 'paid', 'IloveSoumen', 'rejected'),
+(22, 'ronithlovesria', '1234', 'WhatsApp Image 2023-01-16 at 12.25.35.jpg', 'Ronith', 'Goon', 'male', '2023-04-20', '07003512645', 'ronith.goon@gmail.com', 'teacher', 'unpaid', '', 'rejected'),
+(23, 'test', 'test', 'res.jpg', 'Sinchan', 'Nandy', 'male', '2002-03-27', '7003512645', 'sinchannandy54@gmail.com', 'student', 'unpaid', '', 'approved');
 
 -- --------------------------------------------------------
 
@@ -319,10 +345,11 @@ CREATE TABLE `softcopy` (
 --
 
 INSERT INTO `softcopy` (`sid`, `title`, `owner`, `publisher`, `description`, `thumbnail`, `category`, `keywords`, `pageno`, `filename`) VALUES
-('I765', 'NewPDF', 'hj', 'Bhuj', 'ok', NULL, 'option2', 'c++,java,moja', 34, 'Web based Scalable School Management System.pdf'),
-('I980', 'Great', 'Me', 'no one', 'wow', NULL, 'option1', 'head', 67, 'Resume_Updated_2.0.pdf'),
+('hello', 'hii', 'yu', 'yiu', 'yui', 'LMSTABLEUPDATED3.0.png', 'option1', 'hrf', 5, 'module 3&4.pdf'),
+('I765', 'NewPDF223', 'hj', 'Bhuj', 'ok', '20230219155816_IMG_1105.JPG', 'option1', 'c++,java,moja', 343, 'export-4_16_2023, 10_17_14 PM.pdf'),
+('I980', 'Great', 'Me', 'no one', 'wow', 'Screenshot (31).png', 'option1', 'head', 67, 'Resume_Updated_2.0.pdf'),
 ('Moja', 'moja', 'moja', 'moja', 'moja', 'Untitled design.png', 'option2', 'moja', 2, 'Noor web_organized_compressed.pdf'),
-('S01', 'C++', 'T Java', 'U java', 'YUO', NULL, 'option2', 'C++,K++', 10, 'College Projects.pdf');
+('S01', 'C++', 'T Java', 'U java', 'YUO', 'Screenshot 2023-03-01 222844.png', 'option2', 'C++,K++', 10, 'College Projects.pdf');
 
 -- --------------------------------------------------------
 
@@ -352,8 +379,9 @@ CREATE TABLE `theses` (
 --
 
 INSERT INTO `theses` (`tid`, `itid`, `title`, `researcher`, `guides`, `description`, `thumbnail`, `category`, `keywords`, `completeddate`, `place`, `abstract`, `pageno`, `stock`) VALUES
-(1, 'I8978', 'Maja', 'New', 'Wow', 'Wow', NULL, 'option2', 'you', NULL, 'kolkata', NULL, NULL, 34),
-(2, 'I05908', '23', '23', '23', '23', 'noor kata (1).png', 'option1', '23', NULL, '23', NULL, NULL, 3);
+(1, 'I8978', 'Maja', 'New', 'Wow', 'Wow', 'IMG-20230406-WA0018.jpg', 'option2', 'you', '2023-09-08', 'kolkata', NULL, NULL, 34),
+(2, 'I05908', '23', '23', '23', '23', 'noor kata (1).png', 'option1', '23', NULL, '23', NULL, NULL, 3),
+(3, 'I420', 'Research on Baccha', 'Kaka', 'Kaka2', 'Baccha 3', 'WhatsApp Image 2023-01-16 at 12.25.35.jpg', 'Nirlojjo', '1 kg', '2023-01-01', 'Ke jane', 'Gere', 420, 45);
 
 -- --------------------------------------------------------
 
@@ -372,20 +400,23 @@ CREATE TABLE `users` (
   `PHONE` varchar(100) DEFAULT NULL,
   `EMAIL` varchar(100) DEFAULT NULL,
   `CATEGORY` varchar(100) DEFAULT NULL,
-  `MEMBERSHIP` varchar(100) DEFAULT NULL
+  `MEMBERSHIP` varchar(100) DEFAULT NULL,
+  `MEMBERSHIPEXPIRE` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`USERNAME`, `PASSWORD`, `PROFILEPICTURE`, `FIRSTNAME`, `LASTNAME`, `GENDER`, `DOB`, `PHONE`, `EMAIL`, `CATEGORY`, `MEMBERSHIP`) VALUES
-('10min', '45', 'IMG-20220311-WA0006-02.jpeg', 'Sinchan', 'Nandy', 'male', '2023-04-04', '07003512645', 'sinchannandy54@gmail.com', 'student', 'active'),
-('10min2', '56', 'IMG-20220311-WA0006-02.jpeg', 'Sinchan', 'Nandy', 'male', '2023-04-04', '07003512645', 'joh53506@zslsz.com', 'student', 'active'),
-('new6', '1234', 'Untitled design.png', 'Sinchan', 'Nandy', 'male', '2023-04-04', '07003512645', 'sinchannandy54@gmail.com', 'student', 'active'),
-('new7', '123', 'Untitled design.png', 'Sinchan', 'Nandy', 'male', '2023-04-04', '07003512645', 'sinchannandy54@gmail.com', 'student', 'active'),
-('new8', '34', 'White and Black Modern Twitter Header.png', 'Sinchan', 'Nandy', 'male', '2023-03-29', '07003512645', 'hjk@hjl.com', 'regular', 'active'),
-('sinchan@2002', '2002', 'noor kata (1).png', 'Sinchan', 'Nandy', 'male', '2023-04-17', '07003512645', 'sinchannandy54@gmail.com', 'regular', 'active');
+INSERT INTO `users` (`USERNAME`, `PASSWORD`, `PROFILEPICTURE`, `FIRSTNAME`, `LASTNAME`, `GENDER`, `DOB`, `PHONE`, `EMAIL`, `CATEGORY`, `MEMBERSHIP`, `MEMBERSHIPEXPIRE`) VALUES
+('10min', '89', 'IMG-20220311-WA0006-02.jpeg', 'Sinchan', 'Nandy', 'male', '2023-04-04', '07003512645', 'joh53506@zslsz.com', 'student', 'active', NULL),
+('10min2', '56', 'IMG-20220311-WA0006-02.jpeg', 'Sinchan', 'Nandy', 'male', '2023-04-04', '07003512645', 'joh53506@zslsz.com', 'student', 'active', NULL),
+('new6', '1234', 'Untitled design.png', 'Sinchan', 'Nandy', 'male', '2023-04-04', '07003512645', 'sinchannandy54@gmail.com', 'student', 'active', NULL),
+('new7', '123', 'Untitled design.png', 'Sinchan', 'Nandy', 'male', '2023-04-04', '07003512645', 'sinchannandy54@gmail.com', 'student', 'active', NULL),
+('new8', '34', 'White and Black Modern Twitter Header.png', 'Sinchan', 'Nandy', 'male', '2023-03-29', '07003512645', 'hjk@hjl.com', 'regular', 'active', NULL),
+('sinchan@2002', '2002', 'noor kata (1).png', 'Sinchan', 'Nandy', 'male', '2023-04-17', '07003512645', 'sinchannandy54@gmail.com', 'regular', 'active', NULL),
+('test', 'test', 'res.jpg', 'Sinchan', 'Nandy', 'male', '2002-03-27', '7003512645', 'sinchannandy54@gmail.com', 'student', 'active', '2024-04-21'),
+('user', 'user', '2.png', 'Sinchan', 'Nandy', 'male', '2023-04-19', '07003512645', 'sinchannandy54@gmail.com', 'regular', 'active', NULL);
 
 -- --------------------------------------------------------
 
@@ -525,13 +556,13 @@ ALTER TABLE `alternative`
 -- AUTO_INCREMENT for table `books`
 --
 ALTER TABLE `books`
-  MODIFY `bid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `bid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `borrow`
 --
 ALTER TABLE `borrow`
-  MODIFY `BRID` int(100) NOT NULL AUTO_INCREMENT;
+  MODIFY `BRID` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `fine`
@@ -543,7 +574,7 @@ ALTER TABLE `fine`
 -- AUTO_INCREMENT for table `journals`
 --
 ALTER TABLE `journals`
-  MODIFY `jid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `jid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `magazines`
@@ -567,13 +598,13 @@ ALTER TABLE `payment`
 -- AUTO_INCREMENT for table `registration`
 --
 ALTER TABLE `registration`
-  MODIFY `RSID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `RSID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `theses`
 --
 ALTER TABLE `theses`
-  MODIFY `tid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `tid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables
@@ -639,3 +670,4 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+

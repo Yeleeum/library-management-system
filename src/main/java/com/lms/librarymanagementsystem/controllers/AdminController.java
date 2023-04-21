@@ -103,13 +103,13 @@ public class AdminController {
     }
 
     @PostMapping("/approveuser")
-    public String approveUser(Integer rsid, String pay) {
+    public String approveUser(Integer rsid, String pay,String membershipexpire) {
         registrationServices.updateApproval("approved", rsid);
         Registration registration = registrationServices.getOneRegistration(rsid);
         usersServices.insertOnUser(new Users(registration.getUsername(), registration.getPassword(),
                 registration.getProfilePicture(), registration.getFirstName(), registration.getLastName(),
                 registration.getGender(), registration.getDob(), registration.getPhone(), registration.getEmail(),
-                registration.getCategory(), "active"));
+                registration.getCategory(), "active",membershipexpire));
         return "redirect:./viewpending/" + pay.toLowerCase();
     }
 
