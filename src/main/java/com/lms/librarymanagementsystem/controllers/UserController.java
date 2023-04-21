@@ -32,7 +32,7 @@ public class UserController {
     public String getProfile(HttpServletRequest req){
         System.out.println(SessionHandler.getUserSession(req));
         System.out.println(SessionHandler.getAccessSession(req));
-        return "UserProfile";
+        return "userPanel";
     }
 
     @PostMapping("/checkborrow")
