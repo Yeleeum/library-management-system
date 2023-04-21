@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.lms.librarymanagementsystem.Handlers.SessionHandler;
 import com.lms.librarymanagementsystem.models.Borrow;
 import com.lms.librarymanagementsystem.services.BorrowServices;
+import com.lms.librarymanagementsystem.services.FineServices;
 import com.lms.librarymanagementsystem.services.UsersServices;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -19,10 +20,12 @@ import jakarta.servlet.http.HttpServletRequest;
 public class UserController {
     private UsersServices usersServices;
     private BorrowServices borrowServices;
+    private FineServices fineServices;
 
-    public UserController(UsersServices usersServices,BorrowServices borrowServices) {
+    public UserController(UsersServices usersServices,BorrowServices borrowServices,FineServices fineServices) {
         this.usersServices = usersServices;
         this.borrowServices=borrowServices;
+        this.fineServices=fineServices;
     }
 
     @GetMapping
@@ -35,14 +38,14 @@ public class UserController {
     @PostMapping("/checkborrow")
     public ResponseEntity<String> checkBorrow(String itid,HttpServletRequest req){
         String username=SessionHandler.getUserSession(req);
-        String returnString="false";
-        if(borrowServices.findUnReturnedByItidByUsername(itid,username).isEmpty()){
-            returnString="true";
-         }
-        if(borrowServices.findUnReturnedByUsername(username).size()<2){
-            returnString="true";
-        } 
-
+        String returnString="true";
+        if(!borrowServices.findUnReturnedByItidByUsername(itid,username).isEmpty()){
+            returnString="false";
+        }else if(borrowServices.findUnReturnedByUsername(username).size()==2){
+            returnString="false";
+        }else if(!fineServices.findUnpaidFineByUsername(username).isEmpty()){
+            returnString="false";
+        }
         return new ResponseEntity<String>(returnString,HttpStatus.OK);
     }
 

@@ -1,4 +1,4 @@
-<%@page import="com.lms.librarymanagementsystem.FileHandler.SessionHandler"%>
+<%@page import="com.lms.librarymanagementsystem.Handlers.SessionHandler"%>
 <% if(SessionHandler.getAccessSession(request).equals("admin")) {%>
     <form method="get">
         <button formaction="/admin/edit/<%= type %>/<%= id %>">Edit</button>

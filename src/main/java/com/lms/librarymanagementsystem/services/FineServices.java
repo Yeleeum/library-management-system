@@ -1,5 +1,7 @@
 package com.lms.librarymanagementsystem.services;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,5 +19,9 @@ public class FineServices {
 
     public Fine inserOneFine(Fine fine){
         return fineRepository.save(fine);
+    }
+
+    public List<Fine> findUnpaidFineByUsername(String username){
+        return fineRepository.getUnpaidFineByUsername(username);
     }
 }
