@@ -77,8 +77,8 @@
                 <div class="user-cards">
                     <div class="user-inner-container">
                         <div class="membership-details">
-                            <h1>Membership Status</h1>
-                            <small class="small-text">Expires on <%=user.getMembershipexpire()%></small>
+                            <h2>Membership Status</h2>
+                            <h3>Expires on <%=user.getMembershipexpire()%></h3>
                             <div class="status">
                                 <p>
                                    <% if(user.getMembership().equals("active")){%>
@@ -91,8 +91,8 @@
                             </div>
                         </div>
                         <div class="fine-status">
-                            <h1>Fine Status</h1>
-                            <small class="small-text"><i class="fa-solid fa-indian-rupee-sign"></i> 654</small>
+                            <h2>Fine Status</h2>
+                            <h3><i class="fa-solid fa-indian-rupee-sign"></i> 654</h3>
                             <div class="status">
                                 <p>
                                     <span class="fa-solid fa-dot-circle" style="color: rgb(255, 0, 0);"></span>
