@@ -171,7 +171,7 @@
     }
 
     const hideContainer = (container) => {
-        let containerElement = document.querySelector(`.${container}`);
+        let containerElement = document.querySelector("." + container);
         containerElement.style.display = "none";
     }
 
