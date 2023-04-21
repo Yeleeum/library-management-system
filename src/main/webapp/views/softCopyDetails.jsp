@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <%@page import="com.lms.librarymanagementsystem.models.*" %>
-<%@page import="com.lms.librarymanagementsystem.FileHandler.SessionHandler"%>
+<%@page import="com.lms.librarymanagementsystem.Handlers.SessionHandler"%>
     <%@page import="java.util.List" %>
         <html lang="en">
 
