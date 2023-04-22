@@ -33,5 +33,13 @@ public class UsersServices {
         return usersRepository.getUserByUsername(username);
     }
 
+    public Integer updateMembership(){
+        return usersRepository.updateMembership();
+    }
+
+    public List<Users> getInactiveUsers(String username){
+        return usersRepository.getInactiveUsers(username);
+    }
+
 
 }

@@ -73,6 +73,7 @@ public class LoginController {
         List<Admin> users = adminServices.findUserByUsernamePassword(username, password);
         if (!users.isEmpty()) {
             SessionHandler.setSession(req, username, "admin");
+            usersServices.updateMembership();
             return new ResponseEntity<String>("logged", HttpStatus.OK);
         }
         return new ResponseEntity<String>("not found", HttpStatus.NOT_FOUND);

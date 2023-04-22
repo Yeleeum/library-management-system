@@ -58,6 +58,8 @@ public class UserController {
             returnString="false";
         }else if(!fineServices.findUnpaidFineByUsername(username).isEmpty()){
             returnString="false";
+        }else if(!usersServices.getInactiveUsers(username).isEmpty()){
+            returnString="false";
         }
         return new ResponseEntity<String>(returnString,HttpStatus.OK);
     }
