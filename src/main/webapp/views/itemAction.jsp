@@ -6,10 +6,11 @@
     </form>
 <% } else { %>
     <button onclick="performborrow()" class="Borrow" >Borrow</button>
-    <button onclick="javascript(void(0))">Return</button>
+    <button onclick="javascript(void(0))" class="Return">Return</button>
 <% } %>
 <script>
     let Borrow=document.querySelector(".Borrow")
+    let Return=document.querySelector(".Return")
     if('<%=stock>0%>'=='true'){
 
         function convertToMySQLDate(newdateObj) {
@@ -50,8 +51,14 @@
         .then(response => response.json())
         .then(data=> {
             console.log(data)
-                Borrow.disabled=!data
-                Borrow.style.opacity=data?"1":"0.4"
+                Borrow.disabled=!(data.status==='true')
+                Borrow.style.opacity=(data.status==='true')?"1":"0.4"
+                if(data.message==="You have already Borrowed this item."){
+                    Return.disabled=!Borrow.disabled
+                }else{
+                    Return.disabled=true
+                }
+                Return.style.opacity=Return.disabled?"0.4":"1"
         })
         }
         
@@ -59,14 +66,14 @@
             fetch("http://localhost:8080/user/borrow",borrowperformoptions)
             .then(response => response.json())
             .then(data=> {
-                    if(data){
-                        checkBorrow('<%=itid%>')
-                    }
+                    checkBorrow('<%=itid%>')
                 })
         }
         checkBorrow('<%=itid%>')
     }else{
         Borrow.disabled=true
         Borrow.style.opacity="0.4"
+        Return.disabled=!Borrow.disabled
+        Return.style.opacity=Return.disabled?"0.4":"1"
     }
 </script>
