@@ -1,5 +1,7 @@
 package com.lms.librarymanagementsystem.controllers;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.lms.librarymanagementsystem.Handlers.SessionHandler;
 import com.lms.librarymanagementsystem.models.Borrow;
+import com.lms.librarymanagementsystem.models.Fine;
 import com.lms.librarymanagementsystem.models.Users;
 import com.lms.librarymanagementsystem.services.BorrowServices;
 import com.lms.librarymanagementsystem.services.FineServices;
@@ -35,7 +38,13 @@ public class UserController {
         System.out.println(SessionHandler.getUserSession(req));
         System.out.println(SessionHandler.getAccessSession(req));
         Users user=usersServices.findUserByUsername(SessionHandler.getUserSession(req));
+        List<Fine> fines=fineServices.findUnpaidFineByUsername(SessionHandler.getUserSession(req));
+        Integer totalFine=0;
+        for(Fine fine:fines){
+            totalFine+=fine.getAmount();
+        }
         model.addAttribute("user", user);
+        model.addAttribute("fine", totalFine);
         return "userPanel";
     }
 

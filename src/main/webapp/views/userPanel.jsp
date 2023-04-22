@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <%@ page import="com.lms.librarymanagementsystem.models.Users" %>
+<%@ page import="com.lms.librarymanagementsystem.models.Fine" %>
+<%@ page import="java.util.List" %>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,6 +15,8 @@
 </head>
 <%
     Users user=(Users)request.getAttribute("user");
+    Integer fine=(Integer)request.getAttribute("fine");
+
 %>
 <body>
     <div class="container">
@@ -92,11 +96,17 @@
                         </div>
                         <div class="fine-status">
                             <h2>Fine Status</h2>
-                            <h3><i class="fa-solid fa-indian-rupee-sign"></i> 654</h3>
+                            <h3><i class="fa-solid fa-indian-rupee-sign"></i> <%=fine%></h3>
                             <div class="status">
                                 <p>
-                                    <span class="fa-solid fa-dot-circle" style="color: rgb(255, 0, 0);"></span>
-                                    <span>Due</span>
+                                    <% if(fine==0){%>
+                                        <span class="fa-solid fa-dot-circle" style="color: rgb(0, 250, 0);"></span>
+                                        <span>Clear</span>
+                                    <%}else{%>
+                                        <span class="fa-solid fa-dot-circle" style="color: rgb(255, 0, 0);"></span>
+                                        <span>Due</span>
+                                    <%}%>
+                                    
                                 </p>
                             </div>
                         </div>
