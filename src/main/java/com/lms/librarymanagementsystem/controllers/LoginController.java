@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.lms.librarymanagementsystem.Handlers.DateHandler;
 import com.lms.librarymanagementsystem.Handlers.SessionHandler;
 import com.lms.librarymanagementsystem.models.Admin;
+import com.lms.librarymanagementsystem.models.Borrow;
 import com.lms.librarymanagementsystem.models.Fine;
 import com.lms.librarymanagementsystem.models.Registration;
 import com.lms.librarymanagementsystem.models.Users;
@@ -50,8 +51,10 @@ public class LoginController {
         List<Users> users = usersServices.findUserByUsernamePassword(username, password);
         if (!users.isEmpty()) {
             SessionHandler.setSession(req, username, "nonadmin");
-            if(!borrowServices.findFinableBorrowByUsername(username).isEmpty() && fineServices.findUnpaidFineByUsername(username).isEmpty()){
-                fineServices.inserOneFine(new Fine(null, username, DateHandler.getCurrentDate(), borrowServices.findFinableBorrowByUsername(username).size()*50,"false"));
+            List<Borrow> borrows=borrowServices.findFinableBorrowByUsername(username);
+            List<Fine> fines=fineServices.findUnpaidFineByUsername(username);
+            if(!borrows.isEmpty() && fines.size()<borrows.size()){
+                fineServices.inserOneFine(new Fine(null, username, DateHandler.getCurrentDate(), (borrows.size()-fines.size())*50,"false"));
             }
             return new ResponseEntity<String>("logged", HttpStatus.OK);
         }
