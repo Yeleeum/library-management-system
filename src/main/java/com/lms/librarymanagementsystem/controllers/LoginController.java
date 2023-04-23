@@ -50,7 +50,7 @@ public class LoginController {
         List<Users> users = usersServices.findUserByUsernamePassword(username, password);
         if (!users.isEmpty()) {
             SessionHandler.setSession(req, username, "nonadmin");
-            if(!borrowServices.findFinableBorrowByUsername(username).isEmpty()){
+            if(!borrowServices.findFinableBorrowByUsername(username).isEmpty() && fineServices.findUnpaidFineByUsername(username).isEmpty()){
                 fineServices.inserOneFine(new Fine(null, username, DateHandler.getCurrentDate(), borrowServices.findFinableBorrowByUsername(username).size()*50,"false"));
             }
             return new ResponseEntity<String>("logged", HttpStatus.OK);
