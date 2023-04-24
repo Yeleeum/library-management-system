@@ -7,9 +7,9 @@
 
         <div class="links">
             <ul class="inner-links">
-                <li>Dashboard</li>
+                <li><a href="/admin">Dashboard</a></li>
                 <li><a href="/admin/pendingborrow">Pending Borrow Requests</a></li>
-                <li>Returned Books</li>
+                <li><a href="/admin/pendingreturn">Pending Return Requests</a></li>
                 <li>
                     <div class="sublinks-Container">
                         <span>Manage Registrations</span>

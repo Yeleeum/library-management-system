@@ -46,7 +46,7 @@
                     <th>ITID</th>
                     <th>BORROWDATE</th>
                     <th>RETURNDATE</th>
-                    <th>APPROVED</th>
+                    <th>APPROVE</th>
                     <th>REJECT</th>
                 </tr>
                 <% if( !(returns == null || returns.isEmpty()) ) { %>

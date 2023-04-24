@@ -47,7 +47,7 @@
                     <th>BORROWDATE</th>
                     <th>RETURNDATE</th>
                     <th>STATUS</th>
-                    <th>APPROVED</th>
+                    <th>APPROVE</th>
                     <th>REJECT</th>
                 </tr>
                 <% if( !(borrows == null || borrows.isEmpty()) ) { %>
