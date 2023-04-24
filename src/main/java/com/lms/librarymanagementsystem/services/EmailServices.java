@@ -1,6 +1,7 @@
 package com.lms.librarymanagementsystem.services;
 
 import java.io.File;
+import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -64,6 +65,38 @@ public class EmailServices {
             }
             
             message.setContent(multipart);
+            javaMailSender.send(message);
+        } catch (MessagingException | MailException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Async
+    public void sendMediaMail(String to, String subject, String body, String imageData) {
+        try {
+            MimeMessage message = javaMailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(message, true);
+            helper.setFrom("libraryauthorities2023@gmail.com");
+            helper.setTo(to);
+            helper.setSubject(subject);
+    
+            // Create the message body
+            MimeMultipart multipart = new MimeMultipart();
+            MimeBodyPart messageBodyPart = new MimeBodyPart();
+            messageBodyPart.setContent(body, "text/html");
+            multipart.addBodyPart(messageBodyPart);
+    
+            // Add the image as a Base64-encoded string to the message body
+            MimeBodyPart imagePart = new MimeBodyPart();
+            // byte[] imageBytes = Files.readAllBytes(Paths.get(imageData));
+            // String encodedImage = Base64.getEncoder().encodeToString(imageBytes);
+            imagePart.setContent("<img src=\"" + imageData + "\" />", "text/html");
+            multipart.addBodyPart(imagePart);
+    
+            // Set the message content to the multipart message
+            message.setContent(multipart);
+    
+            // Send the message
             javaMailSender.send(message);
         } catch (MessagingException | MailException e) {
             e.printStackTrace();

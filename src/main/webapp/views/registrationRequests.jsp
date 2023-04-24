@@ -304,7 +304,7 @@ button {
                                 <input type="number" value="<%=registration.getRsid()%>" name="rsid" hidden>
                                 <input type="text"  name="membershipexpire" id="membershipexpire" hidden>
                                 <input type="text" value="<%=(String)request.getAttribute("category")%>" name="pay" hidden>
-                                <textarea name="libraryCard" hidden id="capturedElement"></textarea>
+                                <textarea name="libraryCard" hidden id="capturedElement" maxlength="52428899"></textarea>
                                 <button>APPROVE</button>
                             </form>
                         </td>
@@ -375,16 +375,21 @@ button {
     captureAction.forEach((element) => {
         element[0].addEventListener('click', function () {
             console.log('entered');
-            html2canvas(element[2]).then(function (canvas) {
+            html2canvas(element[2],{
+                scale:2,
+                onrendered:render
+            })
+            function render(canvas) {
                 console.log('entered2');
                 var imgData = canvas.toDataURL('image/png');
                 element[1].innerHTML = imgData;
+                // document.querySelector('#none').src=imgData
                 element[0].style = "background-color : green";
                 element[3].innerText = "Added";
                 // document.getElementById('none').src = imgData;
                 modelConainer.style = "display : none";
                 modelConainer.innerHTML = "";
-            })
+            }
         })
         
         element[3].addEventListener('click', (e) => {
