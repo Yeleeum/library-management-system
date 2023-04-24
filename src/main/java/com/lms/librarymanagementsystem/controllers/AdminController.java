@@ -77,7 +77,7 @@ public class AdminController {
         // System.out.println(SessionHandler.getAccessSession(req));
         List<Registration> top5Registrations = registrationServices.findTopPendings();
         List<Registration> registrations = registrationServices.findAllPending();
-        List<Borrow> borrows=borrowServices.findPending();
+        List<Borrow> borrows=borrowServices.findPendingBorrows();
         model.addAttribute("registrations", top5Registrations);
         model.addAttribute("noOfRegistrations", registrations.size());
         model.addAttribute("borrows", borrows);
@@ -265,9 +265,16 @@ public class AdminController {
 
     @GetMapping("/pendingborrow")
     public String getPendingBorrowTable(Model model){
-        List<Borrow> borrows=borrowServices.findPending();
+        List<Borrow> borrows=borrowServices.findPendingBorrows();
         model.addAttribute("borrows", borrows);
         return "pendingBorrows";
+    }
+
+    @GetMapping("/pendingreturn")
+    public String getPendingReturnTable(Model model){
+        List<Borrow> returns=borrowServices.findPendingReturns();
+        model.addAttribute("returns", returns);
+        return "pendingReturns";
     }
 
     @PostMapping("/borrowaction")
@@ -278,7 +285,7 @@ public class AdminController {
 
     @PostMapping("/returnaction")
     public ResponseEntity<String> performReturn(String action,String itid,String username){
-        borrowServices.performReturnAction(action.equals("rejected")?"request "+action:"returned", username, itid);
+        borrowServices.performReturnAction(action.equals("rejected")?"return "+action:"returned", username, itid);
         String type=connectorServices.getType(itid);
         if(type.equals("book")){
             booksServices.increaseStock(itid);
