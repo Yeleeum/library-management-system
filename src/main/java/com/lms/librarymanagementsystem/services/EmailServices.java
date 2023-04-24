@@ -5,7 +5,7 @@ import java.io.File;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.mail.MailException;
-import org.springframework.mail.MailSender;
+// import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -40,6 +40,7 @@ public class EmailServices {
         javaMailSender.send(message);
     }
 
+    @Async
     public void sendMimeMail(String to, String subject, String body, File file) {
         try {
             MimeMessage message = javaMailSender.createMimeMessage();
@@ -47,18 +48,22 @@ public class EmailServices {
             helper.setFrom("libraryauthorities2023@gmail.com");
             helper.setTo(to);
             helper.setSubject(subject);
-            helper.setText(body);
+
+            MimeMultipart multipart = new MimeMultipart();
+            MimeBodyPart bodyPart = new MimeBodyPart();
+            bodyPart.setText(body);
+            multipart.addBodyPart(bodyPart);
 
             if (file != null) {
                 DataSource dataSource = new FileDataSource(file);
                 MimeBodyPart attachment = new MimeBodyPart();
                 attachment.setDataHandler(new DataHandler(dataSource));
                 attachment.setFileName(file.getName());
-                MimeMultipart multipart = new MimeMultipart();
+                // MimeMultipart multipart = new MimeMultipart();
                 multipart.addBodyPart(attachment);
-                message.setContent(multipart);
             }
-
+            
+            message.setContent(multipart);
             javaMailSender.send(message);
         } catch (MessagingException | MailException e) {
             e.printStackTrace();

@@ -235,7 +235,9 @@ button {
                     <th>EMAIL</th>
                     <th>CATEGORY</th>
                     <th>PAID</th>
-                    <th>TRANSACTION</th>
+                    <%if(((String)request.getAttribute("category")).equals("paid")){%>
+                        <th>TRANSACTION</th>
+                    <%}%>
                     <th>APPROVE</th>
                     <th>REJECT</th>
                 </tr>
@@ -252,7 +254,9 @@ button {
                         <td><%=registration.getEmail() %></td>
                         <td><%=registration.getCategory() %></td>
                         <td><%=registration.getPaid() %></td>
-                        <td><%=registration.getTransaction() %></td>
+                        <%if(((String)request.getAttribute("category")).equals("paid")){%>
+                            <td><%=registration.getTransaction() %></td>
+                        <%}%>
                         <td>
                             <form action="/admin/approveuser" method="post">
                                 <input type="number" value="<%=registration.getRsid()%>" name="rsid" hidden>

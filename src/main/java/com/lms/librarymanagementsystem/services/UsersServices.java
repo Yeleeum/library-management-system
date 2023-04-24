@@ -1,5 +1,6 @@
 package com.lms.librarymanagementsystem.services;
 
+import java.io.File;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -22,6 +23,7 @@ public class UsersServices {
     public Users insertOnUser(Users user) {
         String content="Dear! "+user.getFirstName()+" ,your application has been approved. You can log in to view your profile.";
         emailServices.sendMail(user.getEmail(), "Approval of Application", content);
+        // emailServices.sendMimeMail(user.getEmail(), "Approval of Application", content, new File("D:\\Java-SpringBoot\\College Project\\librarymanagementsystem\\src\\main\\resources\\static\\img\\admin.png"));
         return usersRepository.save(user);
     }
 
