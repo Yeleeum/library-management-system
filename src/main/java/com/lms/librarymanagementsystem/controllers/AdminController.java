@@ -92,7 +92,7 @@ public class AdminController {
         List<Registration> registrations = registrationServices.getPending("paid");
         model.addAttribute("registrations", registrations);
         model.addAttribute("category", "Paid");
-        return "registrationRequests";
+        return "pendingRegistrations";
     }
 
     @GetMapping("/viewpending/unpaid")
@@ -100,7 +100,7 @@ public class AdminController {
         List<Registration> registrations = registrationServices.getPending("unpaid");
         model.addAttribute("registrations", registrations);
         model.addAttribute("category", "Unpaid");
-        return "registrationRequests";
+        return "pendingRegistrations";
     }
 
     @PostMapping("/approveuser")

@@ -63,8 +63,8 @@
                 Borrow.style.opacity=Borrow.disabled?"0.4":"1"
                 if(data.message==="You have already Borrowed this item."){
                     Return.disabled=!Borrow.disabled
-                }else if('<%=stock>0%>'=='true'){
-                    Borrow.disabled=false
+                }else if('<%=stock<0%>'=='true'){
+                    Borrow.disabled=true
                     Return.disabled=!Borrow.disabled
                 }else{
                     Return.disabled=true
