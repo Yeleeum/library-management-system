@@ -41,7 +41,7 @@ public class EmailServices {
         javaMailSender.send(message);
     }
 
-    @Async
+  /*   @Async
     public void sendMimeMail(String to, String subject, String body, File file) {
         try {
             MimeMessage message = javaMailSender.createMimeMessage();
@@ -101,5 +101,5 @@ public class EmailServices {
         } catch (MessagingException | MailException e) {
             e.printStackTrace();
         }
-    }
+    } */
 }

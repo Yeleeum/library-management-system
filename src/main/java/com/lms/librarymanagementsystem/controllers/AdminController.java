@@ -56,7 +56,8 @@ public class AdminController {
     public AdminController(RegistrationServices registrationServices, UsersServices usersServices,
             EmailServices emailServices, AlternativeServices alternativeServices, BooksServices booksServices,
             ConnectorServices connectorServices, JournalsServices journalsServices, MagazinesServices magazinesServices,
-            ThesesServices thesesServices, SoftCopyServices softCopyServices, AdminServices adminServices,BorrowServices borrowServices) {
+            ThesesServices thesesServices, SoftCopyServices softCopyServices, AdminServices adminServices,
+            BorrowServices borrowServices) {
         this.registrationServices = registrationServices;
         this.usersServices = usersServices;
         this.emailServices = emailServices;
@@ -77,7 +78,7 @@ public class AdminController {
         // System.out.println(SessionHandler.getAccessSession(req));
         List<Registration> top5Registrations = registrationServices.findTopPendings();
         List<Registration> registrations = registrationServices.findAllPending();
-        List<Borrow> borrows=borrowServices.findPendingBorrows();
+        List<Borrow> borrows = borrowServices.findPendingBorrows();
         model.addAttribute("registrations", top5Registrations);
         model.addAttribute("noOfRegistrations", registrations.size());
         model.addAttribute("borrows", borrows);
@@ -103,23 +104,35 @@ public class AdminController {
     }
 
     @PostMapping("/approveuser")
-    public String approveUser(Integer rsid, String pay,String membershipexpire,String libraryCard) {
+    public String approveUser(Integer rsid, String pay, String membershipexpire, String libraryCard) {
         registrationServices.updateApproval("approved", rsid);
         Registration registration = registrationServices.getOneRegistration(rsid);
         usersServices.insertOnUser(new Users(registration.getUsername(), registration.getPassword(),
                 registration.getProfilePicture(), registration.getFirstName(), registration.getLastName(),
                 registration.getGender(), registration.getDob(), registration.getPhone(), registration.getEmail(),
-                registration.getCategory(), "active",membershipexpire),libraryCard);
+                registration.getCategory(), "active", membershipexpire), libraryCard);
         return "redirect:./viewpending/" + pay.toLowerCase();
     }
 
     @PostMapping("/rejectuser")
     public String rejectUser(Integer rsid, String message, String pay) {
         Registration registration = registrationServices.getOneRegistration(rsid);
-        String content = "Dear! " + registration.getFirstName()
+        String content = "Dear " + registration.getFirstName() + ",\n\n" +
+                "On the behalf of our library, we are writing to inform you that your registration request for our library system has been rejected. We regret to inform you that we are unable to approve your registration at this time.\n\n"
+                +
+                "We apologize for any inconvenience this may have caused, and we would like to explain the reasons for our decision. " + message + "\n\n"
+                +
+                "If you have any questions or concerns regarding our decision, please don't hesitate to contact us. We are always here to help.\n\n"
+                +
+                "Thank you for your interest in our library system, and we wish you all the best in your future endeavors.\n\n"
+                +
+                "Sincerely,\n\n" +
+                "Library Authorities";
+
+        /* String content = "Dear! " + registration.getFirstName()
                 + " ,your application has been rejected due to the reason: " + message
-                + ". You can visit the admin for further information.";
-        emailServices.sendMail(registration.getEmail(), "Rejection of Application", content);
+                + ". You can visit the admin for further information."; */
+        emailServices.sendMail(registration.getEmail(), "Rejection of Library User Registration", content);
         registrationServices.updateApproval("rejected", rsid);
         return "redirect:./viewpending/" + pay.toLowerCase();
     }
@@ -133,8 +146,8 @@ public class AdminController {
     @PostMapping("/addbook")
     public String insertBook(Books book, MultipartFile thumbnailfile) {
         connectorServices.insertOneConnector(new Connector(book.getItid(), "book"));
-        Books bookInserted= booksServices.insertOneBook(book, thumbnailfile);
-        return "redirect:/search/books/"+bookInserted.getBid();
+        Books bookInserted = booksServices.insertOneBook(book, thumbnailfile);
+        return "redirect:/search/books/" + bookInserted.getBid();
     }
 
     @GetMapping("/addjournal")
@@ -146,8 +159,8 @@ public class AdminController {
     @PostMapping("/addjournal")
     public String insertJournal(Journals journal, MultipartFile thumbnailfile) {
         connectorServices.insertOneConnector(new Connector(journal.getItid(), "journal"));
-        Journals journalInserted= journalsServices.insertOneJournal(journal, thumbnailfile);
-        return "redirect:/search/journals/"+journalInserted.getJid();
+        Journals journalInserted = journalsServices.insertOneJournal(journal, thumbnailfile);
+        return "redirect:/search/journals/" + journalInserted.getJid();
     }
 
     @GetMapping("/addtheses")
@@ -159,8 +172,8 @@ public class AdminController {
     @PostMapping("/addtheses")
     public String insertTheses(Theses theses, MultipartFile thumbnailfile) {
         connectorServices.insertOneConnector(new Connector(theses.getItid(), "theses"));
-        Theses thesesInserted= thesesServices.insertOneTheses(theses, thumbnailfile);
-        return "redirect:/search/theses/"+thesesInserted.getTid();
+        Theses thesesInserted = thesesServices.insertOneTheses(theses, thumbnailfile);
+        return "redirect:/search/theses/" + thesesInserted.getTid();
 
     }
 
@@ -173,8 +186,8 @@ public class AdminController {
     @PostMapping("/addmagazine")
     public String insertMagazine(Magazines magazine, MultipartFile thumbnailfile) {
         connectorServices.insertOneConnector(new Connector(magazine.getItid(), "magazine"));
-        Magazines magazineInserted= magazinesServices.insertOneMagazine(magazine, thumbnailfile);
-        return "redirect:/search/magazines/"+magazineInserted.getMid();
+        Magazines magazineInserted = magazinesServices.insertOneMagazine(magazine, thumbnailfile);
+        return "redirect:/search/magazines/" + magazineInserted.getMid();
 
     }
 
@@ -186,8 +199,8 @@ public class AdminController {
 
     @PostMapping("/addsoftcopy")
     public String insertSoftCopy(SoftCopy softCopy, MultipartFile file, MultipartFile thumbnailfile) {
-        SoftCopy softcopyInserted= softCopyServices.insertOneSoftCopy(softCopy, file, thumbnailfile);
-        return "redirect:/search/softcopy/"+softcopyInserted.getSid();
+        SoftCopy softcopyInserted = softCopyServices.insertOneSoftCopy(softCopy, file, thumbnailfile);
+        return "redirect:/search/softcopy/" + softcopyInserted.getSid();
 
     }
 
@@ -203,9 +216,9 @@ public class AdminController {
     }
 
     @PostMapping("/edit/softcopy")
-    public String editSoftCopySave(SoftCopy softCopy,MultipartFile file,MultipartFile thumbnailfile){
+    public String editSoftCopySave(SoftCopy softCopy, MultipartFile file, MultipartFile thumbnailfile) {
         softCopyServices.insertOneSoftCopy(softCopy, file, thumbnailfile);
-        return "redirect:/search/softcopy/"+softCopy.getSid();
+        return "redirect:/search/softcopy/" + softCopy.getSid();
     }
 
     @GetMapping("/edit/books/{bid}")
@@ -217,9 +230,9 @@ public class AdminController {
     }
 
     @PostMapping("/edit/books")
-    public String editBooksCopySave(Books books,MultipartFile thumbnailfile){
+    public String editBooksCopySave(Books books, MultipartFile thumbnailfile) {
         booksServices.insertOneBook(books, thumbnailfile);
-        return "redirect:/search/books/"+books.getBid();
+        return "redirect:/search/books/" + books.getBid();
     }
 
     @GetMapping("/edit/journals/{jid}")
@@ -231,9 +244,9 @@ public class AdminController {
     }
 
     @PostMapping("/edit/journals")
-    public String editJournalsCopySave(Journals journals,MultipartFile thumbnailfile){
+    public String editJournalsCopySave(Journals journals, MultipartFile thumbnailfile) {
         journalsServices.insertOneJournal(journals, thumbnailfile);
-        return "redirect:/search/journals/"+journals.getJid();
+        return "redirect:/search/journals/" + journals.getJid();
     }
 
     @GetMapping("/edit/theses/{tid}")
@@ -245,10 +258,11 @@ public class AdminController {
     }
 
     @PostMapping("/edit/theses")
-    public String editThesesCopySave(Theses theses,MultipartFile thumbnailfile){
+    public String editThesesCopySave(Theses theses, MultipartFile thumbnailfile) {
         thesesServices.insertOneTheses(theses, thumbnailfile);
-        return "redirect:/search/theses/"+theses.getTid();
+        return "redirect:/search/theses/" + theses.getTid();
     }
+
     @GetMapping("/edit/magazines/{mid}")
     public String editMagazinesCopy(@PathVariable String mid, Model model) {
         Magazines magazines = magazinesServices.findSingleMagazineById(mid);
@@ -258,42 +272,42 @@ public class AdminController {
     }
 
     @PostMapping("/edit/magazines")
-    public String editMagazinesCopySave(Magazines magazines,MultipartFile thumbnailfile){
+    public String editMagazinesCopySave(Magazines magazines, MultipartFile thumbnailfile) {
         magazinesServices.insertOneMagazine(magazines, thumbnailfile);
-        return "redirect:/search/magazines/"+magazines.getMid();
+        return "redirect:/search/magazines/" + magazines.getMid();
     }
 
     @GetMapping("/pendingborrow")
-    public String getPendingBorrowTable(Model model){
-        List<Borrow> borrows=borrowServices.findPendingBorrows();
+    public String getPendingBorrowTable(Model model) {
+        List<Borrow> borrows = borrowServices.findPendingBorrows();
         model.addAttribute("borrows", borrows);
         return "pendingBorrows";
     }
 
     @GetMapping("/pendingreturn")
-    public String getPendingReturnTable(Model model){
-        List<Borrow> returns=borrowServices.findPendingReturns();
+    public String getPendingReturnTable(Model model) {
+        List<Borrow> returns = borrowServices.findPendingReturns();
         model.addAttribute("returns", returns);
         return "pendingReturns";
     }
 
     @PostMapping("/borrowaction")
-    public ResponseEntity<String> performBorrowAction(String action,String itid,String username){
+    public ResponseEntity<String> performBorrowAction(String action, String itid, String username) {
         borrowServices.performAction(action, username, itid);
         return new ResponseEntity<String>("true", HttpStatus.OK);
     }
 
     @PostMapping("/returnaction")
-    public ResponseEntity<String> performReturn(String action,String itid,String username){
-        borrowServices.performReturnAction(action.equals("rejected")?"return "+action:"returned", username, itid);
-        String type=connectorServices.getType(itid);
-        if(type.equals("book")){
+    public ResponseEntity<String> performReturn(String action, String itid, String username) {
+        borrowServices.performReturnAction(action.equals("rejected") ? "return " + action : "returned", username, itid);
+        String type = connectorServices.getType(itid);
+        if (type.equals("book")) {
             booksServices.increaseStock(itid);
-        }else if(type.equals("journal")){
+        } else if (type.equals("journal")) {
             journalsServices.increaseStock(itid);
-        }else if(type.equals("magazine")){
+        } else if (type.equals("magazine")) {
             magazinesServices.increaseStock(itid);
-        }else{
+        } else {
             thesesServices.increaseStock(itid);
         }
         return new ResponseEntity<String>("true", HttpStatus.OK);

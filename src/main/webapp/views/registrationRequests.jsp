@@ -270,7 +270,6 @@ button {
                     <%if(((String)request.getAttribute("category")).equals("paid")){%>
                         <th>TRANSACTION</th>
                     <%}%>
-                    <th>ID CARD</th>
                     <th>APPROVE</th>
                     <th>REJECT</th>
                 </tr>
@@ -291,15 +290,6 @@ button {
                             <td><%=registration.getTransaction() %></td>
                         <%}%>
                         <td>
-                            <button id="displayModal">Add ID Card</button>
-                        </td>
-                        <td>
-                            <div class="modal-canvas"></div>
-                            <div id="myDiv">
-                                <h1>This is a demo library card</h1>
-                                <img src="/uploads/profilePictures/<%=registration.getProfilePicture()%>" width="100" height="100" alt="">
-                            </div>
-                            <button id="captureBtn" style="width: 100% !important;" hidden>ADD</button>
                             <form action="/admin/approveuser" method="post">
                                 <input type="number" value="<%=registration.getRsid()%>" name="rsid" hidden>
                                 <input type="text"  name="membershipexpire" id="membershipexpire" hidden>
@@ -324,9 +314,6 @@ button {
                 <div onclick="hideForm()" style="display: inline; float: right;"  class="Cancelbtn"hidden >Cancel</div>
             </form>
         <% } %>
-    
-
-        <!-- <img id="none" alt=""> -->
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.min.js"></script>
 <script>
@@ -361,46 +348,6 @@ button {
         element.value=getMySQLDateOneYearAfterToday();
         console.log(element.value)
     })
-
-    let captureBtn = Array.from(document.querySelectorAll('#captureBtn'));
-    let myDiv = Array.from(document.querySelectorAll('#myDiv'));
-    let capturedElement = Array.from(document.querySelectorAll('#capturedElement'));
-    let displayModal = Array.from(document.querySelectorAll('#displayModal'));
-    let modelConainer = document.querySelector('.modal-canvas');
-
-    var captureAction = captureBtn.map((captureBtn, index) => {
-        return [captureBtn, capturedElement[index], myDiv[index], displayModal[index]]
-    })
-
-    captureAction.forEach((element) => {
-        element[0].addEventListener('click', function () {
-            console.log('entered');
-            html2canvas(element[2],{
-                scale:2,
-                onrendered:render
-            })
-            function render(canvas) {
-                console.log('entered2');
-                var imgData = canvas.toDataURL('image/png');
-                element[1].innerHTML = imgData;
-                // document.querySelector('#none').src=imgData
-                element[0].style = "background-color : green";
-                element[3].innerText = "Added";
-                // document.getElementById('none').src = imgData;
-                modelConainer.style = "display : none";
-                modelConainer.innerHTML = "";
-            }
-        })
-        
-        element[3].addEventListener('click', (e) => {
-            element[2].style.display = "block";
-            element[0].style.display = "block";
-            modelConainer.style.display = "block";
-            modelConainer.appendChild(element[2]);
-            modelConainer.appendChild(element[0]);
-        })
-    } )
-
 
 </script>
 </html>
