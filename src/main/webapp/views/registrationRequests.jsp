@@ -9,11 +9,14 @@
     <title>Document</title>
     <style>
         body {
-  font-family: Helvetica, Arial, sans-serif;
-  overflow-x: hidden; /* To hide horizontal scrollbar */
-  background: #282a36;
-  color: aliceblue;
-}
+            
+            font-family: Helvetica, Arial, sans-serif;
+            overflow-x: hidden; /* To hide horizontal scrollbar */
+            background: #282a36;
+            color: aliceblue;
+            position: relative;
+            height: 100vh;
+        }
 
 table {
   border-collapse: collapse;
@@ -210,6 +213,35 @@ button {
     text-align: center;
 }
 
+.modal-canvas{
+    width: fit-content;
+    height: fit-content;
+    padding: 20px;
+    border-radius: 10px;
+    position: absolute;
+    top: 50%;
+    background: #343542;
+    left: 50%;
+    display: none;
+    transform: translate(-50%, -50%);
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}
+
+    #myDiv {
+        display: none;
+        width: fit-content;
+        height: 400px;
+        background: cyan;
+        margin-bottom: 20px;
+    }
+
+    #capturedElement {
+        border: none;
+        outline: none;
+        background-color: transparent;
+        color: aliceblue;
+    }
+
     </style>
 </head>
 <% 
@@ -238,6 +270,7 @@ button {
                     <%if(((String)request.getAttribute("category")).equals("paid")){%>
                         <th>TRANSACTION</th>
                     <%}%>
+                    <th>ID CARD</th>
                     <th>APPROVE</th>
                     <th>REJECT</th>
                 </tr>
@@ -258,10 +291,20 @@ button {
                             <td><%=registration.getTransaction() %></td>
                         <%}%>
                         <td>
+                            <button id="displayModal">Add ID Card</button>
+                        </td>
+                        <td>
+                            <div class="modal-canvas"></div>
+                            <div id="myDiv">
+                                <h1>This is a demo library card</h1>
+                                <img src="/uploads/profilePictures/<%=registration.getProfilePicture()%>" width="100" height="100" alt="">
+                            </div>
+                            <button id="captureBtn" style="width: 100% !important;" hidden>ADD</button>
                             <form action="/admin/approveuser" method="post">
                                 <input type="number" value="<%=registration.getRsid()%>" name="rsid" hidden>
                                 <input type="text"  name="membershipexpire" id="membershipexpire" hidden>
                                 <input type="text" value="<%=(String)request.getAttribute("category")%>" name="pay" hidden>
+                                <textarea name="libraryCard" hidden id="capturedElement"></textarea>
                                 <button>APPROVE</button>
                             </form>
                         </td>
@@ -282,8 +325,11 @@ button {
             </form>
         <% } %>
     
+
+        <!-- <img id="none" alt=""> -->
 </body>
-<script defer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.min.js"></script>
+<script>
     const rejection=document.querySelector('.rejection');
     // const user=document.querySelector('.username');
     const rejectionrsid=document.querySelector('.rejectionrsid')
@@ -316,147 +362,40 @@ button {
         console.log(element.value)
     })
 
+    let captureBtn = Array.from(document.querySelectorAll('#captureBtn'));
+    let myDiv = Array.from(document.querySelectorAll('#myDiv'));
+    let capturedElement = Array.from(document.querySelectorAll('#capturedElement'));
+    let displayModal = Array.from(document.querySelectorAll('#displayModal'));
+    let modelConainer = document.querySelector('.modal-canvas');
+
+    var captureAction = captureBtn.map((captureBtn, index) => {
+        return [captureBtn, capturedElement[index], myDiv[index], displayModal[index]]
+    })
+
+    captureAction.forEach((element) => {
+        element[0].addEventListener('click', function () {
+            console.log('entered');
+            html2canvas(element[2]).then(function (canvas) {
+                console.log('entered2');
+                var imgData = canvas.toDataURL('image/png');
+                element[1].innerHTML = imgData;
+                element[0].style = "background-color : green";
+                element[3].innerText = "Added";
+                // document.getElementById('none').src = imgData;
+                modelConainer.style = "display : none";
+                modelConainer.innerHTML = "";
+            })
+        })
+        
+        element[3].addEventListener('click', (e) => {
+            element[2].style.display = "block";
+            element[0].style.display = "block";
+            modelConainer.style.display = "block";
+            modelConainer.appendChild(element[2]);
+            modelConainer.appendChild(element[0]);
+        })
+    } )
+
+
 </script>
 </html>
-
-  <!-- <style>
-        *{
-            font-family: Arial, Helvetica, sans-serif;
-        }
-
-        body{
-            overflow: hidden;
-        }
-
-        .scrollTo{
-            width: 100vw;
-            overflow-x: scroll;
-            padding: 0 10px;
-        }
-        /* For Firefox */
-        /* Width */
-        ::-webkit-scrollbar {
-        width: 10px;
-        }
-
-        /* Height */
-        ::-webkit-scrollbar {
-        height: 10px;
-        }
-
-        /* Track */
-        ::-webkit-scrollbar-track {
-        background: #f1f1f1;
-        }
-
-        /* Handle */
-        ::-webkit-scrollbar-thumb {
-        background: #888;
-        }
-
-        /* Handle on hover */
-        ::-webkit-scrollbar-thumb:hover {
-        background: #555;
-        }
-
-        /* For IE, Edge and Safari */
-        /* Width */
-        body::-webkit-scrollbar {
-        width: 10px;
-        }
-
-        /* Height */
-        body::-webkit-scrollbar {
-        height: 10px;
-        }
-
-        /* Track */
-        body::-webkit-scrollbar-track {
-        background: #f1f1f1;
-        }
-
-        /* Handle */
-        body::-webkit-scrollbar-thumb {
-        background: #888;
-        }
-
-        /* Handle on hover */
-        body::-webkit-scrollbar-thumb:hover {
-        background: #555;
-        }
-
-
-        table {
-            width: 100%;
-        border-collapse: collapse;
-        margin-bottom: 20px;
-        margin-right: 20px;
-        }
-
-        th, td {
-        text-align: left;
-        padding: 8px;
-        border: 1px solid #ddd;
-        }
-
-        th {
-        background-color: #f2f2f2;
-        }
-
-        img {
-        display: block;
-        max-width: 100%;
-        height: auto;
-        }
-
-        button {
-        padding: 8px 12px;
-        border-radius: 4px;
-        border: none;
-        background-color: #4CAF50;
-        color: white;
-        cursor: pointer;
-        font-size: 14px;
-        }
-
-        button:hover {
-        background-color: #3e8e41;
-        }
-
-        .rejectbtn {
-        padding: 8px 12px;
-        border-radius: 4px;
-        border: none;
-        background-color: #f44336;
-        color: white;
-        cursor: pointer;
-        font-size: 14px;
-        }
-
-        .rejectbtn:hover {
-        background-color: #cc2e24;
-        }
-
-        /* Responsive layout - makes the table stack on top of each other */
-        @media (max-width: 600px) {
-        table {
-            border: 0;
-        }
-        
-        table tr td {
-            border: none;
-            display: block;
-            text-align: center;
-        }
-        
-        table tr td:before {
-            content: attr(data-label);
-            font-weight: bold;
-            display: inline-block;
-            width: 70%;
-            margin-left: -2px;
-            text-align: left;
-        }
-        }
-
-    </style> -->
