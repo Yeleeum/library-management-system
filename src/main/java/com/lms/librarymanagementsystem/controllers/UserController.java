@@ -18,8 +18,13 @@ import com.lms.librarymanagementsystem.Handlers.SessionHandler;
 import com.lms.librarymanagementsystem.models.Borrow;
 import com.lms.librarymanagementsystem.models.Fine;
 import com.lms.librarymanagementsystem.models.Users;
+import com.lms.librarymanagementsystem.services.BooksServices;
 import com.lms.librarymanagementsystem.services.BorrowServices;
+import com.lms.librarymanagementsystem.services.ConnectorServices;
 import com.lms.librarymanagementsystem.services.FineServices;
+import com.lms.librarymanagementsystem.services.JournalsServices;
+import com.lms.librarymanagementsystem.services.MagazinesServices;
+import com.lms.librarymanagementsystem.services.ThesesServices;
 import com.lms.librarymanagementsystem.services.UsersServices;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -30,11 +35,23 @@ public class UserController {
     private UsersServices usersServices;
     private BorrowServices borrowServices;
     private FineServices fineServices;
+    private BooksServices booksServices;
+    private ConnectorServices connectorServices;
+    private JournalsServices journalsServices;
+    private MagazinesServices magazinesServices;
+    private ThesesServices thesesServices;
 
-    public UserController(UsersServices usersServices,BorrowServices borrowServices,FineServices fineServices) {
+    public UserController(UsersServices usersServices,BorrowServices borrowServices,FineServices fineServices,BooksServices booksServices,
+    ConnectorServices connectorServices, JournalsServices journalsServices, MagazinesServices magazinesServices,
+    ThesesServices thesesServices) {
         this.usersServices = usersServices;
         this.borrowServices=borrowServices;
         this.fineServices=fineServices;
+        this.booksServices = booksServices;
+        this.connectorServices = connectorServices;
+        this.journalsServices = journalsServices;
+        this.magazinesServices = magazinesServices;
+        this.thesesServices = thesesServices;
     }
 
     @GetMapping
@@ -59,9 +76,15 @@ public class UserController {
         keyValue.put("status", "true");
         keyValue.put("message", "Can borrow");
         // String returnString="true";
-        if(!borrowServices.findUnReturnedByItidByUsername(itid,username).isEmpty()){
+        if(!borrowServices.findRequestedReturnByItidUsername(itid,username).isEmpty()){
+            keyValue.put("status", "false");
+            keyValue.put("message", "Your Return Request Hasn't Been Approved Yet.");
+        }else if(!borrowServices.findApprovedUnReturnedByItidUsername(itid,username).isEmpty()){
             keyValue.put("status", "false");
             keyValue.put("message", "You have already Borrowed this item.");
+        }else if(!borrowServices.findUnReturnedByItidByUsername(itid,username).isEmpty()){
+            keyValue.put("status", "false");
+            keyValue.put("message", "You Borrow request haven't been approved yet.");
         }else if(borrowServices.findUnReturnedByUsername(username).size()==2){
             keyValue.put("status", "false");
             keyValue.put("message", "You have already Borrowed Two Items.");
@@ -87,6 +110,22 @@ public class UserController {
         borrow.setUsername(SessionHandler.getUserSession(req));
         System.out.println(borrow);
         borrowServices.inserOneBorrow(borrow);
+        String type=connectorServices.getType(borrow.getitid());
+        if(type.equals("book")){
+            booksServices.decreaseStock(borrow.getitid());
+        }else if(type.equals("journal")){
+            journalsServices.decreaseStock(borrow.getitid());
+        }else if(type.equals("magazine")){
+            magazinesServices.decreaseStock(borrow.getitid());
+        }else{
+            thesesServices.decreaseStock(borrow.getitid());
+        }
+        return new ResponseEntity<String>("true",HttpStatus.OK);
+    }
+
+    @PostMapping("/return")
+    public ResponseEntity<String> returnItem(String itid,HttpServletRequest req){
+        borrowServices.performReturn(SessionHandler.getUserSession(req), itid);
         return new ResponseEntity<String>("true",HttpStatus.OK);
     }
 }

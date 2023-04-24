@@ -30,9 +30,18 @@ public class BorrowServices {
         return borrowRepository.getUnReturnedByUsername(username);
     }
 
+    public List<Borrow> findRequestedReturnByItidUsername(String itid,String username){
+        return borrowRepository.getRequestedReturnByItidUsername(itid,username);
+    }
+
     public List<Borrow> findUnReturnedByItidByUsername(String itid,String username){
         System.out.println(itid);
         return borrowRepository.getUnReturnedByItidByUsername(itid,username);
+    }
+
+    public List<Borrow> findApprovedUnReturnedByItidUsername(String itid,String username){
+        System.out.println(itid);
+        return borrowRepository.getApprovedUnReturnedByItidUsername(itid,username);
     }
 
     public List<Borrow> findPendingBorrow(){
@@ -45,5 +54,13 @@ public class BorrowServices {
 
     public Integer performAction(String action,String username,String itid){
         return borrowRepository.borrowAction(action, username, itid);
+    }
+
+    public Integer performReturnAction(String action,String username,String itid){
+        return borrowRepository.returnAction(action, username, itid);
+    }
+
+    public Integer performReturn(String username,String itid){
+        return borrowRepository.returnRequest(username, itid);
     }
 }

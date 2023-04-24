@@ -6,12 +6,12 @@
     </form>
 <% } else { %>
     <button onclick="performborrow()" class="Borrow" >Borrow</button>
-    <button onclick="javascript(void(0))" class="Return">Return</button>
+    <button onclick="performReturn()" class="Return">Return</button>
 <% } %>
 <script>
     let Borrow=document.querySelector(".Borrow")
     let Return=document.querySelector(".Return")
-    if('<%=stock>0%>'=='true'){
+
 
         function convertToMySQLDate(newdateObj) {
             const year = newdateObj.getFullYear();
@@ -44,6 +44,14 @@
             body: performborrowparam
         };
 
+        let performReturnParam=new URLSearchParams();
+        performReturnParam.append("itid",'<%=itid%>')
+
+        const returnperformoptions = {
+            method: 'POST',
+            body: performReturnParam
+        };
+
         console.log(performborrowparam)
 
         function checkBorrow(itid){
@@ -52,8 +60,11 @@
         .then(data=> {
             console.log(data)
                 Borrow.disabled=!(data.status==='true')
-                Borrow.style.opacity=(data.status==='true')?"1":"0.4"
+                Borrow.style.opacity=Borrow.disabled?"0.4":"1"
                 if(data.message==="You have already Borrowed this item."){
+                    Return.disabled=!Borrow.disabled
+                }else if('<%=stock>0%>'=='true'){
+                    Borrow.disabled=false
                     Return.disabled=!Borrow.disabled
                 }else{
                     Return.disabled=true
@@ -69,11 +80,14 @@
                     checkBorrow('<%=itid%>')
                 })
         }
+
+        function  performReturn(){
+            fetch("http://localhost:8080/user/return",returnperformoptions)
+            .then(response => response.json())
+            .then(data=> {
+                    checkBorrow('<%=itid%>')
+                })
+        }
         checkBorrow('<%=itid%>')
-    }else{
-        Borrow.disabled=true
-        Borrow.style.opacity="0.4"
-        Return.disabled=!Borrow.disabled
-        Return.style.opacity=Return.disabled?"0.4":"1"
-    }
+
 </script>
