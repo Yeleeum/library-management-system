@@ -79,10 +79,12 @@ public class AdminController {
         List<Registration> top5Registrations = registrationServices.findTopPendings();
         List<Registration> registrations = registrationServices.findAllPending();
         List<Borrow> borrows = borrowServices.findPendingBorrows();
+        List<Borrow> returns = borrowServices.findPendingReturns();
         model.addAttribute("registrations", top5Registrations);
         model.addAttribute("noOfRegistrations", registrations.size());
         model.addAttribute("borrows", borrows);
         model.addAttribute("noOfPendingBorrow", borrows.size());
+        model.addAttribute("noOfPendingReturn", returns.size());
         System.out.println(top5Registrations);
         return "adminPanel";
     }

@@ -17,6 +17,7 @@
         List<Registration> registrations=(List<Registration>)request.getAttribute("registrations");
         int noOfRegistrations=(int)request.getAttribute("noOfRegistrations");
         int noOfPendingBorrow=(int)request.getAttribute("noOfPendingBorrow");
+        int noOfPendingReturn=(int)request.getAttribute("noOfPendingReturn");
         
 %>
 <body>
@@ -75,7 +76,7 @@
                                 <img src="/img/admin/return.png" class="icons" alt="">
                             </div>
                             <div>
-                                <h1>10</h1>
+                                <h1><%=noOfPendingReturn%></h1>
                                 <p>Pending Returns</p>
                             </div>
                         </div>

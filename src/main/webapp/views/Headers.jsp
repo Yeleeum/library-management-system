@@ -22,10 +22,12 @@
         </div>
     </header>
 <% } else { %>
+    <%@ page import="com.lms.librarymanagementsystem.models.Users" %>
+    <%Users user=(Users)request.getAttribute("user");%>
     <header class="header">
         <h2>Library management system</h2>
             <div class="user-profile-piture">
-                <img src="/img/user.png%>" alt="">
+                <img src="/uploads/profilePictures/<%=user.getProfilePicture()%>" alt="">
                 <form class="hover-dropdown">
                     <button formaction="/user" formmethod="get"><i class="fa-solid fa-user" style="margin-right: 10px;"></i>Account</button>
                     <hr>
