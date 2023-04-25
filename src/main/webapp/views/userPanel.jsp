@@ -195,46 +195,6 @@
                                     </div>
                                 </div>
                             <%}%>
-                            <!-- <div class="card">
-                                <img src="/uploads/thumbnails/kathakali.png" alt="">
-                                <h1>Title</h1>
-                                <div class="details">
-                                    <h2>Details</h2>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing.</p>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <img src="/uploads/thumbnails/kathakali.png" alt="">
-                                <h1>Title</h1>
-                                <div class="details">
-                                    <h2>Details</h2>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing.</p>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <img src="/uploads/thumbnails/kathakali.png" alt="">
-                                <h1>Title</h1>
-                                <div class="details">
-                                    <h2>Details</h2>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing.</p>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <img src="/uploads/thumbnails/kathakali.png" alt="">
-                                <h1>Title</h1>
-                                <div class="details">
-                                    <h2>Details</h2>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing.</p>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <img src="/uploads/thumbnails/kathakali.png" alt="">
-                                <h1>Title</h1>
-                                <div class="details">
-                                    <h2>Details</h2>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing.</p>
-                                </div>
-                            </div> -->
                         </div>
                     </div>
                 </div>
