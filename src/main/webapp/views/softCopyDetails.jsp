@@ -17,6 +17,7 @@
         <body>
             <div class="mainArea">
                 <% SoftCopy softcopy=(SoftCopy) request.getAttribute("softcopy"); %>
+                    <%@include file="Headers.jsp"%>
                     <header style="width: 100%; display: flex; justify-content: space-between; align-items: center;">
                         <h1>SoftCopy Details</h1>
                         <%@include file="mainSearchComponent.jsp" %>

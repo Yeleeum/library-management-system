@@ -4,6 +4,7 @@
 <%@page import="com.lms.librarymanagementsystem.models.Magazines"%>
 <%@page import="com.lms.librarymanagementsystem.models.Journals"%>
 <%@page import="com.lms.librarymanagementsystem.models.Books"%>
+<%@page import="com.lms.librarymanagementsystem.Handlers.SessionHandler"%>
 <%@page import="java.util.List"%>
 <html lang="en">
 <head>
@@ -22,7 +23,8 @@
 	List<SoftCopy> softcopies=(List<SoftCopy>) request.getAttribute("softcopies");
 %>
 <body>
-    <div class="searchview">
+	<%@include file="Headers.jsp"%>
+	<div class="searchview">
 	<%@ include file="subSearchComponent.jsp"%>
 	<% if((books==null || books.isEmpty())&& (journals==null || journals.isEmpty()) && (magazines==null || magazines.isEmpty()) && (theses==null || theses.isEmpty()) && (softcopies==null ||softcopies.isEmpty())){ %>
 		<%@include file="NoContentFound.jsp"%>
