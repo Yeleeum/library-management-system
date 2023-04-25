@@ -99,21 +99,35 @@
             // window.frames["myiframe"].contentDocument.oncontextmenu = function(){return true;};
             // myFrame.window.eval('document.addEventListener("contextmenu", function (e) {e.preventDefault();}, false)');
 
-            const sendDownloadDetails = () => {
-                const data = {
-                    "SID": "<%= softcopy.getSid() %>",
-                    "DATE": Date.now()
+            function getCurrentDate() {
+                var date = new Date();
+                var year = date.getFullYear();
+                var month = date.getMonth() + 1;
+                var day = date.getDate();
+
+                if (month < 10) {
+                    month = "0" + month;
                 }
-                console.log(data)
+
+                if (day < 10) {
+                    day = "0" + day;
+                }
+
+                return year + "-" + month + "-" + day;
+            }
+
+            const sendDownloadDetails = () => {
+                let downloadsparam=new URLSearchParams();
+                downloadsparam.append("sid","<%= softcopy.getSid() %>")
+                downloadsparam.append("downloaddate",getCurrentDate())
+                const options = {
+                    method:'POST',
+                    body: downloadsparam
+                }
+                console.log(getCurrentDate())
                 if (confirm("Download ?")) {
-                    var uri = "http://localhost:8080/user/download"
-                    fetch(uri, {
-                        method: 'POST',
-                        body: JSON.stringify(data),
-                        headers: {
-                            'Content-Type': 'application/json'
-                        }
-                    })
+                    var uri = "http://localhost:8080/user/downloads"
+                    fetch(uri, options)
                         .then(response => response.json())
                         .then(data => console.log(data))
                         .catch(error => console.error(error));

@@ -58,11 +58,11 @@ public class Downloads {
         this.sid = sid;
     }
 
-    public String getDownloadDate() {
+    public String getDownloaddate() {
         return this.downloaddate;
     }
 
-    public void setDownloadDate(String downloaddate) {
+    public void setDownloaddate(String downloaddate) {
         this.downloaddate = downloaddate;
     }
 
@@ -73,7 +73,7 @@ public class Downloads {
             " did='" + getDid() + "'" +
             ", username='" + getUsername() + "'" +
             ", sid='" + getSid() + "'" +
-            ", downloadDate='" + getDownloadDate() + "'" +
+            ", downloaddate='" + getDownloaddate() + "'" +
             "}";
     }
 }

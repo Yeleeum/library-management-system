@@ -134,7 +134,9 @@ public class UserController {
     }
 
     @PostMapping("/downloads")
-    public ResponseEntity<String> insertDownloads(Downloads download){
+    public ResponseEntity<String> insertDownloads(Downloads download,HttpServletRequest req){
+        download.setUsername(SessionHandler.getUserSession(req));
+        System.out.println(download);
         downloadsServices.insertOneDownloads(download);
         return new ResponseEntity<String>("true", HttpStatus.ACCEPTED);
     }
