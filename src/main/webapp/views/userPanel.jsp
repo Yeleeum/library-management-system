@@ -3,6 +3,11 @@
 <%@ page import="com.lms.librarymanagementsystem.models.Users" %>
 <%@ page import="com.lms.librarymanagementsystem.models.Fine" %>
 <%@ page import="java.util.List" %>
+<%@page import="com.lms.librarymanagementsystem.models.SoftCopy"%>
+<%@page import="com.lms.librarymanagementsystem.models.Theses"%>
+<%@page import="com.lms.librarymanagementsystem.models.Magazines"%>
+<%@page import="com.lms.librarymanagementsystem.models.Journals"%>
+<%@page import="com.lms.librarymanagementsystem.models.Books"%>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,6 +21,11 @@
 <%
     Users user=(Users)request.getAttribute("user");
     Integer fine=(Integer)request.getAttribute("fine");
+    List<Books> books=(List<Books>) request.getAttribute("books");
+    List<Journals> journals=(List<Journals>) request.getAttribute("journals");
+    List<Magazines> magazines=(List<Magazines>) request.getAttribute("magazines");
+    List<Theses> theses=(List<Theses>) request.getAttribute("theses");
+    List<SoftCopy> softcopies=(List<SoftCopy>) request.getAttribute("softcopies");
 
 %>
 <body>
@@ -113,8 +123,79 @@
                     </div>
                     <div class="suggestions">
                         <h1>Suggestions</h1>
+                        
                         <div class="card-container">
-                            <div class="card">
+                            <% for(Books book : books){ %>
+                                <div class="card">
+                                    <a href="/search/books/<%= book.getBid() %>" >
+                                        <div>
+                                            <img src="/uploads/thumbnails/<%=book.getThumbnail()%>" alt="<%= book.getTitle() %>" width="300" height="300">
+                                        </div>
+                                    </a>
+                                    <h1><%= book.getTitle() %></h1>
+                                    <div class="details">
+                                        <h2>Details</h2>
+                                        <p><%= book.getDescription() %></p>
+                                    </div>
+                                </div>
+                            <%}%>
+                            <% for(Journals journal : journals){ %>
+                                <div class="card">
+                                    <a href="/search/journals/<%= journal.getJid() %>" >
+                                        <div>
+                                            <img src="/uploads/thumbnails/<%=journal.getThumbnail()%>" alt="<%= journal.getTitle() %>" width="300" height="300">
+                                        </div>
+                                    </a>
+                                    <h1><%= journal.getTitle() %></h1>
+                                    <div class="details">
+                                        <h2>Details</h2>
+                                        <p><%= journal.getDescription() %></p>
+                                    </div>
+                                </div>
+                            <%}%>
+                            <% for(Theses thesesItem : theses){ %>
+                                <div class="card">
+                                    <a href="/search/theses/<%= thesesItem.getTid() %>" >
+                                        <div>
+                                            <img src="/uploads/thumbnails/<%=thesesItem.getThumbnail()%>" alt="<%= thesesItem.getTitle() %>" width="300" height="300">
+                                        </div>
+                                    </a>
+                                    <h1><%= thesesItem.getTitle() %></h1>
+                                    <div class="details">
+                                        <h2>Details</h2>
+                                        <p><%= thesesItem.getDescription() %></p>
+                                    </div>
+                                </div>
+                            <%}%>
+                            <% for(Magazines magazine : magazines){ %>
+                                <div class="card">
+                                    <a href="/search/theses/<%= magazine.getMid() %>" >
+                                        <div>
+                                            <img src="/uploads/thumbnails/<%=magazine.getThumbnail()%>" alt="<%= magazine.getTitle() %>" width="300" height="300">
+                                        </div>
+                                    </a>
+                                    <h1><%= magazine.getTitle() %></h1>
+                                    <div class="details">
+                                        <h2>Details</h2>
+                                        <p><%= magazine.getDescription() %></p>
+                                    </div>
+                                </div>
+                            <%}%>
+                            <% for(SoftCopy softcopy : softcopies){ %>
+                                <div class="card">
+                                    <a href="/search/theses/<%= softcopy.getSid() %>" >
+                                        <div>
+                                            <img src="/uploads/thumbnails/<%=softcopy.getThumbnail()%>" alt="<%= softcopy.getTitle() %>" width="300" height="300">
+                                        </div>
+                                    </a>
+                                    <h1><%= softcopy.getTitle() %></h1>
+                                    <div class="details">
+                                        <h2>Details</h2>
+                                        <p><%= softcopy.getDescription() %></p>
+                                    </div>
+                                </div>
+                            <%}%>
+                            <!-- <div class="card">
                                 <img src="/uploads/thumbnails/kathakali.png" alt="">
                                 <h1>Title</h1>
                                 <div class="details">
@@ -153,15 +234,7 @@
                                     <h2>Details</h2>
                                     <p>Lorem ipsum dolor sit amet consectetur adipisicing.</p>
                                 </div>
-                            </div>
-                            <div class="card">
-                                <img src="/uploads/thumbnails/kathakali.png" alt="">
-                                <h1>Title</h1>
-                                <div class="details">
-                                    <h2>Details</h2>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing.</p>
-                                </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>

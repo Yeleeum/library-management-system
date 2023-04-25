@@ -29,4 +29,7 @@ public interface SoftCopyRepository extends JpaRepository<SoftCopy,Integer>{
 
     @Query(value = "SELECT S.* FROM SOFTCOPY S,ALTERNATIVE A,CONNECTOR C WHERE S.SID=A.SID AND A.ITID=C.ITID AND A.ITID=:ITID",nativeQuery = true)
     List<SoftCopy> findAlternativeSoftCopy(@Param("ITID")String ITID);
+    
+    @Query(value="SELECT * FROM SOFTCOPY ORDER BY sid DESC LIMIT 2",nativeQuery = true)
+    List<SoftCopy> getLastTwoSoftCopies();
 }

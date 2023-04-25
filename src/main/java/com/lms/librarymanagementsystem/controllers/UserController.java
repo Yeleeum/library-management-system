@@ -16,10 +16,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lms.librarymanagementsystem.Handlers.SessionHandler;
+import com.lms.librarymanagementsystem.models.Books;
 import com.lms.librarymanagementsystem.models.Borrow;
 import com.lms.librarymanagementsystem.models.Downloads;
 import com.lms.librarymanagementsystem.models.Fine;
+import com.lms.librarymanagementsystem.models.Journals;
+import com.lms.librarymanagementsystem.models.Magazines;
 import com.lms.librarymanagementsystem.models.SoftCopy;
+import com.lms.librarymanagementsystem.models.Theses;
 import com.lms.librarymanagementsystem.models.Users;
 import com.lms.librarymanagementsystem.services.BooksServices;
 import com.lms.librarymanagementsystem.services.BorrowServices;
@@ -73,6 +77,17 @@ public class UserController {
         for(Fine fine:fines){
             totalFine+=fine.getAmount();
         }
+        List<Journals> journals=journalsServices.findLastTwoJournals();
+        List<Books> books=booksServices.findLastTwoBooks();
+        List<Magazines> magazines=magazinesServices.findLastTwoMagazines();
+        List<Theses> theses=thesesServices.findLastTwoTheses();
+        List<SoftCopy> softCopies=softCopyServices.findLastTwoSoftCopies();
+
+        model.addAttribute("books", books);
+        model.addAttribute("journals", journals);
+        model.addAttribute("magazines", magazines);
+        model.addAttribute("theses", theses);
+        model.addAttribute("softcopies", softCopies);
         model.addAttribute("user", user);
         model.addAttribute("fine", totalFine);
         return "userPanel";

@@ -62,4 +62,8 @@ public class SoftCopyServices {
     public List<SoftCopy> findRelatedSoftCopy(String ITID) {
         return softCopyRepository.findAlternativeSoftCopy(ITID);
     }
+
+    public List<SoftCopy> findLastTwoSoftCopies(){
+        return softCopyRepository.getLastTwoSoftCopies();
+    }
 }
