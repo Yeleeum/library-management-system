@@ -1,5 +1,6 @@
 package com.lms.librarymanagementsystem.controllers;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,6 +19,7 @@ import com.lms.librarymanagementsystem.Handlers.SessionHandler;
 import com.lms.librarymanagementsystem.models.Borrow;
 import com.lms.librarymanagementsystem.models.Downloads;
 import com.lms.librarymanagementsystem.models.Fine;
+import com.lms.librarymanagementsystem.models.SoftCopy;
 import com.lms.librarymanagementsystem.models.Users;
 import com.lms.librarymanagementsystem.services.BooksServices;
 import com.lms.librarymanagementsystem.services.BorrowServices;
@@ -26,6 +28,7 @@ import com.lms.librarymanagementsystem.services.DownloadsServices;
 import com.lms.librarymanagementsystem.services.FineServices;
 import com.lms.librarymanagementsystem.services.JournalsServices;
 import com.lms.librarymanagementsystem.services.MagazinesServices;
+import com.lms.librarymanagementsystem.services.SoftCopyServices;
 import com.lms.librarymanagementsystem.services.ThesesServices;
 import com.lms.librarymanagementsystem.services.UsersServices;
 
@@ -42,11 +45,12 @@ public class UserController {
     private JournalsServices journalsServices;
     private MagazinesServices magazinesServices;
     private ThesesServices thesesServices;
+    private SoftCopyServices softCopyServices;
     private DownloadsServices downloadsServices;
 
     public UserController(UsersServices usersServices,BorrowServices borrowServices,FineServices fineServices,BooksServices booksServices,
     ConnectorServices connectorServices, JournalsServices journalsServices, MagazinesServices magazinesServices,
-    ThesesServices thesesServices,DownloadsServices downloadsServices) {
+    ThesesServices thesesServices,SoftCopyServices softCopyServices,DownloadsServices downloadsServices) {
         this.usersServices = usersServices;
         this.borrowServices=borrowServices;
         this.fineServices=fineServices;
@@ -56,6 +60,7 @@ public class UserController {
         this.magazinesServices = magazinesServices;
         this.thesesServices = thesesServices;
         this.downloadsServices = downloadsServices;
+        this.softCopyServices = softCopyServices;
     }
 
     @GetMapping
@@ -139,5 +144,17 @@ public class UserController {
         System.out.println(download);
         downloadsServices.insertOneDownloads(download);
         return new ResponseEntity<String>("true", HttpStatus.ACCEPTED);
+    }
+
+    @GetMapping("/downloads")
+    public String viewDownloads(HttpServletRequest req,Model model){
+        List<String> SID=downloadsServices.findSidByUsername(SessionHandler.getUserSession(req));
+        List<SoftCopy> softCopies=new ArrayList<>();
+        for (String sid : SID) {
+            softCopies.add(softCopyServices.findSingleSoftCopyById(sid));
+        }
+        System.out.println(softCopies);
+        model.addAttribute("softcopies", softCopies);
+        return "";
     }
 }

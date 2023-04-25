@@ -25,4 +25,8 @@ public class DownloadsServices {
         return downloadsRepository.getDownloadsByUsername(username);
     }
 
+    public List<String> findSidByUsername(String username){
+        return downloadsRepository.getSidByUsername(username);
+    }
+
 }
