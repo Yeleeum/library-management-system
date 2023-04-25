@@ -16,11 +16,13 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lms.librarymanagementsystem.Handlers.SessionHandler;
 import com.lms.librarymanagementsystem.models.Borrow;
+import com.lms.librarymanagementsystem.models.Downloads;
 import com.lms.librarymanagementsystem.models.Fine;
 import com.lms.librarymanagementsystem.models.Users;
 import com.lms.librarymanagementsystem.services.BooksServices;
 import com.lms.librarymanagementsystem.services.BorrowServices;
 import com.lms.librarymanagementsystem.services.ConnectorServices;
+import com.lms.librarymanagementsystem.services.DownloadsServices;
 import com.lms.librarymanagementsystem.services.FineServices;
 import com.lms.librarymanagementsystem.services.JournalsServices;
 import com.lms.librarymanagementsystem.services.MagazinesServices;
@@ -40,10 +42,11 @@ public class UserController {
     private JournalsServices journalsServices;
     private MagazinesServices magazinesServices;
     private ThesesServices thesesServices;
+    private DownloadsServices downloadsServices;
 
     public UserController(UsersServices usersServices,BorrowServices borrowServices,FineServices fineServices,BooksServices booksServices,
     ConnectorServices connectorServices, JournalsServices journalsServices, MagazinesServices magazinesServices,
-    ThesesServices thesesServices) {
+    ThesesServices thesesServices,DownloadsServices downloadsServices) {
         this.usersServices = usersServices;
         this.borrowServices=borrowServices;
         this.fineServices=fineServices;
@@ -52,6 +55,7 @@ public class UserController {
         this.journalsServices = journalsServices;
         this.magazinesServices = magazinesServices;
         this.thesesServices = thesesServices;
+        this.downloadsServices = downloadsServices;
     }
 
     @GetMapping
@@ -127,5 +131,11 @@ public class UserController {
     public ResponseEntity<String> returnItem(String itid,HttpServletRequest req){
         borrowServices.performReturn(SessionHandler.getUserSession(req), itid);
         return new ResponseEntity<String>("true",HttpStatus.OK);
+    }
+
+    @PostMapping("/downloads")
+    public ResponseEntity<String> insertDownloads(Downloads download){
+        downloadsServices.insertOneDownloads(download);
+        return new ResponseEntity<String>("true", HttpStatus.ACCEPTED);
     }
 }
