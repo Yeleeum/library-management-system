@@ -32,4 +32,7 @@ public interface MagazinesRepository extends JpaRepository<Magazines,Integer>{
     @Modifying
     @Query(value="UPDATE MAGAZINES SET STOCK=STOCK+1 WHERE ITID=:ITID",nativeQuery = true)
     Integer increaseStock(@Param("ITID")String ITID);
+
+    @Query(value="SELECT * FROM MAGAZINES ORDER BY mid DESC LIMIT 2",nativeQuery = true)
+    List<Magazines> getLastTwoMagazines();
 }

@@ -57,4 +57,8 @@ public class ThesesServices {
     public Integer increaseStock(String ITID){
         return thesesRepository.increaseStock(ITID);
     }
+
+    public List<Theses> findLastTwoTheses(){
+        return thesesRepository.getLastTwoTheses();
+    }
 }

@@ -32,4 +32,7 @@ public interface ThesesRepository extends JpaRepository<Theses,Integer>{
     @Modifying
     @Query(value="UPDATE THESES SET STOCK=STOCK+1 WHERE ITID=:ITID",nativeQuery = true)
     Integer increaseStock(@Param("ITID")String ITID);
+
+    @Query(value="SELECT * FROM THESES ORDER BY tid DESC LIMIT 2",nativeQuery = true)
+    List<Theses> getLastTwoTheses();
 }

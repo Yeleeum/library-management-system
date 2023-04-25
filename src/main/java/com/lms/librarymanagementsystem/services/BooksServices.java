@@ -64,4 +64,8 @@ public class BooksServices {
     public Integer increaseStock(String ITID){
         return booksRepository.increaseStock(ITID);
     }
+
+    public List<Books> findLastTwoBooks(){
+        return booksRepository.getLastTwoBooks();
+    }
 }

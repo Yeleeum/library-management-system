@@ -57,4 +57,8 @@ public class MagazinesServices {
         return magazinesRepository.increaseStock(ITID);
     }
 
+    public List<Magazines> findLastTwoMagazines(){
+        return magazinesRepository.getLastTwoMagazines();
+    }
+
 }

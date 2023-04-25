@@ -60,4 +60,8 @@ public class JournalsServices {
     public Integer increaseStock(String ITID){
         return journalsRepository.increaseStock(ITID);
     }
+
+    public List<Journals> findLastTwoJournals(){
+        return journalsRepository.getLastTwoJournals();
+    }
 }

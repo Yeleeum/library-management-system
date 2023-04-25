@@ -36,4 +36,7 @@ public interface BooksRepository extends JpaRepository<Books,Integer>{
     @Modifying
     @Query(value="UPDATE BOOKS SET STOCK=STOCK+1 WHERE ITID=:ITID",nativeQuery = true)
     Integer increaseStock(@Param("ITID")String ITID);
+
+    @Query(value="SELECT * FROM BOOKS ORDER BY bid DESC LIMIT 2",nativeQuery = true)
+    List<Books> getLastTwoBooks();
 }

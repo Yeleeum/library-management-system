@@ -35,4 +35,7 @@ public interface JournalsRepository extends JpaRepository<Journals,Integer> {
     @Modifying
     @Query(value="UPDATE JOURNALS SET STOCK=STOCK+1 WHERE ITID=:ITID",nativeQuery = true)
     Integer increaseStock(@Param("ITID")String ITID);
+
+    @Query(value="SELECT * FROM JOURNALS ORDER BY jid DESC LIMIT 2",nativeQuery = true)
+    List<Journals> getLastTwoJournals();
 }
