@@ -24,4 +24,12 @@ public class FineServices {
     public List<Fine> findUnpaidFineByUsername(String username){
         return fineRepository.getUnpaidFineByUsername(username);
     }
+
+    public Integer updateFineToRequested(String username){
+        return fineRepository.setFineRequestedByUsername(username);
+    }
+
+    public Integer updateFineToAction(String username,String action){
+        return fineRepository.setFineActionByUsername(username,action);
+    }
 }

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.lms.librarymanagementsystem.Handlers.DateHandler;
 import com.lms.librarymanagementsystem.Handlers.SessionHandler;
 import com.lms.librarymanagementsystem.models.Books;
 import com.lms.librarymanagementsystem.models.Borrow;
@@ -22,6 +23,7 @@ import com.lms.librarymanagementsystem.models.Downloads;
 import com.lms.librarymanagementsystem.models.Fine;
 import com.lms.librarymanagementsystem.models.Journals;
 import com.lms.librarymanagementsystem.models.Magazines;
+import com.lms.librarymanagementsystem.models.Payment;
 import com.lms.librarymanagementsystem.models.SoftCopy;
 import com.lms.librarymanagementsystem.models.Theses;
 import com.lms.librarymanagementsystem.models.Users;
@@ -32,6 +34,7 @@ import com.lms.librarymanagementsystem.services.DownloadsServices;
 import com.lms.librarymanagementsystem.services.FineServices;
 import com.lms.librarymanagementsystem.services.JournalsServices;
 import com.lms.librarymanagementsystem.services.MagazinesServices;
+import com.lms.librarymanagementsystem.services.PaymentServices;
 import com.lms.librarymanagementsystem.services.SoftCopyServices;
 import com.lms.librarymanagementsystem.services.ThesesServices;
 import com.lms.librarymanagementsystem.services.UsersServices;
@@ -51,10 +54,11 @@ public class UserController {
     private ThesesServices thesesServices;
     private SoftCopyServices softCopyServices;
     private DownloadsServices downloadsServices;
+    private PaymentServices paymentServices;
 
     public UserController(UsersServices usersServices,BorrowServices borrowServices,FineServices fineServices,BooksServices booksServices,
     ConnectorServices connectorServices, JournalsServices journalsServices, MagazinesServices magazinesServices,
-    ThesesServices thesesServices,SoftCopyServices softCopyServices,DownloadsServices downloadsServices) {
+    ThesesServices thesesServices,SoftCopyServices softCopyServices,DownloadsServices downloadsServices,PaymentServices paymentServices) {
         this.usersServices = usersServices;
         this.borrowServices=borrowServices;
         this.fineServices=fineServices;
@@ -65,6 +69,7 @@ public class UserController {
         this.thesesServices = thesesServices;
         this.downloadsServices = downloadsServices;
         this.softCopyServices = softCopyServices;
+        this.paymentServices = paymentServices;
     }
 
     @GetMapping
@@ -177,5 +182,33 @@ public class UserController {
     public String viewCurrentlyBorrowedBooks(HttpServletRequest req, Model model){
         List<Borrow> borrows = borrowServices.findNotReturnedRequestedListByUsername(SessionHandler.getUserSession(req));
         return "";
+    }
+
+    // @GetMapping("/borrowed/previous")
+
+    @GetMapping("/payment")
+    public String getPaymentForm(Model model){
+        return "paymentForm";
+    }
+
+    @PostMapping("/payment/fine")
+    public ResponseEntity<String> payFine(Payment payment,HttpServletRequest req){
+        payment.setUsername(SessionHandler.getUserSession(req));
+        payment.setPaydate(DateHandler.getCurrentDate());
+        payment.setType("fine");
+        payment.setApproved("pending");
+        paymentServices.insertOnePayment(payment);
+        fineServices.updateFineToRequested(SessionHandler.getUserSession(req));
+        return new ResponseEntity<String>("true", HttpStatus.ACCEPTED);
+    }
+
+    @PostMapping("/payment/renewal")
+    public ResponseEntity<String> payRenewal(Payment payment,HttpServletRequest req){
+        payment.setUsername(SessionHandler.getUserSession(req));
+        payment.setPaydate(DateHandler.getCurrentDate());
+        payment.setType("renewal");
+        payment.setApproved("pending");
+        paymentServices.insertOnePayment(payment);
+        return new ResponseEntity<String>("true", HttpStatus.ACCEPTED);
     }
 }

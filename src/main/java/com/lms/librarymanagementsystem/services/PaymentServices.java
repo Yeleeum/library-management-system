@@ -3,6 +3,7 @@ package com.lms.librarymanagementsystem.services;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.lms.librarymanagementsystem.models.Payment;
 import com.lms.librarymanagementsystem.repositories.PaymentRepository;
 
 @Service
@@ -12,6 +13,14 @@ public class PaymentServices {
 
     public PaymentServices(PaymentRepository paymentRepository) {
         this.paymentRepository = paymentRepository;
+    }
+
+    public Payment insertOnePayment(Payment payment){
+        return paymentRepository.save(payment);
+    }
+
+    public Integer updatePayment(String pid,String action){
+        return paymentRepository.updatePaymentByPid(pid, action);
     }
 
 }

@@ -28,8 +28,10 @@ import com.lms.librarymanagementsystem.services.BooksServices;
 import com.lms.librarymanagementsystem.services.BorrowServices;
 import com.lms.librarymanagementsystem.services.ConnectorServices;
 import com.lms.librarymanagementsystem.services.EmailServices;
+import com.lms.librarymanagementsystem.services.FineServices;
 import com.lms.librarymanagementsystem.services.JournalsServices;
 import com.lms.librarymanagementsystem.services.MagazinesServices;
+import com.lms.librarymanagementsystem.services.PaymentServices;
 import com.lms.librarymanagementsystem.services.RegistrationServices;
 import com.lms.librarymanagementsystem.services.SoftCopyServices;
 import com.lms.librarymanagementsystem.services.ThesesServices;
@@ -52,12 +54,14 @@ public class AdminController {
     private SoftCopyServices softCopyServices;
     private AdminServices adminServices;
     private BorrowServices borrowServices;
+    private PaymentServices paymentServices;
+    private FineServices fineServices;
 
     public AdminController(RegistrationServices registrationServices, UsersServices usersServices,
             EmailServices emailServices, AlternativeServices alternativeServices, BooksServices booksServices,
             ConnectorServices connectorServices, JournalsServices journalsServices, MagazinesServices magazinesServices,
             ThesesServices thesesServices, SoftCopyServices softCopyServices, AdminServices adminServices,
-            BorrowServices borrowServices) {
+            BorrowServices borrowServices,PaymentServices paymentServices,FineServices fineServices) {
         this.registrationServices = registrationServices;
         this.usersServices = usersServices;
         this.emailServices = emailServices;
@@ -70,6 +74,8 @@ public class AdminController {
         this.softCopyServices = softCopyServices;
         this.adminServices = adminServices;
         this.borrowServices = borrowServices;
+        this.paymentServices = paymentServices;
+        this.fineServices = fineServices;
     }
 
     @GetMapping
@@ -130,10 +136,6 @@ public class AdminController {
                 +
                 "Sincerely,\n\n" +
                 "Library Authorities";
-
-        /* String content = "Dear! " + registration.getFirstName()
-                + " ,your application has been rejected due to the reason: " + message
-                + ". You can visit the admin for further information."; */
         emailServices.sendMail(registration.getEmail(), "Rejection of Library User Registration", content);
         registrationServices.updateApproval("rejected", rsid);
         return "redirect:./viewpending/" + pay.toLowerCase();
@@ -313,6 +315,13 @@ public class AdminController {
             thesesServices.increaseStock(itid);
         }
         return new ResponseEntity<String>("true", HttpStatus.OK);
+    }
+
+    @PostMapping("/finepaymentaction")
+    public ResponseEntity<String> resolveFinePayment(String pid,String action,HttpServletRequest req){
+        paymentServices.updatePayment(pid, action);
+        fineServices.updateFineToAction(SessionHandler.getUserSession(req), action.equals("rejected")?action:"true");
+        return new ResponseEntity<String>("true", HttpStatus.ACCEPTED);
     }
 
 }
