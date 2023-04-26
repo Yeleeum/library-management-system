@@ -7,9 +7,9 @@ use librarymanagementsystem;
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 26, 2023 at 11:09 PM
--- Server version: 10.4.25-MariaDB
--- PHP Version: 8.1.10
+-- Generation Time: Apr 27, 2023 at 12:10 AM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 8.1.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -34,7 +34,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `admin` (
   `username` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `admin`
@@ -53,7 +53,7 @@ CREATE TABLE `alternative` (
   `AID` int(11) NOT NULL,
   `ITID` varchar(100) NOT NULL,
   `SID` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `alternative`
@@ -82,7 +82,7 @@ CREATE TABLE `books` (
   `pageno` int(11) DEFAULT NULL,
   `stock` int(11) DEFAULT NULL,
   `location` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `books`
@@ -90,7 +90,7 @@ CREATE TABLE `books` (
 
 INSERT INTO `books` (`bid`, `itid`, `title`, `author`, `publisher`, `thumbnail`, `description`, `category`, `keywords`, `edition`, `pageno`, `stock`, `location`) VALUES
 (1, 'I01', 'Programming with Raspberry PI', 'Simon Monk', 'McGraw Hill TAB', 'B1.jpg', 'Learn to create inventive programs and fun games on your powerful Raspberry Pi―with no programming experience required. This practical book has been revised to fully cover the new Raspberry Pi 2, including upgrades to the Raspbian operating system. Discover how to configure hardware and software, write Python scripts, create user-friendly GUIs, and control external electronics. DIY projects include a hangman game, RGB LED controller, digital clock, and RasPiRobot complete with an ultrasonic rangefinder.', 'Programming', 'Raspberry Pi, GPIO (General Purpose Input/Output), Linux operating system, Remote access and control', '2', 208, 22, '1-S, 2-R'),
-(2, 'B02', 'Advanced Python Programming', 'Sakis Kasampalis Quan Nguyen Dr Gabriele Lanaro Dr. Gabriele Lanaro ', 'Ingram short title', 'B2.jpg', 'This Learning Path shows you how to leverage the power of both native and third-party Python libraries for building robust and responsive applications. You will learn about profilers and reactive programming, concurrency and parallelism, as well as tools for making your apps quick and efficient. You will discover how to write code for parallel architectures using TensorFlow and Theano, and use a cluster of computers for large-scale computations using technologies such as Dask and PySpark. With the knowledge of how Python design patterns work, you will be able to clone objects, secure interfaces, dynamically choose algorithms, and accomplish much more in high performance computing. By the end of this Learning Path, you will have the skills and confidence to build engaging models that quickly offer efficient solutions to your problems.\r\n\r\nThis Learning Path includes content from the following Packt products:\r\n\r\nPython High Performance - Second Edition by Gabriele Lanaro\r\nMastering Concurrency in Python by Quan Nguyen\r\nMastering Python Design Patterns by Sakis Kasampalis\r\nWhat you will learn\r\nUse NumPy and pandas to import and manipulate datasets\r\nAchieve native performance with Cython and Numba\r\nWrite asynchronous code using asyncio and RxPy\r\nDesign highly scalable programs with application scaffolding\r\nExplore abstract methods to maintain data consistency\r\nClone objects using the prototype pattern\r\nUse the adapter pattern to make incompatible interfaces compatible\r\nEmploy the strategy pattern to dynamically choose an algorithm\r\nWho this book is for\r\nThis Learning Path is specially designed for Python developers who want to build high-performance applications and learn about single core and multi-core programming, distributed concurrency, and Python design patterns. Some experience with Python programming language will help you get the most out of this Learning Path.', 'Programming', 'Python, Advance Python, Programming, Dask, PySpark', '1st', 672, 2, '2-S, 4-R'),
+(2, 'I02', 'Advanced Python Programming', 'Sakis Kasampalis Quan Nguyen Dr Gabriele Lanaro Dr. Gabriele Lanaro ', 'Ingram short title', 'B2.jpg', 'This Learning Path shows you how to leverage the power of both native and third-party Python libraries for building robust and responsive applications. You will learn about profilers and reactive programming, concurrency and parallelism, as well as tools for making your apps quick and efficient. You will discover how to write code for parallel architectures using TensorFlow and Theano, and use a cluster of computers for large-scale computations using technologies such as Dask and PySpark. With the knowledge of how Python design patterns work, you will be able to clone objects, secure interfaces, dynamically choose algorithms, and accomplish much more in high performance computing. By the end of this Learning Path, you will have the skills and confidence to build engaging models that quickly offer efficient solutions to your problems.\r\n\r\nThis Learning Path includes content from the following Packt products:\r\n\r\nPython High Performance - Second Edition by Gabriele Lanaro\r\nMastering Concurrency in Python by Quan Nguyen\r\nMastering Python Design Patterns by Sakis Kasampalis\r\nWhat you will learn\r\nUse NumPy and pandas to import and manipulate datasets\r\nAchieve native performance with Cython and Numba\r\nWrite asynchronous code using asyncio and RxPy\r\nDesign highly scalable programs with application scaffolding\r\nExplore abstract methods to maintain data consistency\r\nClone objects using the prototype pattern\r\nUse the adapter pattern to make incompatible interfaces compatible\r\nEmploy the strategy pattern to dynamically choose an algorithm\r\nWho this book is for\r\nThis Learning Path is specially designed for Python developers who want to build high-performance applications and learn about single core and multi-core programming, distributed concurrency, and Python design patterns. Some experience with Python programming language will help you get the most out of this Learning Path.', 'Programming', 'Python, Advance Python, Programming, Dask, PySpark', '1st', 672, 2, '2-S, 4-R'),
 (3, 'I03', 'Advances in Computer, Information, and Systems Sciences, and Engineering', 'Khaled Elleithy, Tarek Sobh, Ausif Mahmood, Magued Iskander, Mohammad A. Karim', 'Springer', 'B3.jpg', 'The conference proceedings of:\r\n\r\nInternational Conference on Industrial Electronics, Technology & Automation (IETA 05)\r\nInternational Conference on Telecommunications and Networking (TeNe 05)\r\nInternational Conference on Engineering Education, Instructional Technology, Assessment, and E-learning (EIAE 05)\r\ninclude a set of rigorously reviewed world-class manuscripts addressing and detailing state-of-the-art research projects in the areas of: Industrial Electronics, Technology and Automation, Telecommunications, Networking, Engineering Education, Instructional Technology and e-Learning.\r\n\r\nThe three conferences, (IETA 05, TENE 05 and EIAE 05) were part of the International Joint Conference on Computer, Information, and System Sciences, and Engineering (CISSE 2005).\r\n\r\nCISSE 2005, the World\'s first Engineering/Computing and Systems Research E-Conference was the first high-caliber Research Conference in the world to be completely conducted online in real-time via the internet.\r\n\r\nCISSE received 255 research paper submissions and the final program included 140 accepted papers, from more than 45 countries. The whole concept and format of CISSE 2005 was very exciting and ground-breaking. The powerpoint presentations, final paper manuscripts and time schedule for live presentations over the web had been available for 3 weeks prior to the start of the conference for all registrants, so they could pick and choose the presentations they want to attend and think about questions that they might want to ask. The live audio presentations were also recorded and are part of the permanent CISSE archive, which includes all power point presentations, papers and recorded presentations.\r\n\r\nAll aspects of the conference were managed on-line; not only the reviewing, submissions and registration processes; but also the actual conference. Conference participants - authors, presenters and attendees - only needed an internet connection and sound available on their computers in order to be able to contribute and participate in this international ground-breaking conference. The on-line structure of this high-quality event allowed academic professionals and industry participants to contribute work and attend world-class technical presentations based on rigorously refereed submissions, live, without the need for investing significant travel funds or time out of the office. Suffice to say that CISSE received submissions from more than 50 countries, for whose researchers, this opportunity presented a much more affordable, dynamic and well-planned event to attend and submit their work to, versus a classic, on-the-ground conference.\r\n\r\nThe CISSE conference audio room provided superb audio even over low speed internet connections, the ability to display PowerPoint presentations, and cross-platform compatibility (the conferencing software runs on Windows, Mac, and any other operating system that supports Java). In addition, the conferencing system allowed for an unlimited number of participants, which in turn granted CISSE the opportunity to allow all participants to attend all presentations, as opposed to limiting the number of available seats for each session.\r\n\r\nThe implemented conferencing technology, starting with the submission & review system and ending with the online conferencing capability, allowed CISSE to conduct a very high quality, fulfilling event for all participants.', 'Engineering', 'High-Performance Computing, Software Engineering, Information Retrieval, Database Systems', '2006', 12078, 10, '1-S, 4-R'),
 (4, 'I04', 'Advances in Business, Management and Entrepreneurship', 'Ratih Hurriyati, Benny Tjahjono, Ade Gafar Abdullah, Sulastri, Lisnawati', ' CRC Press', 'B4.jpg', 'The GCBME Book Series aims to promote the quality and methodical reach of the Global Conference on Business Management & Entrepreneurship, which is intended as a high-quality scientific contribution to the science of business management and entrepreneurship. The Contributions are expected to be the main reference articles on the topic of each book and have been subject to a strict peer review process conducted by experts in the fields. The conference provided opportunities for the delegates to exchange new ideas and implementation of experiences, to establish business or research connections and to find Global Partners for future collaboration.\r\n\r\nThe conference and resulting volume in the book series is expected to be held and appear annually. The year 2019 theme of book and conference is \"Transforming Sustainable Business In The Era Of Society 5.0\". The ultimate goal of GCBME is to provide a medium forum for educators, researchers, scholars, managers, graduate students and professional business persons from the diverse cultural backgrounds, to present and discuss their research, knowledge and innovation within the fields of business, management and entrepreneurship. The GCBME conferences cover major thematic groups, yet opens to other relevant topics: Organizational Behavior, Innovation, Marketing Management, Financial Management and Accounting, Strategic Management, Entrepreneurship and Green Business.', 'Business', 'Artificial Intelligence (AI), Natural Language Processing (NLP), Internet of Things (IoT)', '1st', 748, 35, '3-S, 5-R'),
 (5, 'I05', 'J.A.I.: JAVA ADVANCED IMAGING', 'Manisha Sharma', 'Kindle', 'B5.jpg', 'Java Advanced Imaging (J.A.I.) is a technical programming application based on Java Technology.\r\nJava API allows the programmers to develop different internet based applications and filters. The book illustrates an introduction to java applets and J.A.I. technology tools that implement classes and methods for achieving image synthesis based results. This book also includes required source code, screen layouts as well as algorithm for the practical implementation and demonstration.', 'Java', 'programming, java, Advance Java, OOPS (Object Oriented Programming System)', '1st', 55, 14, '3-S, 2-R'),
@@ -110,7 +110,7 @@ CREATE TABLE `borrow` (
   `RETURNDATE` date DEFAULT NULL,
   `STATUS` varchar(100) DEFAULT NULL,
   `APPROVED` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -121,36 +121,29 @@ CREATE TABLE `borrow` (
 CREATE TABLE `connector` (
   `itid` varchar(100) NOT NULL,
   `type` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `connector`
 --
 
 INSERT INTO `connector` (`itid`, `type`) VALUES
-('B02', 'book'),
 ('I01', 'book'),
 ('i02', 'book'),
 ('I03', 'book'),
 ('I04', 'book'),
 ('I05', 'book'),
-('I05908', 'theses'),
 ('I06', 'book'),
 ('I07', 'magazine'),
 ('I08', 'magazine'),
 ('I09', 'magazine'),
-('I0909', 'book'),
-('I098979', 'journal'),
 ('I10', 'magazine'),
 ('I11', 'magazine'),
-('I420', 'theses'),
-('I876', 'theses'),
-('I876545', 'theses'),
-('I87987', 'book'),
-('I8978', 'theses'),
-('I960', 'book'),
-('I9789', 'book'),
-('ty', 'journal');
+('I12', 'theses'),
+('I13', 'theses'),
+('I14', 'theses'),
+('I15', 'theses'),
+('I16', 'theses');
 
 -- --------------------------------------------------------
 
@@ -163,7 +156,7 @@ CREATE TABLE `downloads` (
   `username` varchar(100) DEFAULT NULL,
   `sid` varchar(100) DEFAULT NULL,
   `downloaddate` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -177,7 +170,7 @@ CREATE TABLE `fine` (
   `Finedate` date DEFAULT NULL,
   `Amount` varchar(100) DEFAULT NULL,
   `PAID` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -199,7 +192,7 @@ CREATE TABLE `journals` (
   `endyear` int(11) DEFAULT NULL,
   `pageno` int(11) DEFAULT NULL,
   `stock` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -221,7 +214,7 @@ CREATE TABLE `magazines` (
   `specialissue` varchar(100) DEFAULT NULL,
   `category` varchar(100) DEFAULT NULL,
   `stock` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `magazines`
@@ -245,7 +238,7 @@ CREATE TABLE `message` (
   `USERNAME` varchar(100) DEFAULT NULL,
   `CONTENT` longtext DEFAULT NULL,
   `STATUS` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -262,7 +255,7 @@ CREATE TABLE `payment` (
   `Approved` varchar(100) DEFAULT NULL,
   `paid` varchar(100) DEFAULT NULL,
   `type` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -285,7 +278,7 @@ CREATE TABLE `registration` (
   `PAID` varchar(100) DEFAULT NULL,
   `TRANSACTION` varchar(100) DEFAULT NULL,
   `APPROVED` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `registration`
@@ -311,7 +304,7 @@ CREATE TABLE `softcopy` (
   `keywords` longtext DEFAULT NULL,
   `pageno` int(11) DEFAULT NULL,
   `filename` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `softcopy`
@@ -346,7 +339,18 @@ CREATE TABLE `theses` (
   `abstract` text DEFAULT NULL,
   `pageno` int(11) DEFAULT NULL,
   `stock` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `theses`
+--
+
+INSERT INTO `theses` (`tid`, `itid`, `title`, `researcher`, `guides`, `description`, `thumbnail`, `category`, `keywords`, `completeddate`, `place`, `abstract`, `pageno`, `stock`) VALUES
+(1, 'I12', 'A Novel Approach for Alzheimers Disease Diagnosis Using Soft Computing Techniques', 'Sarita', 'Mukherjee,Saurabh', 'The thesis aims to propose a novel approach for the diagnosis of Alzheimer', 'Screenshot 2023-04-27 032604.png', 'Medical', 'Computer Science Computer Science Interdisciplinary Applications Engineering and Technology Soft computing', '2021-01-01', 'Banasthali', 'newline', 50, 5),
+(2, 'I13', 'Isolation, Identification and Characterization of Chlorella Strain as a Potential Biofuel Source', ' Wahi Nitin', 'A K Bhatia and Seema Bhadauria', 'The thesis in Life Sciences, Microbiology, Biotechnology, and Applied Microbiology can cover a broad range of topics related to the study of microorganisms and their applications in various fields. Some possible thesis descriptions in this area could include:  1. Development of a new antimicrobial agent: This thesis could focus on the discovery, development, and characterization of a new antimicrobial agent to combat bacterial infections. The research may involve screening of natural products or synthesis of new compounds, testing their efficacy against various bacterial strains, and investigating their mode of action.  2. Bioremediation of contaminated environments: This thesis could investigate the use of microorganisms for the cleanup of contaminated environments, such as soil or water. The research may involve identifying suitable microorganisms, optimizing their growth conditions, and evaluating their effectiveness in removing pollutants.  3. Production of biofuels: This thesis could focus on the use of microorganisms to produce biofuels, such as ethanol or biodiesel. The research may involve optimizing the fermentation process, investigating different substrates for microbial growth, and assessing the economic feasibility of the process.  4. Industrial applications of microorganisms: This thesis could investigate the use of microorganisms in various industrial applications, such as food and beverage production, pharmaceuticals, or bioplastics. The research may involve optimizing the microbial growth conditions, developing novel microbial strains, and evaluating the scalability of the process.  Overall, a thesis in Life Sciences, Microbiology, Biotechnology, and Applied Microbiology can contribute to the understanding and application of microorganisms in various fields and may have significant implications for human health, environmental sustainability, and industrial innovation.', 'Screenshot 2023-04-27 032902.png', 'Applied Microbiology', ' Life Sciences,Microbiology,Biotechnology and Applied Microbiology', '2018-01-01', 'Mathura', 'newline', 86, 4),
+(3, 'I14', 'Medical astrology in sanskrit literature with special reference to Ayurveda', 'Neelakandan, E S', 'Potty, Vishnu V S', 'The thesis aims to explore the concept of medical astrology in Sanskrit literature with a special reference to Ayurveda. Ayurveda is a traditional system of medicine that originated in India, and medical astrology is an essential component of this system. The thesis will investigate the role of astrology in Ayurveda, its theoretical foundations, and its practical applications in diagnosing and treating various diseases.  The thesis will start with a literature review of Sanskrit texts related to medical astrology and Ayurveda, followed by an analysis of the key concepts and principles underlying this system. The thesis will also investigate the astrological factors that influence human health, including the influence of planets, constellations, and lunar phases.  The practical applications of medical astrology in Ayurveda will be examined, including the use of astrological charts to diagnose diseases, predict their course and outcome, and recommend appropriate treatments. The thesis will also investigate the role of astrological remedies, such as gemstones, mantras, and rituals, in the treatment of various diseases.  The thesis will conclude with a critical evaluation of the role of medical astrology in Ayurveda and its relevance in contemporary medical practice. The potential limitations, ethical considerations, and future directions of medical astrology in Ayurveda will also be discussed.  Overall, the thesis will provide a comprehensive understanding of the concept of medical astrology in Sanskrit literature, its theoretical foundations, and practical applications in Ayurveda. It will contribute to the knowledge and appreciation of the traditional systems of medicine and their relevance in contemporary healthcare.', 'Screenshot 2023-04-27 033132.png', 'Medical astrology and Ayurveda', 'Astrology, Ayurveda, Medicine, literature', '2003-02-01', 'Kanchipuram', 'none', 75, 2),
+(4, 'I15', 'Black holes branes and strings aspects of quintessence in cosmology and origin of dark energy', 'Pandey, Kumar Priyabrat', 'Kar, Supriya K.', 'The thesis focuses on exploring the aspects of quintessence in cosmology and the origin of dark energy, particularly in the context of black holes, branes, and strings. Quintessence is a theoretical form of energy that has been proposed to explain the accelerated expansion of the universe. The thesis aims to investigate the role of quintessence in cosmology and its connection to dark energy.  The thesis will start with a literature review of the relevant theoretical frameworks, including black holes, branes, and strings, as well as the properties of dark energy and quintessence. The thesis will then develop a theoretical model of quintessence that can be used to study its effects on the universe', 'Screenshot 2023-04-27 033347.png', 'Cosmology and Dark energy', 'Black holes (Astronomy) Compact objects (Astronomy) Kerr black holes Physical Sciences Physics Physics Atomic Molecular and Chemical Sagittarius A* (Astronomy) Stars', '2014-01-01', 'New Delhi', 'Available newline', 69, 1),
+(5, 'I16', ' Research On Generalisation Of Paranormal Operators', 'D. Sumathi', 'Dr. S. Panayappan', 'The thesis aims to investigate the concept of generalization of paranormal operators in mathematics. Paranormal operators are a class of linear operators that are defined on a Hilbert space. They have unique properties that make them useful in various areas of mathematics and physics, including quantum mechanics and functional analysis. The thesis will explore the concept of generalization of paranormal operators and its applications in mathematics.  The thesis will begin with a literature review of the existing research on paranormal operators and their properties. The thesis will then introduce the concept of generalization of paranormal operators and its theoretical foundations. This will include investigating the different types of generalization that can be applied to paranormal operators, such as weak, strong, and ultra-strong generalization.  The thesis will also investigate the applications of generalization of paranormal operators in mathematics. This will include analyzing the properties of generalized paranormal operators and their relationship with other classes of linear operators. The thesis will also explore the potential applications of generalized paranormal operators in various areas of mathematics, including functional analysis, operator theory, and quantum mechanics.  The thesis will conclude with a critical evaluation of the concept of generalization of paranormal operators and its potential for future research in mathematics. The limitations and challenges associated with this concept will also be discussed.  Overall, the thesis will provide a comprehensive understanding of the concept of generalization of paranormal operators and its applications in mathematics. It will contribute to the knowledge and appreciation of the fundamental concepts in functional analysis, operator theory, and quantum mechanics, and their potential for solving complex mathematical problems.', 'Screenshot 2023-04-27 033622.png', 'Functional analysis and Quantum mechanics', 'paranormal operators, Hilbert space, linear operators, generalization, weak generalization, strong generalization, ultra-strong generalization, functional analysis, operator theory, quantum mechanics, mathematics', '2013-06-17', 'Coimbatore', 'newline', 40, 8);
 
 -- --------------------------------------------------------
 
@@ -367,7 +371,7 @@ CREATE TABLE `users` (
   `CATEGORY` varchar(100) DEFAULT NULL,
   `MEMBERSHIP` varchar(100) DEFAULT NULL,
   `MEMBERSHIPEXPIRE` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
@@ -551,7 +555,7 @@ ALTER TABLE `registration`
 -- AUTO_INCREMENT for table `theses`
 --
 ALTER TABLE `theses`
-  MODIFY `tid` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `tid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables

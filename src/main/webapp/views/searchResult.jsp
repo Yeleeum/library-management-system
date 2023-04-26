@@ -37,7 +37,7 @@
 				<% for(Books book : books){ %>
 					<div class="booksCard">
 						<a href="/search/books/<%= book.getBid() %>" >
-							<div>
+							<div class="image-container">
 								<img src="/uploads/thumbnails/<%=book.getThumbnail()%>" alt="<%= book.getTitle() %>" width="300" height="300">
 							</div>
 						</a>
@@ -58,13 +58,13 @@
 				<% for(Journals journal : journals){ %>
 					<div class="booksCard">
 						<a href="/search/journals/<%= journal.getJid() %>" >
-							<div>
+							<div class="image-container">
 								<img src="/uploads/thumbnails/<%=journal.getThumbnail()%>" alt="<%= journal.getTitle() %>" width="300" height="300">
 							</div>
 						</a>
 						<div class="bookDetails">
 								<h3><%= journal.getTitle() %> </h3>
-								<h3>Editor: <%= journal.getEditor() %></h3>
+								<h4>Editor: <%= journal.getEditor() %></h4>
 								<h4>Published by <%= journal.getPublisher() %></h4>
 								<a href="/search/category/<%= journal.getCategory() %>">#<%= journal.getCategory() %></a>
 						</div>
@@ -79,15 +79,15 @@
 				<% for(Magazines magazine : magazines){ %>
 					<div class="booksCard">
 						<a href="/search/magazines/<%= magazine.getMid() %>" >
-							<div>
+							<div class="image-container">
 								<img src="/uploads/thumbnails/<%=magazine.getThumbnail()%>" alt="<%= magazine.getTitle() %>" width="300" height="300">
 							</div>
 						</a>
 						<div class="bookDetails">
 								<h3><%= magazine.getTitle() %> </h3>
 								<h4>Published by <%= magazine.getPublisher() %></h4>
-								<h3>@issue: <%= magazine.getIssuenumber() %></h3>
-								<h3>Issued on: <%= magazine.getIssuedate() %></h3>
+								<h4>@issue: <%= magazine.getIssuenumber() %></h4>
+								<h4>Issued on: <%= magazine.getIssuedate() %></h4>
 								<p>
 									<% if(!magazine.getSpecialissue().equals("")) { %>
 										<span><b>Special Issue : </b></span>
@@ -107,15 +107,15 @@
 				<% for(Theses thesesItem : theses){ %>
 					<div class="booksCard">
 						<a href="/search/theses/<%= thesesItem.getTid() %>" >
-							<div>
+							<div class="image-container">
 								<img src="/uploads/thumbnails/<%=thesesItem.getThumbnail()%>" alt="<%= thesesItem.getTitle() %>" width="300" height="300">
 							</div>
 						</a>
 						<div class="bookDetails">
 								<h3><%= thesesItem.getTitle() %> </h3>
 								<h4>Researched by <%= thesesItem.getResearcher() %></h4>
-								<h3>Guides: <%= thesesItem.getGuides() %></h3>
-								<h3>Completed on: <%= thesesItem.getCompletedDate() %></h3>
+								<h4>Guides: <%= thesesItem.getGuides() %></h4>
+								<h4>Completed on: <%= thesesItem.getCompletedDate() %></h4>
 								<a href="/search/category/<%= thesesItem.getCategory() %>">#<%= thesesItem.getCategory() %></a>
 						</div>
 					</div>
@@ -129,14 +129,14 @@
 			<% for(SoftCopy softcopy : softcopies){ %>
 					<div class="booksCard">
 						<a href="/search/softcopy/<%= softcopy.getSid() %>" >
-							<div>
+							<div class="image-container">
 								<img src="/uploads/thumbnails/<%=softcopy.getThumbnail()%>" alt="<%= softcopy.getTitle() %>" width="300" height="300">
 							</div>
 						</a>
 						<div class="bookDetails">
 								<h3><%= softcopy.getTitle() %> </h3>
 								<h4>Published by <%= softcopy.getPublisher() %></h4>
-								<h3>Owner: <%= softcopy.getOwner() %></h3>
+								<h4>Owner: <%= softcopy.getOwner() %></h4>
 								<a href="/search/category/<%= softcopy.getCategory() %>">#<%= softcopy.getCategory() %></a>
 						</div>
 					</div>
