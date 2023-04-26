@@ -1,9 +1,10 @@
 package com.lms.librarymanagementsystem.controllers;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.*;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -206,6 +207,7 @@ public class UserController {
         model.addAttribute("journals", journals);
         model.addAttribute("magazines", magazines);
         model.addAttribute("theses", theses);
+        model.addAttribute("borrows", borrows);
 
         return "UserBorrows";
     }
@@ -213,7 +215,7 @@ public class UserController {
     @GetMapping("/borrowed/previous")
     public String viewPreviouslyBorrowedBooks(HttpServletRequest req, Model model){
         List<Borrow> borrows = borrowServices.findReturnedOrRejectedListByUsername(SessionHandler.getUserSession(req));
-        List<Connector> connectors=new ArrayList<>();
+        Set<Connector> connectors = new HashSet<Connector>();
         for(Borrow borrow:borrows){
             connectors.add(connectorServices.getConnectorByItid(borrow.getitid()));
         }

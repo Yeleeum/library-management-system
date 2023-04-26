@@ -5,6 +5,7 @@
 <%@page import="com.lms.librarymanagementsystem.models.Magazines"%>
 <%@page import="com.lms.librarymanagementsystem.models.Journals"%>
 <%@page import="com.lms.librarymanagementsystem.models.Books"%>
+<%@page import="com.lms.librarymanagementsystem.models.Borrow"%>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -22,6 +23,7 @@
         List<Journals> journals=(List<Journals>) request.getAttribute("journals");
         List<Magazines> magazines=(List<Magazines>) request.getAttribute("magazines");
         List<Theses> theses=(List<Theses>) request.getAttribute("theses");
+        List<Borrow> borrows=(List<Borrow>) request.getAttribute("borrows");
     %>
 
     <body>
@@ -53,6 +55,16 @@
                                         <div class="details">
                                             <h2>Details</h2>
                                             <p><%= book.getDescription() %></p>
+                                            <%if(borrows != null) {%>
+                                                <%for(Borrow borrow: borrows) {%>
+                                                    <%if(borrow.getitid().equals(book.getItid())) { %>
+                                                        <ul>
+                                                            <li><span>Borrow Date : </span> <%= borrow.getBorrowDate() %></li>
+                                                            <li><span>Return Date : </span> <%= borrow.getReturnDate() %></li>
+                                                        </ul>
+                                                    <% } %>
+                                                <% } %>
+                                            <% } %>
                                         </div>
                                     </div>
                                 <%}%>
@@ -67,6 +79,16 @@
                                         <div class="details">
                                             <h2>Details</h2>
                                             <p><%= journal.getDescription() %></p>
+                                            <%if(borrows != null) {%>
+                                                <%for(Borrow borrow: borrows) {%>
+                                                    <%if(borrow.getitid().equals(journal.getItid())) { %>
+                                                        <ul>
+                                                            <li><span>Borrow Date : </span> <%= borrow.getBorrowDate() %></li>
+                                                            <li><span>Return Date : </span> <%= borrow.getReturnDate() %></li>
+                                                        </ul>
+                                                    <% } %>
+                                                <% } %>
+                                            <% } %>
                                         </div>
                                     </div>
                                 <%}%>
@@ -81,6 +103,16 @@
                                         <div class="details">
                                             <h2>Details</h2>
                                             <p><%= thesesItem.getDescription() %></p>
+                                            <%if(borrows != null) {%>
+                                                <%for(Borrow borrow: borrows) {%>
+                                                    <%if(borrow.getitid().equals(thesesItem.getItid())) { %>
+                                                        <ul>
+                                                            <li><span>Borrow Date : </span> <%= borrow.getBorrowDate() %></li>
+                                                            <li><span>Return Date : </span> <%= borrow.getReturnDate() %></li>
+                                                        </ul>
+                                                    <% } %>
+                                                <% } %>
+                                            <% } %>
                                         </div>
                                     </div>
                                 <%}%>
@@ -95,6 +127,16 @@
                                         <div class="details">
                                             <h2>Details</h2>
                                             <p><%= magazine.getDescription() %></p>
+                                            <%if(borrows != null) {%>
+                                                <%for(Borrow borrow: borrows) {%>
+                                                    <%if(borrow.getitid().equals(magazine.getItid())) { %>
+                                                        <ul>
+                                                            <li><span>Borrow Date : </span> <%= borrow.getBorrowDate() %></li>
+                                                            <li><span>Return Date : </span> <%= borrow.getReturnDate() %></li>
+                                                        </ul>
+                                                    <% } %>
+                                                <% } %>
+                                            <% } %>
                                         </div>
                                     </div>
                                 <%}%>
