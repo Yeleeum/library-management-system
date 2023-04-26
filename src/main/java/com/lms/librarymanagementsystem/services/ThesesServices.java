@@ -61,4 +61,8 @@ public class ThesesServices {
     public List<Theses> findLastTwoTheses(){
         return thesesRepository.getLastTwoTheses();
     }
+
+    public Theses findOneThesesByItid(String itid){
+        return thesesRepository.getOneThesesByItid(itid);
+    }
 }

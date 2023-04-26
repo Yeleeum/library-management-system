@@ -64,4 +64,8 @@ public class JournalsServices {
     public List<Journals> findLastTwoJournals(){
         return journalsRepository.getLastTwoJournals();
     }
+
+    public Journals findOneJournalByItid(String itid){
+        return journalsRepository.getOneJournalByItid(itid);
+    }
 }

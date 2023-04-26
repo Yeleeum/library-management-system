@@ -35,4 +35,7 @@ public interface ThesesRepository extends JpaRepository<Theses,Integer>{
 
     @Query(value="SELECT * FROM THESES ORDER BY tid DESC LIMIT 2",nativeQuery = true)
     List<Theses> getLastTwoTheses();
+
+    @Query(value="SELECT * FROM THESES WHERE ITID=:itid",nativeQuery = true)
+    Theses getOneThesesByItid(@Param("itid")String itid);
 }

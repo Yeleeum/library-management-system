@@ -39,4 +39,7 @@ public interface BooksRepository extends JpaRepository<Books,Integer>{
 
     @Query(value="SELECT * FROM BOOKS ORDER BY bid DESC LIMIT 2",nativeQuery = true)
     List<Books> getLastTwoBooks();
+
+    @Query(value="SELECT * FROM BOOKS WHERE ITID=:itid",nativeQuery = true)
+    Books getOneBookByItid(@Param("itid")String itid);
 }

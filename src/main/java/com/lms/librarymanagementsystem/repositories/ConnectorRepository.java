@@ -9,4 +9,7 @@ import com.lms.librarymanagementsystem.models.Connector;
 public interface ConnectorRepository extends JpaRepository<Connector,String>{
     @Query(value="SELECT TYPE FROM CONNECTOR WHERE ITID=:ITID",nativeQuery = true)
     String getType(@Param("ITID")String ITID);
+
+    @Query(value="SELECT * FROM CONNECTOR WHERE ITID=:ITID",nativeQuery = true)
+    Connector getConnectorByItid(@Param("ITID")String ITID);
 }

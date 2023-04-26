@@ -61,4 +61,8 @@ public class MagazinesServices {
         return magazinesRepository.getLastTwoMagazines();
     }
 
+    public Magazines findOneMagazineByItid(String itid){
+        return magazinesRepository.getOneMagazineByItid(itid);
+    }
+
 }

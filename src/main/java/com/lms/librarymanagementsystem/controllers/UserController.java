@@ -19,6 +19,7 @@ import com.lms.librarymanagementsystem.Handlers.DateHandler;
 import com.lms.librarymanagementsystem.Handlers.SessionHandler;
 import com.lms.librarymanagementsystem.models.Books;
 import com.lms.librarymanagementsystem.models.Borrow;
+import com.lms.librarymanagementsystem.models.Connector;
 import com.lms.librarymanagementsystem.models.Downloads;
 import com.lms.librarymanagementsystem.models.Fine;
 import com.lms.librarymanagementsystem.models.Journals;
@@ -181,6 +182,31 @@ public class UserController {
     @GetMapping("/borrowed/current")
     public String viewCurrentlyBorrowedBooks(HttpServletRequest req, Model model){
         List<Borrow> borrows = borrowServices.findNotReturnedRequestedListByUsername(SessionHandler.getUserSession(req));
+        List<Connector> connectors=new ArrayList<>();
+        for(Borrow borrow:borrows){
+            connectors.add(connectorServices.getConnectorByItid(borrow.getitid()));
+        }
+        List<Journals> journals=new ArrayList<>();
+        List<Books> books=new ArrayList<>();
+        List<Magazines> magazines=new ArrayList<>();
+        List<Theses> theses=new ArrayList<>();
+        for(Connector connector:connectors){
+            if(connector.getType().equals("book")){
+                books.add(booksServices.findOneBookByItid(connector.getItid()));
+            }else if(connector.getType().equals("journal")){
+                journals.add(journalsServices.findOneJournalByItid(connector.getItid()));
+            }else if(connector.getType().equals("theses")){
+                theses.add(thesesServices.findOneThesesByItid(connector.getItid()));
+            }else if(connector.getType().equals("magazine")){
+                magazines.add(magazinesServices.findOneMagazineByItid(connector.getItid()));
+            }
+        }
+
+        model.addAttribute("books", books);
+        model.addAttribute("journals", journals);
+        model.addAttribute("magazines", magazines);
+        model.addAttribute("theses", theses);
+
         return "";
     }
 

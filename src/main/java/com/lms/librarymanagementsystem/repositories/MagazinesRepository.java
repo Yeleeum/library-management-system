@@ -35,4 +35,7 @@ public interface MagazinesRepository extends JpaRepository<Magazines,Integer>{
 
     @Query(value="SELECT * FROM MAGAZINES ORDER BY mid DESC LIMIT 2",nativeQuery = true)
     List<Magazines> getLastTwoMagazines();
+
+    @Query(value="SELECT * FROM MAGAZINES WHERE ITID=:itid",nativeQuery = true)
+    Magazines getOneMagazineByItid(@Param("itid")String itid);
 }

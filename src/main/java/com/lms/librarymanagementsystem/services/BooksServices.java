@@ -68,4 +68,8 @@ public class BooksServices {
     public List<Books> findLastTwoBooks(){
         return booksRepository.getLastTwoBooks();
     }
+
+    public Books findOneBookByItid(String itid){
+        return booksRepository.getOneBookByItid(itid);
+    }
 }

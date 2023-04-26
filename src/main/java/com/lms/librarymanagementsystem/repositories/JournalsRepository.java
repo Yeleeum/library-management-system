@@ -38,4 +38,7 @@ public interface JournalsRepository extends JpaRepository<Journals,Integer> {
 
     @Query(value="SELECT * FROM JOURNALS ORDER BY jid DESC LIMIT 2",nativeQuery = true)
     List<Journals> getLastTwoJournals();
+
+    @Query(value="SELECT * FROM JOURNALS WHERE ITID=:itid",nativeQuery = true)
+    Journals getOneJournalByItid(@Param("itid")String itid);
 }

@@ -22,4 +22,8 @@ public class ConnectorServices {
     public String getType(String ITID){
         return connectorRepository.getType(ITID);
     }
+
+    public Connector getConnectorByItid(String ITID){
+        return connectorRepository.getConnectorByItid(ITID);
+    }
 }
