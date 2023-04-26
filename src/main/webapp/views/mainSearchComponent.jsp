@@ -18,6 +18,7 @@
             color: black;
             outline: none;
             border: none;
+            margin-bottom: 0 !important;
         }
 
         .searchBox:focus {
@@ -31,6 +32,7 @@
             font-weight: bolder;
             border-radius: 10px;
             cursor: pointer;
+            
         }
     </style>
 </head>

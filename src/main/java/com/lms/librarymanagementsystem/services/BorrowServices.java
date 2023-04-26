@@ -63,4 +63,8 @@ public class BorrowServices {
     public Integer performReturn(String username,String itid){
         return borrowRepository.returnRequest(username, itid);
     }
+
+    public List<Borrow> findNotReturnedRequestedListByUsername(String username){
+        return borrowRepository.getNotReturnedRequestedListByUsername(username);
+    }
 }

@@ -170,6 +170,12 @@ public class UserController {
         }
         System.out.println(softCopies);
         model.addAttribute("softcopies", softCopies);
+        return "Downloads";
+    }
+
+    @GetMapping("/borrowed/current")
+    public String viewCurrentlyBorrowedBooks(HttpServletRequest req, Model model){
+        List<Borrow> borrows = borrowServices.findNotReturnedRequestedListByUsername(SessionHandler.getUserSession(req));
         return "";
     }
 }
