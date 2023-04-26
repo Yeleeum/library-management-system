@@ -207,7 +207,7 @@ public class UserController {
         model.addAttribute("magazines", magazines);
         model.addAttribute("theses", theses);
 
-        return "";
+        return "UserBorrows";
     }
 
     @GetMapping("/borrowed/previous")
@@ -238,7 +238,7 @@ public class UserController {
         model.addAttribute("magazines", magazines);
         model.addAttribute("theses", theses);
 
-        return "";
+        return "UserBorrows";
     }
 
     // 
