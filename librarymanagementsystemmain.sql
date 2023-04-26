@@ -7,9 +7,9 @@ use librarymanagementsystem;
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 26, 2023 at 03:56 PM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.1.12
+-- Generation Time: Apr 26, 2023 at 11:09 PM
+-- Server version: 10.4.25-MariaDB
+-- PHP Version: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -34,14 +34,14 @@ SET time_zone = "+00:00";
 CREATE TABLE `admin` (
   `username` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `admin`
 --
 
 INSERT INTO `admin` (`username`, `password`) VALUES
-('test', 'test');
+('admin', 'admin');
 
 -- --------------------------------------------------------
 
@@ -53,16 +53,14 @@ CREATE TABLE `alternative` (
   `AID` int(11) NOT NULL,
   `ITID` varchar(100) NOT NULL,
   `SID` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `alternative`
 --
 
 INSERT INTO `alternative` (`AID`, `ITID`, `SID`) VALUES
-(1, 'I03', 'Moja'),
-(2, 'I03', 'I765'),
-(3, 'I8978', 'Moja');
+(1, 'I01', 'S06');
 
 -- --------------------------------------------------------
 
@@ -74,8 +72,8 @@ CREATE TABLE `books` (
   `bid` int(11) NOT NULL,
   `itid` varchar(100) NOT NULL,
   `title` varchar(100) NOT NULL,
-  `author` varchar(100) NOT NULL,
-  `publisher` varchar(100) NOT NULL,
+  `author` varchar(500) NOT NULL,
+  `publisher` varchar(500) NOT NULL,
   `thumbnail` varchar(200) DEFAULT NULL,
   `description` text DEFAULT NULL,
   `category` varchar(100) DEFAULT NULL,
@@ -84,20 +82,19 @@ CREATE TABLE `books` (
   `pageno` int(11) DEFAULT NULL,
   `stock` int(11) DEFAULT NULL,
   `location` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `books`
 --
 
 INSERT INTO `books` (`bid`, `itid`, `title`, `author`, `publisher`, `thumbnail`, `description`, `category`, `keywords`, `edition`, `pageno`, `stock`, `location`) VALUES
-(1, 'I01', 'new', 'new', 'new', 'Untitled design.png', 'new new new', 'Java', 'java,prog', 'new', 300, 2, 'aB'),
-(2, 'I02', 'hello', 'hello', 'hello', 'Texturelabs_Pattern_129S.png', 'hello', 'c++', 'c++,c', 'new', 45, 4, 'fg'),
-(4, 'I03', 'hello', 'hello', 'hello', 'Untitled design.png', 'hello', 'c++,java', 'c++,c,new\r\n', 'new', 45, -2, 'fg'),
-(5, 'I04', 'Maza', 'new', 'hu', 'crew-neck-t-shirt-mockup-of-a-man-smiling-at-a-studio-28953 (1).png', 'wow', 'Bengali', 'huiii', '3', 34, 34, 'DF'),
-(7, 'I0909', 'er', 'we', 'we', '273459962_1636113900055442_7228868579176044961_n.jpg', 'we', 'we', 'we', '3', 3, 3, '3'),
-(8, 'I9789', 'My Book', 'me', 'ami re', 'Screenshot 2023-03-08 220519.png', 'nei kichu', 'khub valo', 'valo re', '4', 45, 0, '45'),
-(9, 'I87987', 'My new Book', 'wow', 'wow2', 'Screenshot (15).png', 'nwi', 'vag', 'er', '4', 4, 4, '4');
+(1, 'I01', 'Programming with Raspberry PI', 'Simon Monk', 'McGraw Hill TAB', 'B1.jpg', 'Learn to create inventive programs and fun games on your powerful Raspberry Pi―with no programming experience required. This practical book has been revised to fully cover the new Raspberry Pi 2, including upgrades to the Raspbian operating system. Discover how to configure hardware and software, write Python scripts, create user-friendly GUIs, and control external electronics. DIY projects include a hangman game, RGB LED controller, digital clock, and RasPiRobot complete with an ultrasonic rangefinder.', 'Programming', 'Raspberry Pi, GPIO (General Purpose Input/Output), Linux operating system, Remote access and control', '2', 208, 22, '1-S, 2-R'),
+(2, 'B02', 'Advanced Python Programming', 'Sakis Kasampalis Quan Nguyen Dr Gabriele Lanaro Dr. Gabriele Lanaro ', 'Ingram short title', 'B2.jpg', 'This Learning Path shows you how to leverage the power of both native and third-party Python libraries for building robust and responsive applications. You will learn about profilers and reactive programming, concurrency and parallelism, as well as tools for making your apps quick and efficient. You will discover how to write code for parallel architectures using TensorFlow and Theano, and use a cluster of computers for large-scale computations using technologies such as Dask and PySpark. With the knowledge of how Python design patterns work, you will be able to clone objects, secure interfaces, dynamically choose algorithms, and accomplish much more in high performance computing. By the end of this Learning Path, you will have the skills and confidence to build engaging models that quickly offer efficient solutions to your problems.\r\n\r\nThis Learning Path includes content from the following Packt products:\r\n\r\nPython High Performance - Second Edition by Gabriele Lanaro\r\nMastering Concurrency in Python by Quan Nguyen\r\nMastering Python Design Patterns by Sakis Kasampalis\r\nWhat you will learn\r\nUse NumPy and pandas to import and manipulate datasets\r\nAchieve native performance with Cython and Numba\r\nWrite asynchronous code using asyncio and RxPy\r\nDesign highly scalable programs with application scaffolding\r\nExplore abstract methods to maintain data consistency\r\nClone objects using the prototype pattern\r\nUse the adapter pattern to make incompatible interfaces compatible\r\nEmploy the strategy pattern to dynamically choose an algorithm\r\nWho this book is for\r\nThis Learning Path is specially designed for Python developers who want to build high-performance applications and learn about single core and multi-core programming, distributed concurrency, and Python design patterns. Some experience with Python programming language will help you get the most out of this Learning Path.', 'Programming', 'Python, Advance Python, Programming, Dask, PySpark', '1st', 672, 2, '2-S, 4-R'),
+(3, 'I03', 'Advances in Computer, Information, and Systems Sciences, and Engineering', 'Khaled Elleithy, Tarek Sobh, Ausif Mahmood, Magued Iskander, Mohammad A. Karim', 'Springer', 'B3.jpg', 'The conference proceedings of:\r\n\r\nInternational Conference on Industrial Electronics, Technology & Automation (IETA 05)\r\nInternational Conference on Telecommunications and Networking (TeNe 05)\r\nInternational Conference on Engineering Education, Instructional Technology, Assessment, and E-learning (EIAE 05)\r\ninclude a set of rigorously reviewed world-class manuscripts addressing and detailing state-of-the-art research projects in the areas of: Industrial Electronics, Technology and Automation, Telecommunications, Networking, Engineering Education, Instructional Technology and e-Learning.\r\n\r\nThe three conferences, (IETA 05, TENE 05 and EIAE 05) were part of the International Joint Conference on Computer, Information, and System Sciences, and Engineering (CISSE 2005).\r\n\r\nCISSE 2005, the World\'s first Engineering/Computing and Systems Research E-Conference was the first high-caliber Research Conference in the world to be completely conducted online in real-time via the internet.\r\n\r\nCISSE received 255 research paper submissions and the final program included 140 accepted papers, from more than 45 countries. The whole concept and format of CISSE 2005 was very exciting and ground-breaking. The powerpoint presentations, final paper manuscripts and time schedule for live presentations over the web had been available for 3 weeks prior to the start of the conference for all registrants, so they could pick and choose the presentations they want to attend and think about questions that they might want to ask. The live audio presentations were also recorded and are part of the permanent CISSE archive, which includes all power point presentations, papers and recorded presentations.\r\n\r\nAll aspects of the conference were managed on-line; not only the reviewing, submissions and registration processes; but also the actual conference. Conference participants - authors, presenters and attendees - only needed an internet connection and sound available on their computers in order to be able to contribute and participate in this international ground-breaking conference. The on-line structure of this high-quality event allowed academic professionals and industry participants to contribute work and attend world-class technical presentations based on rigorously refereed submissions, live, without the need for investing significant travel funds or time out of the office. Suffice to say that CISSE received submissions from more than 50 countries, for whose researchers, this opportunity presented a much more affordable, dynamic and well-planned event to attend and submit their work to, versus a classic, on-the-ground conference.\r\n\r\nThe CISSE conference audio room provided superb audio even over low speed internet connections, the ability to display PowerPoint presentations, and cross-platform compatibility (the conferencing software runs on Windows, Mac, and any other operating system that supports Java). In addition, the conferencing system allowed for an unlimited number of participants, which in turn granted CISSE the opportunity to allow all participants to attend all presentations, as opposed to limiting the number of available seats for each session.\r\n\r\nThe implemented conferencing technology, starting with the submission & review system and ending with the online conferencing capability, allowed CISSE to conduct a very high quality, fulfilling event for all participants.', 'Engineering', 'High-Performance Computing, Software Engineering, Information Retrieval, Database Systems', '2006', 12078, 10, '1-S, 4-R'),
+(4, 'I04', 'Advances in Business, Management and Entrepreneurship', 'Ratih Hurriyati, Benny Tjahjono, Ade Gafar Abdullah, Sulastri, Lisnawati', ' CRC Press', 'B4.jpg', 'The GCBME Book Series aims to promote the quality and methodical reach of the Global Conference on Business Management & Entrepreneurship, which is intended as a high-quality scientific contribution to the science of business management and entrepreneurship. The Contributions are expected to be the main reference articles on the topic of each book and have been subject to a strict peer review process conducted by experts in the fields. The conference provided opportunities for the delegates to exchange new ideas and implementation of experiences, to establish business or research connections and to find Global Partners for future collaboration.\r\n\r\nThe conference and resulting volume in the book series is expected to be held and appear annually. The year 2019 theme of book and conference is \"Transforming Sustainable Business In The Era Of Society 5.0\". The ultimate goal of GCBME is to provide a medium forum for educators, researchers, scholars, managers, graduate students and professional business persons from the diverse cultural backgrounds, to present and discuss their research, knowledge and innovation within the fields of business, management and entrepreneurship. The GCBME conferences cover major thematic groups, yet opens to other relevant topics: Organizational Behavior, Innovation, Marketing Management, Financial Management and Accounting, Strategic Management, Entrepreneurship and Green Business.', 'Business', 'Artificial Intelligence (AI), Natural Language Processing (NLP), Internet of Things (IoT)', '1st', 748, 35, '3-S, 5-R'),
+(5, 'I05', 'J.A.I.: JAVA ADVANCED IMAGING', 'Manisha Sharma', 'Kindle', 'B5.jpg', 'Java Advanced Imaging (J.A.I.) is a technical programming application based on Java Technology.\r\nJava API allows the programmers to develop different internet based applications and filters. The book illustrates an introduction to java applets and J.A.I. technology tools that implement classes and methods for achieving image synthesis based results. This book also includes required source code, screen layouts as well as algorithm for the practical implementation and demonstration.', 'Java', 'programming, java, Advance Java, OOPS (Object Oriented Programming System)', '1st', 55, 14, '3-S, 2-R'),
+(6, 'I06', 'Sri Ramcharitmanas', 'Goswami Tulshidas', 'Gita Press Gorakhpur', 'B6.jpg', 'Ramcharitramanas is an epic poem composed by the Indian poet-saint Tulsidas in the 16th century. It is a retelling of the Hindu epic, Ramayana, which tells the story of Lord Rama, an incarnation of Lord Vishnu, and his battle against the demon king Ravana to rescue his wife Sita.\r\n\r\nThe Ramcharitramanas is written in Awadhi, a dialect of Hindi, and is divided into seven books, each consisting of several chapters. The first book, Balakanda, tells the story of Rama\'s childhood and his marriage to Sita. The second book, Ayodhyakanda, describes the events leading up to Rama\'s exile to the forest. The third book, Aranyakanda, describes Rama\'s life in the forest and his encounters with various sages and demons. The fourth book, Kishkindhakanda, tells the story of Rama\'s meeting with Hanuman and his battle against the demon king Vali. The fifth book, Sundarakanda, describes the events leading up to the discovery of Sita\'s whereabouts. The sixth book, Lankakanda, describes the battle between Rama and Ravana, and the seventh book, Uttarakanda, tells the story of Rama\'s return to Ayodhya and his coronation as king.\r\n\r\nRamcharitramanas is considered to be one of the most important works of Hindi literature and has had a profound impact on the devotional traditions of Hinduism. It is often recited in temples and homes during religious ceremonies and festivals, and has been adapted into numerous plays, films, and musical compositions.', 'Devotional', 'Ramcharitmanas, ramayana, shri ram katha', '2nd', 1780, 34, '2-S, 5-R');
 
 -- --------------------------------------------------------
 
@@ -113,17 +110,7 @@ CREATE TABLE `borrow` (
   `RETURNDATE` date DEFAULT NULL,
   `STATUS` varchar(100) DEFAULT NULL,
   `APPROVED` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `borrow`
---
-
-INSERT INTO `borrow` (`BRID`, `USERNAME`, `ITID`, `BORROWDATE`, `RETURNDATE`, `STATUS`, `APPROVED`) VALUES
-(1, 'test', 'I01', '2023-04-24', '2023-05-09', 'returned', 'rejected'),
-(3, 'test', 'I01', '2023-04-24', '2023-05-09', 'return rejected', 'rejected'),
-(4, 'test', 'I01', '2023-04-24', '2023-05-09', 'notreturned', 'rejected'),
-(5, 'test', 'I02', '2023-04-24', '2023-05-09', 'return rejected', 'approved');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -134,25 +121,28 @@ INSERT INTO `borrow` (`BRID`, `USERNAME`, `ITID`, `BORROWDATE`, `RETURNDATE`, `S
 CREATE TABLE `connector` (
   `itid` varchar(100) NOT NULL,
   `type` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `connector`
 --
 
 INSERT INTO `connector` (`itid`, `type`) VALUES
+('B02', 'book'),
 ('I01', 'book'),
 ('i02', 'book'),
 ('I03', 'book'),
 ('I04', 'book'),
-('I05', 'journal'),
+('I05', 'book'),
 ('I05908', 'theses'),
-('I06', 'magazine'),
-('I08', 'journal'),
-('I09', 'journal'),
+('I06', 'book'),
+('I07', 'magazine'),
+('I08', 'magazine'),
+('I09', 'magazine'),
 ('I0909', 'book'),
 ('I098979', 'journal'),
-('I10', 'journal'),
+('I10', 'magazine'),
+('I11', 'magazine'),
 ('I420', 'theses'),
 ('I876', 'theses'),
 ('I876545', 'theses'),
@@ -173,15 +163,7 @@ CREATE TABLE `downloads` (
   `username` varchar(100) DEFAULT NULL,
   `sid` varchar(100) DEFAULT NULL,
   `downloaddate` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `downloads`
---
-
-INSERT INTO `downloads` (`did`, `username`, `sid`, `downloaddate`) VALUES
-(1, 'test', 'Moja', '2023-04-25'),
-(2, 'test', 'I980', '2023-04-25');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -195,16 +177,7 @@ CREATE TABLE `fine` (
   `Finedate` date DEFAULT NULL,
   `Amount` varchar(100) DEFAULT NULL,
   `PAID` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `fine`
---
-
-INSERT INTO `fine` (`FID`, `Username`, `Finedate`, `Amount`, `PAID`) VALUES
-(1, 'new8', '2023-04-19', '100', 'true'),
-(3, 'new8', '2023-04-23', '50', 'false'),
-(4, 'new8', '2023-04-24', '50', 'false');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -216,8 +189,8 @@ CREATE TABLE `journals` (
   `jid` int(11) NOT NULL,
   `itid` varchar(100) DEFAULT NULL,
   `title` varchar(100) NOT NULL,
-  `publisher` varchar(100) NOT NULL,
-  `editor` varchar(100) DEFAULT NULL,
+  `publisher` varchar(500) NOT NULL,
+  `editor` varchar(500) DEFAULT NULL,
   `description` text DEFAULT NULL,
   `thumbnail` varchar(200) DEFAULT NULL,
   `category` varchar(100) DEFAULT NULL,
@@ -226,19 +199,7 @@ CREATE TABLE `journals` (
   `endyear` int(11) DEFAULT NULL,
   `pageno` int(11) DEFAULT NULL,
   `stock` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `journals`
---
-
-INSERT INTO `journals` (`jid`, `itid`, `title`, `publisher`, `editor`, `description`, `thumbnail`, `category`, `keywords`, `startyear`, `endyear`, `pageno`, `stock`) VALUES
-(1, 'I05', 'great', 'me', 'vh', 'kuch vi', 'Untitled design.png', 'option1', 'c++', NULL, NULL, NULL, 3),
-(2, 'I08', 'New', 'New', 'New', 'df', 'istockphoto-942526180-170667a.jpg', 'option2', 'Java', NULL, NULL, NULL, 3),
-(3, 'I09', 'Something', 'ke dkhe', 'wow', 'jio', 'LMSTABLEUPDATED3.0.png', 'option3', 'Java,Prog', NULL, NULL, NULL, 1),
-(4, 'I10', '1', '1', '1', '1', 'LMSTABLEUPDATED3.0.png', 'option1', '1', 2003, 2023, 1, 1),
-(5, 'ty', 'tyu', 'ty', 'ht', 'bg', 'mockup-of-an-11-oz-coffee-mug-from-three-different-angles-27883 (22).png', 'option2', 'fb3', 335, 456, 4, 4),
-(9, 'I098979', 'something', 'why', 'why not', 'why not why', 'LMSTABLEUPDATED3.0.png', 'everything', 'great', 67, 2023, 4, 1);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -250,7 +211,7 @@ CREATE TABLE `magazines` (
   `mid` int(11) NOT NULL,
   `itid` varchar(100) DEFAULT NULL,
   `title` varchar(100) NOT NULL,
-  `publisher` varchar(100) NOT NULL,
+  `publisher` varchar(500) NOT NULL,
   `issuedate` date DEFAULT NULL,
   `issuenumber` varchar(100) DEFAULT NULL,
   `description` text DEFAULT NULL,
@@ -260,14 +221,18 @@ CREATE TABLE `magazines` (
   `specialissue` varchar(100) DEFAULT NULL,
   `category` varchar(100) DEFAULT NULL,
   `stock` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `magazines`
 --
 
 INSERT INTO `magazines` (`mid`, `itid`, `title`, `publisher`, `issuedate`, `issuenumber`, `description`, `thumbnail`, `frequency`, `keywords`, `specialissue`, `category`, `stock`) VALUES
-(1, 'I06', 'Anandamela', 'ABP', '2022-03-13', '341', '45', 'White and Black Modern Twitter Header.png', '4', 'c++', 'no', 'option2', 2);
+(1, 'I07', 'TELL ME WHY', 'MANORAMA', '2022-09-01', '189', 'June 2022\'s edition of \"Tell Me Why\" is the perfect monthly magazine for curious kids who love to learn! Packed with engaging and educational content, this magazine is designed to inspire a lifelong love of learning and discovery. Each issue is filled with fun and fascinating facts, stories, puzzles, and games, all carefully selected to help young readers develop their knowledge and critical thinking skills. In this particular issue, kids will explore a range of topics, from science and nature to history and current events. With colorful illustrations, clear explanations, and interactive features, \"Tell Me Why\" is sure to captivate and entertain young minds. Whether your child is a budding scientist, history buff, or just loves to learn new things, \"Tell Me Why\" is the perfect magazine to keep them engaged and excited about the world around them.', 'M1.jpg', 'MONTHLY', 'June 2022, Tell Me Why, Children\'s magazine, Early learning, Monthly magazine, Curiosity, Lifelong learning, Fun facts, Stories, Puzzles, Games, Science, Nature, History, Current events, Education, Critical thinking, Young readers, Interactive features, Captivating, Entertaining, Science education, Learning and discovery', 'APJ ABDUL KALAM TRIBUTE', 'EDUCATIONAL', 1),
+(2, 'I08', 'TELL ME WHY', 'MANORAMA', '2022-09-01', '192', 'The latest special edition of \"Tell Me Why\" magazine is a must-read for any young adventurer or nature lover! In this issue, the focus is on some of the most breathtaking and awe-inspiring natural wonders on the planet: national parks. From the rugged peaks of Yosemite to the sprawling plains of the Serengeti, this magazine takes young readers on a journey through some of the most incredible landscapes on earth. Through vivid descriptions, stunning photography, and fascinating stories, this special edition of \"Tell Me Why\" brings the magic of these world-famous national parks to life. Whether your child is a seasoned nature enthusiast or just starting to explore the great outdoors, this magazine is the perfect guide to some of the most remarkable places on earth. So join us on this thrilling adventure, and discover the beauty and wonder of our planet\'s most amazing national parks!', 'M2.jpg', 'MONTHLY', 'Tell Me Why magazine, National Parks, Special edition, Young adventurer, Nature lover, Breathtaking, Awe-inspiring, Natural wonders, Yosemite, Serengeti, Landscapes, Vivid descriptions, Stunning photography, Fascinating stories, World-famous, Magic, Great outdoors, Nature enthusiast, Remarkable places, Beauty, Wonder', 'WORLD FAMOUS NATIONAL PARKS', 'EDUCATIONAL', 1),
+(3, 'I09', 'ANANDAMELA', 'ABP GROUPS', '2020-09-20', '432', 'The latest special edition of \"Anandamela\" magazine is a thought-provoking and informative publication that explores the most significant historical mistakes made by civilizations and individuals over time. Through engaging articles, captivating illustrations, and insightful analysis, this edition sheds light on some of the most critical errors in human history that have shaped the world as we know it today. From political blunders to military miscalculations, readers will gain a deeper understanding of how mistakes in history have had a lasting impact on society, culture, and global events. This edition of \"Anandamela\" is perfect for young readers who are curious about history and the lessons we can learn from it. It encourages critical thinking and fosters a greater appreciation for the complexities of the past. Whether your child is a history buff or just starting to explore the subject, this special edition is sure to captivate their imagination and inspire a lifelong love of learning.', 'M3.jpg', 'FORTNIGHTLY', ' Anandamela magazine, Special edition, Historical mistakes, Thought-provoking, Informative, Civilizations, Individuals, Engaging articles, Captivating illustrations, Insightful analysis, Political blunders, Military miscalculations, Lasting impact, Society, Culture, Global events, Critical thinking, History buff, Lessons, Past, Imagination, Lifelong learning', 'N/A', 'EDUCATIONAL', 2),
+(4, 'I10', 'KISHORE BHARATI SHARADIYA 1427', 'PATRA BHARATI', '2020-08-01', '143', 'The Kishore Bharati Sharadiya 1427 Bengali Year is a special edition magazine that celebrates the festive spirit of Durga Puja and the arrival of autumn in Bengal. This annual publication is eagerly awaited by readers, as it brings together a wealth of entertaining and informative content for young adults. The 2020 edition of Kishore Bharati Sharadiya is packed with engaging features, including gripping stories, fascinating interviews, thought-provoking articles, and much more. It also features stunning artwork, colorful illustrations, and eye-catching designs that capture the essence of the season. This edition is perfect for young Bengali readers who are looking to immerse themselves in the rich culture and tradition of their homeland. It provides a unique opportunity to explore the cultural heritage of Bengal and learn about the customs and traditions associated with Durga Puja. With its rich content and vibrant presentation, the Kishore Bharati Sharadiya 1427 Bengali Year edition is sure to captivate and entertain readers of all ages.', 'M4.jpg', 'YEARLY', 'Kishore Bharati Sharadiya, 1427 Bengali Year, Durga Puja, Festive spirit, Autumn, Bengal, Annual publication, Young adults, Gripping stories, Fascinating interviews, Thought-provoking articles, Stunning artwork, Colorful illustrations, Eye-catching designs, Cultural heritage, Customs, Traditions, Rich content, Vibrant presentation, Entertaining, Captivating', 'N/A', 'CHILDREN', 2),
+(5, 'I11', 'SUKTARA AUGUST 2018', 'DEV SAHITYA KUTIR', '2018-08-01', '7', 'The August 2018 edition of Suktara magazine is a must-read for Bengali literature enthusiasts. This monthly publication is known for its rich literary content and engaging storytelling, and the August 2018 edition is no exception. It features a diverse range of articles, including thought-provoking essays, captivating short stories, and insightful interviews with notable figures in Bengali literature. In addition to its literary content, Suktara also includes sections on lifestyle, culture, and current events, providing readers with a well-rounded and informative reading experience. The magazine\'s high-quality design and artwork further enhance the reading experience, making it a visually stunning publication that is as beautiful as it is informative. Whether you are a seasoned literary enthusiast or simply looking for engaging and thought-provoking content, the August 2018 edition of Suktara magazine is sure to captivate your imagination and leave you wanting more.', 'M5.jpg', 'MONTHLY', 'Suktara magazine, Bengali literature, August 2018, Monthly publication, Literary content, Storytelling, Essays, Short stories, Interviews, Notable figures, Lifestyle, Culture, Current events, Informative, High-quality design, Artwork, Visually stunning, Captivating, Thought-provoking.', 'N/A', 'CHILDREN', 3);
 
 -- --------------------------------------------------------
 
@@ -280,7 +245,7 @@ CREATE TABLE `message` (
   `USERNAME` varchar(100) DEFAULT NULL,
   `CONTENT` longtext DEFAULT NULL,
   `STATUS` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -297,7 +262,7 @@ CREATE TABLE `payment` (
   `Approved` varchar(100) DEFAULT NULL,
   `paid` varchar(100) DEFAULT NULL,
   `type` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -320,37 +285,14 @@ CREATE TABLE `registration` (
   `PAID` varchar(100) DEFAULT NULL,
   `TRANSACTION` varchar(100) DEFAULT NULL,
   `APPROVED` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `registration`
 --
 
 INSERT INTO `registration` (`RSID`, `USERNAME`, `PASSWORD`, `PROFILEPICTURE`, `FIRSTNAME`, `LASTNAME`, `GENDER`, `DOB`, `PHONE`, `EMAIL`, `CATEGORY`, `PAID`, `TRANSACTION`, `APPROVED`) VALUES
-(2, 'new2', 'new', 'new.png', 'new', 'new', 'male', '2023-03-02', '90', 'hjk', 'St', 'paid', 'bhjk', 'rejected'),
-(3, 'new3', 'new', 'new.png', 'new', 'new', 'male', '2023-03-02', '90', 'hjk', 'St', 'paid', 'bhjk', 'approved'),
-(4, 'new4', '1234', 'noor kata (1).png', NULL, NULL, 'male', '2023-03-29', '07003512645', 'sinchannandy54@gmail.com', 'student', 'unpaid', '', 'approved'),
-(5, 'new5', '1234', 'White and Black Modern Twitter Header.png', 'Sinchan', 'Nandy', 'male', '2023-04-04', '07003512645', 'sinchannandy54@gmail.com', 'student', 'unpaid', '', 'rejected'),
-(6, 'new6', '1234', 'Untitled design.png', 'Sinchan', 'Nandy', 'male', '2023-04-04', '07003512645', 'sinchannandy54@gmail.com', 'student', 'unpaid', '', 'approved'),
-(7, 'new6', '1234', 'Untitled design.png', 'Sinchan', 'Nandy', 'male', '2023-04-04', '07003512645', 'sinchannandy54@gmail.com', 'student', 'unpaid', '', 'rejected'),
-(8, 'new7', '123', 'Untitled design.png', 'Sinchan', 'Nandy', 'male', '2023-04-04', '07003512645', 'sinchannandy54@gmail.com', 'student', 'paid', 'b679', 'approved'),
-(9, '10min', '45', 'IMG-20220311-WA0006-02.jpeg', 'Sinchan', 'Nandy', 'male', '2023-04-04', '07003512645', 'sinchannandy54@gmail.com', 'student', 'unpaid', '', 'approved'),
-(10, '10min', '89', 'IMG-20220311-WA0006-02.jpeg', 'Sinchan', 'Nandy', 'male', '2023-04-04', '07003512645', 'joh53506@zslsz.com', 'student', 'unpaid', '', 'approved'),
-(11, '10min2', '56', 'IMG-20220311-WA0006-02.jpeg', 'Sinchan', 'Nandy', 'male', '2023-04-04', '07003512645', 'joh53506@zslsz.com', 'student', 'unpaid', '', 'approved'),
-(12, 'ayush', 'rt', 'IMG-20220311-WA0006-02.jpeg', 'Ayush', 'Singh', 'male', '2023-04-04', '07003512645', 'hiayushsingh.co.in@gmail.com', 'student', 'unpaid', '', 'rejected'),
-(13, 'new8', '34', 'White and Black Modern Twitter Header.png', 'Sinchan', 'Nandy', 'male', '2023-03-29', '07003512645', 'hjk@hjl.com', 'regular', 'unpaid', '', 'approved'),
-(14, 'er', 'er', '', 'Sinchan', 'Nandy', 'male', NULL, '07003512645', 'sinchannandy54@gmail.com', 'teacher', 'unpaid', '', 'pending'),
-(15, 'er3', 'er', '', 'Sinchan', 'Nandy', 'male', NULL, '07003512645', 'sinchannandy54@gmail.com', 'teacher', 'unpaid', '', 'pending'),
-(16, 'er2', '2', 'Untitled design.png', 'Sinchan', 'Nandy', 'male', NULL, '07003512645', 'sinchannandy54@gmail.com', 'regular', 'unpaid', '', 'approved'),
-(17, 'sinchan@2002', '2002', 'noor kata (1).png', 'Sinchan', 'Nandy', 'male', '2023-04-17', '07003512645', 'sinchannandy54@gmail.com', 'regular', 'unpaid', '', 'approved'),
-(18, 'new2', '2', '', 'Sinchan', 'Nandy', 'male', NULL, '07003512645', 'sinchannandy54@gmail.com', 'regular', 'unpaid', '', 'rejected'),
-(19, 'fhj1080', 'mazaaya', '20210401_124518-01.jpeg', 'Sinchan', 'Nandy', 'male', '2023-04-18', '07003512645', 'sinchannandy54@gmail.com', 'researcher', 'paid', 'uffaladaitaka', 'approved'),
-(20, 'user', 'user', '2.png', 'Sinchan', 'Nandy', 'male', '2023-04-19', '07003512645', 'sinchannandy54@gmail.com', 'regular', 'paid', 'you', 'approved'),
-(21, 'Ahana@baccha', 'Soumenamar', NULL, 'Ahana', 'Manna', 'female', '2023-04-20', '07003512645', 'ahanamanna1234@gmail.com', 'teacher', 'paid', 'IloveSoumen', 'rejected'),
-(22, 'ronithlovesria', '1234', 'WhatsApp Image 2023-01-16 at 12.25.35.jpg', 'Ronith', 'Goon', 'male', '2023-04-20', '07003512645', 'ronith.goon@gmail.com', 'teacher', 'unpaid', '', 'rejected'),
-(23, 'test', 'test', 'res.jpg', 'Sinchan', 'Nandy', 'male', '2002-03-27', '7003512645', 'sinchannandy54@gmail.com', 'student', 'unpaid', '', 'approved'),
-(24, 'user@user', 'user', '20220507_152724-01.jpeg', 'Sinchan', 'Nandy', 'male', '2023-04-24', '07003512645', 'sinchannandy54@gmail.com', 'regular', 'unpaid', '', 'approved'),
-(25, 'myself', 'myself', 'res.jpg', 'Sinchan', 'Nandy', 'male', '2023-04-24', '07003512645', 'sinchannandy54@gmail.com', 'regular', 'unpaid', '', 'approved');
+(1, 'test', 'test', 'admin.png', 'test', 'test', 'other', '2023-04-05', '7291874372', 'hiayushsingh.co.in@gmail.com', 'student', 'unpaid', '', 'approved');
 
 -- --------------------------------------------------------
 
@@ -369,18 +311,19 @@ CREATE TABLE `softcopy` (
   `keywords` longtext DEFAULT NULL,
   `pageno` int(11) DEFAULT NULL,
   `filename` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `softcopy`
 --
 
 INSERT INTO `softcopy` (`sid`, `title`, `owner`, `publisher`, `description`, `thumbnail`, `category`, `keywords`, `pageno`, `filename`) VALUES
-('hello', 'hii', 'yu', 'yiu', 'yui', 'LMSTABLEUPDATED3.0.png', 'option1', 'hrf', 5, 'module 3&4.pdf'),
-('I765', 'NewPDF223', 'hj', 'Bhuj', 'ok', '20230219155816_IMG_1105.JPG', 'option1', 'c++,java,moja', 343, 'export-4_16_2023, 10_17_14 PM.pdf'),
-('I980', 'Great', 'Me', 'no one', 'wow', 'Screenshot (31).png', 'option1', 'head', 67, 'Resume_Updated_2.0.pdf'),
-('Moja', 'moja', 'moja', 'moja', 'moja', 'Untitled design.png', 'option2', 'moja', 2, 'Noor web_organized_compressed.pdf'),
-('S01', 'C++', 'T Java', 'U java', 'YUO', 'Screenshot 2023-03-01 222844.png', 'option2', 'C++,K++', 10, 'College Projects.pdf');
+('S01', 'Chokher Bali', 'Rabindranath Tagore', 'Biswa Bharati Prakashani', '\"Chokher Bali\" is a novel by the famous Bengali author Rabindranath Tagore. The story revolves around four main characters - Binodini, Mahendra, Asha, and Bihari - and their complex relationships with one another. Binodini, a young widow, comes to live with Mahendra and his mother after her husband\'s death. She develops feelings for Mahendra, but he is already engaged to Asha, a young woman from a wealthy family. As the story unfolds, the characters navigate their conflicting desires and societal expectations, leading to a series of dramatic events that ultimately change their lives forever. \"Chokher Bali\" is a timeless classic of Bengali literature, exploring themes of love, betrayal, jealousy, and redemption.', 'S1.png', 'Drama', 'Chokher Bali, Rabindranath Tagore, Bengali literature, novel, love triangle, widow, societal expectations, jealousy, betrayal, desire, Indian culture, Kolkata, relationships, Indian women, gender roles, infidelity, family dynamics, tradition, modernity, social norms, moral conflicts.', 202, 'S1.pdf'),
+('S02', 'Feluda Samagra', 'Satyajit Ray', 'Ananda Publishers', '\"Feluda Samagra\" is a collection of detective stories featuring the fictional character Feluda, a private investigator from Kolkata, India. The stories were written by the renowned Bengali filmmaker and author Satyajit Ray, who created Feluda in 1965. Feluda, whose real name is Pradosh C. Mitter, is accompanied by his cousin Topshe and his friend Lalmohan Ganguly, also known as Jatayu, as they solve various mysteries and crimes.  The stories in \"Feluda Samagra\" are set in different locations across India and sometimes abroad. The collection includes 35 stories and two novels, each showcasing Feluda\'s sharp intellect and deductive reasoning, as he tackles cases involving theft, murder, and espionage. The stories are written in a style that is both entertaining and informative, often providing insights into Indian culture, history, and geography.  One of the reasons for Feluda\'s enduring popularity is his relatable and likeable character, as well as the vivid descriptions of the places and people he encounters during his investigations. \"Feluda Samagra\" is a beloved classic of Bengali literature and a must-read for fans of detective fiction.', 'S2.jpg', 'Detective', 'Feluda, Pradosh C. Mitter, Satyajit Ray, private investigator, detective, mystery, crime, Kolkata, India, Jatayu, Topshe, deductive reasoning, espionage, theft, murder, Indian culture, Indian history, Bengali literature, classic, beloved, entertainment.', 710, 'S2.pdf'),
+('S03', 'Atomic Habits (Bengali)', 'James Clear', 'New York Times', '\"Atomic Habits\" is a self-help book that provides a practical guide to improving one\'s habits and achieving personal and professional goals. The author, James Clear, draws on the latest scientific research to explain how small, incremental changes in behavior can lead to significant improvements in one\'s life over time.  The book is divided into four parts: The Fundamentals, Making Habits Obvious, Making Habits Attractive, and Making Habits Easy. Clear emphasizes the importance of identifying one\'s core values and beliefs, and using these as a foundation for building positive habits. He also discusses strategies for overcoming common obstacles to habit formation, such as procrastination and distractions.  Throughout the book, Clear provides real-world examples and practical exercises to help readers apply the concepts to their own lives. He emphasizes the importance of focusing on the process of habit formation, rather than fixating on the end result, and encourages readers to celebrate small victories along the way.  Overall, \"Atomic Habits\" is a useful resource for anyone looking to make positive changes in their life. The book\'s accessible writing style, combined with its evidence-based approach, make it a valuable tool for anyone looking to achieve personal and professional growth.', 'S3.png', 'Self-Help', 'Atomic Habits, James Clear, self-help, personal growth, professional growth, habits, behavior, incremental change, core values, positive habits, obstacle, procrastination, distraction, process, celebration, real-world examples, practical exercises, evidence-based approach.', 176, 'S3.pdf'),
+('S04', 'A Christmas Carol', 'Charles Dickens', 'Chapman & Hall', '\"A Christmas Carol\" is a novella by Charles Dickens that tells the story of a bitter old miser named Ebenezer Scrooge, who is visited by the ghosts of Christmas past, present, and future. The story takes place on Christmas Eve in mid-19th century London, England.  The first part of the story establishes Scrooge\'s miserly character and his disdain for Christmas and the holiday spirit. He is visited by the ghost of his former business partner, Jacob Marley, who warns Scrooge that he will suffer the same fate in the afterlife if he does not change his ways. The three ghosts then take Scrooge on a journey through time, showing him his past, present, and future, and how his actions have affected those around him.  The story is a classic tale of redemption, as Scrooge learns the value of compassion, kindness, and generosity. The novella has become a beloved holiday classic and is often adapted into plays, movies, and television specials. The themes of the story, including the power of love, forgiveness, and the importance of community, continue to resonate with readers today.', 'S4.jpg', 'Fiction', 'A Christmas Carol, Charles Dickens, novella, Christmas, London, Ebenezer Scrooge, ghosts, redemption, compassion, kindness, generosity, community, social commentary, poverty, wealth inequality, holiday classic.', 65, 'S4.pdf'),
+('S05', 'Complete Reference Of Java', 'Herbert Schildt', 'Mc Graw Hill', '\"The Complete Reference Of Java\" is a comprehensive guide to the Java programming language written by Herbert Schildt. The book covers all the essential concepts of Java programming, from the basics of the language syntax to advanced topics such as multithreading, network programming, and GUI development.  The book is organized into three parts. Part I provides an introduction to Java programming, including an overview of the language\'s history, features, and design principles. It also covers the fundamentals of Java programming, such as data types, operators, control statements, and arrays.  Part II delves deeper into Java programming, covering more advanced topics such as classes and objects, inheritance, interfaces, packages, and exception handling. This section also covers Java\'s built-in libraries and APIs, such as the Collections framework, I/O streams, and networking.', 'S5.jpg', 'Programming', 'Java programming language, Herbert Schildt, syntax, multithreading, network programming, GUI development, data types, operators, control statements, arrays, classes, objects, inheritance, interfaces, packages, exception handling, Collections framework, I/O streams, JavaBeans, component architecture, review questions, exercises.', 32, 'S5.pdf'),
+('S06', 'Programming with RaspBerryPI', 'Simon Monk', 'McGraw Hill', '\"Programming with Raspberry Pi\" is a guidebook that provides an introduction to programming with the Raspberry Pi, a small and affordable computer that is widely used for DIY projects, prototyping, and learning programming. The book covers the basics of programming with Python, which is one of the most popular programming languages used with the Raspberry Pi.  The book is organized into three parts. Part I provides an introduction to the Raspberry Pi, including how to set up the hardware and software. It also covers the basics of programming with Python, including data types, variables, operators, and control statements.  Part II covers more advanced topics in programming with the Raspberry Pi, such as functions, modules, object-oriented programming, and file handling. This section also covers how to interface with the Raspberry Pi\'s hardware, including its GPIO (General Purpose Input/Output) pins, which can be used to control external devices.  Part III covers several projects that demonstrate how to use the Raspberry Pi for various applications, such as building a weather station, a home automation system, and a robot. Each project provides step-by-step instructions and includes the code necessary to complete the project.', 'B1.jpg', 'Hardware', 'Raspberry Pi, programming, Python, hardware, software, data types, variables, operators, control statements, functions, modules, object-oriented programming, file handling, GPIO, home automation, robotics, projects, review questions, exercises.', 219, 'S6.pdf');
 
 -- --------------------------------------------------------
 
@@ -392,8 +335,8 @@ CREATE TABLE `theses` (
   `tid` int(11) NOT NULL,
   `itid` varchar(100) DEFAULT NULL,
   `title` varchar(100) NOT NULL,
-  `researcher` varchar(100) NOT NULL,
-  `guides` varchar(100) NOT NULL,
+  `researcher` varchar(500) NOT NULL,
+  `guides` varchar(500) NOT NULL,
   `description` text DEFAULT NULL,
   `thumbnail` varchar(200) DEFAULT NULL,
   `category` varchar(100) DEFAULT NULL,
@@ -403,16 +346,7 @@ CREATE TABLE `theses` (
   `abstract` text DEFAULT NULL,
   `pageno` int(11) DEFAULT NULL,
   `stock` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `theses`
---
-
-INSERT INTO `theses` (`tid`, `itid`, `title`, `researcher`, `guides`, `description`, `thumbnail`, `category`, `keywords`, `completeddate`, `place`, `abstract`, `pageno`, `stock`) VALUES
-(1, 'I8978', 'Maja', 'New', 'Wow', 'Wow', 'IMG-20230406-WA0018.jpg', 'option2', 'you', '2023-09-08', 'kolkata', NULL, NULL, 34),
-(2, 'I05908', '23', '23', '23', '23', 'noor kata (1).png', 'option1', '23', NULL, '23', NULL, NULL, 3),
-(3, 'I420', 'Research on Baccha', 'Kaka', 'Kaka2', 'Baccha 3', 'WhatsApp Image 2023-01-16 at 12.25.35.jpg', 'Nirlojjo', '1 kg', '2023-01-01', 'Ke jane', 'Gere', 420, 45);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -433,26 +367,14 @@ CREATE TABLE `users` (
   `CATEGORY` varchar(100) DEFAULT NULL,
   `MEMBERSHIP` varchar(100) DEFAULT NULL,
   `MEMBERSHIPEXPIRE` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`USERNAME`, `PASSWORD`, `PROFILEPICTURE`, `FIRSTNAME`, `LASTNAME`, `GENDER`, `DOB`, `PHONE`, `EMAIL`, `CATEGORY`, `MEMBERSHIP`, `MEMBERSHIPEXPIRE`) VALUES
-('10min', '89', 'IMG-20220311-WA0006-02.jpeg', 'Sinchan', 'Nandy', 'male', '2023-04-04', '07003512645', 'joh53506@zslsz.com', 'student', 'active', NULL),
-('10min2', '56', 'IMG-20220311-WA0006-02.jpeg', 'Sinchan', 'Nandy', 'male', '2022-04-01', '07003512645', 'joh53506@zslsz.com', 'student', 'active', NULL),
-('er2', '2', 'Untitled design.png', 'Sinchan', 'Nandy', 'male', NULL, '07003512645', 'sinchannandy54@gmail.com', 'regular', 'active', '2024-04-24'),
-('fhj1080', 'mazaaya', '20210401_124518-01.jpeg', 'Sinchan', 'Nandy', 'male', '2023-04-18', '07003512645', 'sinchannandy54@gmail.com', 'researcher', 'active', '2024-04-24'),
-('myself', 'myself', 'res.jpg', 'Sinchan', 'Nandy', 'male', '2023-04-24', '07003512645', 'sinchannandy54@gmail.com', 'regular', 'active', '2024-04-24'),
-('new4', '1234', 'noor kata (1).png', NULL, NULL, 'male', '2023-03-29', '07003512645', 'sinchannandy54@gmail.com', 'student', 'active', '2024-04-24'),
-('new6', '1234', 'Untitled design.png', 'Sinchan', 'Nandy', 'male', '2023-04-04', '07003512645', 'sinchannandy54@gmail.com', 'student', 'active', NULL),
-('new7', '123', 'Untitled design.png', 'Sinchan', 'Nandy', 'male', '2023-04-04', '07003512645', 'sinchannandy54@gmail.com', 'student', 'active', NULL),
-('new8', '34', 'White and Black Modern Twitter Header.png', 'Sinchan', 'Nandy', 'male', '2023-03-29', '07003512645', 'hjk@hjl.com', 'regular', 'active', NULL),
-('sinchan@2002', '2002', 'noor kata (1).png', 'Sinchan', 'Nandy', 'male', '2023-04-17', '07003512645', 'sinchannandy54@gmail.com', 'regular', 'inactive', '2023-04-15'),
-('test', 'test', 'res.jpg', 'Sinchan', 'Nandy', 'male', '2002-03-27', '7003512645', 'sinchannandy54@gmail.com', 'student', 'active', '2024-04-21'),
-('user', 'user', '2.png', 'Sinchan', 'Nandy', 'male', '2023-04-19', '07003512645', 'sinchannandy54@gmail.com', 'regular', 'active', NULL),
-('user@user', 'user', '20220507_152724-01.jpeg', 'Sinchan', 'Nandy', 'male', '2023-04-24', '07003512645', 'sinchannandy54@gmail.com', 'regular', 'active', '2024-04-24');
+('test', 'test', 'admin.png', 'test', 'test', 'other', '2023-04-05', '7291874372', 'hiayushsingh.co.in@gmail.com', 'student', 'active', '2024-04-27');
 
 --
 -- Indexes for dumped tables
@@ -569,49 +491,49 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `alternative`
 --
 ALTER TABLE `alternative`
-  MODIFY `AID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `AID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `books`
 --
 ALTER TABLE `books`
-  MODIFY `bid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `bid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `borrow`
 --
 ALTER TABLE `borrow`
-  MODIFY `BRID` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `BRID` int(100) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `downloads`
 --
 ALTER TABLE `downloads`
-  MODIFY `did` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `did` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `fine`
 --
 ALTER TABLE `fine`
-  MODIFY `FID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `FID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `journals`
 --
 ALTER TABLE `journals`
-  MODIFY `jid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `jid` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `magazines`
 --
 ALTER TABLE `magazines`
-  MODIFY `mid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `mid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `message`
 --
 ALTER TABLE `message`
-  MODIFY `MSID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `MSID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `payment`
@@ -623,13 +545,13 @@ ALTER TABLE `payment`
 -- AUTO_INCREMENT for table `registration`
 --
 ALTER TABLE `registration`
-  MODIFY `RSID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `RSID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `theses`
 --
 ALTER TABLE `theses`
-  MODIFY `tid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `tid` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
@@ -702,4 +624,3 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
