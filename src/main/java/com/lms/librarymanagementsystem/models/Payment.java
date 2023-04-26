@@ -29,19 +29,25 @@ public class Payment {
     @Column(name = "approved")
     private String approved;
 
+    @Column(name = "paid")
+    private String paid;
+
+    @Column(name = "type")
+    private String type;
 
 
     public Payment() {
     }
 
-    public Payment(Integer pid, String username, String paydate, Integer amount, String transaction, String approved) {
+    public Payment(Integer pid, String username, String paydate, Integer amount, String transaction, String approved, String paid, String type) {
         this.pid = pid;
         this.username = username;
         this.paydate = paydate;
         this.amount = amount;
         this.transaction = transaction;
         this.approved = approved;
-
+        this.paid = paid;
+        this.type = type;
     }
 
     public Integer getPid() {
@@ -92,6 +98,21 @@ public class Payment {
         this.approved = approved;
     }
 
+    public String getPaid() {
+        return this.paid;
+    }
+
+    public void setPaid(String paid) {
+        this.paid = paid;
+    }
+
+    public String getType() {
+        return this.type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 
     @Override
     public String toString() {
@@ -102,7 +123,10 @@ public class Payment {
             ", amount='" + getAmount() + "'" +
             ", transaction='" + getTransaction() + "'" +
             ", approved='" + getApproved() + "'" +
+            ", paid='" + getPaid() + "'" +
+            ", type='" + getType() + "'" +
             "}";
     }
+
 
 }
