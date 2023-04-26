@@ -210,7 +210,38 @@ public class UserController {
         return "";
     }
 
-    // @GetMapping("/borrowed/previous")
+    @GetMapping("/borrowed/previous")
+    public String viewPreviouslyBorrowedBooks(HttpServletRequest req, Model model){
+        List<Borrow> borrows = borrowServices.findReturnedOrRejectedListByUsername(SessionHandler.getUserSession(req));
+        List<Connector> connectors=new ArrayList<>();
+        for(Borrow borrow:borrows){
+            connectors.add(connectorServices.getConnectorByItid(borrow.getitid()));
+        }
+        List<Journals> journals=new ArrayList<>();
+        List<Books> books=new ArrayList<>();
+        List<Magazines> magazines=new ArrayList<>();
+        List<Theses> theses=new ArrayList<>();
+        for(Connector connector:connectors){
+            if(connector.getType().equals("book")){
+                books.add(booksServices.findOneBookByItid(connector.getItid()));
+            }else if(connector.getType().equals("journal")){
+                journals.add(journalsServices.findOneJournalByItid(connector.getItid()));
+            }else if(connector.getType().equals("theses")){
+                theses.add(thesesServices.findOneThesesByItid(connector.getItid()));
+            }else if(connector.getType().equals("magazine")){
+                magazines.add(magazinesServices.findOneMagazineByItid(connector.getItid()));
+            }
+        }
+
+        model.addAttribute("books", books);
+        model.addAttribute("journals", journals);
+        model.addAttribute("magazines", magazines);
+        model.addAttribute("theses", theses);
+
+        return "";
+    }
+
+    // 
 
     @GetMapping("/payment")
     public String getPaymentForm(Model model){

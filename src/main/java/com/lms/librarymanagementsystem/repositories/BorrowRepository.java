@@ -47,5 +47,8 @@ public interface BorrowRepository extends JpaRepository<Borrow,Integer> {
     @Query(value = "SELECT * FROM BORROW WHERE USERNAME=:username AND STATUS IN ('notreturned', 'requested')", nativeQuery = true)
     List<Borrow> getNotReturnedRequestedListByUsername(@Param("username")String username);
 
+    @Query(value = "SELECT * FROM BORROW WHERE USERNAME=:username AND STATUS IN ('returned', 'return rejected')", nativeQuery = true)
+    List<Borrow> getReturnedOrRejectedListByUsername(@Param("username")String username);
+
 }
 
