@@ -122,7 +122,7 @@
                             <%}%>
                             <% for(Magazines magazine : magazines){ %>
                                 <div class="card">
-                                    <a href="/search/theses/<%= magazine.getMid() %>" >
+                                    <a href="/search/magazines/<%= magazine.getMid() %>" >
                                         <div>
                                             <img src="/uploads/thumbnails/<%=magazine.getThumbnail()%>" alt="<%= magazine.getTitle() %>" width="300" height="300">
                                         </div>
@@ -136,7 +136,7 @@
                             <%}%>
                             <% for(SoftCopy softcopy : softcopies){ %>
                                 <div class="card">
-                                    <a href="/search/theses/<%= softcopy.getSid() %>" >
+                                    <a href="/search/softcopy/<%= softcopy.getSid() %>" >
                                         <div>
                                             <img src="/uploads/thumbnails/<%=softcopy.getThumbnail()%>" alt="<%= softcopy.getTitle() %>" width="300" height="300">
                                         </div>
