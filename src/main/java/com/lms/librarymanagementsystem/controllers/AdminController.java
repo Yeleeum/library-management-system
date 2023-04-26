@@ -324,4 +324,14 @@ public class AdminController {
         return new ResponseEntity<String>("true", HttpStatus.ACCEPTED);
     }
 
+    @PostMapping("/renewalpaymentaction")
+    public ResponseEntity<String> resolveRenewalPayment(String pid,String action,HttpServletRequest req){
+        paymentServices.updatePayment(pid, action);
+        if(action.equals("approved")){
+            usersServices.updateMembershipActive(SessionHandler.getUserSession(req));
+        }
+        fineServices.updateFineToAction(SessionHandler.getUserSession(req), action.equals("rejected")?action:"true");
+        return new ResponseEntity<String>("true", HttpStatus.ACCEPTED);
+    }
+
 }

@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.lms.librarymanagementsystem.Handlers.DateHandler;
 import com.lms.librarymanagementsystem.models.Users;
 import com.lms.librarymanagementsystem.repositories.UsersRepository;
 
@@ -51,8 +52,20 @@ public class UsersServices {
         return usersRepository.getUserByUsername(username);
     }
 
+    public String findExpireByUsername(String username) {
+        return usersRepository.getExpireByUsername(username);
+    }
+
+    public String findMembershipByUsername(String username) {
+        return usersRepository.getMembershipByUsername(username);
+    }
+
     public Integer updateMembership() {
         return usersRepository.updateMembership();
+    }
+
+    public Integer updateMembershipActive(String username) {
+        return usersRepository.updateMembershipActive(usersRepository.getMembershipByUsername(username).equals("active")?DateHandler.addOneYearToDate(usersRepository.getExpireByUsername(username)):DateHandler.addOneYearToDate(DateHandler.getCurrentDate()),username);
     }
 
     public List<Users> getInactiveUsers(String username) {

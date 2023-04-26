@@ -10,4 +10,21 @@ public class DateHandler {
         String mysqlDate = currentDate.format(formatter); // format current date as MySQL string
         return mysqlDate;
     }
+
+    public static String addOneYearToDate(String mysqlDateStr) {
+        // Create a DateTimeFormatter for MySQL date format (yyyy-MM-dd)
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        
+        // Parse the input string into a LocalDate object
+        LocalDate date = LocalDate.parse(mysqlDateStr, formatter);
+        
+        // Add one year to the date
+        LocalDate oneYearLater = date.plusYears(1);
+        
+        // Format the new date as a string in MySQL date format
+        String oneYearLaterStr = oneYearLater.format(formatter);
+        
+        // Return the new date string
+        return oneYearLaterStr;
+      }
 }
