@@ -246,7 +246,15 @@ public class UserController {
     // 
 
     @GetMapping("/payment")
-    public String getPaymentForm(Model model){
+    public String getPaymentForm(Model model,HttpServletRequest req){
+        List<Fine> fines=fineServices.findUnpaidFineByUsername(SessionHandler.getUserSession(req));
+        Integer totalFine=0;
+        for(Fine fine:fines){
+            totalFine+=fine.getAmount();
+        }
+        Integer renewal=300;
+        model.addAttribute("fine", totalFine);
+        model.addAttribute("renewal", renewal);
         return "payment";
     }
 
