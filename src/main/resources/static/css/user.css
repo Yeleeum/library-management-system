@@ -309,8 +309,26 @@ a {
     padding-bottom: 10px;
 }
 
+.details-container > h1 {
+    background: var(--primary-text-color) !important;
+    border-radius: 0;
+    padding: 10px !important;
+    margin-top: -5px;
+    color: var(--primary-bg-color) !important;
+    font-size: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
 .card img {
     width: 100%;
+}
+
+.image-container{
+    height: 250px;
+    overflow-y: hidden;
 }
 
 .card-container {
@@ -321,12 +339,25 @@ a {
     place-items: center;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     padding: 10px 0;
+
+}
+
+.details-container{
+    /* display: flex; */
+    flex-direction: column;
+    justify-content: center;
+    height: 150px;
+    overflow-y: scroll;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
 }
 
 .details {
     background: var(--primary-text-color);
     text-align: start;
-    padding: 10px;
+    padding:10px 10px 0px 10px;
+    height: 70px;
+    overflow-y: scroll;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
 }
@@ -337,15 +368,17 @@ a {
     text-overflow: ellipsis;
 }
 
-
-
-.card h1 {
-    background: var(--primary-text-color) !important;
-    border-radius: 0;
-    padding: 10px !important;
-    margin-top: -5px;
-    color: var(--primary-bg-color) !important;
+.details ul{
+    margin-top: 5px;
 }
+
+.details > h2{
+    font-size: 15px;
+}
+
+
+
+
 
 @media only screen and (max-width : 768px) {
     .user-inner-container {

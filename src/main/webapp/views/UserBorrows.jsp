@@ -54,10 +54,11 @@
                                     <% for(Books book : books){ %>
                                         <div class="card">
                                             <a href="/search/books/<%= book.getBid() %>" >
-                                                <div>
+                                                <div class="image-container">
                                                     <img src="/uploads/thumbnails/<%=book.getThumbnail()%>" alt="<%= book.getTitle() %>" width="300" height="300">
                                                 </div>
                                             </a>
+                                            <div class="details-container">
                                             <h1><%= book.getTitle() %></h1>
                                             <div class="details">
                                                 <h2>Details</h2>
@@ -73,15 +74,17 @@
                                                     <% } %>
                                                 <% } %>
                                             </div>
+                                            </div>
                                         </div>
                                     <%}%>
                                     <% for(Journals journal : journals){ %>
                                         <div class="card">
                                             <a href="/search/journals/<%= journal.getJid() %>" >
-                                                <div>
+                                                <div class="image-container">
                                                     <img src="/uploads/thumbnails/<%=journal.getThumbnail()%>" alt="<%= journal.getTitle() %>" width="300" height="300">
                                                 </div>
                                             </a>
+                                            <div class="details-container">
                                             <h1><%= journal.getTitle() %></h1>
                                             <div class="details">
                                                 <h2>Details</h2>
@@ -97,15 +100,17 @@
                                                     <% } %>
                                                 <% } %>
                                             </div>
+                                            </div>
                                         </div>
                                     <%}%>
                                     <% for(Theses thesesItem : theses){ %>
                                         <div class="card">
                                             <a href="/search/theses/<%= thesesItem.getTid() %>" >
-                                                <div>
+                                                <div class="image-container">
                                                     <img src="/uploads/thumbnails/<%=thesesItem.getThumbnail()%>" alt="<%= thesesItem.getTitle() %>" width="300" height="300">
                                                 </div>
                                             </a>
+                                            <div class="details-container">
                                             <h1><%= thesesItem.getTitle() %></h1>
                                             <div class="details">
                                                 <h2>Details</h2>
@@ -121,15 +126,17 @@
                                                     <% } %>
                                                 <% } %>
                                             </div>
+                                            </div>
                                         </div>
                                     <%}%>
                                     <% for(Magazines magazine : magazines){ %>
                                         <div class="card">
                                             <a href="/search/theses/<%= magazine.getMid() %>" >
-                                                <div>
+                                                <div class="image-container">
                                                     <img src="/uploads/thumbnails/<%=magazine.getThumbnail()%>" alt="<%= magazine.getTitle() %>" width="300" height="300">
                                                 </div>
                                             </a>
+                                            <div class="details-container">
                                             <h1><%= magazine.getTitle() %></h1>
                                             <div class="details">
                                                 <h2>Details</h2>
@@ -144,6 +151,7 @@
                                                         <% } %>
                                                     <% } %>
                                                 <% } %>
+                                            </div>
                                             </div>
                                         </div>
                                     <%}%>

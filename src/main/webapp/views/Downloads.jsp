@@ -33,15 +33,17 @@
                             <% for(SoftCopy softcopy : softcopies){ %>
                                 <div class="card">
                                     <a href="/search/softcopy/<%= softcopy.getSid() %>" >
-                                        <div>
+                                        <div class="image-container">
                                             <img src="/uploads/thumbnails/<%=softcopy.getThumbnail()%>" alt="<%= softcopy.getTitle() %>" width="300" height="300">
                                         </div>
                                     </a>
+                                    <div class="details-container">
                                     <h1><%= softcopy.getTitle() %></h1>
                                     <div class="details">
                                         <h2>Details</h2>
                                         <p><%= softcopy.getDescription() %></p>
                                     </div>
+                                </div>
                                 </div>
                             <%}%>
                         </div>
