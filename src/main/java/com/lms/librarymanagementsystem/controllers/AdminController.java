@@ -208,6 +208,8 @@ public class AdminController {
 
     }
 
+    @GetMapping()
+
     // Edit Routes
 
     @GetMapping("/edit/softcopy/{sid}")

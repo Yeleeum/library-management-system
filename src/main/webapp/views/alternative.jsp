@@ -17,9 +17,9 @@
         Integer noOfRegistrations=(Integer)request.getAttribute("noOfRegistrations");
 %>
 <body>
-	<% String itid = (String) request.getAttribute("itid"); %>
-	<% String activity=(String) request.getAttribute("activity"); %>
-	<% List<String> sids=(List<String>) request.getAttribute("sids"); %>
+	<%-- String itid = (String) request.getAttribute("itid"); --%>
+	<%-- String activity=(String) request.getAttribute("activity"); --%>
+	<%-- List<String> sids=(List<String>) request.getAttribute("sids"); --%>
 	<section class="mainContainer">
 	<%@include file="adminPanelLeftSidePanelComponent.jsp"%>
 	<div class="rightContainer">
@@ -29,32 +29,32 @@
 				<a href="#">Home</a>
 				<i class="fa-solid fa-angle-right"></i>
 				<span>Dashboard</span>
-				<% if(activity.equals("edit")) { %>
+				<%-- if(activity.equals("edit")) { --%>
 					<i class="fa-solid fa-angle-right"></i>
 					<span>Edit Items</span>
 					<i class="fa-solid fa-angle-right"></i>
 					<span>Edit Alternative</span>
 					<i class="fa-solid fa-angle-right"></i>
-					<span><%= (itid == null) ? null : itid %></span>
-				<%}else{%>
+					<span><%--= (itid == null) ? null : itid --%></span>
+				<%--}else{--%>
 					<i class="fa-solid fa-angle-right"></i>
 					<span>Add Items</span>
 					<i class="fa-solid fa-angle-right"></i>
 					<span>Add Alternative</span>
-				<%}%>
+				<%--}--%>
 			</p>
 		</div>
-		<form action='/admin<%=activity.equals("edit")?"/edit/books":"/addbook"%>' method="POST" enctype="multipart/form-data" class="bookForm">
+		<form action='/admin<%--activity.equals("edit")?"/edit/books":"/addbook"--%>' method="POST" enctype="multipart/form-data" class="bookForm">
 		<div class="right-container">
-			<% if(activity.equals("edit")) { %>
+			<%--if(activity.equals("edit")) { --%>
 				<input type="number" hidden id="bid" name="bid" value='<%= (book == null) ? null : book.getBid() %>'>
-			<% }else{ %>
+			<%-- }else{ --%>
                 <label for="itid">ITID:</label>
                 <input type="text" id="itid" name="itid" required>
 
                 <label for="sid">SID:</label>
                 <input type="text" id="sid" name="sid" required>
-            <%}%>
+            <%--}--%>
 			<input type="submit" value='<%= activity.equals("edit") ? "Update" : "Submit" %>'>
 		</div>
 	</form>
