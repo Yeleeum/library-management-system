@@ -40,14 +40,14 @@
                                         <div class="transaction">
                                             <input type="text" id="tid" placeholder="Enter Transaction ID...">
                                         </div>
-                                        <button formaction=""><i class="fa-solid fa-credit-card"></i> Pay Online</button>
+                                        <button><i class="fa-solid fa-credit-card"></i> Pay Online</button>
                                     </div>
                                     <div class="offline-payment">
                                         <img src="/img/payment-offline.png" class="admin-payment" alt="offline-payment">
                                         <div class="transaction">
                                             <input style="text-align: center; font-weight: bold;" type="text" id="tid" value="Visit Admin and Pay" readonly>
                                         </div>
-                                        <button formaction=""><i class="fa-solid fa-wallet"></i> Pay Offline</button>
+                                        <button><i class="fa-solid fa-wallet"></i> Pay Offline</button>
                                     </div>
                                 </div>
                             </div>
