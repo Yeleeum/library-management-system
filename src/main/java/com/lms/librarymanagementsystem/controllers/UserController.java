@@ -247,7 +247,7 @@ public class UserController {
 
     @GetMapping("/payment")
     public String getPaymentForm(Model model){
-        return "paymentForm";
+        return "payment";
     }
 
     @PostMapping("/payment/fine")
