@@ -50,18 +50,25 @@
 				<input type="number" hidden id="bid" name="bid" value='<%= (book == null) ? null : book.getBid() %>'>
 			<% }else{ %>
                 <label for="itid">ITID:</label>
-                <input type="text" id="itid" name="itid" value='<%= (itid == null) ? "" : itid %>' required>
+                <input type="text" id="itid" name="itid" required>
 
-                <label for="itid">SID:</label>
-                <input type="text" id="itid" name="itid" value='<%= (itid == null) ? "" : itid %>' required>
+                <label for="sid">SID:</label>
+                <input type="text" id="sid" name="sid" required>
             <%}%>
 			<input type="submit" value='<%= activity.equals("edit") ? "Update" : "Submit" %>'>
 		</div>
 	</form>
-    <button>ADD ANOTHER SOFTCOPY</button>
+    <button >ADD ANOTHER SOFTCOPY</button>
 </div>
 </section>
 </body>
 <script src="/js/imagehandler.js"></script>
 <script src="/js/adminPanel.js"></script>
+<script>
+    let container=document.querySelector(".right-container")
+    function addAnotherSoftcopy(){
+        container.innerHTML+=`<label for="sid">SID:</label>
+                              <input type="text" id="sid" name="sid" required>`
+    }
+</script>
 </html>
