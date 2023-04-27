@@ -222,7 +222,22 @@ public class AdminController {
                 alternativeServices.insertOneAlternative(new Alternative(null, itid, sid));
             }
         }
-        return "alternative";
+        Connector connector=connectorServices.getConnectorByItid(itid);
+        String redirect="redirect:/search/";
+        if (connector.getType().equals("book")) {
+            Books book=booksServices.findOneBookByItid(itid);
+            redirect+="books/"+book.getBid();
+        } else if (connector.getType().equals("journal")) {
+            Journals journal=journalsServices.findOneJournalByItid(itid);
+            redirect+="journals/"+journal.getJid();
+        } else if (connector.getType().equals("magazine")) {
+            Magazines magazine=magazinesServices.findOneMagazineByItid(itid);
+            redirect+="magazines/"+magazine.getMid();
+        } else {
+            Theses theses=thesesServices.findOneThesesByItid(itid);
+            redirect+="theses/"+theses.getTid();
+        }
+        return redirect;
     }
 
 
