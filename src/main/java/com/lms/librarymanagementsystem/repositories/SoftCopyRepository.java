@@ -32,4 +32,8 @@ public interface SoftCopyRepository extends JpaRepository<SoftCopy,Integer>{
     
     @Query(value="SELECT * FROM SOFTCOPY ORDER BY sid DESC LIMIT 2",nativeQuery = true)
     List<SoftCopy> getLastTwoSoftCopies();
+
+    
+    @Query(value="SELECT TITLE FROM SOFTCOPY WHERE SID=:sid",nativeQuery = true)
+    String getTitleBySid(@Param("sid")String sid);
 }

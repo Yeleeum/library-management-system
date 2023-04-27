@@ -64,5 +64,9 @@ public class MagazinesServices {
     public Magazines findOneMagazineByItid(String itid){
         return magazinesRepository.getOneMagazineByItid(itid);
     }
+    
+    public String findTitleByItid(String itid){
+        return magazinesRepository.getTitleByItid(itid);
+    }
 
 }

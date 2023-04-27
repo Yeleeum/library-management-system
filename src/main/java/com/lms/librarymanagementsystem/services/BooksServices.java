@@ -72,4 +72,8 @@ public class BooksServices {
     public Books findOneBookByItid(String itid){
         return booksRepository.getOneBookByItid(itid);
     }
+
+    public String findTitleByItid(String itid){
+        return booksRepository.getTitleByItid(itid);
+    }
 }

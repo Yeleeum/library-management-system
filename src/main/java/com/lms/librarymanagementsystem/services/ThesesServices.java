@@ -65,4 +65,8 @@ public class ThesesServices {
     public Theses findOneThesesByItid(String itid){
         return thesesRepository.getOneThesesByItid(itid);
     }
+    
+    public String findTitleByItid(String itid){
+        return thesesRepository.getTitleByItid(itid);
+    }
 }

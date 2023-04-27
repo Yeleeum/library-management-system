@@ -41,4 +41,8 @@ public interface JournalsRepository extends JpaRepository<Journals,Integer> {
 
     @Query(value="SELECT * FROM JOURNALS WHERE ITID=:itid",nativeQuery = true)
     Journals getOneJournalByItid(@Param("itid")String itid);
+
+    
+    @Query(value="SELECT TITLE FROM JOURNALS WHERE ITID=:itid",nativeQuery = true)
+    String getTitleByItid(@Param("itid")String itid);
 }
