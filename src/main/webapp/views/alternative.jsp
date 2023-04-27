@@ -52,10 +52,12 @@
 			<% }else{ %>
                 <label for="itid">ITID:</label>
                 <input type="text" id="itid" name="itid" required>
+				<p class="title" style="margin-bottom: 10px;font-size: 20px; font-weight: 700;"></p>
 
 				<div class="sid-container">
                 <label for="sid">SID:</label>
                 <input type="text" id="sid" class="sid" name="sids" required>
+				<p class="softcopytitle" style="margin-bottom: 10px;font-size: 20px; font-weight: 700;"></p>
 			</div>
             <%}%>
 			<input type="submit" value='<%= activity.equals("edit") ? "Update" : "Submit" %>'>
@@ -69,6 +71,8 @@
 <script src="/js/adminPanel.js"></script>
 <script>
 	let container = document.querySelector(".sid-container");
+	let sidInputs = document.querySelectorAll(".sid");
+	let softcopyTitles = document.querySelectorAll(".softcopytitle");
 
 	function addAnotherSoftcopy() {
 	let sids = document.querySelectorAll(".sid");
@@ -86,9 +90,88 @@
 	input.setAttribute("name", "sids");
 	input.setAttribute("required", "");
 
+	const titleElement = document.createElement("p");
+	titleElement.classList.add("softcopytitle");
+	titleElement.style.marginBottom = "10px";
+	titleElement.style.fontSize = "20px";
+	titleElement.style.fontWeight = "700";
+
 	container.appendChild(label);
 	container.appendChild(input);
+	container.appendChild(titleElement);
+	sidInputs = document.querySelectorAll(".sid");
+	softcopyTitles = document.querySelectorAll(".softcopytitle");
+	sidInputs.forEach((input, index) => {
+	input.addEventListener("input", () => {
+		const formData = new FormData();
+		formData.append("sid", input.value);
+
+		fetch("http://localhost:8080/admin/checksid", {
+		method: "POST",
+		body: formData
+		})
+		.then(response => response.text())
+		.then(data => {
+		if (data === "false") {
+			softcopyTitles[index].textContent = "No data found";
+			softcopyTitles[index].style.color = "red";
+		} else {
+			softcopyTitles[index].textContent = data;
+			softcopyTitles[index].style.color = "black";
+		}
+		})
+		.catch(error => console.error(error));
+	});
+	});
 	}
+
+	let itidinput=document.querySelector("#itid")
+	itidinput.addEventListener('input',()=>{
+		let formData = new FormData();
+		formData.append("itid", itidinput.value);
+
+		fetch("http://localhost:8080/admin/checkitid", {
+		method: "POST",
+		body: formData
+		})
+		.then(response => response.text())
+		.then(data => {
+			const titleElement = document.querySelector('.title');
+			if (data !== "false") {
+				titleElement.textContent = data;
+				titleElement.style.color = "black";
+			} else {
+				titleElement.textContent = "No data found";
+				titleElement.style.color = "red";
+			}
+		})
+		.catch(error => console.error(error));
+	})
+	sidInputs.forEach((input, index) => {
+	input.addEventListener("input", () => {
+		const formData = new FormData();
+		formData.append("sid", input.value);
+
+		fetch("http://localhost:8080/admin/checksid", {
+		method: "POST",
+		body: formData
+		})
+		.then(response => response.text())
+		.then(data => {
+		if (data === "false") {
+			softcopyTitles[index].textContent = "No data found";
+			softcopyTitles[index].style.color = "red";
+		} else {
+			softcopyTitles[index].textContent = data;
+			softcopyTitles[index].style.color = "black";
+		}
+		})
+		.catch(error => console.error(error));
+	})});
+
+
+
+
 
 </script>
 </html>
