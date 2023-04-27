@@ -7,9 +7,9 @@ use librarymanagementsystem;
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 27, 2023 at 12:10 AM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.1.12
+-- Generation Time: Apr 27, 2023 at 08:59 AM
+-- Server version: 10.4.25-MariaDB
+-- PHP Version: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -34,7 +34,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `admin` (
   `username` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `admin`
@@ -53,7 +53,7 @@ CREATE TABLE `alternative` (
   `AID` int(11) NOT NULL,
   `ITID` varchar(100) NOT NULL,
   `SID` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `alternative`
@@ -82,7 +82,7 @@ CREATE TABLE `books` (
   `pageno` int(11) DEFAULT NULL,
   `stock` int(11) DEFAULT NULL,
   `location` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `books`
@@ -110,7 +110,7 @@ CREATE TABLE `borrow` (
   `RETURNDATE` date DEFAULT NULL,
   `STATUS` varchar(100) DEFAULT NULL,
   `APPROVED` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -121,7 +121,7 @@ CREATE TABLE `borrow` (
 CREATE TABLE `connector` (
   `itid` varchar(100) NOT NULL,
   `type` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `connector`
@@ -143,7 +143,11 @@ INSERT INTO `connector` (`itid`, `type`) VALUES
 ('I13', 'theses'),
 ('I14', 'theses'),
 ('I15', 'theses'),
-('I16', 'theses');
+('I16', 'theses'),
+('I17', 'journal'),
+('I18', 'journal'),
+('I19', 'journal'),
+('I20', 'journal');
 
 -- --------------------------------------------------------
 
@@ -156,7 +160,7 @@ CREATE TABLE `downloads` (
   `username` varchar(100) DEFAULT NULL,
   `sid` varchar(100) DEFAULT NULL,
   `downloaddate` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -170,7 +174,7 @@ CREATE TABLE `fine` (
   `Finedate` date DEFAULT NULL,
   `Amount` varchar(100) DEFAULT NULL,
   `PAID` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -192,7 +196,17 @@ CREATE TABLE `journals` (
   `endyear` int(11) DEFAULT NULL,
   `pageno` int(11) DEFAULT NULL,
   `stock` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `journals`
+--
+
+INSERT INTO `journals` (`jid`, `itid`, `title`, `publisher`, `editor`, `description`, `thumbnail`, `category`, `keywords`, `startyear`, `endyear`, `pageno`, `stock`) VALUES
+(1, 'I17', 'Nature', 'Springer Nature', 'Magdalena Skipper', ' Nature is a multidisciplinary scientific journal that publishes original research articles, reviews, and news articles on a wide range of topics in the natural sciences, including biology, chemistry, physics, earth sciences, and astronomy. The journal also publishes commentary and opinion pieces on scientific policy and research funding.', 'J1.jpg', 'Natural Sciences', 'Science, research, biology, chemistry, physics, earth sciences, astronomy, scientific policy, research funding', 1869, 0, 120, 2),
+(2, 'I18', 'Journal of the American Medical Association (JAMA)', 'American Medical Association', 'Howard Bauchner', 'The Journal of the American Medical Association (JAMA) is a peer-reviewed medical journal that publishes original research articles, reviews, editorials, and clinical practice guidelines on a wide range of medical topics, including clinical medicine, public health, and biomedical research. The journal also features opinion pieces, essays, and commentaries on contemporary issues in medicine.', 'J2.jpg', 'Medicine and Healthcare', 'Medical research, clinical medicine, public health, biomedical research, clinical practice guidelines, contemporary issues in medicine', 1883, 0, 100, 10),
+(3, 'I19', 'Science', 'American Association for the Advancement of Science (AAAS)', 'Holden Thorp', 'Science is a weekly peer-reviewed scientific journal that publishes original research articles, reviews, and news articles on all areas of science, including life sciences, physical sciences, social sciences, and computer science. The journal also features commentary and analysis on scientific policy and research funding, as well as book reviews and opinion pieces.', 'J3.jpg', 'Natural Sciences', 'Scientific research, life sciences, physical sciences, social sciences, computer science, scientific policy, research funding, book reviews, opinion pieces', 1880, 0, 180, 43),
+(4, 'I20', 'The Lancet', 'Elsevier', 'Richard Horton', 'The Lancet is a weekly peer-reviewed medical journal that publishes original research articles, reviews, and news articles on all aspects of clinical medicine, public health, and global health. The journal also features commentary and analysis on medical policy and practice, as well as book reviews and opinion pieces.', 'J4.jpg', 'Medicine and Healthcare', 'Clinical medicine, public health, global health, medical policy, medical practice, book reviews, opinion pieces', 1823, 0, 110, 2);
 
 -- --------------------------------------------------------
 
@@ -214,7 +228,7 @@ CREATE TABLE `magazines` (
   `specialissue` varchar(100) DEFAULT NULL,
   `category` varchar(100) DEFAULT NULL,
   `stock` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `magazines`
@@ -238,7 +252,7 @@ CREATE TABLE `message` (
   `USERNAME` varchar(100) DEFAULT NULL,
   `CONTENT` longtext DEFAULT NULL,
   `STATUS` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -255,7 +269,7 @@ CREATE TABLE `payment` (
   `Approved` varchar(100) DEFAULT NULL,
   `paid` varchar(100) DEFAULT NULL,
   `type` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -278,7 +292,7 @@ CREATE TABLE `registration` (
   `PAID` varchar(100) DEFAULT NULL,
   `TRANSACTION` varchar(100) DEFAULT NULL,
   `APPROVED` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `registration`
@@ -304,7 +318,7 @@ CREATE TABLE `softcopy` (
   `keywords` longtext DEFAULT NULL,
   `pageno` int(11) DEFAULT NULL,
   `filename` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `softcopy`
@@ -339,7 +353,7 @@ CREATE TABLE `theses` (
   `abstract` text DEFAULT NULL,
   `pageno` int(11) DEFAULT NULL,
   `stock` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `theses`
@@ -371,7 +385,7 @@ CREATE TABLE `users` (
   `CATEGORY` varchar(100) DEFAULT NULL,
   `MEMBERSHIP` varchar(100) DEFAULT NULL,
   `MEMBERSHIPEXPIRE` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `users`
@@ -525,7 +539,7 @@ ALTER TABLE `fine`
 -- AUTO_INCREMENT for table `journals`
 --
 ALTER TABLE `journals`
-  MODIFY `jid` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `jid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `magazines`
