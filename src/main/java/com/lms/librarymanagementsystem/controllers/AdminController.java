@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.lms.librarymanagementsystem.Handlers.SessionHandler;
+import com.lms.librarymanagementsystem.models.Alternative;
 import com.lms.librarymanagementsystem.models.Books;
 import com.lms.librarymanagementsystem.models.Borrow;
 import com.lms.librarymanagementsystem.models.Connector;
@@ -208,7 +209,22 @@ public class AdminController {
 
     }
 
-    @GetMapping()
+    @GetMapping("/addalternative")
+    public String getAlternativeForm(Model model) {
+        model.addAttribute("activity", "add");
+        return "alternative";
+    }
+
+    @PostMapping("/addalternative")
+    public String insertAlternative(Model model,String itid,String ...sids) {
+        for(String sid:sids){
+            if(!sid.equals("")){
+                alternativeServices.insertOneAlternative(new Alternative(null, itid, sid));
+            }
+        }
+        return "alternative";
+    }
+
 
     // Edit Routes
 

@@ -164,7 +164,7 @@ input[type=number] {
     margin-bottom: 20px;
 }
 
-input[type=submit] {
+input[type=submit],button[name="add"] {
     background-color: #4CAF50;
     color: white;
     padding: 12px 20px;

@@ -17,9 +17,9 @@
         Integer noOfRegistrations=(Integer)request.getAttribute("noOfRegistrations");
 %>
 <body>
-	<%-- String itid = (String) request.getAttribute("itid"); --%>
-	<%-- String activity=(String) request.getAttribute("activity"); --%>
-	<%-- List<String> sids=(List<String>) request.getAttribute("sids"); --%>
+	<% String itid = (String) request.getAttribute("itid"); %>
+	<% String activity=(String) request.getAttribute("activity"); %>
+	<% List<String> sids=(List<String>) request.getAttribute("sids"); %>
 	<section class="mainContainer">
 	<%@include file="adminPanelLeftSidePanelComponent.jsp"%>
 	<div class="rightContainer">
@@ -29,46 +29,66 @@
 				<a href="#">Home</a>
 				<i class="fa-solid fa-angle-right"></i>
 				<span>Dashboard</span>
-				<%-- if(activity.equals("edit")) { --%>
+				<% if(activity.equals("edit")) { %>
 					<i class="fa-solid fa-angle-right"></i>
 					<span>Edit Items</span>
 					<i class="fa-solid fa-angle-right"></i>
 					<span>Edit Alternative</span>
 					<i class="fa-solid fa-angle-right"></i>
-					<span><%--= (itid == null) ? null : itid --%></span>
-				<%--}else{--%>
+					<span><%= (itid == null) ? null : itid %></span>
+				<%}else{%>
 					<i class="fa-solid fa-angle-right"></i>
 					<span>Add Items</span>
 					<i class="fa-solid fa-angle-right"></i>
 					<span>Add Alternative</span>
-				<%--}--%>
+				<%}%>
 			</p>
 		</div>
-		<form action='/admin<%--activity.equals("edit")?"/edit/books":"/addbook"--%>' method="POST" enctype="multipart/form-data" class="bookForm">
-		<div class="right-container">
-			<%--if(activity.equals("edit")) { --%>
-				<input type="number" hidden id="bid" name="bid" value='<%= (book == null) ? null : book.getBid() %>'>
-			<%-- }else{ --%>
+		<form action='/admin<%=activity.equals("edit")?"/edit/alternative":"/addalternative"%>' method="POST" enctype="multipart/form-data" class="bookForm">
+		<div style="width: 100%;display: flex;flex-direction: column; justify-content: center;align-items: center;">
+			<div class="right-container" >
+			<%if(activity.equals("edit")) { %>
+				<input type="number" hidden id="bid" name="bid" value='<%= (itid == null) ? null : itid %>'>
+			<% }else{ %>
                 <label for="itid">ITID:</label>
                 <input type="text" id="itid" name="itid" required>
 
+				<div class="sid-container">
                 <label for="sid">SID:</label>
-                <input type="text" id="sid" name="sid" required>
-            <%--}--%>
+                <input type="text" id="sid" class="sid" name="sids" required>
+			</div>
+            <%}%>
 			<input type="submit" value='<%= activity.equals("edit") ? "Update" : "Submit" %>'>
+			<button onclick="addAnotherSoftcopy()" name="add" style="width: 100%;margin-top: 10px; background-color: cornflowerblue;">ADD ANOTHER SOFTCOPY</button>
 		</div>
+	</div>
 	</form>
-    <button >ADD ANOTHER SOFTCOPY</button>
 </div>
 </section>
 </body>
-<script src="/js/imagehandler.js"></script>
 <script src="/js/adminPanel.js"></script>
 <script>
-    let container=document.querySelector(".right-container")
-    function addAnotherSoftcopy(){
-        container.innerHTML+=`<label for="sid">SID:</label>
-                              <input type="text" id="sid" name="sid" required>`
-    }
+	let container = document.querySelector(".sid-container");
+
+	function addAnotherSoftcopy() {
+	let sids = document.querySelectorAll(".sid");
+	event.preventDefault();
+	console.log("hello");
+
+	let label = document.createElement("label");
+	label.setAttribute("for", "sid");
+	label.textContent = "SID:";
+
+	let input = document.createElement("input");
+	input.setAttribute("type", "text");
+	input.setAttribute("class", "sid");
+	input.setAttribute("id", "sid");
+	input.setAttribute("name", "sids");
+	input.setAttribute("required", "");
+
+	container.appendChild(label);
+	container.appendChild(input);
+	}
+
 </script>
 </html>
