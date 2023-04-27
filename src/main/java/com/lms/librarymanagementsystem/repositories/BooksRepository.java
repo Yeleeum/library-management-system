@@ -42,4 +42,7 @@ public interface BooksRepository extends JpaRepository<Books,Integer>{
 
     @Query(value="SELECT * FROM BOOKS WHERE ITID=:itid",nativeQuery = true)
     Books getOneBookByItid(@Param("itid")String itid);
+
+    @Query(value="SELECT TITLE FROM BOOKS WHERE ITID=:itid",nativeQuery = true)
+    String getTitleByItid(@Param("itid")String itid);
 }

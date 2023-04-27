@@ -66,4 +66,8 @@ public class SoftCopyServices {
     public List<SoftCopy> findLastTwoSoftCopies(){
         return softCopyRepository.getLastTwoSoftCopies();
     }
+    
+    public String findTitleBySid(String sid){
+        return softCopyRepository.getTitleBySid(sid);
+    }
 }

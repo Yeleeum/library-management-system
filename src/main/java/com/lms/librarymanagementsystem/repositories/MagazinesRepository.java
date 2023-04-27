@@ -38,4 +38,8 @@ public interface MagazinesRepository extends JpaRepository<Magazines,Integer>{
 
     @Query(value="SELECT * FROM MAGAZINES WHERE ITID=:itid",nativeQuery = true)
     Magazines getOneMagazineByItid(@Param("itid")String itid);
+
+    
+    @Query(value="SELECT TITLE FROM MAGAZINES WHERE ITID=:itid",nativeQuery = true)
+    String getTitleByItid(@Param("itid")String itid);
 }

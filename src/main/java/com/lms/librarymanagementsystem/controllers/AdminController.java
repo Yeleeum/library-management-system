@@ -346,4 +346,31 @@ public class AdminController {
         return new ResponseEntity<String>("true", HttpStatus.ACCEPTED);
     }
 
+    @PostMapping("/checkitid")
+    public ResponseEntity<String> checkItid(String itid){
+        Connector connector=connectorServices.getConnectorByItid(itid);
+        if(connector!=null){
+            if(connector.getType().equals("book")){
+                return new ResponseEntity<String>(booksServices.findTitleByItid(itid), HttpStatus.OK);
+            }else if(connector.getType().equals("journal")){
+                return new ResponseEntity<String>(journalsServices.findTitleByItid(itid), HttpStatus.OK);
+            }else if(connector.getType().equals("theses")){
+                return new ResponseEntity<String>(thesesServices.findTitleByItid(itid), HttpStatus.OK);
+            }else if(connector.getType().equals("magazine")){
+                return new ResponseEntity<String>(magazinesServices.findTitleByItid(itid), HttpStatus.OK);
+            }
+        }
+
+        return new ResponseEntity<String>("false", HttpStatus.NOT_FOUND);
+    }
+
+    @PostMapping("/checksid")
+    public ResponseEntity<String> checkSid(String sid){
+        String title=softCopyServices.findTitleBySid(sid);
+        if(title!=null){
+            return new ResponseEntity<String>(title, HttpStatus.OK);
+        }
+        return new ResponseEntity<String>("false", HttpStatus.NOT_FOUND);
+    }
+
 }

@@ -68,4 +68,9 @@ public class JournalsServices {
     public Journals findOneJournalByItid(String itid){
         return journalsRepository.getOneJournalByItid(itid);
     }
+
+    
+    public String findTitleByItid(String itid){
+        return journalsRepository.getTitleByItid(itid);
+    }
 }
