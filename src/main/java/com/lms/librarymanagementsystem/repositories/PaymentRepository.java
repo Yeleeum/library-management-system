@@ -1,5 +1,7 @@
 package com.lms.librarymanagementsystem.repositories;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -8,6 +10,12 @@ import org.springframework.data.repository.query.Param;
 import com.lms.librarymanagementsystem.models.Payment;
 
 public interface PaymentRepository extends JpaRepository<Payment,Integer> {
+
+    @Query(value="SELECT * FROM PAYMENT WHERE APPROVED='pending' AND TYPE='fine'",nativeQuery = true)
+    List<Payment> getPendingFinePayments();
+    
+    @Query(value="SELECT * FROM PAYMENT WHERE APPROVED='pending' AND TYPE='renewal'",nativeQuery = true)
+    List<Payment> getPendingRenewalPayments();
 
     @Modifying
     @Query(value="UPDATE PAYMENT SET APPROVED=:action WHERE PID=:pid",nativeQuery = true)

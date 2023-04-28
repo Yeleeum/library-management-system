@@ -18,6 +18,6 @@ public interface FineRepository extends JpaRepository<Fine,Integer> {
     Integer setFineRequestedByUsername(@Param("USERNAME")String username);
 
     @Modifying
-    @Query(value="UPDATE FINE SET PAID=:action USERNAME=:USERNAME AND PAID='requested'",nativeQuery = true)
+    @Query(value="UPDATE FINE SET PAID=:action WHERE USERNAME=:USERNAME AND PAID='requested'",nativeQuery = true)
     Integer setFineActionByUsername(@Param("USERNAME")String username,@Param("action")String action);
 }

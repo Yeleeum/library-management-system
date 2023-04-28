@@ -28,7 +28,7 @@ public interface UsersRepository extends JpaRepository<Users,String>{
     Integer updateMembership();
 
     @Modifying
-    @Query(value="UPDATE USERS SET MEMBERSHIP='active' and MEMBERSHIPEXPIRE=:expire WHERE USERNAME=:username", nativeQuery=true)
+    @Query(value="UPDATE USERS SET MEMBERSHIP='active', MEMBERSHIPEXPIRE=:expire WHERE USERNAME=:username", nativeQuery=true)
     Integer updateMembershipActive(@Param("expire")String expire,@Param("username")String username);
 
     @Query(value="SELECT * FROM USERS WHERE USERNAME=:USERNAME AND MEMBERSHIP='inactive'", nativeQuery=true)

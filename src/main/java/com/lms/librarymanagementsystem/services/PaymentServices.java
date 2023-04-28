@@ -1,5 +1,7 @@
 package com.lms.librarymanagementsystem.services;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,6 +23,13 @@ public class PaymentServices {
 
     public Integer updatePayment(String pid,String action){
         return paymentRepository.updatePaymentByPid(pid, action);
+    }
+
+    public List<Payment> findPendingFinePayment(){
+        return paymentRepository.getPendingFinePayments();
+    }
+    public List<Payment> findPendingRenewalPayment(){
+        return paymentRepository.getPendingRenewalPayments();
     }
 
 }

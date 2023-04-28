@@ -20,7 +20,16 @@
                         <li><a class="submenu-links" href="/admin/viewpending/unpaid">UnPaid</a></li>
                     </ul>
                 </li>
-                <li>Manage Renewals</li>
+                <li>
+                    <div class="sublinks-Container">
+                        <span>Manage Payment Requests</span>
+                        <i class="fa-solid fa-angle-down" id="clickToExpand"></i>
+                    </div>
+                    <ul id="sublinks" class="submenulinks">
+                        <li><a class="submenu-links" href="/admin/pendingfinepayments">Fine</a></li>
+                        <li><a class="submenu-links" href="/admin/pendingrenewalpayments">Renewal</a></li>
+                    </ul>
+                </li>
                 <li>
                     <div class="sublinks-Container">
                         <span>Add Items</span>

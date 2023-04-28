@@ -19,6 +19,7 @@ import com.lms.librarymanagementsystem.models.Borrow;
 import com.lms.librarymanagementsystem.models.Connector;
 import com.lms.librarymanagementsystem.models.Journals;
 import com.lms.librarymanagementsystem.models.Magazines;
+import com.lms.librarymanagementsystem.models.Payment;
 import com.lms.librarymanagementsystem.models.Registration;
 import com.lms.librarymanagementsystem.models.SoftCopy;
 import com.lms.librarymanagementsystem.models.Theses;
@@ -362,20 +363,35 @@ public class AdminController {
         return new ResponseEntity<String>("true", HttpStatus.OK);
     }
 
+    @GetMapping("/pendingfinepayments")
+    public String showPendingFinePayments(Model model){
+        List<Payment> payments=paymentServices.findPendingFinePayment();
+        model.addAttribute("payments", payments);
+        model.addAttribute("type", "fine");
+        return "pendingPayments";
+    }
+    @GetMapping("/pendingrenewalpayments")
+    public String showPendingRenewalPayments(Model model){
+        List<Payment> payments=paymentServices.findPendingRenewalPayment();
+        model.addAttribute("payments", payments);
+        model.addAttribute("type", "renewal");
+        return "pendingPayments";
+    }
+
     @PostMapping("/finepaymentaction")
-    public ResponseEntity<String> resolveFinePayment(String pid,String action,HttpServletRequest req){
+    public ResponseEntity<String> resolveFinePayment(String pid,String action,String username){
         paymentServices.updatePayment(pid, action);
-        fineServices.updateFineToAction(SessionHandler.getUserSession(req), action.equals("rejected")?action:"true");
+        fineServices.updateFineToAction(username, action.equals("rejected")?action:"true");
         return new ResponseEntity<String>("true", HttpStatus.ACCEPTED);
     }
 
     @PostMapping("/renewalpaymentaction")
-    public ResponseEntity<String> resolveRenewalPayment(String pid,String action,HttpServletRequest req){
+    public ResponseEntity<String> resolveRenewalPayment(String pid,String action,String username){
         paymentServices.updatePayment(pid, action);
         if(action.equals("approved")){
-            usersServices.updateMembershipActive(SessionHandler.getUserSession(req));
+            usersServices.updateMembershipActive(username);
         }
-        fineServices.updateFineToAction(SessionHandler.getUserSession(req), action.equals("rejected")?action:"true");
+        fineServices.updateFineToAction(username, action.equals("rejected")?action:"true");
         return new ResponseEntity<String>("true", HttpStatus.ACCEPTED);
     }
 
