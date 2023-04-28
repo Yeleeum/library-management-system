@@ -38,16 +38,16 @@
                                     <div class="online-payment">
                                         <img src="/img/QR.jpg" class="Qr_Code" alt="online-payment" />
                                         <div class="transaction">
-                                            <input type="text" id="tid" placeholder="Enter Transaction ID...">
+                                            <input type="text" id="transaction" name="transaction" placeholder="Enter Transaction ID...">
                                         </div>
-                                        <button><i class="fa-solid fa-credit-card"></i> Pay Online</button>
+                                        <button onclick="postAmount('online')"><i class="fa-solid fa-credit-card"></i> Pay Online</button>
                                     </div>
                                     <div class="offline-payment">
                                         <img src="/img/payment-offline.png" class="admin-payment" alt="offline-payment">
                                         <div class="transaction">
                                             <input style="text-align: center; font-weight: bold;" type="text" id="tid" value="Visit Admin and Pay" readonly>
                                         </div>
-                                        <button><i class="fa-solid fa-wallet"></i> Pay Offline</button>
+                                        <button onclick="postAmount('offline')"><i class="fa-solid fa-wallet"></i> Pay Offline</button>
                                     </div>
                                 </div>
                             </div>
@@ -82,19 +82,66 @@
         let headingrenew=document.querySelector('.headingrenew')
         let amountrenew=document.querySelector('.amountrenew')
 
+        let amount = parseInt('<%=fine%>');
         function togglePayment(type){
             if(type==='fine'){
                 headingfine.hidden=false
                 amountfine.hidden=false
                 headingrenew.hidden=true
                 amountrenew.hidden=true
+                amount=parseInt('<%=fine%>')
             }else{
                 headingfine.hidden=true
                 amountfine.hidden=true
                 headingrenew.hidden=false
                 amountrenew.hidden=false
+                amount=parseInt('<%=renewal%>')+parseInt('<%=fine%>')
             }
         }
+        const transaction = document.querySelector('input[name="transaction"]').value;
+
+        function postAmount(mode) {
+            const formData = new FormData();
+            formData.append('transaction', mode==="online"?transaction:null);
+            formData.append('amount', amount);
+            formData.append('paid', mode==="online"?true:false);
+            if(amountrenew.hidden){
+                fetch('http://localhost:8080/user/payment/fine', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => {
+                    if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log(data);
+                })
+                .catch(error => {
+                    console.error('There was a problem with the fetch operation:', error);
+                });
+            }else{
+                fetch('http://localhost:8080/user/payment/renewal', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => {
+                    if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log(data);
+                })
+                .catch(error => {
+                    console.error('There was a problem with the fetch operation:', error);
+                });
+            }
+        }
+
 
     </script>
     
