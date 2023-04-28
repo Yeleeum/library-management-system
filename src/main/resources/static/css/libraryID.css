@@ -1,0 +1,77 @@
+/* * {
+    box-sizing: border-box;
+} */
+
+
+.IDcontainer {
+    width: max-content;
+    height: min-content;
+    position: relative;
+    padding: 5px;
+    padding-bottom: 2px;
+    background-color: black;
+    color: #2f0e0a;
+    overflow: hidden;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+.right-inner-wrapper {
+    width: 250px;
+    height: 350px;
+    display: flex;
+    justify-content: center;
+    border-radius: 20px;
+    overflow: hidden;
+    object-fit: contain;
+    position: absolute;
+    top: 150px;
+    right: 63px;
+}
+
+.left-inner-wrapper {
+    position: absolute;
+    top: 300px;
+    left: 30px;
+}
+
+.left-inner-wrapper>ul>li {
+    list-style-type: none;
+}
+
+.name {
+    position: absolute;
+    top: 90px;
+    left: 55px;
+    font-size: 50px;
+}
+
+.designation {
+    position: absolute;
+    top: 200px;
+    left: 180px;
+    font-size: 30px;
+    color: aliceblue;
+}
+
+#btn {
+    margin-top: 10px;
+    background-color: #282a36;
+    color: white;
+    border-radius: 20px;
+    padding: 10px 20px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.officalname {
+    position: absolute;
+    top: 500px;
+    left: 30px;
+    font-size: 50px;
+}
+
+#btn:hover {
+    background-color: #3c3e4b;
+}

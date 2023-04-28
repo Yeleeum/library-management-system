@@ -279,4 +279,9 @@ public class UserController {
         fineServices.updateFineToRequested(SessionHandler.getUserSession(req));
         return new ResponseEntity<String>("true", HttpStatus.ACCEPTED);
     }
+
+    @GetMapping("/librarycard")
+    public String libraryCard() {
+        return "libraryCard";
+    }
 }
