@@ -24,28 +24,26 @@
     
                 <div class="main-container">
                     <%@include file="userPanelHeaderComponent.jsp"%>
-    
-                    <div class="dismissible-alert shadow-md">
-                        <p><strong>welcome Back</strong> <span><%=user.getFirstName()%> <%=user.getLastName()%></span></p>
-                        <i class="fa-solid fa-multiply" onclick="hideContainer('dismissible-alert')"></i>
-                    </div>
-                    
+                    <div class="suggestions" style="display: flex;align-items: center;justify-content: center;flex-direction: column;height: fit-content;">
                         <div class="IDcontainer" id="myDiv">
                             <div class="main-image">
-                                <img src="/img/card.png" style="border-radius: 20px;" alt="">
+                                <img src="/img/card.png" style="border-radius: 20px;" alt="" class="background">
                             </div>
-                            <h1 class="name">Sinchan Nandy</h1>
-                            <h1 class="designation">Student</h1>
+                            <h1 class="name"><%= user.getFirstName()+" "+user.getLastName() %></h1>
+                            <h1 class="designation"><%= user.getCategory() %></h1>
                             <div class="left-inner-wrapper">
                                 <ul>
                                     <li>
-                                        <h2>Username: sinchan@2002 </h2>
+                                        <h2>Username: <%= user.getUsername() %> </h2>
                                     </li>
                                     <li>
-                                        <h2>Email: sinchannandy54@gmail.com </h2>
+                                        <h2>Email: <%= user.getEmail() %> </h2>
                                     </li>
                                     <li>
-                                        <h2>Phone: 7003512645 </h2>
+                                        <h2>Phone: <%= user.getPhone() %> </h2>
+                                    </li>
+                                    <li>
+                                        <h2>Membership active till: <%= user.getMembershipexpire() %> </h2>
                                     </li>
                                 </ul>
                             </div>
@@ -55,8 +53,9 @@
                             <h1 class="officalname">Library Authorities</h1>
 
                         </div>
-                        <button onclick="downloadImage()" id="btn">Download Image</button>
+                        <button onclick="downloadImage()" id="btn">Download Library Card</button>
                     </div>
+                </div>
             </div>
         </div>
     </body>
@@ -86,7 +85,7 @@
             const element = document.getElementById("myDiv");
 
             // Use html2canvas to convert the div and all its children to a canvas
-            html2canvas(element, { useCORS: true, allowTaint: true, scrollX: 0, scrollY: -window.scrollY, scale: 1 }).then(function (canvas) {
+            html2canvas(element, { useCORS: true, allowTaint: true, scrollX: 0, scrollY: -window.scrollY, scale: 1.5 }).then(function (canvas) {
                 // Create a new image element
                 const img = new Image();
 

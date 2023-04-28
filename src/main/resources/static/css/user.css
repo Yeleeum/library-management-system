@@ -291,7 +291,7 @@ a {
     padding: 10px;
 }
 
-.suggestions h1 {
+.suggestions >h1 {
     width: 100%;
     background: var(--hover-color);
     padding: 20px;
