@@ -18,6 +18,8 @@
         int noOfRegistrations=(int)request.getAttribute("noOfRegistrations");
         int noOfPendingBorrow=(int)request.getAttribute("noOfPendingBorrow");
         int noOfPendingReturn=(int)request.getAttribute("noOfPendingReturn");
+        int noOfPendingFines=(int)request.getAttribute("noOfPendingFines");
+        int noOfPendingRenewals=(int)request.getAttribute("noOfPendingRenewals");
         
 %>
 <body>
@@ -86,8 +88,18 @@
                                 <img src="/img/admin/user.png" class="icons" alt="">
                             </div>
                             <div>
-                                <h1>15</h1>
+                                <h1><%=noOfPendingRenewals%></h1>
                                 <p>Pending Renewals</p>
+                            </div>
+                        </div>
+
+                        <div class="details-card">
+                            <div>
+                                <img src="/img/fine.png" class="icons" alt="">
+                            </div>
+                            <div>
+                                <h1><%=noOfPendingFines%></h1>
+                                <p>Pending Fines</p>
                             </div>
                         </div>
 

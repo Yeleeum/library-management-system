@@ -35,11 +35,13 @@
                         <span>Dashboard</span>
                         <i class="fa-solid fa-angle-right"></i>
                         <span>Pending Payment Requests</span>
+                        <i class="fa-solid fa-angle-right"></i>
+                        <span>Pending <%=type.substring(0, 1).toUpperCase() + type.substring(1)%> Requests</span>
                     </p>
                 </div>
         <div class="registrations">
             <div class="registrations-inner-wrapper">
-                <h1>Pending Payments</h1>
+                <h1>Pending <%=type.substring(0, 1).toUpperCase() + type.substring(1)%> Payments</h1>
                 <table class="registrations">
                 <!--            this.pid = pid;
                                 this.username = username;
