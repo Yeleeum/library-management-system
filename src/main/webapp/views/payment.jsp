@@ -52,6 +52,7 @@
                                 </div>
                             </div>
                         </div>
+                        <h1 class="message"></h1>
                     </div>
                 </div>
             </div>
@@ -60,6 +61,7 @@
     
     <script>
         var clickToLogout = document.querySelector('#clickToLogout');
+        let message=document.querySelector('.message')
     
         const toggleDropdown = () => {
             let dropdown = document.querySelector('.hidden-dropdown > ul');
@@ -99,10 +101,10 @@
             }
         }
         
+        let transaction = document.querySelector('input[name="transaction"]');
         function postAmount(mode) {
-            let transaction = document.querySelector('input[name="transaction"]').value;
             const formData = new FormData();
-            formData.append('transaction', mode==="online"?transaction:null);
+            formData.append('transaction', mode==="online"?transaction.value:null);
             formData.append('amount', amount);
             formData.append('paid', mode==="online"?true:false);
             if(amountrenew.hidden){
@@ -118,6 +120,7 @@
                 })
                 .then(data => {
                     console.log(data);
+                    message.innerHTML="Your Payment Request is Submitted"
                 })
                 .catch(error => {
                     console.error('There was a problem with the fetch operation:', error);
@@ -135,6 +138,7 @@
                 })
                 .then(data => {
                     console.log(data);
+                    message.innerHTML="Your Payment Request is Submitted"
                 })
                 .catch(error => {
                     console.error('There was a problem with the fetch operation:', error);
