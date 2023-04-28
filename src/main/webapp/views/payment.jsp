@@ -98,9 +98,9 @@
                 amount=parseInt('<%=renewal%>')+parseInt('<%=fine%>')
             }
         }
-        const transaction = document.querySelector('input[name="transaction"]').value;
-
+        
         function postAmount(mode) {
+            let transaction = document.querySelector('input[name="transaction"]').value;
             const formData = new FormData();
             formData.append('transaction', mode==="online"?transaction:null);
             formData.append('amount', amount);
