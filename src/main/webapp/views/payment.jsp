@@ -17,6 +17,11 @@
     <% Integer fine=(Integer)request.getAttribute("fine"); %>
     <% Integer renewal=(Integer)request.getAttribute("renewal"); %>
     <body>
+        <div class="alertContainer modal hide">
+            <h1 id="myAlertBox" class="message"></h1>
+            <button id="close" onclick="clickToRemove()"><i class="fa-solid fa-multiply"></i> Close</button>
+            <div id="line"></div>
+        </div>
         <div class="container">
             <div class="inner-wrapper">
                <%@include file="userSidebar.jsp"%>
@@ -57,7 +62,7 @@
                                 </div>     
                             </div>
                         </div>
-                        <h1 class="message"></h1>
+                        <!-- <h1 class="message"></h1> -->
                     </div>
                 </div>
             </div>
@@ -76,6 +81,8 @@
             if(parseInt('<%=fine%>')===0){
                 paymentOptions.style.display="none"
                 nofine.style.display=""
+            } else {
+                nofine.style.display="none"
             }
         }
 
@@ -101,6 +108,7 @@
         let amountfine=document.querySelector('.amountfine')
         let headingrenew=document.querySelector('.headingrenew')
         let amountrenew=document.querySelector('.amountrenew')
+        let modal = document.querySelector('.modal');
 
         let amount = parseInt('<%=fine%>');
         function togglePayment(type){
@@ -141,6 +149,7 @@
                 })
                 .then(data => {
                     console.log(data);
+                    modal.classList.remove('hide');
                     message.innerHTML="Your Payment Request is Submitted"
                 })
                 .catch(error => {
@@ -159,6 +168,7 @@
                 })
                 .then(data => {
                     console.log(data);
+                    modal.classList.remove('hide');
                     message.innerHTML="Your Payment Request is Submitted"
                 })
                 .catch(error => {
@@ -167,6 +177,13 @@
             }
         }
 
+        function clickToRemove() {
+            modal.classList.add('hide');
+        }
+
+        setTimeout(()=>{
+            clickToRemove();
+        }, 12000)
 
     </script>
     

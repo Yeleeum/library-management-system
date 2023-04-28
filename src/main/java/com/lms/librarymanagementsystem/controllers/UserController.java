@@ -276,6 +276,7 @@ public class UserController {
         payment.setType("renewal");
         payment.setApproved("pending");
         paymentServices.insertOnePayment(payment);
+        fineServices.updateFineToRequested(SessionHandler.getUserSession(req));
         return new ResponseEntity<String>("true", HttpStatus.ACCEPTED);
     }
 }
