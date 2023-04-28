@@ -29,7 +29,7 @@ public interface BorrowRepository extends JpaRepository<Borrow,Integer> {
     @Query(value="SELECT * FROM BORROW WHERE USERNAME=:username AND ITID=:itid AND STATUS='notreturned' AND APPROVED!='rejected'",nativeQuery = true)
     List<Borrow> getUnReturnedByItidByUsername(@Param("itid")String itid,@Param("username")String username);
 
-    @Query(value="SELECT * FROM BORROW WHERE USERNAME=:username AND RETURNDATE < CURDATE()",nativeQuery = true)
+    @Query(value="SELECT * FROM BORROW WHERE USERNAME=:username AND RETURNDATE < CURDATE() AND STATUS='notreturned'",nativeQuery = true)
     List<Borrow> getFinableBorrowByUsername(@Param("username")String username);
 
     @Modifying

@@ -34,6 +34,7 @@
                                 <h1 class="amountfine" <%if(fine==0){%>style="color:green"<%}%>><i style="font-size: 5rem;" class="fa-solid fa-indian-rupee-sign"></i><%=fine%></h1>
                                 <h3 class="headingrenew" hidden>Renewal Amount is</h3>
                                 <h1 class="amountrenew" hidden><i style="font-size: 5rem;" class="fa-solid fa-indian-rupee-sign"></i><%=renewal%><%if(fine>0){%><sup style="font-size: 25px;">+ <i class="fa-solid fa-indian-rupee-sign"></i> <%=fine%> (Due Fine)</sup><%}%></h1>
+                                
                                 <div class="payment-options">
                                     <div class="online-payment">
                                         <img src="/img/QR.jpg" class="Qr_Code" alt="online-payment" />
@@ -50,6 +51,10 @@
                                         <button onclick="postAmount('offline')"><i class="fa-solid fa-wallet"></i> Pay Offline</button>
                                     </div>
                                 </div>
+                                <div class="nofine">
+                                    <img src="/img/thumbsup.gif" style="-webkit-clip-path: polygon(0 0, 96% 0, 97% 100%, 0% 100%);
+                                    clip-path: polygon(0 0, 96% 0, 97% 100%, 0% 100%)" alt="">
+                                </div>     
                             </div>
                         </div>
                         <h1 class="message"></h1>
@@ -62,6 +67,19 @@
     <script>
         var clickToLogout = document.querySelector('#clickToLogout');
         let message=document.querySelector('.message')
+
+        let paymentOptions=document.querySelector('.payment-options')
+        let nofine=document.querySelector('.nofine')
+
+        function hidePaymentOptions(){
+            console.log(paymentOptions)
+            if(parseInt('<%=fine%>')===0){
+                paymentOptions.style.display="none"
+                nofine.style.display=""
+            }
+        }
+
+        hidePaymentOptions()
     
         const toggleDropdown = () => {
             let dropdown = document.querySelector('.hidden-dropdown > ul');
@@ -92,12 +110,15 @@
                 headingrenew.hidden=true
                 amountrenew.hidden=true
                 amount=parseInt('<%=fine%>')
+                hidePaymentOptions()
             }else{
                 headingfine.hidden=true
                 amountfine.hidden=true
                 headingrenew.hidden=false
                 amountrenew.hidden=false
                 amount=parseInt('<%=renewal%>')+parseInt('<%=fine%>')
+                paymentOptions.style.display=""
+                nofine.style.display="none"
             }
         }
         
