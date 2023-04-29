@@ -46,14 +46,14 @@
                                         <div class="transaction">
                                             <input type="text" id="transaction" name="transaction" placeholder="Enter Transaction ID...">
                                         </div>
-                                        <button onclick="postAmount('online')"><i class="fa-solid fa-credit-card"></i> Pay Online</button>
+                                        <button onclick="postAmount('online')" id="online-pay-btn"><i class="fa-solid fa-credit-card"></i> Pay Online</button>
                                     </div>
                                     <div class="offline-payment">
                                         <img src="/img/payment-offline.png" class="admin-payment" alt="offline-payment">
                                         <div class="transaction">
                                             <input style="text-align: center; font-weight: bold;" type="text" id="tid" value="Visit Admin and Pay" readonly>
                                         </div>
-                                        <button onclick="postAmount('offline')"><i class="fa-solid fa-wallet"></i> Pay Offline</button>
+                                        <button onclick="postAmount('offline')"  id="offline-pay-btn"><i class="fa-solid fa-wallet"></i> Pay Offline</button>
                                     </div>
                                 </div>
                                 <div class="nofine">
@@ -109,6 +109,8 @@
         let headingrenew=document.querySelector('.headingrenew')
         let amountrenew=document.querySelector('.amountrenew')
         let modal = document.querySelector('.modal');
+        let ofPayBtn = document.querySelector('#offline-pay-btn');
+        let onPayBtn = document.querySelector('#online-pay-btn');
 
         let amount = parseInt('<%=fine%>');
         function togglePayment(type){
@@ -151,6 +153,8 @@
                     console.log(data);
                     modal.classList.remove('hide');
                     message.innerHTML="Your Payment Request is Submitted"
+                    ofPayBtn.disabled = "true";
+                    onPayBtn.disabled = "true";
                 })
                 .catch(error => {
                     console.error('There was a problem with the fetch operation:', error);
@@ -170,6 +174,9 @@
                     console.log(data);
                     modal.classList.remove('hide');
                     message.innerHTML="Your Payment Request is Submitted"
+                    ofPayBtn.disabled = "true";
+                    onPayBtn.disabled = "true";
+
                 })
                 .catch(error => {
                     console.error('There was a problem with the fetch operation:', error);
