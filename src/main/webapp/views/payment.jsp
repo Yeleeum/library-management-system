@@ -16,6 +16,7 @@
     <% Users user=(Users)request.getAttribute("user"); %>
     <% Integer fine=(Integer)request.getAttribute("fine"); %>
     <% Integer renewal=(Integer)request.getAttribute("renewal"); %>
+    <% boolean pending=(boolean)request.getAttribute("pending"); %>
     <body>
         <div class="alertContainer modal hide">
             <h1 id="myAlertBox" class="message"></h1>
@@ -35,6 +36,7 @@
                                 <button onclick="togglePayment('renwal')"><i class="fa-solid fa-money-check"></i> Pay Renewal</button>
                             </div>
                             <div class="payment-details">
+                                <%if(!pending){%>
                                 <h3 class="headingfine">Your Due Fine is</h3>
                                 <h1 class="amountfine" <%if(fine==0){%>style="color:green"<%}%>><i style="font-size: 5rem;" class="fa-solid fa-indian-rupee-sign"></i><%=fine%></h1>
                                 <h3 class="headingrenew" hidden>Renewal Amount is</h3>
@@ -59,7 +61,12 @@
                                 <div class="nofine">
                                     <img src="/img/thumbsup.gif" style="-webkit-clip-path: polygon(0 0, 96% 0, 97% 100%, 0% 100%);
                                     clip-path: polygon(0 0, 96% 0, 97% 100%, 0% 100%)" alt="">
-                                </div>     
+                                </div>  
+                                <%}else{%>   
+                                    <h3 style="margin: 20px; color: rgb(7, 146, 2);">Your Payment Request is Still Processing....</h3>
+                                    <h2 style="margin-bottom: 20px;">Contact the Admin to know more.</h2>
+                                    <img src="/img/hourglass.gif" style="border-radius: 10px; box-shadow: rgba(255, 152, 0, 0.4) -5px 5px, rgba(255, 152, 0, 0.3) -10px 10px, rgba(255, 152, 0, 0.2) -15px 15px, rgba(255, 152, 0, 0.1) -20px 20px, rgba(255, 152, 0, 0.05) -25px 25px;" width="600" alt="">
+                                <%}%>
                             </div>
                         </div>
                         <!-- <h1 class="message"></h1> -->

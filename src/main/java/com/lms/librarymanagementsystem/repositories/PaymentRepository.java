@@ -13,9 +13,15 @@ public interface PaymentRepository extends JpaRepository<Payment,Integer> {
 
     @Query(value="SELECT * FROM PAYMENT WHERE APPROVED='pending' AND TYPE='fine'",nativeQuery = true)
     List<Payment> getPendingFinePayments();
+
+    @Query(value="SELECT * FROM PAYMENT WHERE USERNAME=:username AND APPROVED='pending' AND TYPE='fine'",nativeQuery = true)
+    List<Payment> getPendingFinePaymentsByUsername(@Param("username")String username);
     
     @Query(value="SELECT * FROM PAYMENT WHERE APPROVED='pending' AND TYPE='renewal'",nativeQuery = true)
     List<Payment> getPendingRenewalPayments();
+    
+    @Query(value="SELECT * FROM PAYMENT WHERE USERNAME=:username AND  APPROVED='pending' AND TYPE='renewal'",nativeQuery = true)
+    List<Payment> getPendingRenewalPaymentsByUsername(@Param("username")String username);
 
     @Modifying
     @Query(value="UPDATE PAYMENT SET APPROVED=:action WHERE PID=:pid",nativeQuery = true)

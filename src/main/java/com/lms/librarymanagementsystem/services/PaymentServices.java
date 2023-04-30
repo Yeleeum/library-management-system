@@ -32,4 +32,11 @@ public class PaymentServices {
         return paymentRepository.getPendingRenewalPayments();
     }
 
+    public List<Payment> findPendingFinePaymentByUsername(String username){
+        return paymentRepository.getPendingFinePaymentsByUsername(username);
+    }
+    public List<Payment> findPendingRenewalPaymentByUsername(String username){
+        return paymentRepository.getPendingRenewalPaymentsByUsername(username);
+    }
+
 }

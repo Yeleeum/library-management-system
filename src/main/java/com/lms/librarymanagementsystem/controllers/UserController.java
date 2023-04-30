@@ -253,6 +253,9 @@ public class UserController {
             totalFine+=fine.getAmount();
         }
         Integer renewal=300;
+        List<Payment> finepayments=paymentServices.findPendingFinePaymentByUsername(SessionHandler.getUserSession(req));
+        List<Payment> renewalpayments=paymentServices.findPendingRenewalPaymentByUsername(SessionHandler.getUserSession(req));
+        model.addAttribute("pending", !(finepayments.isEmpty()&&renewalpayments.isEmpty()));
         model.addAttribute("fine", totalFine);
         model.addAttribute("renewal", renewal);
         return "payment";
