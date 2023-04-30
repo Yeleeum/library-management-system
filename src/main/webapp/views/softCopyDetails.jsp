@@ -23,41 +23,49 @@
                         <%@include file="mainSearchComponent.jsp" %>
                     </header>
 
-                    <div class="book-details">
-                        <img src="/uploads/thumbnails/<%=softcopy.getThumbnail()%>" alt="Book Cover">
-                        <div>
-                            <h2>
-                                <%= softcopy.getTitle() %>
-                            </h2>
-                            <p>Publisher: <%= softcopy.getPublisher() %>
-                            </p>
-                            <p>Owner: <%= softcopy.getOwner() %>
-                            </p>
-                            <p>Page No: <%= softcopy.getPageno() %>
-                            </p>
-
-                            <div>
-                                
+                    <div id="container">
+                        <h1><%= softcopy.getTitle() %></h1>
+                        <div class="img-container">
+                          <img src="/uploads/thumbnails/<%=softcopy.getThumbnail()%>" alt="Book Cover" />
+                          <div class="flex gap-1 flex-col">
                                 <% if(SessionHandler.getAccessSession(request).equals("admin")) {%>
-                                    <form action="" method="get">
+                                    <form action="" method="get" class="btn-container">
                                         <button formaction="/admin/edit/softcopy/<%= softcopy.getSid() %>">Edit</button>
                                         <button formaction="/admin/delete/softcopy/<%= softcopy.getSid() %>">Delete</button>
                                     </form>
                                 <% } else { %>
-                                <button id="clickToView">View Pdf</button>
+                                <button class="w-full" id="clickToView">View Pdf</button>
                                 <a href="/uploads/SoftCopy/<%= softcopy.getFilename() %>"
-                                    onclick="sendDownloadDetails()" download><button>Download
+                                    onclick="sendDownloadDetails()" download><button class="w-full">Download
                                         Pdf</button></a>
                                 <% } %>
-                            </div>
+                          </div>
                         </div>
-                    </div>
-                    <div class="description">
-                        <h1><u>Description</u></h1>
-                        <div class="descArea" readonly>
-                            <%= softcopy.getDescription() %>
-
-                                <pre>#<%= softcopy.getKeywords() %></pre>
+                        <table cellspacing="10" cellpadding="5">
+                          <tr>
+                            <td>Publisher</td>
+                            <td>:</td>
+                            <td><%= softcopy.getPublisher() %></td>
+                          </tr>
+                          <tr>
+                            <td>Owner</td>
+                            <td>:</td>
+                            <td><%= softcopy.getOwner() %></span>
+                          </tr>
+                          <tr>
+                            <td>Page No</td>
+                            <td>:</td>
+                            <td><%= softcopy.getPageno() %></span>
+                          </tr>
+                        </table>
+                        <p> <%= softcopy.getDescription() %></p>
+                        <br><br><br>
+                        <div class="keywords">
+                          <strong>Keywords :</strong>
+                          <% String[] keywords = softcopy.getKeywords().split(",");
+                            for (String keyword : keywords) { %>
+                                <a href='/keyword/<%= keyword.replaceAll(" ", "%20") %> '>#<%= keyword %></a>
+                          <%  } %>
                         </div>
                     </div>
             </div>

@@ -4,128 +4,82 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Book Details Page</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Book Details Page</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <style>
-        /* Global Styles */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            width: 100%;
-            overflow-x: hidden;
-            font-family: Arial, sans-serif;
-            line-height: 1.5;
-        }
-
-        /* Header Styles */
-        header {
-            background-color: #525252;
-            color: #fff;
-            padding: 1rem;
-        }
-
-        h1 {
-            font-size: 2rem;
-            margin: 0;
-        }
-
-        /* Book Details Styles */
-        .book-details {
-            width: 100%;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: flex-start;
-            margin-left: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .description{
-            width: 100%;
-            /* padding: 0.5rem 1.5em; */
-            padding-top: 0.5rem;
-            padding-left: 1.5rem;
-        }
-
-        .descArea{
-            padding: 10px;
-            border: 0.5px dashed black;
-            word-wrap: break-word;
-        }
-
-        .book-details img {
-            border-radius: 10px;
-            max-width: 300px;
-            margin-right: 2rem;
-            box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-        }
-
-        .book-details h2 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .book-details p {
-            margin-bottom: 1rem;
-        }
-
-        button{
-            padding: 10px 20px;
-            background: #000;
-            color: #fff;
-            font-weight: bolder;
-            border-radius: 10px;
-            cursor: pointer;
-        }
-    </style>
 </head>
 
 <body>
     <% Journals journal = (Journals) request.getAttribute("journal"); %>
     <%@include file="Headers.jsp"%>
     <header style="width: 100%; display: flex; justify-content: space-between; align-items: center;">
-        <h1>Journal Details</h1>
+        <h1>Book Details</h1>
         <%@include file="mainSearchComponent.jsp"%>
     </header>
-
-    <div class="book-details">
-        <img src="/uploads/thumbnails/<%=journal.getThumbnail()%>" alt="Book Cover">
-        <div>
-            <h2>
-                <%= journal.getTitle() %>
-            </h2>
-            <p>Publisher: <%= journal.getPublisher() %></p>
-            <p>Editor: <%= journal.getEditor() %></p>
-            <p>Stock: <%= journal.getStock() %></p></p>
-            <p>Pages: <%= journal.getPageNo() %></p>
-            <p>Category: <%= journal.getCategory() %></p>
-            <p>Start Year: <%= journal.getStartYear() %></p>
-            <p>End Year: <%= journal.getEndYear()%> </p>
-            <div>
-                <% String type = "journals"; %>
-                <% int id = journal.getJid(); %>
-                <% String itid=journal.getItid();%>
-                <% Integer stock=journal.getStock();%>
-                <%@include file="itemAction.jsp" %>
-            </div>
-        </div>
+  <div id="container">
+    <h1><%= journal.getTitle() %></h1>
+    <div class="img-container">
+      <img src="/uploads/thumbnails/<%= journal.getThumbnail()%>" alt="Book Cover" />
+      <div class="btn-container">
+            <% String type = "journals"; %>
+            <% int id = journal.getJid(); %>
+            <% String itid=journal.getItid();%>
+            <% Integer stock=journal.getStock();%>
+            <%@include file="itemAction.jsp" %>
+      </div>
     </div>
-    <div  class="description">
-        <h1><u>Description</u></h1>
-        <div class="descArea" readonly>
-            <%= journal.getDescription() %>
-            
-            <pre>#<%= journal.getKeywords() %></pre>
-        </div>
+    <table cellspacing="10" cellpadding="5">
+      <tr>
+        <td>Publisher</td>
+        <td>:</td>
+        <td><%= journal.getPublisher() %></td>
+      </tr>
+      <tr>
+        <td>Editor</td>
+        <td>:</td>
+        <td><%= journal.getEditor() %></span>
+      </tr>
+      <tr>
+        <td>Stock</td>
+        <td>:</td>
+        <td><%= journal.getStock() %></span>
+      </tr>
+      <tr>
+        <td>Pages</td>
+        <td>:</td>
+        <td><%= journal.getPageNo() %></td>
+      </tr>
+      <tr>
+        <td>Category</td>
+        <td>:</td>
+        <td><%= journal.getCategory() %></td>
+      </tr>
+      <tr>
+        <td>Start Year</td>
+        <td>:</td>
+        <td><%= journal.getStartYear() %></td>
+      </tr>
+      <tr>
+        <td>End Year</td>
+        <td>:</td>
+        <td><%= journal.getEndYear() %></td>
+      </tr>
+    </table>
+    <p><%= journal.getDescription() %></p>
+    <br><br>
+    <div class="keywords">
+      <strong>Keywords :</strong>
+      <% String[] keywords = journal.getKeywords().split(",");
+        for (String keyword : keywords) { %>
+            <a href='/keyword/<%= keyword.replaceAll(" ", "%20") %> '>#<%= keyword %></a>
+      <%  } %>
     </div>
-    <%@ include file="alternativeSoftCopy.jsp"%>
-
+  </div>
+  <%@ include file="alternativeSoftCopy.jsp"%>
 </body>
 
 </html>

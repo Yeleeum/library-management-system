@@ -22,7 +22,7 @@ public class UsersServices {
     }
 
     public Users insertOnUser(Users user, String libraryCard) {
-        String message = "Dear ," + user.getFirstName() + "\n\n" +
+        String message = "Dear " + user.getFirstName() + ",\n\n" +
                 "On the behalf of our library, we are writing to inform you that your registration request for our library system has been approved. We are pleased to welcome you as a member of our library community.\n\n"
                 +
                 "With your registration, you will have access to a wealth of resources, including books, journals, magazines, theses, and pdfs also. You will also be able to borrow and renew items, as well as access our online vast repository and search tools.\n\n"

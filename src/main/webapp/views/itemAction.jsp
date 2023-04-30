@@ -1,6 +1,6 @@
 <%@page import="com.lms.librarymanagementsystem.Handlers.SessionHandler"%>
 <% if(SessionHandler.getAccessSession(request).equals("admin")) {%>
-    <form method="get">
+    <form method="get" class="flex justify-between w-full">
         <button formaction="/admin/edit/<%= type %>/<%= id %>">Edit</button>
         <button formaction="/admin/delete/<%= type %>/<%= id %>">Delete</button>
     </form>

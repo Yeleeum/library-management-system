@@ -4,10 +4,11 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Book Details Page</title>
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Book Details Page</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
@@ -19,38 +20,61 @@
         <h1>Magazine Details</h1>
         <%@include file="mainSearchComponent.jsp"%>
     </header>
-
-    <div class="book-details">
-        <img src="/uploads/thumbnails/<%=magazine.getThumbnail()%>" alt="Book Cover">
-        <div>
-            <h2>
-                <%= magazine.getTitle() %>
-            </h2>
-            <p>Publisher: <%= magazine.getPublisher() %></p>
-            <p>Issue Date: <%= magazine.getIssuedate() %></p>
-            <p>Issue number: <%= magazine.getIssuenumber() %></p></p>
-            <p>Frequency: <%= magazine.getFrequency() %></p>
-            <p>Special Issue: <%= magazine.getSpecialissue() %></p>
-            <p>Stock: <%= magazine.getStock() %></p>
-            <div>
-                <% String type = "magazines"; %>
-                <% int id = magazine.getMid(); %>
-                <% String itid=magazine.getItid();%>
-                <% Integer stock=magazine.getStock();%>
-                <%@include file="itemAction.jsp" %>
-            </div>
-        </div>
+  <div id="container">
+    <h1><%= magazine.getTitle() %></h1>
+    <div class="img-container">
+      <img src="/uploads/thumbnails/<%= magazine.getThumbnail()%>" alt="Book Cover" />
+      <div class="btn-container">
+            <% String type = "magazines"; %>
+            <% int id = magazine.getMid(); %>
+            <% String itid=magazine.getItid();%>
+            <% Integer stock=magazine.getStock();%>
+            <%@include file="itemAction.jsp" %>
+      </div>
     </div>
-    <div  class="description">
-        <h1><u>Description</u></h1>
-        <div class="descArea" readonly>
-            <%= magazine.getDescription() %>
-            
-            <pre>#<%= magazine.getKeywords() %></pre>
-        </div>
+    <table cellspacing="10" cellpadding="5">
+      <tr>
+        <td>Publisher</td>
+        <td>:</td>
+        <td><%= magazine.getPublisher() %></td>
+      </tr>
+      <tr>
+        <td>Issue Date</td>
+        <td>:</td>
+        <td><%= magazine.getIssuedate() %></span>
+      </tr>
+      <tr>
+        <td>Issue number</td>
+        <td>:</td>
+        <td><%= magazine.getIssuenumber() %></span>
+      </tr>
+      <tr>
+        <td>Frequency</td>
+        <td>:</td>
+        <td><%= magazine.getFrequency() %></td>
+      </tr>
+      <tr>
+        <td>Special Issue</td>
+        <td>:</td>
+        <td><%= magazine.getSpecialissue() %></td>
+      </tr>
+      <tr>
+        <td>Stock</td>
+        <td>:</td>
+        <td><%= magazine.getStock() %></td>
+      </tr>
+    </table>
+    <p><%= magazine.getDescription() %></p>
+    <br><br>
+    <div class="keywords">
+      <strong>Keywords :</strong>
+      <% String[] keywords = magazine.getKeywords().split(",");
+        for (String keyword : keywords) { %>
+            <a href='/keyword/<%= keyword.replaceAll(" ", "%20") %> '>#<%= keyword %></a>
+      <%  } %>
     </div>
-    <%@ include file="alternativeSoftCopy.jsp"%>
-
+  </div>
+  <%@ include file="alternativeSoftCopy.jsp"%>
 </body>
 
 </html>
