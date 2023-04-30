@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.lms.librarymanagementsystem.Handlers.DateHandler;
+import com.lms.librarymanagementsystem.Handlers.EncryptionHandlers;
 import com.lms.librarymanagementsystem.Handlers.SessionHandler;
 import com.lms.librarymanagementsystem.models.Admin;
 import com.lms.librarymanagementsystem.models.Borrow;
@@ -48,8 +49,8 @@ public class LoginController {
 
     @PostMapping("/users")
     public ResponseEntity<String> userLogin(String username, String password, HttpServletRequest req) {
-        List<Users> users = usersServices.findUserByUsernamePassword(username, password);
-        if (!users.isEmpty()) {
+        Users user = usersServices.findUserByUsername(username);
+        if (user!=null && EncryptionHandlers.matches(password, user.getPassword())) {
             SessionHandler.setSession(req, username, "nonadmin");
             List<Borrow> borrows=borrowServices.findFinableBorrowByUsername(username);
             List<Fine> fines=fineServices.findUnpaidFineByUsername(username);
@@ -58,13 +59,11 @@ public class LoginController {
             }
             return new ResponseEntity<String>("logged", HttpStatus.OK);
         }
-        List<Registration> registrationspending = registrationServices.findUserByUsernamePasswordPending(username,
-                password);
-        if (!registrationspending.isEmpty()) {
+        List<Registration> registrationspending = registrationServices.findUserByUsernamePending(username);
+        if (!registrationspending.isEmpty() && EncryptionHandlers.matches(password, registrationspending.get(0).getPassword())) {
             return new ResponseEntity<String>("pending", HttpStatus.OK);
         }
-        List<Registration> registrationsrejected = registrationServices.findUserByUsernamePasswordRejected(username,
-                password);
+        List<Registration> registrationsrejected = registrationServices.findUserByUsernameRejected(username);
         if (!registrationsrejected.isEmpty()) {
             return new ResponseEntity<String>("rejected", HttpStatus.OK);
         }

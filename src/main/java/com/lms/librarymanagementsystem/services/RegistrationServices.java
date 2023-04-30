@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.lms.librarymanagementsystem.Handlers.EncryptionHandlers;
 import com.lms.librarymanagementsystem.Handlers.FileHandler;
 import com.lms.librarymanagementsystem.models.Registration;
 import com.lms.librarymanagementsystem.repositories.RegistrationRepository;
@@ -34,6 +35,7 @@ public class RegistrationServices {
         if (registration.getDob().equals("")) {
             registration.setDob(null);
         }
+        registration.setPassword(EncryptionHandlers.encodePassword(registration.getPassword()));
         return registrationRepository.save(registration);
     }
 
@@ -49,11 +51,11 @@ public class RegistrationServices {
         return registrationRepository.getRegistrationByID(rsid);
     }
 
-    public List<Registration> findUserByUsernamePasswordPending(String username,String password){
-        return registrationRepository.getUserByUsernamePasswordPending(username, password);
+    public List<Registration> findUserByUsernamePending(String username){
+        return registrationRepository.getUserByUsernamePending(username);
     }
-    public List<Registration> findUserByUsernamePasswordRejected(String username,String password){
-        return registrationRepository.getUserByUsernamePasswordRejected(username, password);
+    public List<Registration> findUserByUsernameRejected(String username){
+        return registrationRepository.getUserByUsernameRejected(username);
     }
 
     public List<Registration> findTopPendings(){
