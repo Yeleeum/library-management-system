@@ -21,7 +21,6 @@ i {
 
 a {
     text-decoration: none;
-    color: var(--primary-text-color);
 }
 
 /* utility styles */
@@ -110,6 +109,10 @@ a {
     /* background: var(--secondry-bg-color); */
     padding-left: 20px;
     padding-right: 20px;
+}
+
+ul li a {
+    color: var(--primary-text-color) !important;
 }
 
 .hidden-dropdown ul {

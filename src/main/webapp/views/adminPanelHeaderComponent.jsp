@@ -30,10 +30,10 @@
                 <img src="/img/admin/admin.png" id="adminAccount-icon" alt="">
                 <i class="fa-solid fa-play fa-rotate-270 arrow"></i>
                 <ul class="account-options">
-                    <li><a href="/admin"><i class="fa-solid fa-user"></i> Account</a></li>
+                    <li><a href="/admin"><i class="fa-solid fa-user" style="margin-right: 5px;"></i> Account</a></li>
                     <li>
                         <form action="/logout" method="post">
-                            <button style="border: none; background-color: transparent; cursor: pointer;"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
+                            <button style="border: none; font-weight: normal; font-size: 15px; background-color: transparent; cursor: pointer;"><i class="fa-solid fa-right-from-bracket"  style="margin-right: 5px;"></i> Logout</button>
                         </form>
                     </li>
                 </ul>

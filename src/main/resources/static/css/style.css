@@ -336,3 +336,8 @@ input[type=text]:focus {
 .keywords {
     font-size: 20px;
 }
+
+.keywords a {
+    color: blue;
+    text-decoration: underline;
+}
