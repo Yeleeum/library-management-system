@@ -349,7 +349,7 @@ main {
     border-radius: 10px;
 }
 
-table {
+.registrations {
     margin: 2vh 0;
     border-collapse: collapse;
     width: 100%;
@@ -360,31 +360,31 @@ table {
 
 /* Style the table header and cells */
 
-th {
+.registrations th {
     background: #191a21;
     color: aliceblue;
     padding: 10px;
     border: none;
 }
 
-td {
+.registrations td {
     padding: 10px;
     text-align: center;
     border-bottom: 1px solid #ddd;
 }
 
 /* Style the table header */
-thead th {
+.registrations thead th {
     background-color: #f2f2f2;
     font-weight: normal;
 }
 
 /* Alternate row colors for the table body */
-tbody tr:nth-child(even) {
+.registrations tbody tr:nth-child(even) {
     background-color: #f2f2f2;
 }
 
-tbody tr:nth-child(odd) {
+.registrations tbody tr:nth-child(odd) {
     background-color: #cbcbcb;
 }
 

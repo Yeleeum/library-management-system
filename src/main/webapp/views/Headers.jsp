@@ -1,7 +1,12 @@
 <link rel="stylesheet" href="/css/headerComponent.css">
+<link rel="stylesheet" href="/css/admin.css">
+<link rel="stylesheet" href="/css/user.css">
 <%@page import="com.lms.librarymanagementsystem.Handlers.SessionHandler"%>
+<%@page import="com.lms.librarymanagementsystem.models.Registration"%>
+<%@page import="java.util.List"%>
+    <%List<Registration> registrations=(List<Registration>)request.getAttribute("registrations");%>
 <% if(SessionHandler.getAccessSession(request).equals("admin")) {%>
-    <header class="header">
+    <!-- <header class="header">
         <div class="header-inner-wrapper">
             <h1>Library Management System</h1>
             <div class="header-right-content">
@@ -20,20 +25,10 @@
                 </div>
             </div>
         </div>
-    </header>
+    </header> -->
+    <%@include file="adminPanelHeaderComponent.jsp"%>
 <% } else { %>
     <%@ page import="com.lms.librarymanagementsystem.models.Users" %>
     <%Users user=(Users)request.getAttribute("user");%>
-    <header class="header">
-        <h2>Library management system</h2>
-            <div class="user-profile-piture">
-                <img src="/uploads/profilePictures/<%=user.getProfilePicture()%>" alt="">
-                <form class="hover-dropdown">
-                    <button formaction="/user" formmethod="get"><i class="fa-solid fa-user" style="margin-right: 10px;"></i>Account</button>
-                    <hr>
-                    <button formaction="/logout" formmethod="post"><i class="fa-solid fa-right-from-bracket"
-                            style="margin-right: 10px;"></i>Logout</button>
-                </form>
-            </div>
-    </header>
+    <%@include file="userPanelHeaderComponent.jsp"%>
 <% } %>

@@ -7,8 +7,9 @@
         <head>
             <meta charset="UTF-8">
             <title>Book Details Page</title>
-            <link rel="stylesheet" href="/css/pdf.css">
             <link rel="stylesheet" href="/css/style.css">
+            <link rel="stylesheet" href="/css/user.css">
+            <link rel="stylesheet" href="/css/pdf.css">
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
                 integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
                 crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -18,10 +19,6 @@
             <div class="mainArea">
                 <% SoftCopy softcopy=(SoftCopy) request.getAttribute("softcopy"); %>
                     <%@include file="Headers.jsp"%>
-                    <header style="width: 100%; display: flex; justify-content: space-between; align-items: center;">
-                        <h1>SoftCopy Details</h1>
-                        <%@include file="mainSearchComponent.jsp" %>
-                    </header>
 
                     <div id="container">
                         <h1><%= softcopy.getTitle() %></h1>

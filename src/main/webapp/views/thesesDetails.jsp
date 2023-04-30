@@ -16,10 +16,6 @@
 <body>
     <% Theses theses = (Theses) request.getAttribute("theses"); %>
     <%@include file="Headers.jsp"%>
-    <header style="width: 100%; display: flex; justify-content: space-between; align-items: center;">
-        <h1>Theses Details</h1>
-        <%@include file="mainSearchComponent.jsp"%>
-    </header>
   <div id="container">
     <h1><%= theses.getTitle() %></h1>
     <div class="img-container">

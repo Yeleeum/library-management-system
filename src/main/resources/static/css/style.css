@@ -319,18 +319,18 @@ input[type=text]:focus {
 }
 
 #container table {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    font-size: 20px;
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    font-family: Arial, sans-serif !important;
+    font-size: 20px !important;
 }
 
 #container tr {
-    margin-bottom: 5px;
-    font-size: 20px;
-    font-weight: bold;
-    color: #555;
+    margin-bottom: 5px !important;
+    font-size: 20px !important;
+    font-weight: bold !important;
+    color: #555 !important;
 }
 
 .keywords {
