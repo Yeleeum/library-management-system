@@ -336,8 +336,8 @@ public class AdminController {
     @PostMapping("/borrowaction")
     public ResponseEntity<String> performBorrowAction(String action, String itid, String username) {
         borrowServices.performAction(action, username, itid);
+        String type=connectorServices.getType(itid);
         if(action.equals("rejected")){
-            String type=connectorServices.getType(itid);
             if(type.equals("book")){
                 booksServices.increaseStock(itid);
             }else if(type.equals("journal")){

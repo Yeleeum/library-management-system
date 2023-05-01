@@ -33,5 +33,8 @@ public interface UsersRepository extends JpaRepository<Users,String>{
 
     @Query(value="SELECT * FROM USERS WHERE USERNAME=:USERNAME AND MEMBERSHIP='inactive'", nativeQuery=true)
     List<Users> getInactiveUsers(@Param("USERNAME")String username);
+
+    @Query(value="SELECT EMAIL FROM USERS WHERE USERNAME=:username",nativeQuery =true)
+    String getMailByUsername(@Param("username")String username);
     
 }

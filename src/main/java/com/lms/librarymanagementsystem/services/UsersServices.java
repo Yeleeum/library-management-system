@@ -72,4 +72,20 @@ public class UsersServices {
         return usersRepository.getInactiveUsers(username);
     }
 
+    public void sendBorrowApproval(String username,String title,String type){
+        Users user=usersRepository.getUserByUsername(username);
+        String subject="Subject: Approval of Your Library Borrow Request";
+        String message = "Dear "+user.getFirstName()+" "+user.getLastName()+",\n\n" +
+                 "I am writing to inform you that your request to borrow "+title+"("+type+") from our library has been approved by the library administration.\n\n" +
+                 "We are pleased to be able to provide you with this item, and we hope that it will be of great use to you. Please note that the borrowing period for this item is [Number of Days] days from the date of issue.\n\n" +
+                 "In order to complete the borrowing process, please visit the library to pick up the item. Please bring your library card and a valid form of identification with you when you come to collect the item.\n\n" +
+                 "If you have any questions or concerns, please do not hesitate to contact us. We are always happy to assist you.\n\n" +
+                 "Thank you for using our library, and we hope that you enjoy the item!\n\n" +
+                 "Sincerely,\n\n" +
+                 "Admin,\n" +
+                 "Library Authorities\n" ;
+        emailServices.sendMail(user.getEmail(), subject, message);
+
+    }
+
 }
