@@ -47,7 +47,7 @@
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
-.hover-dropdown button {
+.hover-dropdown > button {
     padding: 10px;
     display: flex;
     align-items: center;

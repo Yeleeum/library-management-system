@@ -1,3 +1,4 @@
+
 <div class="sidebar">
     <div class="sidebar-inner-wrapper">
         <div class="image-container">
@@ -8,7 +9,7 @@
                 <span>
                     <%=user.getUsername()%>
                 </span>
-                <i class="fa-solid fa-caret-down arrow" style="cursor: pointer; color: aliceblue !important;" onclick="toggleDropdown()"></i>
+                <i class="fa-solid fa-caret-down arrowprofile" style="cursor: pointer; display: block !important; color: aliceblue !important;" onclick="toggleDropdown()"></i>
             </div>
             <div class="hidden-dropdown">
                 <ul>

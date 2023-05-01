@@ -169,7 +169,7 @@
     
         const toggleDropdown = () => {
             let dropdown = document.querySelector('.hidden-dropdown > ul');
-            let arrow = document.querySelector('.arrow');
+            let arrow = document.querySelector('.arrowprofile');
             dropdown.style.height = (dropdown.style.height === "auto") ? "0" : "auto";
             arrow.classList.toggle("fa-flip-vertical")
         }
