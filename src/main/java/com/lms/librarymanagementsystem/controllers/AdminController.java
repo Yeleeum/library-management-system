@@ -347,6 +347,20 @@ public class AdminController {
             }else{
                 thesesServices.increaseStock(itid);
             }
+        }else{
+            if(type.equals("book")){
+                Books book=booksServices.findOneBookByItid(itid);
+                usersServices.sendBorrowApproval(username, book.getTitle(), type);
+            }else if(type.equals("journal")){
+                Journals journal=journalsServices.findOneJournalByItid(itid);
+                usersServices.sendBorrowApproval(username, journal.getTitle(), type);
+            }else if(type.equals("magazine")){
+                Magazines magazine=magazinesServices.findOneMagazineByItid(itid);
+                usersServices.sendBorrowApproval(username, magazine.getTitle(), type);
+            }else{
+                Theses theses=thesesServices.findOneThesesByItid(itid);
+                usersServices.sendBorrowApproval(username, theses.getTitle(), type);
+            }
         }
         return new ResponseEntity<String>("true", HttpStatus.OK);
     }
