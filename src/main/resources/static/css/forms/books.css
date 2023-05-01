@@ -145,6 +145,7 @@ input {
 
 input[type=text],
 input[type=url],
+input[type=date],
 select,
 .right-container textarea {
     padding: 10px;

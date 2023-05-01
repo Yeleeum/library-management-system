@@ -440,6 +440,22 @@ INSERT INTO `users` (`USERNAME`, `PASSWORD`, `PROFILEPICTURE`, `FIRSTNAME`, `LAS
 -- Indexes for dumped tables
 --
 
+CREATE TABLE bookdonations (
+    bdnid INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    donorname VARCHAR(100),
+    title VARCHAR(100),
+    author VARCHAR(500),
+    publisher VARCHAR(500),
+    thumbnail VARCHAR(200),
+    description TEXT,
+    category VARCHAR(100),
+    keywords LONGTEXT,
+    edition VARCHAR(100),
+    pageno INT(11),
+    donationdate DATE,
+    approved VARCHAR(100)
+);
+
 --
 -- Indexes for table `admin`
 --
