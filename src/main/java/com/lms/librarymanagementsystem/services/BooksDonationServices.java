@@ -1,5 +1,7 @@
 package com.lms.librarymanagementsystem.services;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -26,5 +28,17 @@ public class BooksDonationServices {
         }
         bookDonations.setApproved("pending");
         return bookDonationRepository.save(bookDonations);
+    }
+
+    public List<BookDonations> findPendingBookDonations() {
+        return bookDonationRepository.getPendingBookDonations();
+    }
+
+    public BookDonations findSingleBookDonations(Integer bdnid) {
+        return bookDonationRepository.getSingleBookDonation(bdnid);
+    }
+
+    public Integer updateDonationToApproved(Integer bdnid) {
+        return bookDonationRepository.updateDonationApproval(bdnid);
     }
 }

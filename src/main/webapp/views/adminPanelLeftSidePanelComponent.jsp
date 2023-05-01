@@ -58,7 +58,20 @@
                         <li><a class="submenu-links" href="/search/searchitem?searchParam=">Edit Alternatives</a></li>
                     </ul>
                 </li>
-                <li>Manage Donations</li>
+                <!-- <li>Manage Donations</li> -->
+                <li>
+                    <div class="sublinks-Container">
+                        <span>Manage Donations</span>
+                        <i class="fa-solid fa-angle-down" id="clickToExpand"></i>
+                    </div>
+                    <ul id="sublinks" class="submenulinks">
+                        <li><a class="submenu-links" href="/admin/viewpending/bookdonations">Donated Books</a></li>
+                        <li><a class="submenu-links" href="/admin/viewpending/journaldonations">Donated Journals</a></li>
+                        <li><a class="submenu-links" href="/admin/viewpending/thesesdonations">Donated Theses</a></li>
+                        <li><a class="submenu-links" href="/admin/viewpending/magazinedonations">Donated Magazines</a></li>
+                        <li><a class="submenu-links" href="/admin/viewpending/softcopydonations">Donated Softcopies</a></li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </div>

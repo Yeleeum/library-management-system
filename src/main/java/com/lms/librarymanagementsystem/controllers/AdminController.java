@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.lms.librarymanagementsystem.Handlers.SessionHandler;
 import com.lms.librarymanagementsystem.models.Alternative;
+import com.lms.librarymanagementsystem.models.BookDonations;
 import com.lms.librarymanagementsystem.models.Books;
 import com.lms.librarymanagementsystem.models.Borrow;
 import com.lms.librarymanagementsystem.models.Connector;
@@ -26,6 +27,7 @@ import com.lms.librarymanagementsystem.models.Theses;
 import com.lms.librarymanagementsystem.models.Users;
 import com.lms.librarymanagementsystem.services.AdminServices;
 import com.lms.librarymanagementsystem.services.AlternativeServices;
+import com.lms.librarymanagementsystem.services.BooksDonationServices;
 import com.lms.librarymanagementsystem.services.BooksServices;
 import com.lms.librarymanagementsystem.services.BorrowServices;
 import com.lms.librarymanagementsystem.services.ConnectorServices;
@@ -58,12 +60,14 @@ public class AdminController {
     private BorrowServices borrowServices;
     private PaymentServices paymentServices;
     private FineServices fineServices;
+    private BooksDonationServices booksDonationServices;
 
     public AdminController(RegistrationServices registrationServices, UsersServices usersServices,
             EmailServices emailServices, AlternativeServices alternativeServices, BooksServices booksServices,
             ConnectorServices connectorServices, JournalsServices journalsServices, MagazinesServices magazinesServices,
             ThesesServices thesesServices, SoftCopyServices softCopyServices, AdminServices adminServices,
-            BorrowServices borrowServices,PaymentServices paymentServices,FineServices fineServices) {
+            BorrowServices borrowServices, PaymentServices paymentServices, FineServices fineServices,
+            BooksDonationServices booksDonationServices) {
         this.registrationServices = registrationServices;
         this.usersServices = usersServices;
         this.emailServices = emailServices;
@@ -78,6 +82,7 @@ public class AdminController {
         this.borrowServices = borrowServices;
         this.paymentServices = paymentServices;
         this.fineServices = fineServices;
+        this.booksDonationServices = booksDonationServices;
     }
 
     @GetMapping
@@ -88,8 +93,8 @@ public class AdminController {
         List<Registration> registrations = registrationServices.findAllPending();
         List<Borrow> borrows = borrowServices.findPendingBorrows();
         List<Borrow> returns = borrowServices.findPendingReturns();
-        List<Payment> fines=paymentServices.findPendingFinePayment();
-        List<Payment> renewals=paymentServices.findPendingRenewalPayment();
+        List<Payment> fines = paymentServices.findPendingFinePayment();
+        List<Payment> renewals = paymentServices.findPendingRenewalPayment();
         model.addAttribute("registrations", top5Registrations);
         model.addAttribute("noOfRegistrations", registrations.size());
         model.addAttribute("borrows", borrows);
@@ -107,6 +112,23 @@ public class AdminController {
         model.addAttribute("registrations", registrations);
         model.addAttribute("category", "Paid");
         return "pendingRegistrations";
+    }
+
+    @GetMapping("/viewpending/bookdonations")
+    public String viewPendingBookDonations(Model model) {
+        List<BookDonations> bookDonations = booksDonationServices.findPendingBookDonations();
+        model.addAttribute("bookDonations", bookDonations);
+        return "pendingBookDonations";
+    }
+
+    @GetMapping("/addDonatedBooks/{bdnid}")
+    public String viewOneBookDonationDetails(@PathVariable Integer bdnid, Model model) {
+        System.out.println(bdnid);
+        BookDonations bookDonation = booksDonationServices.findSingleBookDonations(bdnid);
+        model.addAttribute("activity", "donation");
+        model.addAttribute("bookdonation", bookDonation);
+        booksDonationServices.updateDonationToApproved(bdnid);
+        return "books";
     }
 
     @GetMapping("/viewpending/unpaid")
@@ -134,7 +156,8 @@ public class AdminController {
         String content = "Dear " + registration.getFirstName() + ",\n\n" +
                 "On the behalf of our library, we are writing to inform you that your registration request for our library system has been rejected. We regret to inform you that we are unable to approve your registration at this time.\n\n"
                 +
-                "We apologize for any inconvenience this may have caused, and we would like to explain the reasons for our decision. " + message + "\n\n"
+                "We apologize for any inconvenience this may have caused, and we would like to explain the reasons for our decision. "
+                + message + "\n\n"
                 +
                 "If you have any questions or concerns regarding our decision, please don't hesitate to contact us. We are always here to help.\n\n"
                 +
@@ -221,30 +244,29 @@ public class AdminController {
     }
 
     @PostMapping("/addalternative")
-    public String insertAlternative(Model model,String itid,String ...sids) {
-        for(String sid:sids){
-            if(!sid.equals("")){
+    public String insertAlternative(Model model, String itid, String... sids) {
+        for (String sid : sids) {
+            if (!sid.equals("")) {
                 alternativeServices.insertOneAlternative(new Alternative(null, itid, sid));
             }
         }
-        Connector connector=connectorServices.getConnectorByItid(itid);
-        String redirect="redirect:/search/";
+        Connector connector = connectorServices.getConnectorByItid(itid);
+        String redirect = "redirect:/search/";
         if (connector.getType().equals("book")) {
-            Books book=booksServices.findOneBookByItid(itid);
-            redirect+="books/"+book.getBid();
+            Books book = booksServices.findOneBookByItid(itid);
+            redirect += "books/" + book.getBid();
         } else if (connector.getType().equals("journal")) {
-            Journals journal=journalsServices.findOneJournalByItid(itid);
-            redirect+="journals/"+journal.getJid();
+            Journals journal = journalsServices.findOneJournalByItid(itid);
+            redirect += "journals/" + journal.getJid();
         } else if (connector.getType().equals("magazine")) {
-            Magazines magazine=magazinesServices.findOneMagazineByItid(itid);
-            redirect+="magazines/"+magazine.getMid();
+            Magazines magazine = magazinesServices.findOneMagazineByItid(itid);
+            redirect += "magazines/" + magazine.getMid();
         } else {
-            Theses theses=thesesServices.findOneThesesByItid(itid);
-            redirect+="theses/"+theses.getTid();
+            Theses theses = thesesServices.findOneThesesByItid(itid);
+            redirect += "theses/" + theses.getTid();
         }
         return redirect;
     }
-
 
     // Edit Routes
 
@@ -336,29 +358,29 @@ public class AdminController {
     @PostMapping("/borrowaction")
     public ResponseEntity<String> performBorrowAction(String action, String itid, String username) {
         borrowServices.performAction(action, username, itid);
-        String type=connectorServices.getType(itid);
-        if(action.equals("rejected")){
-            if(type.equals("book")){
+        String type = connectorServices.getType(itid);
+        if (action.equals("rejected")) {
+            if (type.equals("book")) {
                 booksServices.increaseStock(itid);
-            }else if(type.equals("journal")){
+            } else if (type.equals("journal")) {
                 journalsServices.increaseStock(itid);
-            }else if(type.equals("magazine")){
+            } else if (type.equals("magazine")) {
                 magazinesServices.increaseStock(itid);
-            }else{
+            } else {
                 thesesServices.increaseStock(itid);
             }
-        }else{
-            if(type.equals("book")){
-                Books book=booksServices.findOneBookByItid(itid);
+        } else {
+            if (type.equals("book")) {
+                Books book = booksServices.findOneBookByItid(itid);
                 usersServices.sendBorrowApproval(username, book.getTitle(), type);
-            }else if(type.equals("journal")){
-                Journals journal=journalsServices.findOneJournalByItid(itid);
+            } else if (type.equals("journal")) {
+                Journals journal = journalsServices.findOneJournalByItid(itid);
                 usersServices.sendBorrowApproval(username, journal.getTitle(), type);
-            }else if(type.equals("magazine")){
-                Magazines magazine=magazinesServices.findOneMagazineByItid(itid);
+            } else if (type.equals("magazine")) {
+                Magazines magazine = magazinesServices.findOneMagazineByItid(itid);
                 usersServices.sendBorrowApproval(username, magazine.getTitle(), type);
-            }else{
-                Theses theses=thesesServices.findOneThesesByItid(itid);
+            } else {
+                Theses theses = thesesServices.findOneThesesByItid(itid);
                 usersServices.sendBorrowApproval(username, theses.getTitle(), type);
             }
         }
@@ -382,48 +404,49 @@ public class AdminController {
     }
 
     @GetMapping("/pendingfinepayments")
-    public String showPendingFinePayments(Model model){
-        List<Payment> payments=paymentServices.findPendingFinePayment();
+    public String showPendingFinePayments(Model model) {
+        List<Payment> payments = paymentServices.findPendingFinePayment();
         model.addAttribute("payments", payments);
         model.addAttribute("type", "fine");
         return "pendingPayments";
     }
+
     @GetMapping("/pendingrenewalpayments")
-    public String showPendingRenewalPayments(Model model){
-        List<Payment> payments=paymentServices.findPendingRenewalPayment();
+    public String showPendingRenewalPayments(Model model) {
+        List<Payment> payments = paymentServices.findPendingRenewalPayment();
         model.addAttribute("payments", payments);
         model.addAttribute("type", "renewal");
         return "pendingPayments";
     }
 
     @PostMapping("/finepaymentaction")
-    public ResponseEntity<String> resolveFinePayment(String pid,String action,String username){
+    public ResponseEntity<String> resolveFinePayment(String pid, String action, String username) {
         paymentServices.updatePayment(pid, action);
-        fineServices.updateFineToAction(username, action.equals("rejected")?action:"true");
+        fineServices.updateFineToAction(username, action.equals("rejected") ? action : "true");
         return new ResponseEntity<String>("true", HttpStatus.ACCEPTED);
     }
 
     @PostMapping("/renewalpaymentaction")
-    public ResponseEntity<String> resolveRenewalPayment(String pid,String action,String username){
+    public ResponseEntity<String> resolveRenewalPayment(String pid, String action, String username) {
         paymentServices.updatePayment(pid, action);
-        if(action.equals("approved")){
+        if (action.equals("approved")) {
             usersServices.updateMembershipActive(username);
         }
-        fineServices.updateFineToAction(username, action.equals("rejected")?action:"true");
+        fineServices.updateFineToAction(username, action.equals("rejected") ? action : "true");
         return new ResponseEntity<String>("true", HttpStatus.ACCEPTED);
     }
 
     @PostMapping("/checkitid")
-    public ResponseEntity<String> checkItid(String itid){
-        Connector connector=connectorServices.getConnectorByItid(itid);
-        if(connector!=null){
-            if(connector.getType().equals("book")){
+    public ResponseEntity<String> checkItid(String itid) {
+        Connector connector = connectorServices.getConnectorByItid(itid);
+        if (connector != null) {
+            if (connector.getType().equals("book")) {
                 return new ResponseEntity<String>(booksServices.findTitleByItid(itid), HttpStatus.OK);
-            }else if(connector.getType().equals("journal")){
+            } else if (connector.getType().equals("journal")) {
                 return new ResponseEntity<String>(journalsServices.findTitleByItid(itid), HttpStatus.OK);
-            }else if(connector.getType().equals("theses")){
+            } else if (connector.getType().equals("theses")) {
                 return new ResponseEntity<String>(thesesServices.findTitleByItid(itid), HttpStatus.OK);
-            }else if(connector.getType().equals("magazine")){
+            } else if (connector.getType().equals("magazine")) {
                 return new ResponseEntity<String>(magazinesServices.findTitleByItid(itid), HttpStatus.OK);
             }
         }
@@ -432,9 +455,9 @@ public class AdminController {
     }
 
     @PostMapping("/checksid")
-    public ResponseEntity<String> checkSid(String sid){
-        String title=softCopyServices.findTitleBySid(sid);
-        if(title!=null){
+    public ResponseEntity<String> checkSid(String sid) {
+        String title = softCopyServices.findTitleBySid(sid);
+        if (title != null) {
             return new ResponseEntity<String>(title, HttpStatus.OK);
         }
         return new ResponseEntity<String>("false", HttpStatus.NOT_FOUND);

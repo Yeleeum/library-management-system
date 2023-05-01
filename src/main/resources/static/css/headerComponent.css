@@ -146,7 +146,7 @@
 
 .account-options li a {
     text-decoration: none;
-    color: #191a21;
+    color: #191a21 !important;
 }
 
 .account-options li form:hover>i {

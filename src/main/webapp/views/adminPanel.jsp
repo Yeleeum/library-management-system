@@ -103,6 +103,16 @@
                             </div>
                         </div>
 
+                        <div class="details-card">
+                            <div>
+                                <img src="/img/donation.png" class="icons" alt="">
+                            </div>
+                            <div>
+                                <h1>21</h1>
+                                <p>Donated Items</p>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
 

@@ -8,15 +8,14 @@
                 <span>
                     <%=user.getUsername()%>
                 </span>
-                <i class="fa-solid fa-caret-down arrow" style="cursor: pointer;" onclick="toggleDropdown()"></i>
+                <i class="fa-solid fa-caret-down arrow" style="cursor: pointer; color: aliceblue !important;" onclick="toggleDropdown()"></i>
             </div>
             <div class="hidden-dropdown">
                 <ul>
                     <li><a href="/user"><i class="fa-solid fa-user" style="margin-right: 10px;"></i>Account</a></li>
                     <li>
                         <form action="/logout" method="post">
-                            <button id="logout"><i class="fa-solid fa-right-from-bracket"
-                                    style="margin-right: 10px;"></i>Logout</button>
+                            <button id="logout"><i class="fa-solid fa-right-from-bracket" style="margin-right: 10px;"></i>Logout</button>
                         </form>
                     </li>
                 </ul>
