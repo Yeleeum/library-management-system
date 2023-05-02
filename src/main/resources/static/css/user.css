@@ -209,14 +209,14 @@ ul li a {
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
-.hover-dropdown span {
+.hover-dropdown button {
     padding: 10px;
     display: flex;
     align-items: center;
     cursor: pointer;
 }
 
-.hover-dropdown span:hover {
+.hover-dropdown button:hover {
     color: var(--hover-color);
 }
 
