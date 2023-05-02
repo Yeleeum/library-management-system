@@ -341,6 +341,12 @@ public class AdminController {
         return "redirect:/search/magazines/" + magazines.getMid();
     }
 
+    @GetMapping("/delete/books/{bid}")
+    public String deleteSingleBookById(@PathVariable Integer bid) {
+        booksServices.deleteSingleBookByBid(bid);
+        return "redirect:/books/search?searchParam=";
+    }
+
     @GetMapping("/pendingborrow")
     public String getPendingBorrowTable(Model model) {
         List<Borrow> borrows = borrowServices.findPendingBorrows();

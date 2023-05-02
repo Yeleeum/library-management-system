@@ -104,14 +104,22 @@ body::-webkit-scrollbar{
 #pdfViewArea>div>iframe {
     width: 100vw;
     height: 99vh;
+    /* z-index: -1; */
 }
 
 .overlay {
     position: absolute;
-    /* z-index: 999; */
     background: transparent;
     width: 98vw;
     height: 100vh;
+}
+
+.inner-overlay {
+    width: 300px;
+    height: 100vh;
+    position: absolute;
+    background: transparent;
+    right: 1.12vw;
 }
 
 .mobile-view {

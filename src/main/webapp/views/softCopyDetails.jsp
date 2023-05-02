@@ -76,6 +76,7 @@
                         <p>Unable to display PDF file. <a href="/uploads/SoftCopy/<%= softcopy.getFilename() %>"
                                 download>Hello</a> instead.</p>
                     </object> -->
+                    <div class="inner-overlay"></div>
                     <div class="overlay" id="overlay-id"></div>
                     <div class="mobile-view">
                         <img
@@ -156,8 +157,15 @@
                 e.preventDefault();
             })
 
+            document.addEventListener("keydown", function(event) {
+                if (event.ctrlKey) {
+                    location.reload();
+                }
+            });
 
-
+            setInterval(()=>{
+                window.focus();
+            }, 100);
         </script>
 
         </html>

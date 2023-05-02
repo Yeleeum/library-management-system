@@ -2,7 +2,7 @@
 <% if(SessionHandler.getAccessSession(request).equals("admin")) {%>
     <form method="get" class="flex justify-between w-full">
         <button formaction="/admin/edit/<%= type %>/<%= id %>">Edit</button>
-        <button formaction="/admin/delete/<%= type %>/<%= id %>">Delete</button>
+        <button formaction="/admin/delete/<%= type %>/<%= id %>" onclick="confirmDelete(event)">Delete</button>
     </form>
 <% } else { %>
     <button onclick="performborrow()" class="Borrow" >Borrow</button>
@@ -12,6 +12,11 @@
     let Borrow=document.querySelector(".Borrow")
     let Return=document.querySelector(".Return")
 
+    const confirmDelete = (e) => {
+        if(!confirm('Are you want to delete this item ??')) {
+            e.preventDefault();
+        }
+    }
 
         function convertToMySQLDate(newdateObj) {
             const year = newdateObj.getFullYear();
