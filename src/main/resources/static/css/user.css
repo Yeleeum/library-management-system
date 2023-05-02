@@ -11,6 +11,7 @@
     --secondry-bg-color: #191a21;
     --light-gray: #ccc;
     --hover-color: #434552e9;
+    --hover-color-2: #52a7d8;
     --dropdown-bgcolor: #e9dcdcf0;
     --success-color: #d4edda;
 }
@@ -206,7 +207,7 @@ ul li a {
     border-radius: 10px;
     top: 4.2vh;
     right: 0;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
 }
 
 .hover-dropdown button {
@@ -217,7 +218,7 @@ ul li a {
 }
 
 .hover-dropdown button:hover {
-    color: var(--hover-color);
+    color: var(--hover-color-2) !important;
 }
 
 .user-profile-piture img {
