@@ -54,6 +54,26 @@
         .redirectEle {
             font-size: 25px;
         }
+
+        .btn {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .btn a{
+            background: #47e67c;
+            color: #ffffff;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-weight: bolder;
+            font-size: 20px;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            text-decoration: none;
+        }
     </style>
 </head>
 <% String message=(String) request.getAttribute("message"); %>
@@ -67,6 +87,9 @@
                 <%=message%>
             </h1>
             <p class="redirectEle">Redirecting to the login page in <span id="redirect">10</span> seconds</p>
+            <div class="btn">
+                <a href="/login">Or Click Here</a>
+            </div>
         </div>
     </body>
     <script>

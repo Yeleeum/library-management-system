@@ -108,7 +108,7 @@
                                 <img src="/img/donation.png" class="icons" alt="">
                             </div>
                             <div>
-                                <h1>21</h1>
+                                <h1>0</h1>
                                 <p>Donated Items</p>
                             </div>
                         </div>

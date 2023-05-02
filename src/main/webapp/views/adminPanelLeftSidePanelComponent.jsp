@@ -2,7 +2,7 @@
     <div class="sidebar-inner-wrapper">
         <div class="logo">
             <!-- goes organisation logo -->
-            <img src="/img/admin/mmcc.jpg" alt="organisation-logo">
+            <img src="/img/admin/logocu.jpg" width="116" height="116" alt="organisation-logo">
         </div>
 
         <div class="links">

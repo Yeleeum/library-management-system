@@ -15,13 +15,13 @@
         <div class="imageContainer">
             <h1>User Registration Form</h1>
             <img src="/img/library.png" alt="">
-            <div class="btn">
-                <button>Donate Book</button>
-                <button>Donate Journal</button>
-                <button>Donate Theses</button>
-                <button>Donate Magazine</button>
-                <button>Donate PDF</button>
-            </div>
+            <form class="btn">
+                <button formaction="/donation/book">Donate Book</button>
+                <button formaction="/donation/journal">Donate Journal</button>
+                <button formaction="/donation/theses">Donate Theses</button>
+                <button formaction="/donation/magazine">Donate Magazine</button>
+                <button formaction="/donation/softcopy">Donate PDF</button>
+            </form>
         </div>
         <div class="form">
             <form action="/registration/submitregister" method="post" enctype="multipart/form-data">

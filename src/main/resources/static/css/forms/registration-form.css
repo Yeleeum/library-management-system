@@ -10,6 +10,15 @@ body {
     font-family: Arial, sans-serif;
 }
 
+.btn {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
 .btn>button {
     padding: 10px 20px;
     background: #0069d9;
