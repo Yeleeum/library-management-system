@@ -3,6 +3,7 @@ package com.lms.librarymanagementsystem.repositories;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -33,7 +34,10 @@ public interface SoftCopyRepository extends JpaRepository<SoftCopy,Integer>{
     @Query(value="SELECT * FROM SOFTCOPY ORDER BY sid DESC LIMIT 2",nativeQuery = true)
     List<SoftCopy> getLastTwoSoftCopies();
 
-    
     @Query(value="SELECT TITLE FROM SOFTCOPY WHERE SID=:sid",nativeQuery = true)
     String getTitleBySid(@Param("sid")String sid);
+
+    @Modifying
+    @Query(value="DELETE FROM SOFTCOPY WHERE SID=:sid",nativeQuery = true)
+    Integer deleteSoftcopyBySid(@Param("sid")String sid);
 }

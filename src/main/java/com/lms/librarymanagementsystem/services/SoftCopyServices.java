@@ -70,4 +70,8 @@ public class SoftCopyServices {
     public String findTitleBySid(String sid){
         return softCopyRepository.getTitleBySid(sid);
     }
+
+    public Integer deleteSoftcopyBySid(String sid){
+        return softCopyRepository.deleteSoftcopyBySid(sid);
+    }
 }

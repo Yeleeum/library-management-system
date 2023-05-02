@@ -341,10 +341,16 @@ public class AdminController {
         return "redirect:/search/magazines/" + magazines.getMid();
     }
 
-    @GetMapping("/delete/books/{bid}")
-    public String deleteSingleBookById(@PathVariable Integer bid) {
-        booksServices.deleteSingleBookByBid(bid);
-        return "redirect:/books/search?searchParam=";
+    @GetMapping("/delete/item/{itid}")
+    public String deleteSingleBookById(@PathVariable String itid) {
+        connectorServices.deleteSingleItemByItid(itid);
+        return "redirect:/search/searchitem?searchParam=";
+    }
+
+    @GetMapping("/delete/softcopy/{sid}")
+    public String deleteSingleSoftCopyBySId(@PathVariable String sid) {
+        softCopyServices.deleteSoftcopyBySid(sid);
+        return "redirect:/search/searchitem?searchParam=";
     }
 
     @GetMapping("/pendingborrow")

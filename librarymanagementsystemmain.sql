@@ -7,7 +7,7 @@ use librarymanagementsystem;
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 30, 2023 at 07:20 PM
+-- Generation Time: May 02, 2023 at 10:07 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -65,6 +65,28 @@ INSERT INTO `alternative` (`AID`, `ITID`, `SID`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `bookdonations`
+--
+
+CREATE TABLE `bookdonations` (
+  `bdnid` int(11) NOT NULL,
+  `donorname` varchar(100) DEFAULT NULL,
+  `title` varchar(100) DEFAULT NULL,
+  `author` varchar(500) DEFAULT NULL,
+  `publisher` varchar(500) DEFAULT NULL,
+  `thumbnail` varchar(200) DEFAULT NULL,
+  `description` text DEFAULT NULL,
+  `category` varchar(100) DEFAULT NULL,
+  `keywords` longtext DEFAULT NULL,
+  `edition` varchar(100) DEFAULT NULL,
+  `pageno` int(11) DEFAULT NULL,
+  `donationdate` date DEFAULT NULL,
+  `approved` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `books`
 --
 
@@ -111,16 +133,6 @@ CREATE TABLE `borrow` (
   `STATUS` varchar(100) DEFAULT NULL,
   `APPROVED` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `borrow`
---
-
-INSERT INTO `borrow` (`BRID`, `USERNAME`, `ITID`, `BORROWDATE`, `RETURNDATE`, `STATUS`, `APPROVED`) VALUES
-(1, 'Ayush', 'I06', '2023-04-27', '2023-05-12', 'notreturned', 'approved'),
-(2, 'Ayush', 'I05', '2023-04-27', '2023-05-12', 'notreturned', 'rejected'),
-(3, 'test', 'I01', '2023-04-28', '2023-05-13', 'notreturned', 'rejected'),
-(4, 'Ayush1', 'I06', '2023-04-29', '2023-05-14', 'returned', 'approved');
 
 -- --------------------------------------------------------
 
@@ -177,8 +189,6 @@ CREATE TABLE `downloads` (
 --
 
 INSERT INTO `downloads` (`did`, `username`, `sid`, `downloaddate`) VALUES
-(1, 'Ayush', 'S06', '2023-04-27'),
-(2, 'Ayush1', 'S01', '2023-04-29'),
 (3, 'SubhamSingh', 'S02', '2023-04-30');
 
 -- --------------------------------------------------------
@@ -194,13 +204,6 @@ CREATE TABLE `fine` (
   `Amount` varchar(100) DEFAULT NULL,
   `PAID` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `fine`
---
-
-INSERT INTO `fine` (`FID`, `Username`, `Finedate`, `Amount`, `PAID`) VALUES
-(2, 'Ayush', '2023-04-28', '50', 'true');
 
 -- --------------------------------------------------------
 
@@ -297,16 +300,6 @@ CREATE TABLE `payment` (
   `type` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `payment`
---
-
-INSERT INTO `payment` (`PID`, `Username`, `paydate`, `Amount`, `TRANSACTION`, `Approved`, `paid`, `type`) VALUES
-(1, 'Ayush', '2023-04-29', '350', 'Abcsrdghhftvvvbxghg', 'approved', 'true', 'renewal'),
-(7, 'test', '2023-04-29', '300', 'sujanhritikkedebe', 'pending', 'true', 'renewal'),
-(8, 'test', '2023-04-29', '300', '', 'pending', 'true', 'renewal'),
-(9, 'Ayush', '2023-04-29', '300', '20230425111000000857608358277506886', 'pending', 'true', 'renewal');
-
 -- --------------------------------------------------------
 
 --
@@ -338,7 +331,8 @@ INSERT INTO `registration` (`RSID`, `USERNAME`, `PASSWORD`, `PROFILEPICTURE`, `F
 (1, 'test', 'test', 'admin.png', 'test', 'test', 'other', '2023-04-05', '7291874372', 'hiayushsingh.co.in@gmail.com', 'student', 'unpaid', '', 'approved'),
 (2, 'Ayush', '1234', 'B5.jpg', 'Ayush', 'Singh', 'male', '2023-04-05', '1234567890', 'chaitalighosh444@gmail.com', 'teacher', 'paid', 'Abcsrdghhftvvvbxghg', 'approved'),
 (4, 'Ayush1', '1234', 'Screenshot 2023-03-17 233055.png', 'Rama', 'Singh', 'male', NULL, '09163727078', 'hiayushsingh.co.in@gmail.com', 'student', 'paid', 'Abcsrdghhftvvvbxghg', 'approved'),
-(5, 'SubhamSingh', '$2a$10$cQfiih6lpJu3N7rTqnvsyeArt/otCxi4hUH19PWk.l0eaAn9.x04a', 'WhatsApp Image 2023-04-25 at 03.19.11.jpg', 'Subham', 'Singh', 'male', '2000-12-22', '5465768799', 'hisumitsingh.co.in@gmail.com', 'student', 'unpaid', '', 'approved');
+(5, 'SubhamSingh', '$2a$10$cQfiih6lpJu3N7rTqnvsyeArt/otCxi4hUH19PWk.l0eaAn9.x04a', 'WhatsApp Image 2023-04-25 at 03.19.11.jpg', 'Subham', 'Singh', 'male', '2000-12-22', '5465768799', 'hisumitsingh.co.in@gmail.com', 'student', 'unpaid', '', 'approved'),
+(6, 'user', '$2a$10$eyHPxPY4606CMR.XlSwmruvjXCtNDDZ7Wi8ToN7/kjknMskDQDHd6', 'DSC_0557.JPG', 'Ayush', 'Singh', 'male', '2002-12-26', '6291769942', 'hiayushsingh.co.in@gmail.com', 'student', 'paid', 'Abcsrdghhftvvvbxghg', 'approved');
 
 -- --------------------------------------------------------
 
@@ -431,30 +425,12 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`USERNAME`, `PASSWORD`, `PROFILEPICTURE`, `FIRSTNAME`, `LASTNAME`, `GENDER`, `DOB`, `PHONE`, `EMAIL`, `CATEGORY`, `MEMBERSHIP`, `MEMBERSHIPEXPIRE`) VALUES
-('Ayush', '1234', 'B5.jpg', 'Ayush', 'Singh', 'male', '2023-04-05', '1234567890', 'chaitalighosh444@gmail.com', 'teacher', 'active', '2025-04-27'),
-('Ayush1', '1234', 'Screenshot 2023-03-17 233055.png', 'Rama', 'Singh', 'male', NULL, '09163727078', 'hiayushsingh.co.in@gmail.com', 'student', 'active', '2024-04-29'),
 ('SubhamSingh', '$2a$10$cQfiih6lpJu3N7rTqnvsyeArt/otCxi4hUH19PWk.l0eaAn9.x04a', 'WhatsApp Image 2023-04-25 at 03.19.11.jpg', 'Subham', 'Singh', 'male', '2000-12-22', '5465768799', 'hisumitsingh.co.in@gmail.com', 'student', 'active', '2024-04-30'),
-('test', 'test', 'admin.png', 'test', 'test', 'other', '2023-04-05', '7291874372', 'hiayushsingh.co.in@gmail.com', 'student', 'active', '2026-04-27');
+('user', '$2a$10$eyHPxPY4606CMR.XlSwmruvjXCtNDDZ7Wi8ToN7/kjknMskDQDHd6', 'DSC_0557.JPG', 'Ayush', 'Singh', 'male', '2002-12-26', '6291769942', 'hiayushsingh.co.in@gmail.com', 'student', 'active', '2024-05-03');
 
 --
 -- Indexes for dumped tables
 --
-
-CREATE TABLE bookdonations (
-    bdnid INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    donorname VARCHAR(100),
-    title VARCHAR(100),
-    author VARCHAR(500),
-    publisher VARCHAR(500),
-    thumbnail VARCHAR(200),
-    description TEXT,
-    category VARCHAR(100),
-    keywords LONGTEXT,
-    edition VARCHAR(100),
-    pageno INT(11),
-    donationdate DATE,
-    approved VARCHAR(100)
-);
 
 --
 -- Indexes for table `admin`
@@ -469,6 +445,12 @@ ALTER TABLE `alternative`
   ADD PRIMARY KEY (`AID`),
   ADD KEY `ITID` (`ITID`),
   ADD KEY `SID` (`SID`);
+
+--
+-- Indexes for table `bookdonations`
+--
+ALTER TABLE `bookdonations`
+  ADD PRIMARY KEY (`bdnid`);
 
 --
 -- Indexes for table `books`
@@ -570,6 +552,12 @@ ALTER TABLE `alternative`
   MODIFY `AID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `bookdonations`
+--
+ALTER TABLE `bookdonations`
+  MODIFY `bdnid` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `books`
 --
 ALTER TABLE `books`
@@ -621,7 +609,7 @@ ALTER TABLE `payment`
 -- AUTO_INCREMENT for table `registration`
 --
 ALTER TABLE `registration`
-  MODIFY `RSID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `RSID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `theses`

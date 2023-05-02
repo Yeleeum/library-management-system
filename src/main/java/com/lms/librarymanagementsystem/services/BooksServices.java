@@ -77,7 +77,4 @@ public class BooksServices {
         return booksRepository.getTitleByItid(itid);
     }
 
-    public Integer deleteSingleBookByBid(Integer bid){
-        return booksRepository.deleteSingleBookByBid(bid);
-    }
 }

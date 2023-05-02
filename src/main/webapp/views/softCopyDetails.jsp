@@ -28,7 +28,7 @@
                                 <% if(SessionHandler.getAccessSession(request).equals("admin")) {%>
                                     <form action="" method="get" class="btn-container">
                                         <button formaction="/admin/edit/softcopy/<%= softcopy.getSid() %>">Edit</button>
-                                        <button formaction="/admin/delete/softcopy/<%= softcopy.getSid() %>">Delete</button>
+                                        <button formaction="/admin/delete/softcopy/<%= softcopy.getSid() %>" onclick="confirmDelete(event)">Delete</button>
                                     </form>
                                 <% } else { %>
                                 <button class="w-full" id="clickToView">View Pdf</button>
@@ -105,6 +105,12 @@
 
             // window.frames["myiframe"].contentDocument.oncontextmenu = function(){return true;};
             // myFrame.window.eval('document.addEventListener("contextmenu", function (e) {e.preventDefault();}, false)');
+
+            const confirmDelete = (e) => {
+                if(!confirm('Are you want to delete this item ??')) {
+                    e.preventDefault();
+                }
+            }
 
             function getCurrentDate() {
                 var date = new Date();

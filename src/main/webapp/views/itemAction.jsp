@@ -2,7 +2,7 @@
 <% if(SessionHandler.getAccessSession(request).equals("admin")) {%>
     <form method="get" class="flex justify-between w-full">
         <button formaction="/admin/edit/<%= type %>/<%= id %>">Edit</button>
-        <button formaction="/admin/delete/<%= type %>/<%= id %>" onclick="confirmDelete(event)">Delete</button>
+        <button formaction="/admin/delete/item/<%= itid %>" onclick="confirmDelete(event)">Delete</button>
     </form>
 <% } else { %>
     <button onclick="performborrow()" class="Borrow" >Borrow</button>

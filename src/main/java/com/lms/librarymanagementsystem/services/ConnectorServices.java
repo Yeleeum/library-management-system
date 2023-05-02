@@ -26,4 +26,8 @@ public class ConnectorServices {
     public Connector getConnectorByItid(String ITID){
         return connectorRepository.getConnectorByItid(ITID);
     }
+
+    public Integer deleteSingleItemByItid(String itid){
+        return connectorRepository.deleteSingleItemByItid(itid);
+    }
 }
