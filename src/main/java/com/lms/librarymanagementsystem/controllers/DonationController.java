@@ -8,10 +8,12 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.lms.librarymanagementsystem.models.BookDonations;
 import com.lms.librarymanagementsystem.models.JournalDonations;
+import com.lms.librarymanagementsystem.models.MagazineDonations;
 import com.lms.librarymanagementsystem.models.ThesesDonations;
 import com.lms.librarymanagementsystem.services.BooksDonationServices;
 import com.lms.librarymanagementsystem.services.ConnectorServices;
 import com.lms.librarymanagementsystem.services.JournalDonationServices;
+import com.lms.librarymanagementsystem.services.MagazineDonationServices;
 import com.lms.librarymanagementsystem.services.ThesesDonationServices;
 
 import org.springframework.ui.Model;
@@ -23,13 +25,15 @@ public class DonationController {
     private ConnectorServices connectorServices;
     private ThesesDonationServices thesesDonationServices;
     private JournalDonationServices journalDonationServices;
+    private MagazineDonationServices magazineDonationServices;
 
     public DonationController(BooksDonationServices booksDonationServices, ConnectorServices connectorServices,
-            ThesesDonationServices thesesDonationServices, JournalDonationServices journalDonationServices) {
+            ThesesDonationServices thesesDonationServices, JournalDonationServices journalDonationServices, MagazineDonationServices magazineDonationServices) {
         this.booksDonationServices = booksDonationServices;
         this.journalDonationServices = journalDonationServices;
         this.connectorServices = connectorServices;
         this.thesesDonationServices = thesesDonationServices;
+        this.magazineDonationServices = magazineDonationServices;
     }
 
     // book
@@ -73,5 +77,18 @@ public class DonationController {
         String message = "Donation Successfull.";
         model.addAttribute("message", message);
         return "bookDonationForm";
+    }
+
+    @GetMapping("/magazine")
+    public String getMagazineDonationForm() {
+        return "magazineDonationForm";
+    }
+
+    @PostMapping("/magazine")
+    public String submitMagazineDonationDetails(MagazineDonations magazineDonations, MultipartFile thumbnailfile, Model model) {
+        magazineDonationServices.insertOneJournalDonations(magazineDonations, thumbnailfile);
+        String message = "Donation Successfull.";
+        model.addAttribute("message", message);
+        return "magazineDonationForm";
     }
 }
