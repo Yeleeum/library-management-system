@@ -9,11 +9,13 @@ import org.springframework.web.multipart.MultipartFile;
 import com.lms.librarymanagementsystem.models.BookDonations;
 import com.lms.librarymanagementsystem.models.JournalDonations;
 import com.lms.librarymanagementsystem.models.MagazineDonations;
+import com.lms.librarymanagementsystem.models.SoftCopyDonations;
 import com.lms.librarymanagementsystem.models.ThesesDonations;
 import com.lms.librarymanagementsystem.services.BooksDonationServices;
 import com.lms.librarymanagementsystem.services.ConnectorServices;
 import com.lms.librarymanagementsystem.services.JournalDonationServices;
 import com.lms.librarymanagementsystem.services.MagazineDonationServices;
+import com.lms.librarymanagementsystem.services.SoftCopyDonationServices;
 import com.lms.librarymanagementsystem.services.ThesesDonationServices;
 
 import org.springframework.ui.Model;
@@ -26,14 +28,16 @@ public class DonationController {
     private ThesesDonationServices thesesDonationServices;
     private JournalDonationServices journalDonationServices;
     private MagazineDonationServices magazineDonationServices;
+    private SoftCopyDonationServices softCopyDonationServices;
 
     public DonationController(BooksDonationServices booksDonationServices, ConnectorServices connectorServices,
-            ThesesDonationServices thesesDonationServices, JournalDonationServices journalDonationServices, MagazineDonationServices magazineDonationServices) {
+            ThesesDonationServices thesesDonationServices, JournalDonationServices journalDonationServices, MagazineDonationServices magazineDonationServices,SoftCopyDonationServices softCopyDonationServices) {
         this.booksDonationServices = booksDonationServices;
         this.journalDonationServices = journalDonationServices;
         this.connectorServices = connectorServices;
         this.thesesDonationServices = thesesDonationServices;
         this.magazineDonationServices = magazineDonationServices;
+        this.softCopyDonationServices = softCopyDonationServices;
     }
 
     // book
@@ -76,7 +80,7 @@ public class DonationController {
         journalDonationServices.insertOneJournalDonations(journalDonations, thumbnailfile);
         String message = "Donation Successfull.";
         model.addAttribute("message", message);
-        return "bookDonationForm";
+        return "journalDonationForm";
     }
 
     @GetMapping("/magazine")
@@ -90,5 +94,20 @@ public class DonationController {
         String message = "Donation Successfull.";
         model.addAttribute("message", message);
         return "magazineDonationForm";
+    }
+
+    
+    @GetMapping("/softcopy")
+    public String getSoftCopyDonationForm() {
+        return "softCopyDonationForm";
+    }
+
+    @PostMapping("/softcopy")
+    public String submitSoftCopyDonationDetails(SoftCopyDonations softCopyDonations, MultipartFile file,MultipartFile thumbnailfile,
+            Model model) {
+        softCopyDonationServices.insertOneSoftCopyDonations(softCopyDonations,file, thumbnailfile);
+        String message = "Donation Successfull.";
+        model.addAttribute("message", message);
+        return "softCopyDonationForm";
     }
 }
