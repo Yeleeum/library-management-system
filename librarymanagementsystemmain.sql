@@ -7,7 +7,7 @@ use librarymanagementsystem;
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 02, 2023 at 10:07 PM
+-- Generation Time: May 03, 2023 at 10:57 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -208,6 +208,29 @@ CREATE TABLE `fine` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `journaldonations`
+--
+
+CREATE TABLE `journaldonations` (
+  `jdnid` int(11) NOT NULL,
+  `donorname` varchar(100) DEFAULT NULL,
+  `title` varchar(100) DEFAULT NULL,
+  `publisher` varchar(500) DEFAULT NULL,
+  `editor` varchar(500) DEFAULT NULL,
+  `description` text DEFAULT NULL,
+  `thumbnail` varchar(200) DEFAULT NULL,
+  `category` varchar(100) DEFAULT NULL,
+  `keywords` longtext DEFAULT NULL,
+  `startyear` int(11) DEFAULT NULL,
+  `endyear` int(11) DEFAULT NULL,
+  `pageno` int(11) DEFAULT NULL,
+  `donationdate` date DEFAULT NULL,
+  `approved` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `journals`
 --
 
@@ -236,6 +259,29 @@ INSERT INTO `journals` (`jid`, `itid`, `title`, `publisher`, `editor`, `descript
 (2, 'I18', 'Journal of the American Medical Association (JAMA)', 'American Medical Association', 'Howard Bauchner', 'The Journal of the American Medical Association (JAMA) is a peer-reviewed medical journal that publishes original research articles, reviews, editorials, and clinical practice guidelines on a wide range of medical topics, including clinical medicine, public health, and biomedical research. The journal also features opinion pieces, essays, and commentaries on contemporary issues in medicine.', 'J2.jpg', 'Medicine and Healthcare', 'Medical research,clinical medicine,public health,biomedical research,clinical practice guidelines,contemporary issues in medicine', 1883, 0, 100, 10),
 (3, 'I19', 'Science', 'American Association for the Advancement of Science (AAAS)', 'Holden Thorp', 'Science is a weekly peer-reviewed scientific journal that publishes original research articles, reviews, and news articles on all areas of science, including life sciences, physical sciences, social sciences, and computer science. The journal also features commentary and analysis on scientific policy and research funding, as well as book reviews and opinion pieces.', 'J3.jpg', 'Natural Sciences', 'Scientific research,life sciences,physical sciences,social sciences,computer science,scientific policy,research funding,book reviews,opinion pieces', 1880, 0, 180, 43),
 (4, 'I20', 'The Lancet', 'Elsevier', 'Richard Horton', 'The Lancet is a weekly peer-reviewed medical journal that publishes original research articles, reviews, and news articles on all aspects of clinical medicine, public health, and global health. The journal also features commentary and analysis on medical policy and practice, as well as book reviews and opinion pieces.', 'J4.jpg', 'Medicine and Healthcare', 'Clinical medicine,public health,global health,medical policy,medical practice,book reviews,opinion pieces', 1823, 0, 110, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `magazinedonations`
+--
+
+CREATE TABLE `magazinedonations` (
+  `mdnid` int(11) NOT NULL,
+  `title` varchar(100) DEFAULT NULL,
+  `donorname` varchar(100) DEFAULT NULL,
+  `publisher` varchar(500) DEFAULT NULL,
+  `issuedate` date DEFAULT NULL,
+  `issuenumber` varchar(100) DEFAULT NULL,
+  `description` text DEFAULT NULL,
+  `thumbnail` varchar(200) DEFAULT NULL,
+  `frequency` varchar(100) DEFAULT NULL,
+  `keywords` longtext DEFAULT NULL,
+  `specialissue` varchar(100) DEFAULT NULL,
+  `category` varchar(100) DEFAULT NULL,
+  `donationdate` date DEFAULT NULL,
+  `approved` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -328,9 +374,6 @@ CREATE TABLE `registration` (
 --
 
 INSERT INTO `registration` (`RSID`, `USERNAME`, `PASSWORD`, `PROFILEPICTURE`, `FIRSTNAME`, `LASTNAME`, `GENDER`, `DOB`, `PHONE`, `EMAIL`, `CATEGORY`, `PAID`, `TRANSACTION`, `APPROVED`) VALUES
-(1, 'test', 'test', 'admin.png', 'test', 'test', 'other', '2023-04-05', '7291874372', 'hiayushsingh.co.in@gmail.com', 'student', 'unpaid', '', 'approved'),
-(2, 'Ayush', '1234', 'B5.jpg', 'Ayush', 'Singh', 'male', '2023-04-05', '1234567890', 'chaitalighosh444@gmail.com', 'teacher', 'paid', 'Abcsrdghhftvvvbxghg', 'approved'),
-(4, 'Ayush1', '1234', 'Screenshot 2023-03-17 233055.png', 'Rama', 'Singh', 'male', NULL, '09163727078', 'hiayushsingh.co.in@gmail.com', 'student', 'paid', 'Abcsrdghhftvvvbxghg', 'approved'),
 (5, 'SubhamSingh', '$2a$10$cQfiih6lpJu3N7rTqnvsyeArt/otCxi4hUH19PWk.l0eaAn9.x04a', 'WhatsApp Image 2023-04-25 at 03.19.11.jpg', 'Subham', 'Singh', 'male', '2000-12-22', '5465768799', 'hisumitsingh.co.in@gmail.com', 'student', 'unpaid', '', 'approved'),
 (6, 'user', '$2a$10$eyHPxPY4606CMR.XlSwmruvjXCtNDDZ7Wi8ToN7/kjknMskDQDHd6', 'DSC_0557.JPG', 'Ayush', 'Singh', 'male', '2002-12-26', '6291769942', 'hiayushsingh.co.in@gmail.com', 'student', 'paid', 'Abcsrdghhftvvvbxghg', 'approved');
 
@@ -368,6 +411,28 @@ INSERT INTO `softcopy` (`sid`, `title`, `owner`, `publisher`, `description`, `th
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `softcopydonations`
+--
+
+CREATE TABLE `softcopydonations` (
+  `sdnid` int(11) NOT NULL,
+  `donorname` varchar(100) DEFAULT NULL,
+  `title` varchar(100) DEFAULT NULL,
+  `owner` varchar(100) DEFAULT NULL,
+  `publisher` varchar(100) DEFAULT NULL,
+  `description` text DEFAULT NULL,
+  `thumbnail` varchar(200) DEFAULT NULL,
+  `category` varchar(100) DEFAULT NULL,
+  `keywords` longtext DEFAULT NULL,
+  `pageno` int(11) DEFAULT NULL,
+  `filename` varchar(100) DEFAULT NULL,
+  `donationdate` date DEFAULT NULL,
+  `approved` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `theses`
 --
 
@@ -398,6 +463,30 @@ INSERT INTO `theses` (`tid`, `itid`, `title`, `researcher`, `guides`, `descripti
 (3, 'I14', 'Medical astrology in sanskrit literature with special reference to Ayurveda', 'Neelakandan, E S', 'Potty, Vishnu V S', 'The thesis aims to explore the concept of medical astrology in Sanskrit literature with a special reference to Ayurveda. Ayurveda is a traditional system of medicine that originated in India, and medical astrology is an essential component of this system. The thesis will investigate the role of astrology in Ayurveda, its theoretical foundations, and its practical applications in diagnosing and treating various diseases.  The thesis will start with a literature review of Sanskrit texts related to medical astrology and Ayurveda, followed by an analysis of the key concepts and principles underlying this system. The thesis will also investigate the astrological factors that influence human health, including the influence of planets, constellations, and lunar phases.  The practical applications of medical astrology in Ayurveda will be examined, including the use of astrological charts to diagnose diseases, predict their course and outcome, and recommend appropriate treatments. The thesis will also investigate the role of astrological remedies, such as gemstones, mantras, and rituals, in the treatment of various diseases.  The thesis will conclude with a critical evaluation of the role of medical astrology in Ayurveda and its relevance in contemporary medical practice. The potential limitations, ethical considerations, and future directions of medical astrology in Ayurveda will also be discussed.  Overall, the thesis will provide a comprehensive understanding of the concept of medical astrology in Sanskrit literature, its theoretical foundations, and practical applications in Ayurveda. It will contribute to the knowledge and appreciation of the traditional systems of medicine and their relevance in contemporary healthcare.', 'Screenshot 2023-04-27 033132.png', 'Medical astrology and Ayurveda', 'Astrology,Ayurveda,Medicine,literature', '2003-02-01', 'Kanchipuram', 'none', 75, 2),
 (4, 'I15', 'Black holes branes and strings aspects of quintessence in cosmology and origin of dark energy', 'Pandey, Kumar Priyabrat', 'Kar, Supriya K.', 'The thesis focuses on exploring the aspects of quintessence in cosmology and the origin of dark energy, particularly in the context of black holes, branes, and strings. Quintessence is a theoretical form of energy that has been proposed to explain the accelerated expansion of the universe. The thesis aims to investigate the role of quintessence in cosmology and its connection to dark energy.  The thesis will start with a literature review of the relevant theoretical frameworks, including black holes, branes, and strings, as well as the properties of dark energy and quintessence. The thesis will then develop a theoretical model of quintessence that can be used to study its effects on the universe', 'Screenshot 2023-04-27 033347.png', 'Cosmology and Dark energy', 'Black holes (Astronomy),Compact objects (Astronomy),black holes,Physical Sciences,Physics,Atomic Molecular and Chemical Sagittarius', '2014-01-01', 'New Delhi', 'Available newline', 69, 1),
 (5, 'I16', ' Research On Generalisation Of Paranormal Operators', 'D. Sumathi', 'Dr. S. Panayappan', 'The thesis aims to investigate the concept of generalization of paranormal operators in mathematics. Paranormal operators are a class of linear operators that are defined on a Hilbert space. They have unique properties that make them useful in various areas of mathematics and physics, including quantum mechanics and functional analysis. The thesis will explore the concept of generalization of paranormal operators and its applications in mathematics.  The thesis will begin with a literature review of the existing research on paranormal operators and their properties. The thesis will then introduce the concept of generalization of paranormal operators and its theoretical foundations. This will include investigating the different types of generalization that can be applied to paranormal operators, such as weak, strong, and ultra-strong generalization.  The thesis will also investigate the applications of generalization of paranormal operators in mathematics. This will include analyzing the properties of generalized paranormal operators and their relationship with other classes of linear operators. The thesis will also explore the potential applications of generalized paranormal operators in various areas of mathematics, including functional analysis, operator theory, and quantum mechanics.  The thesis will conclude with a critical evaluation of the concept of generalization of paranormal operators and its potential for future research in mathematics. The limitations and challenges associated with this concept will also be discussed.  Overall, the thesis will provide a comprehensive understanding of the concept of generalization of paranormal operators and its applications in mathematics. It will contribute to the knowledge and appreciation of the fundamental concepts in functional analysis, operator theory, and quantum mechanics, and their potential for solving complex mathematical problems.', 'Screenshot 2023-04-27 033622.png', 'Functional analysis and Quantum mechanics', 'paranormal operators,Hilbert space,linear operators,generalization,weak generalization,strong generalization,ultra-strong generalization,functional analysis,operator theory,quantum mechanics,mathematics', '2013-06-17', 'Coimbatore', 'newline', 40, 8);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `thesesdonations`
+--
+
+CREATE TABLE `thesesdonations` (
+  `tdnid` int(11) NOT NULL,
+  `donorname` varchar(100) DEFAULT NULL,
+  `title` varchar(100) DEFAULT NULL,
+  `researcher` varchar(500) DEFAULT NULL,
+  `guides` varchar(500) DEFAULT NULL,
+  `description` text DEFAULT NULL,
+  `thumbnail` varchar(200) DEFAULT NULL,
+  `category` varchar(100) DEFAULT NULL,
+  `keywords` longtext DEFAULT NULL,
+  `completeddate` date DEFAULT NULL,
+  `place` varchar(100) DEFAULT NULL,
+  `abstract` text DEFAULT NULL,
+  `pageno` int(11) DEFAULT NULL,
+  `donationdate` date DEFAULT NULL,
+  `approved` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -489,11 +578,23 @@ ALTER TABLE `fine`
   ADD KEY `fk_user` (`Username`);
 
 --
+-- Indexes for table `journaldonations`
+--
+ALTER TABLE `journaldonations`
+  ADD PRIMARY KEY (`jdnid`);
+
+--
 -- Indexes for table `journals`
 --
 ALTER TABLE `journals`
   ADD PRIMARY KEY (`jid`),
   ADD UNIQUE KEY `itid` (`itid`);
+
+--
+-- Indexes for table `magazinedonations`
+--
+ALTER TABLE `magazinedonations`
+  ADD PRIMARY KEY (`mdnid`);
 
 --
 -- Indexes for table `magazines`
@@ -529,11 +630,23 @@ ALTER TABLE `softcopy`
   ADD PRIMARY KEY (`sid`);
 
 --
+-- Indexes for table `softcopydonations`
+--
+ALTER TABLE `softcopydonations`
+  ADD PRIMARY KEY (`sdnid`);
+
+--
 -- Indexes for table `theses`
 --
 ALTER TABLE `theses`
   ADD PRIMARY KEY (`tid`),
   ADD UNIQUE KEY `itid` (`itid`);
+
+--
+-- Indexes for table `thesesdonations`
+--
+ALTER TABLE `thesesdonations`
+  ADD PRIMARY KEY (`tdnid`);
 
 --
 -- Indexes for table `users`
@@ -582,10 +695,22 @@ ALTER TABLE `fine`
   MODIFY `FID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `journaldonations`
+--
+ALTER TABLE `journaldonations`
+  MODIFY `jdnid` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `journals`
 --
 ALTER TABLE `journals`
   MODIFY `jid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `magazinedonations`
+--
+ALTER TABLE `magazinedonations`
+  MODIFY `mdnid` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `magazines`
@@ -609,13 +734,25 @@ ALTER TABLE `payment`
 -- AUTO_INCREMENT for table `registration`
 --
 ALTER TABLE `registration`
-  MODIFY `RSID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `RSID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT for table `softcopydonations`
+--
+ALTER TABLE `softcopydonations`
+  MODIFY `sdnid` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `theses`
 --
 ALTER TABLE `theses`
   MODIFY `tid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `thesesdonations`
+--
+ALTER TABLE `thesesdonations`
+  MODIFY `tdnid` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
