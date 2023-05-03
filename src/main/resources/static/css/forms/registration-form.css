@@ -307,3 +307,116 @@ input::-webkit-inner-spin-button {
     height: 200px;
     border-radius: 10px;
 }
+
+.anchor {
+    border: none;
+    outline: none;
+    text-decoration: underline;
+    color: #0069d9;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+/* TNC */
+.terms-and-conditions {
+    width: 100%;
+    height: 100%;
+    background: rgba(49, 49, 49, 0.432);
+    position: absolute;
+    z-index: 999999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.terms-and-conditions .tnc-wrapper {
+    width: 65%;
+    height: 75%;
+    position: relative;
+    background: #164b8f;
+    border-radius: 20px;
+    padding: 10px;
+    color: aliceblue;
+    overflow: hidden;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.terms-and-conditions .tnc-wrapper h1 {
+    margin: 10px 0;
+}
+
+.terms-and-conditions .tnc-wrapper #cross {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.terms-and-conditions .tnc-wrapper .text-container {
+    width: 100%;
+    height: 87%;
+    border-radius: 10px;
+    background: rgb(238, 236, 236);
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+    color: #252525;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+    word-spacing: 5px;
+    line-height: 26px;
+    overflow-x: hidden;
+    word-wrap: break-word;
+    text-align: start;
+    padding: 20px;
+    font-family: monospace;
+    font-size: 15px;
+}
+
+
+.terms-and-conditions .tnc-wrapper .text-container ol::-moz-list-number {
+    list-style: decimal-leading-zero;
+}
+
+.terms-and-conditions .tnc-wrapper .text-container ol,
+ul {
+    padding-left: 5%;
+}
+
+::-webkit-scrollbar {
+    width: 15px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #1fbcff;
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #5acbff;
+}
+
+.hidden {
+    display: none;
+}
+
+@media only screen and (max-width: 768px) {
+    .terms-and-conditions .tnc-wrapper h1 {
+        font-size: 15px;
+        text-align: left;
+    }
+
+    .terms-and-conditions .tnc-wrapper #cross {
+        top: 15px;
+        right: 15px;
+        font-size: 25px;
+    }
+}

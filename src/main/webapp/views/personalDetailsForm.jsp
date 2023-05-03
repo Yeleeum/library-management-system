@@ -12,6 +12,7 @@
 
 <body>
     <div id="view">
+        <%@include file="termsandcondition.jsp"%>
         <div class="imageContainer">
             <h1>User Registration Form</h1>
             <img src="/img/library.png" alt="">
@@ -30,8 +31,11 @@
                         <label for="username">Username<span style="color: red; font-weight: bold;">*</span> :</label>
                         <input type="text" class="input-text usernameinput" placeholder="Enter Username"
                             class="usernameinput" id="username" name="username" required>
-                        <p class="trueusername" hidden="true" style="color: rgb(0, 207, 0); margin-top: 3px;">You can use this username <i class="fa-solid fa-check"></i></p>
-                        <p class="falseusername" hidden="true" style="color: rgb(216, 0, 0); margin-top: 3px;">Username already in use <i class="fa-solid fa-multiply"></i></p>
+                        <p class="trueusername" hidden="true" style="color: rgb(0, 207, 0); margin-top: 3px;">You can
+                            use
+                            this username <i class="fa-solid fa-check"></i></p>
+                        <p class="falseusername" hidden="true" style="color: rgb(216, 0, 0); margin-top: 3px;">Username
+                            already in use <i class="fa-solid fa-multiply"></i></p>
                     </div>
                     <label for="password">Password<span style="color: red; font-weight: bold;">*</span> :</label>
                     <div class="passwordField">
@@ -44,16 +48,19 @@
                     </div>
                     <div id="name" class="mb-10">
                         <div>
-                            <label for="firstname">First Name<span style="color: red; font-weight: bold;">*</span> :</label>
+                            <label for="firstname">First Name<span style="color: red; font-weight: bold;">*</span>
+                                :</label>
                             <input type="text" id="firstname" name="firstName" required>
                         </div>
 
                         <div>
-                            <label for="lastname">Last Name<span style="color: red; font-weight: bold;">*</span> :</label>
+                            <label for="lastname">Last Name<span style="color: red; font-weight: bold;">*</span>
+                                :</label>
                             <input type="text" id="lastname" name="lastName" required>
                         </div>
                     </div>
-                    <div  class="mb-10" style="display: flex; justify-content: space-between; gap: 6%; align-items: center; width: 100%;">
+                    <div class="mb-10"
+                        style="display: flex; justify-content: space-between; gap: 6%; align-items: center; width: 100%;">
                         <div style="width: 100%;">
                             <label for="gender">Gender:</label>
                             <select id="gender" name="gender">
@@ -68,15 +75,15 @@
                             <input type="date" id="dob" name="dob">
                         </div>
                     </div>
-                    <div  class="mb-10">
+                    <div class="mb-10">
                         <label for="phone">Phone:</label>
                         <input type="number" class="input-text" id="phone" name="phone" required>
                     </div>
-                    <div  class="mb-10">
+                    <div class="mb-10">
                         <label for="email">Email<span style="color: red; font-weight: bold;">*</span> :</label>
                         <input type="email" id="email" name="email" required>
                     </div>
-                    <div  class="mb-10">
+                    <div class="mb-10">
                         <label for="category">Category:</label>
                         <select id="category" name="category">
                             <option value="student">Student</option>
@@ -86,6 +93,8 @@
                         </select>
                     </div>
                 </div>
+                <p><input type="checkbox" id="tnc_check"> <span>I agree to these <span style="color: red; font-weight: bold;">*</span> </span> <button class="anchor"
+                        onclick="showTermsAndConditions()" type="button">Terms and Conditions.</button></p>
                 <br>
                 <div class="paymentform mb-10" hidden>
                     <label for="paymentmode">Payment Mode<span style="color: red; font-weight: bold;">*</span> </label>
@@ -102,8 +111,10 @@
                             <br>
                             <img src="/img/QR.jpg" alt="QRCode">
                         </div>
-                        <label for="transaction">Transaction<span style="color: red; font-weight: bold;">*</span> :</label>
-                        <input type="text" class="input-text" id="transaction" name="transaction" placeholder="Kindly put your payment transaction id here....">
+                        <label for="transaction">Transaction<span style="color: red; font-weight: bold;">*</span>
+                            :</label>
+                        <input type="text" class="input-text" id="transaction" name="transaction"
+                            placeholder="Kindly put your payment transaction id here....">
 
                     </div>
                 </div>
@@ -217,13 +228,16 @@
     const usernameinput = getElement('.usernameinput');
     const trueusername = getElement('.trueusername');
     const falseusername = getElement('.falseusername');
+    const cross = document.getElementById('cross');
+    const tnc = document.querySelector('.terms-and-conditions');
+    const tnc_check = document.getElementById('tnc_check');
 
     var validEmailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
     const checkProceed = () => {
-        proceed.disabled = !(username.value.length > 0 && !trueusername.hidden && password.value.length > 0 && firstname.value.length > 0 && lastname.value.length > 0 && email.value.length > 0 && email.value.match(validEmailRegex) && phone.value.length > 0);
+        proceed.disabled = !(username.value.length > 0 && !trueusername.hidden && password.value.length > 0 && firstname.value.length > 0 && lastname.value.length > 0 && email.value.length > 0 && email.value.match(validEmailRegex) && phone.value.length > 0 && tnc_check.checked);
 
-        if(proceed.disabled){
+        if (proceed.disabled) {
             proceed.style = "filter: brightness(0.7);";
         } else {
             proceed.style = "";
@@ -245,7 +259,7 @@
 
     checkProceed();
 
-    const requiredFields = [username, password, firstname, lastname, email, phone];
+    const requiredFields = [username, password, firstname, lastname, email, phone, tnc_check];
 
     requiredFields.forEach(item => {
         item.addEventListener('input', checkProceed);
@@ -261,7 +275,7 @@
     paymentmode.addEventListener('input', () => {
         Transactionform.hidden = paymentmode.value !== "online";
         transaction.required = paymentmode.value === "online";
-        transaction.value=paymentmode.value==="offline"?"":transaction.value
+        transaction.value = paymentmode.value === "offline" ? "" : transaction.value
         paid.value = (paymentmode.value === "online") ? "paid" : "unpaid";
         ultimateSubmit.value = (paymentmode.value === "online") ? "Submit" : "Submit and Visit Admin For Payment";
     });
@@ -293,6 +307,16 @@
             .catch(error => console.error(error));
     });
 
+    const showTermsAndConditions = () => {
+        tnc.classList.toggle('hidden');
+        console.log(tnc_check.checked)
+    }
+
+    cross.addEventListener('click', (e) => {
+        showTermsAndConditions();
+    })
+
+    
 </script>
 
 </html>
