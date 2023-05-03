@@ -18,12 +18,16 @@ import com.lms.librarymanagementsystem.models.BookDonations;
 import com.lms.librarymanagementsystem.models.Books;
 import com.lms.librarymanagementsystem.models.Borrow;
 import com.lms.librarymanagementsystem.models.Connector;
+import com.lms.librarymanagementsystem.models.JournalDonations;
 import com.lms.librarymanagementsystem.models.Journals;
+import com.lms.librarymanagementsystem.models.MagazineDonations;
 import com.lms.librarymanagementsystem.models.Magazines;
 import com.lms.librarymanagementsystem.models.Payment;
 import com.lms.librarymanagementsystem.models.Registration;
 import com.lms.librarymanagementsystem.models.SoftCopy;
+import com.lms.librarymanagementsystem.models.SoftCopyDonations;
 import com.lms.librarymanagementsystem.models.Theses;
+import com.lms.librarymanagementsystem.models.ThesesDonations;
 import com.lms.librarymanagementsystem.models.Users;
 import com.lms.librarymanagementsystem.services.AdminServices;
 import com.lms.librarymanagementsystem.services.AlternativeServices;
@@ -33,11 +37,15 @@ import com.lms.librarymanagementsystem.services.BorrowServices;
 import com.lms.librarymanagementsystem.services.ConnectorServices;
 import com.lms.librarymanagementsystem.services.EmailServices;
 import com.lms.librarymanagementsystem.services.FineServices;
+import com.lms.librarymanagementsystem.services.JournalDonationServices;
 import com.lms.librarymanagementsystem.services.JournalsServices;
+import com.lms.librarymanagementsystem.services.MagazineDonationServices;
 import com.lms.librarymanagementsystem.services.MagazinesServices;
 import com.lms.librarymanagementsystem.services.PaymentServices;
 import com.lms.librarymanagementsystem.services.RegistrationServices;
+import com.lms.librarymanagementsystem.services.SoftCopyDonationServices;
 import com.lms.librarymanagementsystem.services.SoftCopyServices;
+import com.lms.librarymanagementsystem.services.ThesesDonationServices;
 import com.lms.librarymanagementsystem.services.ThesesServices;
 import com.lms.librarymanagementsystem.services.UsersServices;
 
@@ -61,13 +69,19 @@ public class AdminController {
     private PaymentServices paymentServices;
     private FineServices fineServices;
     private BooksDonationServices booksDonationServices;
+    private ThesesDonationServices thesesDonationServices;
+    private JournalDonationServices journalDonationServices;
+    private MagazineDonationServices magazineDonationServices;
+    private SoftCopyDonationServices softCopyDonationServices;
 
     public AdminController(RegistrationServices registrationServices, UsersServices usersServices,
             EmailServices emailServices, AlternativeServices alternativeServices, BooksServices booksServices,
             ConnectorServices connectorServices, JournalsServices journalsServices, MagazinesServices magazinesServices,
             ThesesServices thesesServices, SoftCopyServices softCopyServices, AdminServices adminServices,
             BorrowServices borrowServices, PaymentServices paymentServices, FineServices fineServices,
-            BooksDonationServices booksDonationServices) {
+            BooksDonationServices booksDonationServices,
+            ThesesDonationServices thesesDonationServices, JournalDonationServices journalDonationServices,
+            MagazineDonationServices magazineDonationServices, SoftCopyDonationServices softCopyDonationServices) {
         this.registrationServices = registrationServices;
         this.usersServices = usersServices;
         this.emailServices = emailServices;
@@ -83,6 +97,10 @@ public class AdminController {
         this.paymentServices = paymentServices;
         this.fineServices = fineServices;
         this.booksDonationServices = booksDonationServices;
+        this.journalDonationServices = journalDonationServices;
+        this.thesesDonationServices = thesesDonationServices;
+        this.magazineDonationServices = magazineDonationServices;
+        this.softCopyDonationServices = softCopyDonationServices;
     }
 
     @GetMapping
@@ -95,6 +113,13 @@ public class AdminController {
         List<Borrow> returns = borrowServices.findPendingReturns();
         List<Payment> fines = paymentServices.findPendingFinePayment();
         List<Payment> renewals = paymentServices.findPendingRenewalPayment();
+
+        List<BookDonations> bookDonations = booksDonationServices.findPendingBookDonations();
+        List<JournalDonations> journalDonations = journalDonationServices.findPendingjournalDonations();
+        List<ThesesDonations> thesesDonations = thesesDonationServices.findPendingThesesDonations();
+        List<MagazineDonations> magazineDonations = magazineDonationServices.findPendingMagazineDonations();
+        List<SoftCopyDonations> softCopyDonations = softCopyDonationServices.findPendingSoftCopyDonations();
+
         model.addAttribute("registrations", top5Registrations);
         model.addAttribute("noOfRegistrations", registrations.size());
         model.addAttribute("borrows", borrows);
@@ -102,6 +127,7 @@ public class AdminController {
         model.addAttribute("noOfPendingReturn", returns.size());
         model.addAttribute("noOfPendingFines", fines.size());
         model.addAttribute("noOfPendingRenewals", renewals.size());
+        model.addAttribute("pendingDonations", bookDonations.size()+journalDonations.size()+thesesDonations.size()+magazineDonations.size()+softCopyDonations.size());
         System.out.println(top5Registrations);
         return "adminPanel";
     }

@@ -18,26 +18,36 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lms.librarymanagementsystem.Handlers.DateHandler;
 import com.lms.librarymanagementsystem.Handlers.SessionHandler;
+import com.lms.librarymanagementsystem.models.BookDonations;
 import com.lms.librarymanagementsystem.models.Books;
 import com.lms.librarymanagementsystem.models.Borrow;
 import com.lms.librarymanagementsystem.models.Connector;
 import com.lms.librarymanagementsystem.models.Downloads;
 import com.lms.librarymanagementsystem.models.Fine;
+import com.lms.librarymanagementsystem.models.JournalDonations;
 import com.lms.librarymanagementsystem.models.Journals;
+import com.lms.librarymanagementsystem.models.MagazineDonations;
 import com.lms.librarymanagementsystem.models.Magazines;
 import com.lms.librarymanagementsystem.models.Payment;
 import com.lms.librarymanagementsystem.models.SoftCopy;
+import com.lms.librarymanagementsystem.models.SoftCopyDonations;
 import com.lms.librarymanagementsystem.models.Theses;
+import com.lms.librarymanagementsystem.models.ThesesDonations;
 import com.lms.librarymanagementsystem.models.Users;
+import com.lms.librarymanagementsystem.services.BooksDonationServices;
 import com.lms.librarymanagementsystem.services.BooksServices;
 import com.lms.librarymanagementsystem.services.BorrowServices;
 import com.lms.librarymanagementsystem.services.ConnectorServices;
 import com.lms.librarymanagementsystem.services.DownloadsServices;
 import com.lms.librarymanagementsystem.services.FineServices;
+import com.lms.librarymanagementsystem.services.JournalDonationServices;
 import com.lms.librarymanagementsystem.services.JournalsServices;
+import com.lms.librarymanagementsystem.services.MagazineDonationServices;
 import com.lms.librarymanagementsystem.services.MagazinesServices;
 import com.lms.librarymanagementsystem.services.PaymentServices;
+import com.lms.librarymanagementsystem.services.SoftCopyDonationServices;
 import com.lms.librarymanagementsystem.services.SoftCopyServices;
+import com.lms.librarymanagementsystem.services.ThesesDonationServices;
 import com.lms.librarymanagementsystem.services.ThesesServices;
 import com.lms.librarymanagementsystem.services.UsersServices;
 
@@ -57,6 +67,7 @@ public class UserController {
     private SoftCopyServices softCopyServices;
     private DownloadsServices downloadsServices;
     private PaymentServices paymentServices;
+
 
     public UserController(UsersServices usersServices,BorrowServices borrowServices,FineServices fineServices,BooksServices booksServices,
     ConnectorServices connectorServices, JournalsServices journalsServices, MagazinesServices magazinesServices,
@@ -89,6 +100,8 @@ public class UserController {
         List<Magazines> magazines=magazinesServices.findLastTwoMagazines();
         List<Theses> theses=thesesServices.findLastTwoTheses();
         List<SoftCopy> softCopies=softCopyServices.findLastTwoSoftCopies();
+
+
 
         model.addAttribute("books", books);
         model.addAttribute("journals", journals);

@@ -20,6 +20,7 @@
         int noOfPendingReturn=(int)request.getAttribute("noOfPendingReturn");
         int noOfPendingFines=(int)request.getAttribute("noOfPendingFines");
         int noOfPendingRenewals=(int)request.getAttribute("noOfPendingRenewals");
+        Integer pendingDonations=(Integer)request.getAttribute("pendingDonations");
         
 %>
 <body>
@@ -108,8 +109,8 @@
                                 <img src="/img/donation.png" class="icons" alt="">
                             </div>
                             <div>
-                                <h1>0</h1>
-                                <p>Donated Items</p>
+                                <h1><%=pendingDonations%></h1>
+                                <p>Pending Donated Items</p>
                             </div>
                         </div>
 
