@@ -2,7 +2,7 @@
 <%@page import="com.lms.librarymanagementsystem.models.Journals" %>
 <%@page import="java.util.List" %>
 <%@page import="com.lms.librarymanagementsystem.models.Registration"%>
-<%@page import="java.util.List"%>
+<%@page import="com.lms.librarymanagementsystem.models.JournalDonations"%>
 <html>
 
 <head>
@@ -16,10 +16,12 @@
 <%
         List<Registration> registrations=(List<Registration>)request.getAttribute("registrations");
         Integer noOfRegistrations=(Integer)request.getAttribute("noOfRegistrations");
+		JournalDonations journalDonation = (JournalDonations) request.getAttribute("journaldonation");
+		String activity=(String) request.getAttribute("activity");
 %>
 <body>
+	<% if(!(activity.equals("donation"))) { %>
 	<% Journals journal = (Journals) request.getAttribute("journal"); %>
-	<% String activity=(String) request.getAttribute("activity"); %>
 	<section class="mainContainer">
 		<%@include file="adminPanelLeftSidePanelComponent.jsp"%>
 		<div class="rightContainer">
@@ -95,6 +97,76 @@
 	</form>
 </div>
 </section>
+<%}else{%>
+	<section class="mainContainer">
+		<%@include file="adminPanelLeftSidePanelComponent.jsp"%>
+		<div class="rightContainer">
+			<%@include file="adminPanelHeaderComponent.jsp"%>
+			<div class="breadCrumbs" style="margin-left:30px;">
+				<p>
+					<a href="#">Home</a>
+					<i class="fa-solid fa-angle-right"></i>
+					<span>Dashboard</span>
+					<i class="fa-solid fa-angle-right"></i>
+					<span>Add Items</span>
+					<i class="fa-solid fa-angle-right"></i>
+					<span>Add Book</span>
+				</p>
+			</div>
+			<form action='/admin/addjournal' method="POST" enctype="multipart/form-data" class="bookForm">
+			<div class="left-container">
+				<% if(activity.equals("donation")) { %>
+					<input id="prevthumbnail" value='<%= journalDonation.getThumbnail() %>' name="thumbnail" hidden/>
+				<% } %>
+				<label for="thumbnail">Thumbnail:</label>
+				<img id="imageContainer" src='/uploads/thumbnails/<%= journalDonation.getThumbnail() %>' width="150" height="150" alt="">
+				<!-- <div id="imageContainer"></div> -->
+				<input type="file" id="thumbnail" class="fileInput" name="thumbnailfile" value='<%= journalDonation.getThumbnail() %>'>
+			</div>
+
+			<div class="right-container">
+				<% if(activity.equals("donation")) { %>
+					<input type="number" hidden id="bid" name="jdnid" value='<%= journalDonation.getJdnid() %>'>
+				<% } %>
+				<label for="itid">ITID:</label>
+				<input type="text" id="itid" name="itid" value='' required>
+		
+				<label for="title">Title:</label>
+				<input type="text" id="title" name="title" value='<%= journalDonation.getTitle() %>' required>
+		
+				<label for="publisher">Publisher:</label>
+				<input type="text" id="publisher" name="publisher" value='<%= journalDonation.getPublisher() %>' required>
+		
+				<label for="editor">Editor:</label>
+				<input type="text" id="editor" name="editor" value='<%= journalDonation.getEditor() %>' required>
+		
+				<label for="description">Description:</label>
+				<textarea id="description" name="description"><%= journalDonation.getDescription() %></textarea>
+		
+				<label for="category">Category:</label>
+				<input type="text" id="category" name="category" value='<%= journalDonation.getCategory() %>'>
+		
+				<label for="keywords">Keywords:</label>
+				<textarea id="keywords" name="keywords" ><%= journalDonation.getKeywords() %></textarea>
+		
+				<label for="startYear">Start Year:</label>
+				<input type="number" id="startYear" name="startYear" value='<%= journalDonation.getStartyear() %>'>
+		
+				<label for="endYear">End Year:</label>
+				<input type="number" id="endYear" name="endYear" value='<%= journalDonation.getEndyear() %>'>
+		
+				<label for="pageno">Page No:</label>
+				<input type="number" id="pageno" name="pageNo" value='<%= journalDonation.getPageno() %>'>
+		
+				<label for="stock">Stock:</label>
+				<input type="number" id="stock" name="stock" value='' required>
+
+				<input type="submit" value='<%= activity.equals("edit") ? "Update" : "Submit" %>'>
+			</div>
+		</form>
+	</div>
+	</section>
+<%}%>
 </body>
 <script src="/js/imagehandler.js"></script>
 <script src="/js/adminPanel.js"></script>
