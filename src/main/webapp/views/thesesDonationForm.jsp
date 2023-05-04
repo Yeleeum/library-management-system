@@ -45,11 +45,84 @@
             }
 
         }
+
+        /* Style for the alert box */
+        .alert {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-direction: row-reverse;
+            padding: 20px;
+            background-color: #52f583;
+            color: white;
+            margin-bottom: 15px;
+            position: relative;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Style for the close button */
+        .closebtn {
+            margin-right: 15px;
+            margin-top: 5px;
+            color: white;
+            font-size: 22px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* Hover effect for the close button */
+        .closebtn:hover {
+            color: black;
+        }
+
+        /* Add some additional styling for the strong tag */
+        .alert strong {
+            font-weight: bold;
+        }
+
+        /* Add a border on the bottom of the alert box */
+        .alert::before {
+            content: "";
+            display: block;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Add a fade-in effect to the alert box */
+        .alert.fade-in {
+            animation: fade-in 0.5s ease-in-out;
+        }
+
+        /* Define the animation for the fade-in effect */
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
     </style>
 
 </head>
-
+<% String message=(String) request.getAttribute("message"); %>
 <body>
+    <% if(message !=null) { %>
+        <div class="alert">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            <strong>
+                <%= message %>
+            </strong>
+        </div>
+    <% } %>
     <section class="mainContainer">
         <div class="rightContainer">
             <form action='/donation/theses' method="POST" enctype="multipart/form-data" class="bookForm">

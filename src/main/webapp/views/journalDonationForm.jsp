@@ -12,7 +12,7 @@
             width: 100%;
             height: 100%;
         }
-        
+
         .bookForm {
             padding: 20px !important;
         }
@@ -45,62 +45,135 @@
             }
 
         }
+
+        /* Style for the alert box */
+        .alert {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-direction: row-reverse;
+            padding: 20px;
+            background-color: #52f583;
+            color: white;
+            margin-bottom: 15px;
+            position: relative;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Style for the close button */
+        .closebtn {
+            margin-right: 15px;
+            margin-top: 5px;
+            color: white;
+            font-size: 22px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* Hover effect for the close button */
+        .closebtn:hover {
+            color: black;
+        }
+
+        /* Add some additional styling for the strong tag */
+        .alert strong {
+            font-weight: bold;
+        }
+
+        /* Add a border on the bottom of the alert box */
+        .alert::before {
+            content: "";
+            display: block;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Add a fade-in effect to the alert box */
+        .alert.fade-in {
+            animation: fade-in 0.5s ease-in-out;
+        }
+
+        /* Define the animation for the fade-in effect */
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
     </style>
 
 </head>
-
+<% String message=(String) request.getAttribute("message"); %>
 <body>
-    <section class="mainContainer">
-        <div class="rightContainer">
-            <form action='/donation/journal' method="POST" enctype="multipart/form-data" class="bookForm">
-                <div class="left-container">
-                    <label for="thumbnail">Thumbnail:</label>
-                    <img id="imageContainer" width="150" height="150" alt="">
-                    <input type="file" id="thumbnail" class="fileInput" name="thumbnailfile">
-                </div>
-
-                <div class="right-container">
-                    <label for="donorname">Donor Name:</label>
-                    <input type="text" id="donorname" name="donorname" required>
-
-                    <label for="title">Title:</label>
-                    <input type="text" id="title" name="title" required>
-
-                    <label for="publisher">Publisher:</label>
-                    <input type="text" id="publisher" name="publisher" required>
-
-                    <label for="editor">Editor:</label>
-                    <input type="text" id="editor" name="editor" required>
-
-                    <label for="description">Description:</label>
-                    <textarea id="description" name="description" rows="5" required></textarea>
-
-                    <label for="category">Category:</label>
-                    <input type="text" id="category" name="category" required>
-
-                    <label for="keywords">Keywords:</label>
-                    <textarea id="keywords" name="keywords" rows="5" required></textarea>
-
-                    <label for="edition">Edition:</label>
-                    <input type="text" id="edition" name="edition" required>
-
-                    <label for="startyear">Start Year:</label>
-                    <input type="number" id="startyear" name="startyear" required>
-
-                    <label for="endyear">End Year:</label>
-                    <input type="number" id="endyear" name="endyear" required>
-
-                    <label for="pageno">Page Number:</label>
-                    <input type="number" id="pageno" name="pageno" required>
-
-                    <label for="donationdate">Donation Date:</label>
-                    <input type="date" id="donationdate" name="donationdate" required>
-
-                    <input type="submit" value='Submit' />
-                </div>
-            </form>
+    <% if(message !=null) { %>
+        <div class="alert">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            <strong>
+                <%= message %>
+            </strong>
         </div>
-    </section>
+    <% } %>
+            <section class="mainContainer">
+                <div class="rightContainer">
+                    <form action='/donation/journal' method="POST" enctype="multipart/form-data" class="bookForm">
+                        <div class="left-container">
+                            <label for="thumbnail">Thumbnail:</label>
+                            <img id="imageContainer" width="150" height="150" alt="">
+                            <input type="file" id="thumbnail" class="fileInput" name="thumbnailfile">
+                        </div>
+
+                        <div class="right-container">
+                            <label for="donorname">Donor Name:</label>
+                            <input type="text" id="donorname" name="donorname" required>
+
+                            <label for="title">Title:</label>
+                            <input type="text" id="title" name="title" required>
+
+                            <label for="publisher">Publisher:</label>
+                            <input type="text" id="publisher" name="publisher" required>
+
+                            <label for="editor">Editor:</label>
+                            <input type="text" id="editor" name="editor" required>
+
+                            <label for="description">Description:</label>
+                            <textarea id="description" name="description" rows="5" required></textarea>
+
+                            <label for="category">Category:</label>
+                            <input type="text" id="category" name="category" required>
+
+                            <label for="keywords">Keywords:</label>
+                            <textarea id="keywords" name="keywords" rows="5" required></textarea>
+
+                            <label for="edition">Edition:</label>
+                            <input type="text" id="edition" name="edition" required>
+
+                            <label for="startyear">Start Year:</label>
+                            <input type="number" id="startyear" name="startyear" required>
+
+                            <label for="endyear">End Year:</label>
+                            <input type="number" id="endyear" name="endyear" required>
+
+                            <label for="pageno">Page Number:</label>
+                            <input type="number" id="pageno" name="pageno" required>
+
+                            <label for="donationdate">Donation Date:</label>
+                            <input type="date" id="donationdate" name="donationdate" required>
+
+                            <input type="submit" value='Submit' />
+                        </div>
+                    </form>
+                </div>
+            </section>
 </body>
 <script src="/js/imagehandler.js"></script>
 
