@@ -1,59 +1,8 @@
-<!-- <!DOCTYPE html>
-<html>
-<head>
-	<title>Magazines</title>
-	<link rel="stylesheet" href="/css/forms/magazines.css">
-</head>
-<body>
-	<form action="/admin/addmagazine" method="POST" enctype="multipart/form-data">
-
-		<label for="itid">ITID:</label>
-		<input type="text" id="itid" name="itid" required>
-
-		<label for="title">Title:</label>
-		<input type="text" id="title" name="title">
-
-		<label for="publisher">Publisher:</label>
-		<input type="text" id="publisher" name="publisher">
-
-		<label for="issuedate">Issue Date:</label>
-		<input type="text" id="issuedate" name="issuedate">
-
-		<label for="issuenumber">Issue Number:</label>
-		<input type="text" id="issuenumber" name="issuenumber">
-
-		<label for="description">Description:</label>
-		<input type="text" id="description" name="description">
-
-		<label for="thumbnail">Thumbnail:</label>
-		<input type="file" id="thumbnail" name="thumbnailfile">
-
-		<label for="frequency">Frequency:</label>
-		<input type="text" id="frequency" name="frequency">
-
-		<label for="keywords">Keywords:</label>
-		<input type="text" id="keywords" name="keywords">
-
-		<label for="specialissue">Special Issue:</label>
-		<input type="text" id="specialissue" name="specialissue">
-
-		<label for="category">Category:</label>
-		<select id="category" name="category">
-			<option value="option1">Option 1</option>
-			<option value="option2">Option 2</option>
-			<option value="option3">Option 3</option>
-		</select>
-
-		<label for="stock">Stock:</label>
-		<input type="text" id="stock" name="stock">
-
-		<input type="submit" value="Submit">
-	</form> -->
 <!DOCTYPE html>
 <%@page import="com.lms.librarymanagementsystem.models.*"%>
 <%@page import="java.util.List"%>
 <%@page import="com.lms.librarymanagementsystem.models.Registration"%>
-<%@page import="java.util.List"%>
+<%@page import="com.lms.librarymanagementsystem.models.MagazineDonations"%>
 <html>
 
 <head>
@@ -67,10 +16,12 @@
 <%
         List<Registration> registrations=(List<Registration>)request.getAttribute("registrations");
         Integer noOfRegistrations=(Integer)request.getAttribute("noOfRegistrations");
+		String activity=(String) request.getAttribute("activity");
+		MagazineDonations magazineDonation = (MagazineDonations) request.getAttribute("magazinedonation");
 %>
 <body>
+	<% if(!(activity.equals("donation"))) { %>
 	<% Magazines magazine = (Magazines) request.getAttribute("magazine"); %>
-	<% String activity=(String) request.getAttribute("activity"); %>
 	<section class="mainContainer">
 		<%@include file="adminPanelLeftSidePanelComponent.jsp"%>
 		<div class="rightContainer">
@@ -147,10 +98,80 @@
 	</form>
 </div>
 </section>
+<%}else{%>
+
+<%}%>
 </body>
 <script src="/js/imagehandler.js"></script>
 <script src="/js/adminPanel.js"></script>
 </html>
 </body>
+<section class="mainContainer">
+		<%@include file="adminPanelLeftSidePanelComponent.jsp"%>
+		<div class="rightContainer">
+			<%@include file="adminPanelHeaderComponent.jsp"%>
+			<div class="breadCrumbs" style="margin-left:30px;">
+				<p>
+					<a href="#">Home</a>
+					<i class="fa-solid fa-angle-right"></i>
+					<span>Dashboard</span>
+					<i class="fa-solid fa-angle-right"></i>
+					<span>Add Items</span>
+					<i class="fa-solid fa-angle-right"></i>
+					<span>Add Book</span>
+				</p>
+			</div>
+			<form action='/admin/addmagazine' method="POST" enctype="multipart/form-data" class="bookForm">
+			<div class="left-container">
+				<% if(activity.equals("donation")) { %>
+					<input id="prevthumbnail" value='<%= magazineDonation.getThumbnail() %>' name="thumbnail" hidden/>
+				<% } %>
+				<label for="thumbnail">Thumbnail:</label>
+				<img id="imageContainer" src='/uploads/thumbnails/<%= magazineDonation.getThumbnail() %>' width="150" height="150" alt="">
+				<!-- <div id="imageContainer"></div> -->
+				<input type="file" id="thumbnail" class="fileInput" name="thumbnailfile" value='<%= magazineDonation.getThumbnail() %>'>
+			</div>
 
+			<div class="right-container">
+				<% if(activity.equals("donation")) { %>
+					<input type="number" hidden id="bid" name="jdnid" value='<%= magazineDonation.getMdnid() %>'>
+				<% } %>
+				<label for="itid">ITID:</label>
+				<input type="text" id="itid" name="itid" value='' required>
+		
+				<label for="title">Title:</label>
+				<input type="text" id="title" name="title" value='<%= magazineDonation.getTitle() %>' required>
+		
+				<label for="publisher">Publisher:</label>
+				<input type="text" id="publisher" name="publisher" value='<%= magazineDonation.getPublisher() %>' required>
+		
+				<label for="issuedate">Issue Date:</label>
+				<input type="text" id="issuedate" name="issuedate" value='<%= magazineDonation.getIssuedate() %>' required>
+		
+				<label for="issuenumber">Issue Number:</label>
+				<input type="text" id="issuenumber" name="issuenumber" value='<%= magazineDonation.getIssuenumber() %>' required>
+		
+				<label for="description">Description:</label>
+				<textarea id="description" name="description"><%= magazineDonation.getDescription() %></textarea>
+		
+				<label for="category">Category:</label>
+				<input type="text" id="category" name="category" value='<%= magazineDonation.getCategory() %>'>
+		
+				<label for="keywords">Keywords:</label>
+				<textarea id="keywords" name="keywords" ><%= magazineDonation.getKeywords() %></textarea>
+		
+				<label for="frequency">Frequency:</label>
+				<input type="text" id="frequency" name="frequency" value='<%= magazineDonation.getFrequency() %>'>
+		
+				<label for="specialissue">Special Issue:</label>
+				<input type="text" id="specialissue" name="specialissue" value='<%= magazineDonation.getSpecialissue() %>'>
+		
+				<label for="stock">Stock:</label>
+				<input type="number" id="stock" name="stock" value='' required>
+
+				<input type="submit" value='<%= activity.equals("edit") ? "Update" : "Submit" %>'>
+			</div>
+		</form>
+	</div>
+	</section>
 </html>

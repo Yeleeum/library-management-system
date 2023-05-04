@@ -154,6 +154,13 @@ public class AdminController {
         return "pendingJournalDonations";
     }
 
+    @GetMapping("/viewpending/magazinedonations")
+    public String viewPendingMagazineDonations(Model model) {
+        List<MagazineDonations> magazineDonations = magazineDonationServices.findPendingMagazineDonations();
+        model.addAttribute("magazineDonations", magazineDonations);
+        return "pendingMagazineDonations";
+    }
+
     @GetMapping("/addDonatedBooks/{bdnid}")
     public String viewOneBookDonationDetails(@PathVariable Integer bdnid, Model model) {
         System.out.println(bdnid);
@@ -172,6 +179,16 @@ public class AdminController {
         model.addAttribute("journaldonation", journalDonation);
         booksDonationServices.updateDonationToApproved(jdnid);
         return "journals";
+    }
+
+    @GetMapping("/addDonatedMagazines/{mdnid}")
+    public String viewOneMagazineDonationDetails(@PathVariable Integer mdnid, Model model) {
+        System.out.println(mdnid);
+        MagazineDonations magazineDonation = magazineDonationServices.findSingleMagazineDonations(mdnid);
+        model.addAttribute("activity", "donation");
+        model.addAttribute("magazinedonation", magazineDonation);
+        booksDonationServices.updateDonationToApproved(mdnid);
+        return "magazines";
     }
 
     @GetMapping("/viewpending/unpaid")
