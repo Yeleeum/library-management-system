@@ -16,6 +16,7 @@
             position: absolute;
             width: 100vw;
             height: 100vh;
+            top: 0;
             background: transparent;
             display: flex;
             justify-content: center;
