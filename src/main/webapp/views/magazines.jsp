@@ -99,14 +99,7 @@
 </div>
 </section>
 <%}else{%>
-
-<%}%>
-</body>
-<script src="/js/imagehandler.js"></script>
-<script src="/js/adminPanel.js"></script>
-</html>
-</body>
-<section class="mainContainer">
+	<section class="mainContainer">
 		<%@include file="adminPanelLeftSidePanelComponent.jsp"%>
 		<div class="rightContainer">
 			<%@include file="adminPanelHeaderComponent.jsp"%>
@@ -134,7 +127,7 @@
 
 			<div class="right-container">
 				<% if(activity.equals("donation")) { %>
-					<input type="number" hidden id="bid" name="jdnid" value='<%= magazineDonation.getMdnid() %>'>
+					<input type="number" hidden id="bid" name="mdnid" value='<%= magazineDonation.getMdnid() %>'>
 				<% } %>
 				<label for="itid">ITID:</label>
 				<input type="text" id="itid" name="itid" value='' required>
@@ -174,4 +167,9 @@
 		</form>
 	</div>
 	</section>
+<%}%>
+</body>
+<script src="/js/imagehandler.js"></script>
+<script src="/js/adminPanel.js"></script>
 </html>
+</body>

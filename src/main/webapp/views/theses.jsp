@@ -1,63 +1,8 @@
-<!-- <!DOCTYPE html>
-<html>
-<head>
-	<title>Theses</title>
-	<link rel="stylesheet" href="/css/forms/theses.css">
-</head>
-<body>
-	<form action="/admin/addtheses" method="POST" enctype="multipart/form-data">
-		<label for="itid">ITID:</label>
-		<input type="text" id="itid" name="itid" required>
-
-		<label for="title">Title:</label>
-		<input type="text" id="title" name="title">
-
-		<label for="researcher">Researcher:</label>
-		<input type="text" id="researcher" name="researcher">
-
-		<label for="guides">Guides:</label>
-		<input type="text" id="guides" name="guides">
-
-		<label for="description">Description:</label>
-		<input type="text" id="description" name="description">
-
-		<label for="thumbnail">Thumbnail:</label>
-		<input type="file" id="thumbnail" name="thumbnailfile">
-
-		<label for="category">Category:</label>
-		<select id="category" name="category">
-			<option value="option1">Option 1</option>
-			<option value="option2">Option 2</option>
-			<option value="option3">Option 3</option>
-		</select>
-
-		<label for="keywords">Keywords:</label>
-		<input type="text" id="keywords" name="keywords">
-
-		<label for="completeddate">Completed Date:</label>
-		<input type="text" id="completeddate" name="completeddate">
-
-		<label for="place">Place:</label>
-		<input type="text" id="place" name="place">
-
-		<label for="abstract">Abstract:</label>
-		<input type="text" id="abstract" name="abstract">
-
-		<label for="pageno">Page No:</label>
-		<input type="text" id="pageno" name="pageno">
-
-		<label for="stock">Stock:</label>
-		<input type="text" id="stock" name="stock">
-
-		<input type="submit" value="Submit">
-	</form>
-</body>
-</html> -->
 <!DOCTYPE html>
 <%@page import="com.lms.librarymanagementsystem.models.*"%>
 <%@page import="java.util.List"%>
 <%@page import="com.lms.librarymanagementsystem.models.Registration"%>
-<%@page import="java.util.List"%>
+<%@page import="com.lms.librarymanagementsystem.models.ThesesDonations"%>
 <html>
 
 <head>
@@ -71,10 +16,12 @@
 <%
         List<Registration> registrations=(List<Registration>)request.getAttribute("registrations");
         Integer noOfRegistrations=(Integer)request.getAttribute("noOfRegistrations");
+		String activity=(String) request.getAttribute("activity");
+		ThesesDonations thesesDonation = (ThesesDonations) request.getAttribute("thesesdonation");
 %>
 <body>
+	<% if(!(activity.equals("donation"))) { %>
 	<% Theses theses = (Theses) request.getAttribute("theses"); %>
-	<% String activity=(String) request.getAttribute("activity"); %>
 	<section class="mainContainer">
 		<%@include file="adminPanelLeftSidePanelComponent.jsp"%>
 		<div class="rightContainer">
@@ -155,10 +102,82 @@
 	</form>
 </div>
 </section>
+<%}else{%>
+	<section class="mainContainer">
+		<%@include file="adminPanelLeftSidePanelComponent.jsp"%>
+		<div class="rightContainer">
+			<%@include file="adminPanelHeaderComponent.jsp"%>
+			<div class="breadCrumbs" style="margin-left:30px;">
+				<p>
+					<a href="#">Home</a>
+					<i class="fa-solid fa-angle-right"></i>
+					<span>Dashboard</span>
+					<i class="fa-solid fa-angle-right"></i>
+					<span>Add Items</span>
+					<i class="fa-solid fa-angle-right"></i>
+					<span>Add Book</span>
+				</p>
+			</div>
+			<form action='/admin/addtheses' method="POST" enctype="multipart/form-data" class="bookForm">
+			<div class="left-container">
+				<% if(activity.equals("donation")) { %>
+					<input id="prevthumbnail" value='<%= thesesDonation.getThumbnail() %>' name="thumbnail" hidden/>
+				<% } %>
+				<label for="thumbnail">Thumbnail:</label>
+				<img id="imageContainer" src='/uploads/thumbnails/<%= thesesDonation.getThumbnail() %>' width="150" height="150" alt="">
+				<!-- <div id="imageContainer"></div> -->
+				<input type="file" id="thumbnail" class="fileInput" name="thumbnailfile" value='<%= thesesDonation.getThumbnail() %>'>
+			</div>
+
+			<div class="right-container">
+				<% if(activity.equals("donation")) { %>
+					<input type="number" hidden id="bid" name="tdnid" value='<%= thesesDonation.getTdnid() %>'>
+				<% } %>
+				<label for="itid">ITID:</label>
+				<input type="text" id="itid" name="itid" value='' required>
+		
+				<label for="title">Title:</label>
+				<input type="text" id="title" name="title" value='<%= thesesDonation.getTitle() %>' required>
+		
+				<label for="researcher">Researcher:</label>
+				<input type="text" id="researcher" name="researcher" value='<%= thesesDonation.getResearcher() %>' required>
+		
+				<label for="guides">Guides:</label>
+				<input type="text" id="guides" name="guides" value='<%= thesesDonation.getGuides() %>' required>
+		
+				<label for="description">Description:</label>
+				<textarea id="description" name="description"><%= thesesDonation.getDescription() %></textarea>
+		
+				<label for="category">Category:</label>
+				<input type="text" id="category" name="category" value='<%= thesesDonation.getCategory() %>'>
+		
+				<label for="keywords">Keywords:</label>
+				<textarea id="keywords" name="keywords" ><%= thesesDonation.getKeywords() %></textarea>
+		
+				<label for="completedDate">Completed Date:</label>
+				<input type="text" id="completedDate" name="completedDate" value='<%= thesesDonation.getCompleteddate() %>'>
+		
+				<label for="place">Place:</label>
+				<input type="text" id="place" name="place" value='<%= thesesDonation.getPlace() %>'>
+		
+				<label for="abstractContent">Abstract:</label>
+				<input type="text" id="abstractContent" name="abstractContent" value='<%= thesesDonation.getAbstractcontent() %>'>
+		
+				<label for="pageNo">Page No:</label>
+				<input type="text" id="pageNo" name="pageNo" value='<%= thesesDonation.getPageno() %>'>
+		
+				<label for="stock">Stock:</label>
+				<input type="number" id="stock" name="stock" value='' required>
+
+				<input type="submit" value='<%= activity.equals("edit") ? "Update" : "Submit" %>'>
+			</div>
+		</form>
+	</div>
+	</section>
+<%}%>
 </body>
 <script src="/js/imagehandler.js"></script>
 <script src="/js/adminPanel.js"></script>
 </html>
-</body>
 
-</html>
+

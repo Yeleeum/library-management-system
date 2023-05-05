@@ -161,6 +161,13 @@ public class AdminController {
         return "pendingMagazineDonations";
     }
 
+    @GetMapping("/viewpending/thesesdonations")
+    public String viewPendingThesesDonations(Model model) {
+        List<ThesesDonations> thesesDonations = thesesDonationServices.findPendingThesesDonations();
+        model.addAttribute("thesesDonations", thesesDonations);
+        return "pendingThesesDonations";
+    }
+
     @GetMapping("/addDonatedBooks/{bdnid}")
     public String viewOneBookDonationDetails(@PathVariable Integer bdnid, Model model) {
         System.out.println(bdnid);
@@ -177,7 +184,7 @@ public class AdminController {
         JournalDonations journalDonation = journalDonationServices.findSingleJournalDonations(jdnid);
         model.addAttribute("activity", "donation");
         model.addAttribute("journaldonation", journalDonation);
-        booksDonationServices.updateDonationToApproved(jdnid);
+        journalDonationServices.updateDonationToApproved(jdnid);
         return "journals";
     }
 
@@ -187,8 +194,18 @@ public class AdminController {
         MagazineDonations magazineDonation = magazineDonationServices.findSingleMagazineDonations(mdnid);
         model.addAttribute("activity", "donation");
         model.addAttribute("magazinedonation", magazineDonation);
-        booksDonationServices.updateDonationToApproved(mdnid);
+        magazineDonationServices.updateDonationToApproved(mdnid);
         return "magazines";
+    }
+
+    @GetMapping("/addDonatedTheses/{tdnid}")
+    public String viewOneThesesDonationDetails(@PathVariable Integer tdnid, Model model) {
+        System.out.println(tdnid);
+        ThesesDonations thesesDonation = thesesDonationServices.findSingleThesesDonations(tdnid);
+        model.addAttribute("activity", "donation");
+        model.addAttribute("thesesdonation", thesesDonation);
+        thesesDonationServices.updateDonationToApproved(tdnid);
+        return "theses";
     }
 
     @GetMapping("/viewpending/unpaid")
