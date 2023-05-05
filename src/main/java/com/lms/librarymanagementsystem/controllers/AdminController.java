@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.lms.librarymanagementsystem.Handlers.SessionHandler;
 import com.lms.librarymanagementsystem.models.Alternative;
 import com.lms.librarymanagementsystem.models.BookDonations;
 import com.lms.librarymanagementsystem.models.Books;
@@ -168,6 +167,13 @@ public class AdminController {
         return "pendingThesesDonations";
     }
 
+    @GetMapping("/viewpending/softcopydonations")
+    public String viewPendingSoftCopyDonations(Model model) {
+        List<SoftCopyDonations> softCopyDonations = softCopyDonationServices.findPendingSoftCopyDonations();
+        model.addAttribute("softCopyDonations", softCopyDonations);
+        return "pendingSoftCopyDonations";
+    }
+
     @GetMapping("/addDonatedBooks/{bdnid}")
     public String viewOneBookDonationDetails(@PathVariable Integer bdnid, Model model) {
         System.out.println(bdnid);
@@ -206,6 +212,16 @@ public class AdminController {
         model.addAttribute("thesesdonation", thesesDonation);
         thesesDonationServices.updateDonationToApproved(tdnid);
         return "theses";
+    }
+
+    @GetMapping("/addDonatedSoftcopies/{sdnid}")
+    public String viewOneSoftCopyDonationDetails(@PathVariable Integer sdnid, Model model) {
+        System.out.println(sdnid);
+        SoftCopyDonations softCopyDonation = softCopyDonationServices.findSingleJournalDonations(sdnid);
+        model.addAttribute("activity", "donation");
+        model.addAttribute("softCopyDonation", softCopyDonation);
+        softCopyDonationServices.updateDonationToApproved(sdnid);
+        return "Softcopy";
     }
 
     @GetMapping("/viewpending/unpaid")
