@@ -12,7 +12,7 @@ itidinput.addEventListener('change', () => {
             if (data !== "false") {
                 // Display modal message
                 let modal = document.createElement("div");
-                modal.className = "modal itid-modal";
+                modal.className = "itid-modal";
                 modal.innerHTML = `
                     <div class="modal-content itid-modal-content">
                         <span class="close itid-close">&times;</span>
