@@ -63,19 +63,12 @@ public class SearchController {
         List<Magazines> magazines=magazinesServices.findBySearch(searchParam);
         List<Theses> theses=thesesServices.findBySearch(searchParam);
         List<SoftCopy> softCopies=softCopyServices.findBySearch(searchParam);
-        // List<List> allFound=new ArrayList();
-        // allFound.add(books);
-        // allFound.add(journals);
-        // allFound.add(magazines);
-        // allFound.add(theses);
-        // allFound.add(softCopies);
         model.addAttribute("books", books);
         model.addAttribute("journals", journals);
         model.addAttribute("magazines", magazines);
         model.addAttribute("theses", theses);
         model.addAttribute("softcopies", softCopies);
         model.addAttribute("searchValue", searchParam);
-        // return new ResponseEntity<List>(allFound,HttpStatus.OK);
         return "searchResult";
     }
 
@@ -164,6 +157,22 @@ public class SearchController {
         List<Magazines> magazines=magazinesServices.findBySearchCatagory(searchParam);
         List<Theses> theses=thesesServices.findBySearchCatagory(searchParam);
         List<SoftCopy> softCopies=softCopyServices.findBySearchCatagory(searchParam);
+        model.addAttribute("books", books);
+        model.addAttribute("journals", journals);
+        model.addAttribute("magazines", magazines);
+        model.addAttribute("theses", theses);
+        model.addAttribute("softcopies", softCopies);
+        model.addAttribute("searchValue", searchParam);
+        return "searchResult";
+    }
+
+    @GetMapping("/keyword/{keyword}")
+    public String showFromKeyword(@PathVariable("keyword")String searchParam, Model model){
+        List<Journals> journals=journalsServices.findBySearchKeywords(searchParam);
+        List<Books> books=booksServices.findBySearchKeywords(searchParam);
+        List<Magazines> magazines=magazinesServices.findBySearchKeywords(searchParam);
+        List<Theses> theses=thesesServices.findBySearchKeywords(searchParam);
+        List<SoftCopy> softCopies=softCopyServices.findBySearchKeywords(searchParam);
         model.addAttribute("books", books);
         model.addAttribute("journals", journals);
         model.addAttribute("magazines", magazines);

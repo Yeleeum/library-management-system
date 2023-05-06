@@ -29,6 +29,9 @@ public interface BooksRepository extends JpaRepository<Books, Integer> {
     @Query(value = "SELECT * FROM BOOKS WHERE TITLE LIKE %:PARAM%", nativeQuery = true)
     List<Books> findBookBySearchTitle(@Param("PARAM") String searchParam);
 
+    @Query(value = "SELECT * FROM BOOKS WHERE KEYWORDS LIKE %:PARAM%", nativeQuery = true)
+    List<Books> findBookBySearchKeywords(@Param("PARAM") String searchParam);
+
     @Modifying
     @Query(value = "UPDATE BOOKS SET STOCK=STOCK-1 WHERE ITID=:ITID", nativeQuery = true)
     Integer decreaseStock(@Param("ITID") String ITID);

@@ -55,6 +55,10 @@ public class SoftCopyServices {
         return softCopyRepository.findSoftCopyBySearchTitle(searchParam);
     }
 
+    public List<SoftCopy> findBySearchKeywords(String searchParam) {
+        return softCopyRepository.findSoftCopyBySearchKeywords(searchParam);
+    }
+
     public SoftCopy findSingleSoftCopyById(String sid) {
         return softCopyRepository.findSingleSoftCopyById(sid);
     }

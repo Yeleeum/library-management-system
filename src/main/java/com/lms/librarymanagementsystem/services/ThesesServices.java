@@ -50,6 +50,10 @@ public class ThesesServices {
         return thesesRepository.findThesesBySearchTitle(searchParam);
     }
 
+    public List<Theses> findBySearchKeywords(String searchParam) {
+        return thesesRepository.findThesesBySearchKeywords(searchParam);
+    }
+
     public Integer decreaseStock(String ITID){
         return thesesRepository.decreaseStock(ITID);
     }

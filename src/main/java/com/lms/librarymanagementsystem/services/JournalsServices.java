@@ -53,6 +53,10 @@ public class JournalsServices {
         return journalsRepository.findJournalBySearchTitle(searchParam);
     }
 
+    public List<Journals> findBySearchKeywords(String searchParam) {
+        return journalsRepository.findJournalBySearchKeywords(searchParam);
+    }
+
     public Integer decreaseStock(String ITID){
         return journalsRepository.decreaseStock(ITID);
     }

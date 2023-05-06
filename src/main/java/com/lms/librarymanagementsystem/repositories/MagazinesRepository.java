@@ -22,6 +22,9 @@ public interface MagazinesRepository extends JpaRepository<Magazines,Integer>{
     @Query(value="SELECT * FROM MAGAZINES WHERE TITLE LIKE %:PARAM%",nativeQuery = true)
     List<Magazines> findMagazineBySearchTitle(@Param("PARAM")String searchParam);
 
+    @Query(value="SELECT * FROM MAGAZINES WHERE KEYWORDS LIKE %:PARAM%",nativeQuery = true)
+    List<Magazines> findMagazineBySearchKeywords(@Param("PARAM")String searchParam);
+
     @Query(value="SELECT * FROM MAGAZINES WHERE MID=:MID",nativeQuery = true)
     Magazines findSingleMagazineById(@Param("MID")String mid);
 

@@ -61,7 +61,7 @@
                           <strong>Keywords :</strong>
                           <% String[] keywords = softcopy.getKeywords().split(",");
                             for (String keyword : keywords) { %>
-                                <a href='/keyword/<%= keyword.replaceAll(" ", "%20") %> '>#<%= keyword %></a>
+                                <a href='/search/keyword/<%= keyword.replaceAll(" ", "%20") %> '>#<%= keyword %></a>
                           <%  } %>
                         </div>
                     </div>
