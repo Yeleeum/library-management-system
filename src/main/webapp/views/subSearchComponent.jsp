@@ -15,12 +15,13 @@
     %>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <section class="headerview">
-        <form action="/search/searchitem" method="Get" id="search">
-            <input name="searchParam" class="search" type="text" placeholder="Search..." value="<%=searchValue%>">
-                <!-- <button type="submit">Search</button> -->
+        <!-- <form action="/search/searchitem" method="Get" id="search">
+            <input name="searchParam" class="search" type="text" placeholder="Search..." value="<%--searchValue--%>">
+                <button type="submit">Search</button>
                 <button type="submit" class="search" style="font-size: 20px;"><i class="fa fa-search" style="padding-right: 8px;"></i> Search</button>
-        </form>
-        <br>
+        </form> -->
+        
+        <p>Choose Type</p>
         <div>
             <button type="submit" formaction="/books/search" form="search">Books</button>
             <button type="submit" formaction="/journals/search" form="search">Journals</button>
