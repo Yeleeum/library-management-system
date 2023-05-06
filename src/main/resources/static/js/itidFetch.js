@@ -16,9 +16,9 @@ itidinput.addEventListener('change', () => {
                 modal.innerHTML = `
                     <div class="modal-content itid-modal-content">
                         <span class="close itid-close">&times;</span>
-                        <h3>The ITID ${itidinput.value} is already in use.</h3>
-                        <h3 class="itid-suggested-heading">Suggested ITID:</h3>
-                        <p class="itid-suggested-value"></p>
+                        <h3 style="margin:2px;color:red">The ITID ${itidinput.value} is already in use.</h3>
+                        <h3 class="itid-suggested-heading" style="margin:2px">Suggested ITID:</h3>
+                        <h2 class="itid-suggested-value" style="color:green"></h2>
                     </div>
                 `;
                 document.body.appendChild(modal);
