@@ -20,4 +20,12 @@ public class AdminServices {
     public List<Admin> findUserByUsernamePassword(String username,String password){
         return adminRepository.getUserByUsernamePassword(username, password);
     }
+
+    public Admin insertOneAdmin(Admin admin) {
+        return adminRepository.save(admin);
+    }
+
+    public Integer changePasswordByUsername(String username, String password) {
+        return adminRepository.changePasswordByUsername(username, password);
+    }
 }

@@ -8,6 +8,16 @@
         <div class="links">
             <ul class="inner-links">
                 <li><a href="/admin">Dashboard</a></li>
+                <li>
+                    <div class="sublinks-Container">
+                        <span>Manage Accounts</span>
+                        <i class="fa-solid fa-angle-down" id="clickToExpand"></i>
+                    </div>
+                    <ul id="sublinks" class="submenulinks">
+                        <li><a class="submenu-links" onclick="openModal()">Add Admin</a></li>
+                        <li><a class="submenu-links" onclick="ChangePasswordModal()">Change Password</a></li>
+                    </ul>
+                </li>
                 <li><a href="/admin/pendingborrow">Pending Borrow Requests</a></li>
                 <li><a href="/admin/pendingreturn">Pending Return Requests</a></li>
                 <li>

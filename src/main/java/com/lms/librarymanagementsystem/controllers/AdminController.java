@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.lms.librarymanagementsystem.Handlers.SessionHandler;
+import com.lms.librarymanagementsystem.models.Admin;
 import com.lms.librarymanagementsystem.models.Alternative;
 import com.lms.librarymanagementsystem.models.BookDonations;
 import com.lms.librarymanagementsystem.models.Books;
@@ -127,7 +129,8 @@ public class AdminController {
         model.addAttribute("noOfPendingReturn", returns.size());
         model.addAttribute("noOfPendingFines", fines.size());
         model.addAttribute("noOfPendingRenewals", renewals.size());
-        model.addAttribute("pendingDonations", bookDonations.size()+journalDonations.size()+thesesDonations.size()+magazineDonations.size()+softCopyDonations.size());
+        model.addAttribute("pendingDonations", bookDonations.size() + journalDonations.size() + thesesDonations.size()
+                + magazineDonations.size() + softCopyDonations.size());
         System.out.println(top5Registrations);
         return "adminPanel";
     }
@@ -570,9 +573,22 @@ public class AdminController {
     }
 
     @GetMapping("/getlatestitid")
-    public ResponseEntity<String> findLatestItid(){
+    public ResponseEntity<String> findLatestItid() {
         System.out.println(connectorServices.getLatestItid());
-       return new ResponseEntity<String>(connectorServices.getLatestItid(),HttpStatus.FOUND);
+        return new ResponseEntity<String>(connectorServices.getLatestItid(), HttpStatus.FOUND);
     }
 
+    @PostMapping("/add-admin")
+    public String addAnotherAdmin(String username) {
+        adminServices.insertOneAdmin(new Admin(username, "admin"));
+        return "redirect:/login";
+    }
+
+    @PostMapping("/change-password")
+    public String changPassword(String password, HttpServletRequest req) {
+        String username = SessionHandler.getUserSession(req);
+        adminServices.changePasswordByUsername(username, password);
+        SessionHandler.deleteSession(req);
+        return "redirect:/login";
+    }
 }

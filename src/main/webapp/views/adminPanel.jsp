@@ -29,6 +29,43 @@
         <!-- sidebar ends -->
 
         <div class="rightContainer">
+            <!-- Add another admin modal -->
+            <div id="myModal" class="modal">
+                <div class="modal-content">
+                    <i class="fas fa-times cross-btn" onclick="closeModal()"></i>
+                    <form class="modal-form" action="/admin/add-admin" method="post">
+                        <label for="username">Username:</label>
+                        <input type="text" id="username" name="username" required>
+                        <input type="submit" value="Submit">
+                    </form>
+                    <div class="note">
+                        <p style="font-weight: 700; color: #282a36;">Default password is: admin</p><br>
+                        <marquee class="marquee">Make sure the admin changes the password afterwards.</marquee>
+                    </div>
+                </div>
+            </div>
+            <!-- Add another admin modal ends -->
+
+
+            <!-- Change Password Modal -->
+            <div id="passwordModal" class="modal">
+                <div class="modal-content">
+                    <i class="fas fa-times cross-btn" onclick="closePasswordModal()"></i>
+                    <div class="note">
+                        <p style="font-weight: 700; color: #282a36;">Default password is: admin</p><br>
+                    </div>
+                    <form class="modal-form" action="/admin/change-password" method="post">
+                        <label for="passwordInput">Password:</label>
+                        <div class="password" style="display: flex; align-items: center; gap: 5px;">
+                            <input type="password" style="width:100%; height: 100%; font-size: 20px; border: none; outline: none;" id="passwordInput" name="password" required>
+                            <i class="fa-solid fa-eye eye" onclick="togglePassword('eye')" style="cursor: pointer;"></i>
+                        </div>
+                        <input type="submit" value="Change Password">
+                    </form>
+                </div>
+            </div>
+            <!-- Change Password Modal ends -->
+            
             <!-- Admin Panel header -->
             <%@include file="adminPanelHeaderComponent.jsp"%>
 

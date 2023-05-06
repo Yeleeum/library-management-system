@@ -22,3 +22,35 @@ collapseActionCombine.forEach(Element => {
         })
     })
 })
+
+/* Add another Admin modal */
+function openModal() {
+    document.getElementById("myModal").style.display = "block";
+}
+
+function ChangePasswordModal() {
+    document.getElementById("passwordModal").style.display = "block";
+}
+
+function closeModal() {
+    document.getElementById("myModal").style.display = "none";
+}
+
+function closePasswordModal() {
+    document.getElementById("passwordModal").style.display = "none";
+}
+
+function togglePassword(icon) {
+    var password = document.getElementById("passwordInput");
+    if (password.type === "password") {
+        password.type = "text";
+        document.querySelector("." + icon).classList.remove('fa-eye');
+        document.querySelector("." + icon).classList.add('fa-eye-slash');
+    } else {
+        password.type = "password";
+        document.querySelector("." + icon).classList.remove('fa-eye-slash');
+        document.querySelector("." + icon).classList.add('fa-eye');
+    }
+}
+/* Add another Admin modal end */
+
