@@ -25,6 +25,7 @@ public class JournalsServices {
             String currentDirectory = System.getProperty("user.dir");
             String filename=DateHandler.getDateTimePattern()+file.getOriginalFilename();
             String path = currentDirectory + "\\src\\main\\webapp\\uploads\\thumbnails\\"+filename;
+            FileHandler.deleteFile(currentDirectory + "\\src\\main\\webapp\\uploads\\thumbnails\\" + journalsRepository.getThumbnailByItid(journal.getItid()));
             FileHandler.saveFile(file, path);
             journal.setThumbnail(filename);
         }

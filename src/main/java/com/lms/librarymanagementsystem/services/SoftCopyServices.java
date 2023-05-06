@@ -26,12 +26,14 @@ public class SoftCopyServices {
         String path = currentDirectory + "\\src\\main\\webapp\\uploads\\SoftCopy\\"+filename;
         System.out.println(path);
         if (file!=null && !file.isEmpty()) {
+            FileHandler.deleteFile(currentDirectory + "\\src\\main\\webapp\\uploads\\SoftCopy\\" + softCopyRepository.getFileBySid(softCopy.getSid()));
             FileHandler.saveFile(file, path);
             softCopy.setFilename(filename);
         }
         if (thumbnail!=null && !thumbnail.isEmpty()) {
             String thumnailfilename=DateHandler.getDateTimePattern()+thumbnail.getOriginalFilename();
             path = currentDirectory + "\\src\\main\\webapp\\uploads\\thumbnails\\"+thumnailfilename;
+            FileHandler.deleteFile(currentDirectory + "\\src\\main\\webapp\\uploads\\thumbnails\\" + softCopyRepository.getThumbnailBySid(softCopy.getSid()));
             FileHandler.saveFile(thumbnail, path);
             softCopy.setThumbnail(thumnailfilename);
         }

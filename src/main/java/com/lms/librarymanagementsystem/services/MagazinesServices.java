@@ -25,6 +25,7 @@ public class MagazinesServices {
             String currentDirectory = System.getProperty("user.dir");
             String filename=DateHandler.getDateTimePattern()+file.getOriginalFilename();
             String path = currentDirectory + "\\src\\main\\webapp\\uploads\\thumbnails\\"+filename;
+            FileHandler.deleteFile(currentDirectory + "\\src\\main\\webapp\\uploads\\thumbnails\\" + magazinesRepository.getThumbnailByItid(magazine.getItid()));
             FileHandler.saveFile(file, path);
             magazine.setThumbnail(filename);
         }

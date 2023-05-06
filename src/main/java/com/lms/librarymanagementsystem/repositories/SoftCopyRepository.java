@@ -40,7 +40,15 @@ public interface SoftCopyRepository extends JpaRepository<SoftCopy,Integer>{
     @Query(value="SELECT TITLE FROM SOFTCOPY WHERE SID=:sid",nativeQuery = true)
     String getTitleBySid(@Param("sid")String sid);
 
+    @Query(value="SELECT THUMBNAIL FROM SOFTCOPY WHERE SID=:sid",nativeQuery = true)
+    String getThumbnailBySid(@Param("sid")String sid);
+
+    @Query(value="SELECT FILENAME FROM SOFTCOPY WHERE SID=:sid",nativeQuery = true)
+    String getFileBySid(@Param("sid")String sid);
+
     @Modifying
     @Query(value="DELETE FROM SOFTCOPY WHERE SID=:sid",nativeQuery = true)
     Integer deleteSoftcopyBySid(@Param("sid")String sid);
+
+    
 }

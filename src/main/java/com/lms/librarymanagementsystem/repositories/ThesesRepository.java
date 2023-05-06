@@ -45,4 +45,7 @@ public interface ThesesRepository extends JpaRepository<Theses,Integer>{
     
     @Query(value="SELECT TITLE FROM THESES WHERE ITID=:itid",nativeQuery = true)
     String getTitleByItid(@Param("itid")String itid);
+
+    @Query(value="SELECT THUMBNAIL FROM THESES WHERE ITID=:itid",nativeQuery = true)
+    String getThumbnailByItid(@Param("itid")String itid);
 }

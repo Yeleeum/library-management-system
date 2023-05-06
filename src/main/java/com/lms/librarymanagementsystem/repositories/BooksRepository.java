@@ -49,6 +49,9 @@ public interface BooksRepository extends JpaRepository<Books, Integer> {
     @Query(value = "SELECT TITLE FROM BOOKS WHERE ITID=:itid", nativeQuery = true)
     String getTitleByItid(@Param("itid") String itid);
 
+    @Query(value="SELECT THUMBNAIL FROM BOOKS WHERE ITID=:itid",nativeQuery = true)
+    String getThumbnailByItid(@Param("itid")String itid);
+
     // @Modifying
     // @Query(value = "DELETE FROM BOOKS WHERE ITID=:itid", nativeQuery = true)
     // Integer deleteSingleBookByBid(@Param("itid") Integer itid);
