@@ -29,7 +29,7 @@
             <main>
                 <div class="breadCrumbs">
                     <p>
-                        <a href="#">Home</a>
+                        <a href="/admin">Home</a>
                         <i class="fa-solid fa-angle-right"></i>
                         <span>Dashboard</span>
                         <i class="fa-solid fa-angle-right"></i>
