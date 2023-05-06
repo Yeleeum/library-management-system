@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.lms.librarymanagementsystem.Handlers.DateHandler;
 import com.lms.librarymanagementsystem.Handlers.FileHandler;
 import com.lms.librarymanagementsystem.models.Theses;
 import com.lms.librarymanagementsystem.repositories.ThesesRepository;
@@ -22,10 +23,11 @@ public class ThesesServices {
     public Theses insertOneTheses(Theses theses, MultipartFile file) {
         if (file!=null && !file.isEmpty()) {
             String currentDirectory = System.getProperty("user.dir");
-            String path = currentDirectory + "\\src\\main\\webapp\\uploads\\thumbnails";
+            String filename=DateHandler.getDateTimePattern()+file.getOriginalFilename();
+            String path = currentDirectory + "\\src\\main\\webapp\\uploads\\thumbnails\\"+filename;
             System.out.println(path);
             FileHandler.saveFile(file, path);
-            theses.setThumbnail(file.getOriginalFilename());
+            theses.setThumbnail(filename);
         }
         return thesesRepository.save(theses);
     }

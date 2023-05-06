@@ -1,6 +1,7 @@
 package com.lms.librarymanagementsystem.Handlers;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class DateHandler {
@@ -27,4 +28,11 @@ public class DateHandler {
         // Return the new date string
         return oneYearLaterStr;
       }
+
+      public static String getDateTimePattern() {
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss_SSS");
+        String formattedDateTime = now.format(formatter);
+        return formattedDateTime+"_";
+    }
 }

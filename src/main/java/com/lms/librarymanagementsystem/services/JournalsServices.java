@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.lms.librarymanagementsystem.Handlers.DateHandler;
 import com.lms.librarymanagementsystem.Handlers.FileHandler;
 import com.lms.librarymanagementsystem.models.Journals;
 import com.lms.librarymanagementsystem.repositories.JournalsRepository;
@@ -22,9 +23,10 @@ public class JournalsServices {
     public Journals insertOneJournal(Journals journal, MultipartFile file) {
         if (file!=null && !file.isEmpty()) {
             String currentDirectory = System.getProperty("user.dir");
-            String path = currentDirectory + "\\src\\main\\webapp\\uploads\\thumbnails";
+            String filename=DateHandler.getDateTimePattern()+file.getOriginalFilename();
+            String path = currentDirectory + "\\src\\main\\webapp\\uploads\\thumbnails\\"+filename;
             FileHandler.saveFile(file, path);
-            journal.setThumbnail(file.getOriginalFilename());
+            journal.setThumbnail(filename);
         }
         return journalsRepository.save(journal);
     }

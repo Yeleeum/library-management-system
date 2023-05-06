@@ -13,7 +13,7 @@ public class FileHandler {
 			byte[] fileArray=new byte[is.available()];
 			is.read(fileArray);
 			
-			FileOutputStream fos=new FileOutputStream(path+"\\"+file.getOriginalFilename());
+			FileOutputStream fos=new FileOutputStream(path);
 			fos.write(fileArray);
 			fos.close();
 			

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.lms.librarymanagementsystem.Handlers.DateHandler;
 import com.lms.librarymanagementsystem.Handlers.EncryptionHandlers;
 import com.lms.librarymanagementsystem.Handlers.FileHandler;
 import com.lms.librarymanagementsystem.models.Registration;
@@ -27,10 +28,11 @@ public class RegistrationServices {
 
     public Registration insertOneRegistration(Registration registration, MultipartFile file) {
         String currentDirectory = System.getProperty("user.dir");
-        String path = currentDirectory + "\\src\\main\\webapp\\uploads\\profilePictures";
+        String filename=DateHandler.getDateTimePattern()+file.getOriginalFilename();
+        String path = currentDirectory + "\\src\\main\\webapp\\uploads\\profilePictures\\"+filename;
         if (file!=null && !file.isEmpty()) {
             FileHandler.saveFile(file, path);
-            registration.setProfilePicture(file.getOriginalFilename());
+            registration.setProfilePicture(filename);
         }
         if (registration.getDob().equals("")) {
             registration.setDob(null);

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.lms.librarymanagementsystem.Handlers.DateHandler;
 import com.lms.librarymanagementsystem.Handlers.FileHandler;
 import com.lms.librarymanagementsystem.models.SoftCopy;
 import com.lms.librarymanagementsystem.repositories.SoftCopyRepository;
@@ -21,16 +22,18 @@ public class SoftCopyServices {
 
     public SoftCopy insertOneSoftCopy(SoftCopy softCopy, MultipartFile file, MultipartFile thumbnail) {
         String currentDirectory = System.getProperty("user.dir");
-        String path = currentDirectory + "\\src\\main\\webapp\\uploads\\SoftCopy";
+        String filename=DateHandler.getDateTimePattern()+file.getOriginalFilename();
+        String path = currentDirectory + "\\src\\main\\webapp\\uploads\\SoftCopy\\"+filename;
         System.out.println(path);
         if (file!=null && !file.isEmpty()) {
             FileHandler.saveFile(file, path);
-            softCopy.setFilename(file.getOriginalFilename());
+            softCopy.setFilename(filename);
         }
         if (thumbnail!=null && !thumbnail.isEmpty()) {
-            path = currentDirectory + "\\src\\main\\webapp\\uploads\\thumbnails";
+            String thumnailfilename=DateHandler.getDateTimePattern()+thumbnail.getOriginalFilename();
+            path = currentDirectory + "\\src\\main\\webapp\\uploads\\thumbnails\\"+thumnailfilename;
             FileHandler.saveFile(thumbnail, path);
-            softCopy.setThumbnail(thumbnail.getOriginalFilename());
+            softCopy.setThumbnail(thumnailfilename);
         }
         return softCopyRepository.save(softCopy);
     }
