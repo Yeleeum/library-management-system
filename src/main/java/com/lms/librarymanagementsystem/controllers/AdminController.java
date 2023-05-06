@@ -3,6 +3,7 @@ package com.lms.librarymanagementsystem.controllers;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -566,6 +567,12 @@ public class AdminController {
             return new ResponseEntity<String>(title, HttpStatus.OK);
         }
         return new ResponseEntity<String>("false", HttpStatus.NOT_FOUND);
+    }
+
+    @GetMapping("/getlatestitid")
+    public ResponseEntity<String> findLatestItid(){
+        System.out.println(connectorServices.getLatestItid());
+       return new ResponseEntity<String>(connectorServices.getLatestItid(),HttpStatus.FOUND);
     }
 
 }

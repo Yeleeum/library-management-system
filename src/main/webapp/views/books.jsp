@@ -12,6 +12,7 @@
 	<link rel="stylesheet" href="/css/forms/books.css">
 	<link rel="stylesheet" href="/css/admin.css">
 	
+	
 </head>
 <%
         List<Registration> registrations=(List<Registration>)request.getAttribute("registrations");
@@ -178,4 +179,6 @@
 </body>
 <script src="/js/imagehandler.js"></script>
 <script src="/js/adminPanel.js"></script>
+<link rel="stylesheet" href="/css/itidFetch.css">
+<script src="/js/itidFetch.js"></script>
 </html>

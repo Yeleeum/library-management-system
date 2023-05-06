@@ -170,4 +170,6 @@
 </body>
 <script src="/js/imagehandler.js"></script>
 <script src="/js/adminPanel.js"></script>
+<link rel="stylesheet" href="/css/itidFetch.css">
+<script src="/js/itidFetch.js"></script>
 </html>

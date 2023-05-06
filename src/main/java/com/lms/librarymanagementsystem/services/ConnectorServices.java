@@ -30,4 +30,8 @@ public class ConnectorServices {
     public Integer deleteSingleItemByItid(String itid){
         return connectorRepository.deleteSingleItemByItid(itid);
     }
+
+    public String getLatestItid(){
+        return connectorRepository.getLatestItid();
+    }
 }

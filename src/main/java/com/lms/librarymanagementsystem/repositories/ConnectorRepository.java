@@ -17,4 +17,7 @@ public interface ConnectorRepository extends JpaRepository<Connector,String>{
     @Modifying
     @Query(value = "DELETE FROM CONNECTOR WHERE ITID=:itid", nativeQuery = true)
     Integer deleteSingleItemByItid(@Param("itid") String itid);
+
+    @Query(value="SELECT ITID FROM Connector ORDER BY ITID DESC LIMIT 1",nativeQuery = true)
+    String getLatestItid();
 }
