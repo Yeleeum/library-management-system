@@ -154,6 +154,17 @@
                     </div>
                 </div>
 
+                <!-- chart for UX -->
+                <div class="chartContainer">
+                    <div class="chart1">
+                        <canvas id="myChart1"></canvas>
+                    </div>
+                    <div class="chart2">
+                        <canvas id="myChart2"></canvas>
+                    </div>
+                </div>
+                <!-- chart for UX ends -->
+
                 <div class="registrations">
                     <div class="registrations-inner-wrapper">
                         <h1>New Registrations</h1>
@@ -202,6 +213,16 @@
         </div>
     </div>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    let pendingRegistrations = parseInt('<%= noOfRegistrations %>');
+    let pendingBorrows = parseInt('<%= noOfPendingBorrow %>');
+    let pendingReturns = parseInt('<%= noOfPendingReturn %>');
+    let pendingRenewals = parseInt('<%= noOfPendingRenewals %>');
+    let pendingFines = parseInt('<%= noOfPendingFines %>');
+    let pendingDonatedItems = parseInt('<%= pendingDonations %>');
+    let total = (pendingRegistrations + pendingBorrows + pendingDonatedItems + pendingRenewals + pendingReturns + pendingDonatedItems)
+    console.log(total)
+</script>
 <script src="/js/adminPanel.js"></script>
-
 </html>

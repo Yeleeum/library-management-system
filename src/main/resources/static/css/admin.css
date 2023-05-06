@@ -522,3 +522,27 @@ main {
 }
 
 /* Add another admin modal ends */
+
+/* chart.js */
+.chartContainer {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.chart2 {
+    width: 500px !important;
+    height: 300px !important;
+    display: flex;
+    justify-content: center;
+}
+
+.chart1 {
+    display: flex;
+    justify-content: center;
+    width: 500px !important;
+    height: 100% !important;
+}
+
+/* chart.js ends */

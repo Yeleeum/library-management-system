@@ -54,3 +54,65 @@ function togglePassword(icon) {
 }
 /* Add another Admin modal end */
 
+/* chart.js functionality */
+console.log("total", total)
+var data1 = {
+    labels: ['Registrations', 'Borrows', 'Returns', 'Renewals', 'Fines', 'Donations'],
+    datasets: [{
+        data: [(pendingRegistrations / total) * 100, (pendingBorrows / total) * 100, (pendingReturns / total) * 100, (pendingRenewals / total) * 100, (pendingFines / total) * 100, (pendingDonatedItems / total) * 100],
+        backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#282a36', '#c29df6', '#8d6e63'],
+        hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#282a36', '#c29df6', '#8d6e63']
+    }]
+};
+
+// create the doughnut chart
+var ctx = document.getElementById('myChart2').getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'doughnut',
+    data: data1
+});
+
+
+// bar Graph
+var data2 = {
+    labels: ['Registrations', 'Borrows', 'Returns', 'Renewals', 'Fines', 'Donations'],
+    datasets: [{
+        data: [(pendingRegistrations / total) * 100, (pendingBorrows / total) * 100, (pendingReturns / total) * 100, (pendingRenewals / total) * 100, (pendingFines / total) * 100, (pendingDonatedItems / total) * 100],
+        backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#282a36', '#c29df6', '#8d6e63'],
+        hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#282a36', '#c29df6', '#8d6e63']
+    }]
+};
+
+// Create the bar graph
+var ctx2 = document.getElementById('myChart1').getContext('2d');
+var myChart = new Chart(ctx2, {
+    type: 'bar',
+    data: data2,
+    options: {
+        plugins: {
+            legend: {
+                display: false
+            }
+        },
+        scales: {
+            x: {
+                display: true,
+                title: {
+                    display: true,
+                    text: 'Pending'
+                },
+            },
+            y: {
+                display: true,
+                title: {
+                    display: true,
+                    text: 'Percentage'
+                },
+                beginAtZero: true
+            }
+        }
+    }
+});
+
+
+/* chart.js functionality ends */

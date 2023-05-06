@@ -193,6 +193,7 @@
 
         function clickToRemove() {
             modal.classList.add('hide');
+            window.location.reload();
         }
 
         setTimeout(()=>{
