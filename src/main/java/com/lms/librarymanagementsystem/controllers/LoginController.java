@@ -119,4 +119,10 @@ public class LoginController {
         SessionHandler.deleteSession(req);
         return new ResponseEntity<String>("deleted", HttpStatus.OK);
     }
+
+    @GetMapping("/updateuserpassword")
+    public ResponseEntity<String> updateUserPassword(String username,String password) {
+        usersServices.updateUserPasswordByusername(username, password);
+        return new ResponseEntity<String>("true", HttpStatus.OK);
+    }
 }

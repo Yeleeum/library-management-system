@@ -36,5 +36,9 @@ public interface UsersRepository extends JpaRepository<Users,String>{
 
     @Query(value="SELECT EMAIL FROM USERS WHERE USERNAME=:username",nativeQuery =true)
     String getMailByUsername(@Param("username")String username);
+
+    @Modifying
+    @Query(value = "UPDATE USERS SET PASSWORD=:password WHERE USERNAME=:username", nativeQuery = true)
+    public Integer changePasswordByUsername(@Param("username")String username, @Param("password")String password);
     
 }

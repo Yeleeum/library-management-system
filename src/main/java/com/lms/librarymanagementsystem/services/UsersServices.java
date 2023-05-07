@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.lms.librarymanagementsystem.Handlers.DateHandler;
+import com.lms.librarymanagementsystem.Handlers.EncryptionHandlers;
 import com.lms.librarymanagementsystem.models.Users;
 import com.lms.librarymanagementsystem.repositories.UsersRepository;
 
@@ -86,6 +87,10 @@ public class UsersServices {
                  "Library Authorities\n" ;
         emailServices.sendMail(user.getEmail(), subject, message);
 
+    }
+
+    public Integer updateUserPasswordByusername(String username,String password){
+        return usersRepository.changePasswordByUsername(username, EncryptionHandlers.encodePassword(password));
     }
 
 }
