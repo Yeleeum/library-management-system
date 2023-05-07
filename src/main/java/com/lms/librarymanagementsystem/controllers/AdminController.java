@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.lms.librarymanagementsystem.Handlers.FileHandler;
 import com.lms.librarymanagementsystem.Handlers.SessionHandler;
 import com.lms.librarymanagementsystem.models.Admin;
 import com.lms.librarymanagementsystem.models.Alternative;
@@ -440,12 +441,33 @@ public class AdminController {
 
     @GetMapping("/delete/item/{itid}")
     public String deleteSingleBookById(@PathVariable String itid) {
+        String currentDirectory = System.getProperty("user.dir");
+        Connector connector = connectorServices.getConnectorByItid(itid);
+        if (connector.getType().equals("book")) {
+            Books book = booksServices.findOneBookByItid(itid);
+            FileHandler.deleteFile(currentDirectory + "\\src\\main\\webapp\\uploads\\thumbnails\\" + book.getThumbnail());
+        } else if (connector.getType().equals("journal")) {
+            Journals journal = journalsServices.findOneJournalByItid(itid);
+            FileHandler.deleteFile(currentDirectory + "\\src\\main\\webapp\\uploads\\thumbnails\\" + journal.getThumbnail());
+
+        } else if (connector.getType().equals("magazine")) {
+            Magazines magazine = magazinesServices.findOneMagazineByItid(itid);
+            FileHandler.deleteFile(currentDirectory + "\\src\\main\\webapp\\uploads\\thumbnails\\" + magazine.getThumbnail());
+
+        } else {
+            Theses theses = thesesServices.findOneThesesByItid(itid);
+            FileHandler.deleteFile(currentDirectory + "\\src\\main\\webapp\\uploads\\thumbnails\\" + theses.getThumbnail());
+        }
         connectorServices.deleteSingleItemByItid(itid);
         return "redirect:/search/searchitem?searchParam=";
     }
 
     @GetMapping("/delete/softcopy/{sid}")
     public String deleteSingleSoftCopyBySId(@PathVariable String sid) {
+        String currentDirectory = System.getProperty("user.dir");
+        SoftCopy softCopy=softCopyServices.findSingleSoftCopyById(sid);
+        FileHandler.deleteFile(currentDirectory + "\\src\\main\\webapp\\uploads\\thumbnails\\" + softCopy.getThumbnail());
+        FileHandler.deleteFile(currentDirectory + "\\src\\main\\webapp\\uploads\\SoftCopy\\" + softCopy.getFilename());
         softCopyServices.deleteSoftcopyBySid(sid);
         return "redirect:/search/searchitem?searchParam=";
     }
