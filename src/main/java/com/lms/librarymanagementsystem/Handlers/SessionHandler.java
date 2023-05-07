@@ -32,6 +32,22 @@ public class SessionHandler {
         session.setAttribute("access", access);
     }
 
+    public  static void setOtpSession(HttpServletRequest req,String OTP,Integer timeout){
+        HttpSession session=req.getSession();
+        session.setAttribute("otp", OTP);
+        session.setMaxInactiveInterval(timeout);
+    }
+
+    public  static String getOtpSession(HttpServletRequest req){
+        HttpSession session=req.getSession(false);
+        if(session!=null){
+            String otp= (String)session.getAttribute("otp");
+            session.invalidate();
+            return otp;
+        }
+        return null;
+    }
+
     public static void deleteSession(HttpServletRequest req){
         HttpSession session=req.getSession(false);
         session.invalidate();
