@@ -1,3 +1,5 @@
+document.getElementById("saveBtn").disabled = true;
+var username;
 function openModal() {
     document.getElementById("modal").style.display = "block";
 }
@@ -8,7 +10,7 @@ function closeModal() {
 }
 
 function sendOTP() {
-    var username = document.getElementById("your-username").value;
+    username = document.getElementById("your-username").value;
     let formData = new FormData();
     formData.append("username", username);
     fetch("http://localhost:8080/login/getotp", {
@@ -23,6 +25,7 @@ function sendOTP() {
                     document.getElementById("wrong-user").classList.add('d-none');
                 }, 5000);
             } else {
+                document.getElementById('otpArea').innerText = `OTP Sent to ${result}`;
                 startTimer();
                 // Send an AJAX request to the server to send OTP to the user's email
                 // Handle the response accordingly (e.g., show Step 2 if OTP is sent successfully)
@@ -49,6 +52,7 @@ function verifyOTP() {
         .then(response => response.json())
         .then(result => {
             if (!result) {
+                document.getElementById("otpArea").style.display = "block";
                 document.getElementById("otpArea").innerText = "Invalid OTP";
                 document.getElementById("otpArea").style.color = "rgb(255, 63, 63)";
                 otp.value = "";
@@ -66,16 +70,41 @@ function verifyOTP() {
             console.error('Error:', error);
         });
 }
-
 function changePassword() {
     var newPassword = document.getElementById("newPassword").value;
     var confirmPassword = document.getElementById("confirmPassword").value;
     // Validate the passwords (complexity, matching, etc.)
     // If the passwords pass validation, send an AJAX request to the server to update the password
     // Handle the response accordingly (e.g., show a success message)
-    
-    closeModal();
+    if (newPassword === confirmPassword) {
+        console.log("hello")
+        let formData = new FormData();
+        formData.append("username", username);
+        formData.append("password", newPassword);
+        fetch("http://localhost:8080/login/updateuserpassword", {
+            method: 'POST',
+            body: formData
+        })
+            .then(response => response.text())
+            .then(result => {
+                if (result) {
+                    document.getElementById("saveBtn").disabled = false;
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+
+    } else {
+        document.getElementById("saveBtn").disabled = true;
+    }
 }
+
+document.getElementById("saveBtn").addEventListener("click", () => {
+    alert('Your Password is updated!');
+    closeModal();
+})
+
 var countdown;
 var timeRemaining = 60;
 

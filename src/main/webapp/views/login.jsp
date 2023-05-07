@@ -22,16 +22,16 @@
             </div>
             <div id="step2" class="step" style="display: none;">
                 <h2>Step 2: Verify OTP</h2><br>
-                <p class="otpSent" id="otpArea">OTP Sent to ayush@gmail.com</p><br>
+                <p class="otpSent" id="otpArea"></p><br>
                 <input type="text" id="otp" placeholder="Enter OTP">
                 <p class="timer">OTP Expire in: <span id="timer">60s</span></p>
                 <button onclick="verifyOTP()" id="submitOTP">Submit</button>
             </div>
             <div id="step3" class="step" style="display: none;">
                 <h2>Step 3: Set New Password</h2>
-                <input type="password" id="newPassword" placeholder="New Password">
-                <input type="password" id="confirmPassword" placeholder="Confirm Password">
-                <button onclick="changePassword()">Save</button>
+                <input type="password" onchange="changePassword()" id="newPassword" placeholder="New Password">
+                <input type="password" onchange="changePassword()" id="confirmPassword" placeholder="Confirm Password">
+                <button id="saveBtn">Save</button>
                 <button onclick="closeModal()">Cancel</button>
             </div>
         </div>

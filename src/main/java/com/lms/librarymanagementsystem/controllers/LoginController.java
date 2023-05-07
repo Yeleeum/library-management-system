@@ -120,8 +120,9 @@ public class LoginController {
         return new ResponseEntity<String>("deleted", HttpStatus.OK);
     }
 
-    @GetMapping("/updateuserpassword")
+    @PostMapping("/updateuserpassword")
     public ResponseEntity<String> updateUserPassword(String username,String password) {
+        System.out.println(username + "  " + password);
         usersServices.updateUserPasswordByusername(username, password);
         return new ResponseEntity<String>("true", HttpStatus.OK);
     }
