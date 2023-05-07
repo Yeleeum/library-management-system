@@ -600,6 +600,12 @@ public class AdminController {
         return new ResponseEntity<String>(connectorServices.getLatestItid(), HttpStatus.FOUND);
     }
 
+    @GetMapping("/getlatestsid")
+    public ResponseEntity<String> findLatestSID() {
+        System.out.println(softCopyServices.getLatestSID());
+        return new ResponseEntity<String>(softCopyServices.getLatestSID(), HttpStatus.FOUND);
+    }
+
     @PostMapping("/add-admin")
     public String addAnotherAdmin(String username) {
         adminServices.insertOneAdmin(new Admin(username, "admin"));

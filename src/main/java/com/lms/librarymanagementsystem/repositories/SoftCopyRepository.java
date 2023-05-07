@@ -50,5 +50,8 @@ public interface SoftCopyRepository extends JpaRepository<SoftCopy,Integer>{
     @Query(value="DELETE FROM SOFTCOPY WHERE SID=:sid",nativeQuery = true)
     Integer deleteSoftcopyBySid(@Param("sid")String sid);
 
+    @Query(value="SELECT SID FROM SOFTCOPY ORDER BY SID DESC LIMIT 1",nativeQuery = true)
+    String getLatestSID();
+
     
 }

@@ -55,7 +55,7 @@ function togglePassword(icon) {
 /* Add another Admin modal end */
 
 /* chart.js functionality */
-console.log("total", total)
+// console.log("total", total)
 var data1 = {
     labels: ['Registrations', 'Borrows', 'Returns', 'Renewals', 'Fines', 'Donations'],
     datasets: [{

@@ -83,4 +83,8 @@ public class SoftCopyServices {
     public Integer deleteSoftcopyBySid(String sid){
         return softCopyRepository.deleteSoftcopyBySid(sid);
     }
+
+    public String getLatestSID(){
+        return softCopyRepository.getLatestSID();
+    }
 }

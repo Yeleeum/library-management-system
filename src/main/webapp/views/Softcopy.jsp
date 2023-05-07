@@ -68,8 +68,8 @@
 				name="file">
 		</div>
 		<div class="right-container">
-			<label for="title">SID:</label>
-			<input type="text" id="title" value='<%= (softcopy == null) ? "" : softcopy.getSid() %>' name="sid">
+			<label for="sid">SID:</label>
+			<input type="text" id="sid" value='<%= (softcopy == null) ? "" : softcopy.getSid() %>' name="sid">
 
 			<label for="title">Title:</label>
 			<input type="text" id="title" value='<%= (softcopy == null) ? "" : softcopy.getTitle() %>' name="title">
@@ -138,8 +138,8 @@
 				<% if(activity.equals("donation")) { %>
 					<input type="number" hidden id="bid" name="sdnid" value='<%= softCopyDonation.getSdnid() %>'>
 				<% } %>
-				<label for="title">SID:</label>
-				<input type="text" id="title" value='' name="sid">
+				<label for="sid">SID:</label>
+				<input type="text" id="sid" value='' name="sid">
 	
 				<label for="title">Title:</label>
 				<input type="text" id="title" value='<%=softCopyDonation.getTitle() %>' name="title">
@@ -172,7 +172,10 @@
 	</section>
 <%}%>
 </body>
+<link rel="stylesheet" href="/css/sidFetch.css">
+<script src="/js/sidFetch.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
 <script src="/js/adminPanel.js"></script>
 <script src="/js/imagehandler.js"></script>
+
 </html>

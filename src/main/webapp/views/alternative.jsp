@@ -102,26 +102,26 @@
 	sidInputs = document.querySelectorAll(".sid");
 	softcopyTitles = document.querySelectorAll(".softcopytitle");
 	sidInputs.forEach((input, index) => {
-	input.addEventListener("input", () => {
-		const formData = new FormData();
-		formData.append("sid", input.value);
+		input.addEventListener("input", () => {
+			const formData = new FormData();
+			formData.append("sid", input.value);
 
-		fetch("http://localhost:8080/admin/checksid", {
-		method: "POST",
-		body: formData
-		})
-		.then(response => response.text())
-		.then(data => {
-		if (data === "false") {
-			softcopyTitles[index].textContent = "No data found";
-			softcopyTitles[index].style.color = "red";
-		} else {
-			softcopyTitles[index].textContent = data;
-			softcopyTitles[index].style.color = "black";
-		}
-		})
-		.catch(error => console.error(error));
-	});
+			fetch("http://localhost:8080/admin/checksid", {
+			method: "POST",
+			body: formData
+			})
+			.then(response => response.text())
+			.then(data => {
+			if (data === "false") {
+				softcopyTitles[index].textContent = "No data found";
+				softcopyTitles[index].style.color = "red";
+			} else {
+				softcopyTitles[index].textContent = data;
+				softcopyTitles[index].style.color = "black";
+			}
+			})
+			.catch(error => console.error(error));
+		});
 	});
 	}
 
