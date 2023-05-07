@@ -94,9 +94,9 @@ public class LoginController {
         Users user = usersServices.findUserByUsername(username);
         if (user != null) {
             String OTP = OtpHandler.generateOTP(4);
-            String message = "<h1>The OTP to Generate New Password is : " + OTP
-                    + "</h1><br><h1 style=\"color:red\">Do Not Share It With Anyone.</h1>";
-            emailServices.sendMail(user.getEmail(), "OTP to Generate new password", message);
+            String message = "The OTP to Generate New Password is : " + OTP
+                    + "\nThis OTP is valid for 60 seconds only.\nDo Not Share It With Anyone.";
+            emailServices.sendMail(user.getEmail(), "OTP For Changing User Password", message);
             SessionHandler.setOtpSession(req, OTP, 60);
             return new ResponseEntity<String>(user.getEmail(), HttpStatus.OK);
         }
@@ -106,7 +106,9 @@ public class LoginController {
     @PostMapping("/checkotp")
     public ResponseEntity<String> checkOtp(String OTP, HttpServletRequest req) {
         String sessionOTP = SessionHandler.getOtpSession(req);
+        System.out.println(OTP + "  " + sessionOTP);
         if (OTP.equals(sessionOTP)) {
+            SessionHandler.deleteSession(req);
             return new ResponseEntity<String>("true", HttpStatus.FOUND);
         }
         return new ResponseEntity<String>("false", HttpStatus.NOT_FOUND);

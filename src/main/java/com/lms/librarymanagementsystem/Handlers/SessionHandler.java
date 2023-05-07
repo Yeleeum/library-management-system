@@ -42,7 +42,6 @@ public class SessionHandler {
         HttpSession session=req.getSession(false);
         if(session!=null){
             String otp= (String)session.getAttribute("otp");
-            session.invalidate();
             return otp;
         }
         return null;

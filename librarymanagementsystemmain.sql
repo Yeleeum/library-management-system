@@ -3,13 +3,13 @@ CREATE DATABASE librarymanagementsystem;
 use librarymanagementsystem;
 
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 07, 2023 at 09:28 AM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- Generation Time: May 07, 2023 at 01:13 PM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 8.1.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -60,9 +60,7 @@ CREATE TABLE `alternative` (
 --
 
 INSERT INTO `alternative` (`AID`, `ITID`, `SID`) VALUES
-(1, 'I01', 'S01'),
 (2, 'I01', 'S02'),
-(3, 'I12', 'S04'),
 (4, 'I12', 's05'),
 (5, 'I13', 'S05'),
 (6, 'I13', 'S06');
@@ -172,7 +170,6 @@ INSERT INTO `connector` (`itid`, `type`) VALUES
 ('I15', 'theses'),
 ('I16', 'theses'),
 ('I17', 'journal'),
-('I18', 'journal'),
 ('I19', 'journal');
 
 -- --------------------------------------------------------
@@ -253,7 +250,6 @@ CREATE TABLE `journals` (
 
 INSERT INTO `journals` (`jid`, `itid`, `title`, `publisher`, `editor`, `description`, `thumbnail`, `category`, `keywords`, `startyear`, `endyear`, `pageno`, `stock`) VALUES
 (1, 'I17', 'Nature', 'Springer Nature', 'Magdalena Skipper', ' Nature is a multidisciplinary scientific journal that publishes original research articles, reviews, and news articles on a wide range of topics in the natural sciences, including biology, chemistry, physics, earth sciences, and astronomy. The journal also publishes commentary and opinion pieces on scientific policy and research funding.', '20230507_125301_812_J1.jpg', 'Natural Sciences', 'Science, research, biology, chemistry, physics, earth sciences, astronomy, scientific policy, research funding', 1869, 0, 120, 2),
-(2, 'I18', 'Journal of the American Medical Association (JAMA)', 'American Medical Association', 'Howard Bauchner', 'The Journal of the American Medical Association (JAMA) is a peer-reviewed medical journal that publishes original research articles, reviews, editorials, and clinical practice guidelines on a wide range of medical topics, including clinical medicine, public health, and biomedical research. The journal also features opinion pieces, essays, and commentaries on contemporary issues in medicine.', '20230507_125316_384_J2.jpg', 'Medicine and Healthcare', 'Medical research, clinical medicine, public health, biomedical research, clinical practice guidelines, contemporary issues in medicine', 1883, 0, 100, 10),
 (3, 'I19', 'Science', 'American Association for the Advancement of Science (AAAS)', 'Holden Thorp', 'Science is a weekly peer-reviewed scientific journal that publishes original research articles, reviews, and news articles on all areas of science, including life sciences, physical sciences, social sciences, and computer science. The journal also features commentary and analysis on scientific policy and research funding, as well as book reviews and opinion pieces.', '20230507_125330_662_J3.jpg', 'Natural Sciences', 'Scientific research, life sciences, physical sciences, social sciences, computer science, scientific policy, research funding, book reviews, opinion pieces', 1880, 0, 180, 43);
 
 -- --------------------------------------------------------
@@ -383,10 +379,8 @@ CREATE TABLE `softcopy` (
 --
 
 INSERT INTO `softcopy` (`sid`, `title`, `owner`, `publisher`, `description`, `thumbnail`, `category`, `keywords`, `pageno`, `filename`) VALUES
-('S01', 'Chokher Bali', 'Rabindranath Tagore', 'Biswa Bharati Prakashani', '\"Chokher Bali\" is a novel by the famous Bengali author Rabindranath Tagore. The story revolves around four main characters - Binodini, Mahendra, Asha, and Bihari - and their complex relationships with one another. Binodini, a young widow, comes to live with Mahendra and his mother after her husband', '20230507_124636_257_S1.png', 'Drama', 'Chokher Bali, Rabindranath Tagore, Bengali literature, novel, love triangle, widow, societal expectations, jealousy, betrayal, desire, Indian culture, Kolkata, relationships, Indian women, gender roles, infidelity, family dynamics, tradition, modernity, social norms, moral conflicts.', 202, '20230507_124636_250_S1.pdf'),
 ('S02', 'Feluda Samagra', 'Satyajit Ray', 'Ananda Publishers', '\"Feluda Samagra\" is a collection of detective stories featuring the fictional character Feluda, a private investigator from Kolkata, India. The stories were written by the renowned Bengali filmmaker and author Satyajit Ray, who created Feluda in 1965. Feluda, whose real name is Pradosh C. Mitter, is accompanied by his cousin Topshe and his friend Lalmohan Ganguly, also known as Jatayu, as they solve various mysteries and crimes.  The stories in \"Feluda Samagra\" are set in different locations across India and sometimes abroad. The collection includes 35 stories and two novels, each showcasing Feluda', '20230507_124701_634_S2.jpg', 'Detective', 'Feluda, Pradosh C. Mitter, Satyajit Ray, private investigator, detective, mystery, crime, Kolkata, India, Jatayu, Topshe, deductive reasoning, espionage, theft, murder, Indian culture, Indian history, Bengali literature, classic, beloved, entertainment.', 710, '20230507_124701_537_S2.pdf'),
 ('S03', 'Atomic Habits (Bengali)', 'James Clear', 'New York Times', '\"Atomic Habits\" is a self-help book that provides a practical guide to improving one', '20230507_124724_937_S3.png', 'Self-Help', 'Atomic Habits, James Clear, self-help, personal growth, professional growth, habits, behavior, incremental change, core values, positive habits, obstacle, procrastination, distraction, process, celebration, real-world examples, practical exercises, evidence-based approach.', 176, '20230507_124724_909_S3.pdf'),
-('S04', 'A Christmas Carol', 'Charles Dickens', 'Chapman & Hall', '\"A Christmas Carol\" is a novella by Charles Dickens that tells the story of a bitter old miser named Ebenezer Scrooge, who is visited by the ghosts of Christmas past, present, and future. The story takes place on Christmas Eve in mid-19th century London, England.  The first part of the story establishes Scrooge', '20230507_124751_990_S4.jpg', 'Fiction', 'A Christmas Carol, Charles Dickens, novella, Christmas, London, Ebenezer Scrooge, ghosts, redemption, compassion, kindness, generosity, community, social commentary, poverty, wealth inequality, holiday classic.', 65, '20230507_124751_977_S4.pdf'),
 ('S05', 'Complete Reference Of Java', 'Herbert Schildt', 'Mc Graw Hill', '\"The Complete Reference Of Java\" is a comprehensive guide to the Java programming language written by Herbert Schildt. The book covers all the essential concepts of Java programming, from the basics of the language syntax to advanced topics such as multithreading, network programming, and GUI development.  The book is organized into three parts. Part I provides an introduction to Java programming, including an overview of the language', '20230507_124845_573_S5.jpg', 'Programming', 'Java programming language, Herbert Schildt, syntax, multithreading, network programming, GUI development, data types, operators, control statements, arrays, classes, objects, inheritance, interfaces, packages, exception handling, Collections framework, I/O streams, JavaBeans, component architecture, review questions, exercises.', 32, '20230507_124845_569_S5.pdf'),
 ('S06', 'Programming with RaspBerryPI', 'Simon Monk', 'McGraw Hill', '\"Programming with Raspberry Pi\" is a guidebook that provides an introduction to programming with the Raspberry Pi, a small and affordable computer that is widely used for DIY projects, prototyping, and learning programming. The book covers the basics of programming with Python, which is one of the most popular programming languages used with the Raspberry Pi.  The book is organized into three parts. Part I provides an introduction to the Raspberry Pi, including how to set up the hardware and software. It also covers the basics of programming with Python, including data types, variables, operators, and control statements.  Part II covers more advanced topics in programming with the Raspberry Pi, such as functions, modules, object-oriented programming, and file handling. This section also covers how to interface with the Raspberry Pi', '20230507_124947_678_S6.jpg', 'Hardware', 'Raspberry Pi, programming, Python, hardware, software, data types, variables, operators, control statements, functions, modules, object-oriented programming, file handling, GPIO, home automation, robotics, projects, review questions, exercises.', 219, '20230507_124947_482_S6.pdf');
 
