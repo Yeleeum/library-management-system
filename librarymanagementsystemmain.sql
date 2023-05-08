@@ -7,7 +7,7 @@ use librarymanagementsystem;
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 07, 2023 at 01:13 PM
+-- Generation Time: May 08, 2023 at 10:47 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -63,7 +63,10 @@ INSERT INTO `alternative` (`AID`, `ITID`, `SID`) VALUES
 (2, 'I01', 'S02'),
 (4, 'I12', 's05'),
 (5, 'I13', 'S05'),
-(6, 'I13', 'S06');
+(6, 'I13', 'S06'),
+(7, 'I01', 'S06'),
+(8, 'I02', 'S02'),
+(9, 'I01', 'S06');
 
 -- --------------------------------------------------------
 
@@ -114,7 +117,7 @@ CREATE TABLE `books` (
 --
 
 INSERT INTO `books` (`bid`, `itid`, `title`, `author`, `publisher`, `thumbnail`, `description`, `category`, `keywords`, `edition`, `pageno`, `stock`, `location`) VALUES
-(1, 'I01', 'Programming with Raspberry PI', 'Simon Monk', 'McGraw Hill TAB', '20230507_125020_649_B1.jpg', 'Learn to create inventive programs and fun games on your powerful Raspberry Pi―with no programming experience required. This practical book has been revised to fully cover the new Raspberry Pi 2, including upgrades to the Raspbian operating system. Discover how to configure hardware and software, write Python scripts, create user-friendly GUIs, and control external electronics. DIY projects include a hangman game, RGB LED controller, digital clock, and RasPiRobot complete with an ultrasonic rangefinder.', 'Programming', 'Raspberry Pi, GPIO (General Purpose Input/Output), Linux operating system, Remote access and control', '2', 208, 22, '1-S, 2-R'),
+(1, 'I01', 'Programming with Raspberry PI', 'Simon Monk', 'McGraw Hill TAB', '20230507_125020_649_B1.jpg', 'Learn to create inventive programs and fun games on your powerful Raspberry Pi―with no programming experience required. This practical book has been revised to fully cover the new Raspberry Pi 2, including upgrades to the Raspbian operating system. Discover how to configure hardware and software, write Python scripts, create user-friendly GUIs, and control external electronics. DIY projects include a hangman game, RGB LED controller, digital clock, and RasPiRobot complete with an ultrasonic rangefinder.', 'Programming', 'Raspberry Pi, GPIO (General Purpose Input/Output), Linux operating system, Remote access and control', '2', 208, 21, '1-S, 2-R'),
 (2, 'I02', 'Advanced Python Programming', 'Sakis Kasampalis Quan Nguyen Dr Gabriele Lanaro Dr. Gabriele Lanaro ', 'Ingram short title', '20230507_125051_374_B2.jpg', 'This Learning Path shows you how to leverage the power of both native and third-party Python libraries for building robust and responsive applications. You will learn about profilers and reactive programming, concurrency and parallelism, as well as tools for making your apps quick and efficient. You will discover how to write code for parallel architectures using TensorFlow and Theano, and use a cluster of computers for large-scale computations using technologies such as Dask and PySpark. With the knowledge of how Python design patterns work, you will be able to clone objects, secure interfaces, dynamically choose algorithms, and accomplish much more in high performance computing. By the end of this Learning Path, you will have the skills and confidence to build engaging models that quickly offer efficient solutions to your problems.\r\n\r\nThis Learning Path includes content from the following Packt products:\r\n\r\nPython High Performance - Second Edition by Gabriele Lanaro\r\nMastering Concurrency in Python by Quan Nguyen\r\nMastering Python Design Patterns by Sakis Kasampalis\r\nWhat you will learn\r\nUse NumPy and pandas to import and manipulate datasets\r\nAchieve native performance with Cython and Numba\r\nWrite asynchronous code using asyncio and RxPy\r\nDesign highly scalable programs with application scaffolding\r\nExplore abstract methods to maintain data consistency\r\nClone objects using the prototype pattern\r\nUse the adapter pattern to make incompatible interfaces compatible\r\nEmploy the strategy pattern to dynamically choose an algorithm\r\nWho this book is for\r\nThis Learning Path is specially designed for Python developers who want to build high-performance applications and learn about single core and multi-core programming, distributed concurrency, and Python design patterns. Some experience with Python programming language will help you get the most out of this Learning Path.', 'Programming', 'Python, Advance Python, Programming, Dask, PySpark', '1st', 672, 1, '2-S, 4-R'),
 (3, 'I03', 'Advances in Computer, Information, and Systems Sciences, and Engineering', 'Khaled Elleithy, Tarek Sobh, Ausif Mahmood, Magued Iskander, Mohammad A. Karim', 'Springer', '20230507_125157_772_B3.jpg', 'The conference proceedings of:\r\n\r\nInternational Conference on Industrial Electronics, Technology & Automation (IETA 05)\r\nInternational Conference on Telecommunications and Networking (TeNe 05)\r\nInternational Conference on Engineering Education, Instructional Technology, Assessment, and E-learning (EIAE 05)\r\ninclude a set of rigorously reviewed world-class manuscripts addressing and detailing state-of-the-art research projects in the areas of: Industrial Electronics, Technology and Automation, Telecommunications, Networking, Engineering Education, Instructional Technology and e-Learning.\r\n\r\nThe three conferences, (IETA 05, TENE 05 and EIAE 05) were part of the International Joint Conference on Computer, Information, and System Sciences, and Engineering (CISSE 2005).\r\n\r\nCISSE 2005, the World\'s first Engineering/Computing and Systems Research E-Conference was the first high-caliber Research Conference in the world to be completely conducted online in real-time via the internet.\r\n\r\nCISSE received 255 research paper submissions and the final program included 140 accepted papers, from more than 45 countries. The whole concept and format of CISSE 2005 was very exciting and ground-breaking. The powerpoint presentations, final paper manuscripts and time schedule for live presentations over the web had been available for 3 weeks prior to the start of the conference for all registrants, so they could pick and choose the presentations they want to attend and think about questions that they might want to ask. The live audio presentations were also recorded and are part of the permanent CISSE archive, which includes all power point presentations, papers and recorded presentations.\r\n\r\nAll aspects of the conference were managed on-line; not only the reviewing, submissions and registration processes; but also the actual conference. Conference participants - authors, presenters and attendees - only needed an internet connection and sound available on their computers in order to be able to contribute and participate in this international ground-breaking conference. The on-line structure of this high-quality event allowed academic professionals and industry participants to contribute work and attend world-class technical presentations based on rigorously refereed submissions, live, without the need for investing significant travel funds or time out of the office. Suffice to say that CISSE received submissions from more than 50 countries, for whose researchers, this opportunity presented a much more affordable, dynamic and well-planned event to attend and submit their work to, versus a classic, on-the-ground conference.\r\n\r\nThe CISSE conference audio room provided superb audio even over low speed internet connections, the ability to display PowerPoint presentations, and cross-platform compatibility (the conferencing software runs on Windows, Mac, and any other operating system that supports Java). In addition, the conferencing system allowed for an unlimited number of participants, which in turn granted CISSE the opportunity to allow all participants to attend all presentations, as opposed to limiting the number of available seats for each session.\r\n\r\nThe implemented conferencing technology, starting with the submission & review system and ending with the online conferencing capability, allowed CISSE to conduct a very high quality, fulfilling event for all participants.', 'Engineering', 'High-Performance Computing, Software Engineering, Information Retrieval, Database Systems', '2006', 12078, 10, '1-S, 4-R'),
 (4, 'I04', 'Advances in Business, Management and Entrepreneurship', 'Ratih Hurriyati, Benny Tjahjono, Ade Gafar Abdullah, Sulastri, Lisnawati', ' CRC Press', '20230507_125216_959_B4.jpg', 'The GCBME Book Series aims to promote the quality and methodical reach of the Global Conference on Business Management & Entrepreneurship, which is intended as a high-quality scientific contribution to the science of business management and entrepreneurship. The Contributions are expected to be the main reference articles on the topic of each book and have been subject to a strict peer review process conducted by experts in the fields. The conference provided opportunities for the delegates to exchange new ideas and implementation of experiences, to establish business or research connections and to find Global Partners for future collaboration.\r\n\r\nThe conference and resulting volume in the book series is expected to be held and appear annually. The year 2019 theme of book and conference is \"Transforming Sustainable Business In The Era Of Society 5.0\". The ultimate goal of GCBME is to provide a medium forum for educators, researchers, scholars, managers, graduate students and professional business persons from the diverse cultural backgrounds, to present and discuss their research, knowledge and innovation within the fields of business, management and entrepreneurship. The GCBME conferences cover major thematic groups, yet opens to other relevant topics: Organizational Behavior, Innovation, Marketing Management, Financial Management and Accounting, Strategic Management, Entrepreneurship and Green Business.', 'Business', 'Artificial Intelligence (AI), Natural Language Processing (NLP), Internet of Things (IoT)', '1st', 748, 35, '3-S, 5-R'),
@@ -137,6 +140,13 @@ CREATE TABLE `borrow` (
   `APPROVED` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `borrow`
+--
+
+INSERT INTO `borrow` (`BRID`, `USERNAME`, `ITID`, `BORROWDATE`, `RETURNDATE`, `STATUS`, `APPROVED`) VALUES
+(1, 'user', 'I01', '2023-05-09', '2023-05-24', 'notreturned', 'approved');
+
 -- --------------------------------------------------------
 
 --
@@ -153,7 +163,7 @@ CREATE TABLE `connector` (
 --
 
 INSERT INTO `connector` (`itid`, `type`) VALUES
-('I01', 'magazine'),
+('I01', 'book'),
 ('i02', 'book'),
 ('I03', 'book'),
 ('I04', 'book'),
@@ -490,7 +500,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`USERNAME`, `PASSWORD`, `PROFILEPICTURE`, `FIRSTNAME`, `LASTNAME`, `GENDER`, `DOB`, `PHONE`, `EMAIL`, `CATEGORY`, `MEMBERSHIP`, `MEMBERSHIPEXPIRE`) VALUES
-('user', '$2a$10$WjIn2G0Blds9zEWnaLcLte6J3hIfHjJ0FOft7RZIh6b4aA7StRuVu', '20230507_123027_049_user.jpg', 'John', 'Doe', 'male', '1995-08-16', '6291872399', 'hisumitsingh.co.in@gmail.com', 'student', 'active', '2024-05-07');
+('user', '$2a$10$WjIn2G0Blds9zEWnaLcLte6J3hIfHjJ0FOft7RZIh6b4aA7StRuVu', '20230507_123027_049_user.jpg', 'John', 'Doe', 'male', '1995-08-16', '6291872399', 'sinchannandy54@gmail.com', 'student', 'active', '2024-05-07');
 
 --
 -- Indexes for dumped tables
@@ -630,7 +640,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `alternative`
 --
 ALTER TABLE `alternative`
-  MODIFY `AID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `AID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `bookdonations`
@@ -648,7 +658,7 @@ ALTER TABLE `books`
 -- AUTO_INCREMENT for table `borrow`
 --
 ALTER TABLE `borrow`
-  MODIFY `BRID` int(100) NOT NULL AUTO_INCREMENT;
+  MODIFY `BRID` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `downloads`
@@ -781,3 +791,4 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
