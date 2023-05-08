@@ -33,7 +33,7 @@
                             <div class="imageContent card-container" style="width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; flex-direction: column;">
                                 <img src="/img/404.gif" width="300" height="300" style="border-radius: 50%;" alt="error">
                                 <br>
-                                <h3>No Borrowed Items Found</h3>
+                                <h3>No Downloaded Items Found</h3>
                             </div>
                         <% } else {%>
                             <div class="card-container">

@@ -1,10 +1,6 @@
 package com.lms.librarymanagementsystem.controllers;
 
-import java.util.ArrayList;
 import java.util.*;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -174,8 +170,12 @@ public class UserController {
     @GetMapping("/downloads")
     public String viewDownloads(HttpServletRequest req,Model model){
         List<String> SID=downloadsServices.findSidByUsername(SessionHandler.getUserSession(req));
-        List<SoftCopy> softCopies=new ArrayList<>();
+        Set<String> uniqueSid = new HashSet<String>();
         for (String sid : SID) {
+            uniqueSid.add(sid);
+        }
+        List<SoftCopy> softCopies = new ArrayList<SoftCopy>();
+        for (String sid : uniqueSid) {
             softCopies.add(softCopyServices.findSingleSoftCopyById(sid));
         }
         System.out.println(softCopies);
@@ -186,7 +186,8 @@ public class UserController {
     @GetMapping("/borrowed/current")
     public String viewCurrentlyBorrowedBooks(HttpServletRequest req, Model model){
         List<Borrow> borrows = borrowServices.findNotReturnedRequestedListByUsername(SessionHandler.getUserSession(req));
-        List<Connector> connectors=new ArrayList<>();
+        // List<Connector> connectors=new ArrayList<>();
+        Set<Connector> connectors = new HashSet<Connector>();
         for(Borrow borrow:borrows){
             connectors.add(connectorServices.getConnectorByItid(borrow.getitid()));
         }
