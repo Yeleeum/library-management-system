@@ -125,5 +125,5 @@ public class LoginController {
         System.out.println(username + "  " + password);
         usersServices.updateUserPasswordByusername(username, password);
         return new ResponseEntity<String>("true", HttpStatus.OK);
-    }
+    } 
 }
