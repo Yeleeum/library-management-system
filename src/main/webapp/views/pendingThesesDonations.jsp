@@ -72,6 +72,7 @@
         </form>
     </div>
             </main>
+            <!-- Ayush  and sinchan do some work here -->
 </div>
 <script src="/js/adminPanel.js"></script>
 </body>
