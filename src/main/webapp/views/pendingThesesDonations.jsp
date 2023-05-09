@@ -71,8 +71,7 @@
             </table>
         </form>
     </div>
-            </main>
-            <!-- Ayush  and sinchan do some work here -->
+</main>
 </div>
 <script src="/js/adminPanel.js"></script>
 </body>
