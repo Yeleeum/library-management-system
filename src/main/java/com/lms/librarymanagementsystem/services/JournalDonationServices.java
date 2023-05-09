@@ -38,7 +38,11 @@ public class JournalDonationServices {
         return journalDonationRepository.getSingleJournalDonation(bdnid);
     }
 
-    public Integer updateDonationToApproved(Integer bdnid) {
-        return journalDonationRepository.updateDonationApproval(bdnid);
+    public Integer updateDonationToApproved(Integer jdnid) {
+        return journalDonationRepository.updateDonationApproval(jdnid);
+    }
+
+    public Integer updateDonationToRejection(Integer jdnid) {
+        return journalDonationRepository.updateDonationRejection(jdnid);
     }
 }

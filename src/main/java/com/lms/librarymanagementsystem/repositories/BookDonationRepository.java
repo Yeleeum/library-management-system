@@ -19,4 +19,8 @@ public interface BookDonationRepository extends JpaRepository<BookDonations, Int
     @Modifying
     @Query(value = "UPDATE BOOKDONATIONS SET APPROVED='approved' WHERE BDNID=:PARAM", nativeQuery = true)
     Integer updateDonationApproval(@Param("PARAM")Integer bdnid);
+
+    @Modifying
+    @Query(value = "UPDATE BOOKDONATIONS SET APPROVED='rejected' WHERE BDNID=:PARAM", nativeQuery = true)
+    Integer updateDonationRejection(@Param("PARAM")Integer bdnid);
 }

@@ -41,4 +41,8 @@ public class BooksDonationServices {
     public Integer updateDonationToApproved(Integer bdnid) {
         return bookDonationRepository.updateDonationApproval(bdnid);
     }
+
+    public Integer updateDonationToRejection(Integer bdnid) {
+        return bookDonationRepository.updateDonationRejection(bdnid);
+    }
 }

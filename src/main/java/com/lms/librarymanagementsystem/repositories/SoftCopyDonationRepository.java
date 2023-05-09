@@ -19,4 +19,8 @@ public interface SoftCopyDonationRepository extends JpaRepository<SoftCopyDonati
     @Modifying
     @Query(value = "UPDATE SOFTCOPYDONATIONS SET APPROVED='approved' WHERE SDNID=:PARAM", nativeQuery = true)
     Integer updateDonationApproval(@Param("PARAM")Integer sdnid);
+
+    @Modifying
+    @Query(value = "UPDATE SOFTCOPYDONATIONS SET APPROVED='rejected' WHERE SDNID=:PARAM", nativeQuery = true)
+    Integer updateDonationRejection(@Param("PARAM")Integer sdnid);
 }

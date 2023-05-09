@@ -19,5 +19,9 @@ public interface ThesesDonationRepository extends JpaRepository<ThesesDonations,
     @Modifying
     @Query(value = "UPDATE THESESDONATIONS SET APPROVED='approved' WHERE TDNID=:PARAM", nativeQuery = true)
     Integer updateDonationApproval(@Param("PARAM")Integer tdnid);
+
+    @Modifying
+    @Query(value = "UPDATE THESESDONATIONS SET APPROVED='rejected' WHERE TDNID=:PARAM", nativeQuery = true)
+    Integer updateDonationRejection(@Param("PARAM")Integer tdnid);
 }
 // thesesdonation

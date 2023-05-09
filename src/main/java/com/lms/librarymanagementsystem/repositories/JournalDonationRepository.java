@@ -19,4 +19,8 @@ public interface JournalDonationRepository extends JpaRepository<JournalDonation
     @Modifying
     @Query(value = "UPDATE JOURNALDONATIONS SET APPROVED='approved' WHERE JDNID=:PARAM", nativeQuery = true)
     Integer updateDonationApproval(@Param("PARAM")Integer jdnid);
+
+    @Modifying
+    @Query(value = "UPDATE JOURNALDONATIONS SET APPROVED='rejected' WHERE JDNID=:PARAM", nativeQuery = true)
+    Integer updateDonationRejection(@Param("PARAM")Integer jdnid);
 }

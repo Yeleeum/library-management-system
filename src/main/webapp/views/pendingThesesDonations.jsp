@@ -61,7 +61,7 @@
                     <td><%=thesesDonation.getCategory()%></td>
                     <td><%=thesesDonation.getDonationdate()%></td>
                     <td><button formaction="/admin/addDonatedTheses/<%= thesesDonation.getTdnid() %>" formmethod="get" style="background-color: green; color: white; border-radius: 10px; padding: 8px 10px; border: none; font-weight: bolder;cursor: pointer;">Approve</button></td>
-                    <td><button style="background-color: #e31747; color: white; border-radius: 10px; padding: 8px 10px; border: none; font-weight: bolder;cursor: pointer;">Reject</button></td>
+                    <td><button formaction="/admin/rejectDonatedTheses/<%= thesesDonation.getTdnid() %>" formmethod="get" style="background-color: #e31747; color: white; border-radius: 10px; padding: 8px 10px; border: none; font-weight: bolder;cursor: pointer;">Reject</button></td>
                 </tr>
                 <%}%>
                 <% } else { %>

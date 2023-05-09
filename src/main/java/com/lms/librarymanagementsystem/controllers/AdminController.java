@@ -229,6 +229,42 @@ public class AdminController {
         return "Softcopy";
     }
 
+    
+    @GetMapping("/rejectDonatedBooks/{bdnid}")
+    public String rejectOneBookDonation(@PathVariable Integer bdnid) {
+        System.out.println(bdnid);
+        booksDonationServices.updateDonationToRejection(bdnid);
+        return "redirect:/admin/viewpending/bookdonations";
+    }
+    
+    @GetMapping("/rejectDonatedJournals/{jdnid}")
+    public String rejectOneJournalDonation(@PathVariable Integer jdnid) {
+        System.out.println(jdnid);
+        journalDonationServices.updateDonationToRejection(jdnid);
+        return "redirect:/admin/viewpending/journaldonations";
+    }
+    
+    @GetMapping("/rejectDonatedTheses/{tdnid}")
+    public String rejectOneThesesDonation(@PathVariable Integer tdnid) {
+        System.out.println(tdnid);
+        thesesDonationServices.updateDonationToRejection(tdnid);
+        return "redirect:/admin/viewpending/thesesdonations";
+    }
+    
+    @GetMapping("/rejectDonatedMagazines/{mdnid}")
+    public String rejectOneMagazineDonation(@PathVariable Integer mdnid) {
+        System.out.println(mdnid);
+        magazineDonationServices.updateDonationToRejection(mdnid);
+        return "redirect:/admin/viewpending/magazinedonations";
+    }
+    
+    @GetMapping("/rejectDonatedSoftcopies/{sdnid}")
+    public String rejectOneSoftcopyDonation(@PathVariable Integer sdnid) {
+        System.out.println(sdnid);
+        softCopyDonationServices.updateDonationToRejection(sdnid);
+        return "redirect:/admin/viewpending/softcopydonations";
+    }
+
     @GetMapping("/viewpending/unpaid")
     public String viewUnPaidRegistration(Model model) {
         List<Registration> registrations = registrationServices.getPending("unpaid");

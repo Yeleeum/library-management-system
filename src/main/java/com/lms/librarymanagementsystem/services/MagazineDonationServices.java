@@ -41,4 +41,8 @@ public class MagazineDonationServices {
     public Integer updateDonationToApproved(Integer mdnid) {
         return magazineDonationRepository.updateDonationApproval(mdnid);
     }
+
+    public Integer updateDonationToRejection(Integer mdnid) {
+        return magazineDonationRepository.updateDonationRejection(mdnid);
+    }
 }

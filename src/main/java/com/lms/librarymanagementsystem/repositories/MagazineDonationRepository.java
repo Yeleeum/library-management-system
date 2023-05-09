@@ -19,4 +19,8 @@ public interface MagazineDonationRepository extends JpaRepository<MagazineDonati
     @Modifying
     @Query(value = "UPDATE MAGAZINEDONATIONS SET APPROVED='approved' WHERE MDNID=:PARAM", nativeQuery = true)
     Integer updateDonationApproval(@Param("PARAM")Integer mdnid);
+
+    @Modifying
+    @Query(value = "UPDATE MAGAZINEDONATIONS SET APPROVED='rejected' WHERE MDNID=:PARAM", nativeQuery = true)
+    Integer updateDonationRejection(@Param("PARAM")Integer mdnid);
 }

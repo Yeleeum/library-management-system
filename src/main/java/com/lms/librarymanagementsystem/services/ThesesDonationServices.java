@@ -41,4 +41,8 @@ public class ThesesDonationServices {
     public Integer updateDonationToApproved(Integer tdnid) {
         return thesesDonationRepository.updateDonationApproval(tdnid);
     }
+
+    public Integer updateDonationToRejection(Integer tdnid) {
+        return thesesDonationRepository.updateDonationRejection(tdnid);
+    }
 }

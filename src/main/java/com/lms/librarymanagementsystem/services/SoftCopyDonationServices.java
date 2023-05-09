@@ -47,4 +47,8 @@ public class SoftCopyDonationServices {
     public Integer updateDonationToApproved(Integer sdnid) {
         return softCopyDonationRepository.updateDonationApproval(sdnid);
     }
+
+    public Integer updateDonationToRejection(Integer sdnid) {
+        return softCopyDonationRepository.updateDonationRejection(sdnid);
+    }
 }
