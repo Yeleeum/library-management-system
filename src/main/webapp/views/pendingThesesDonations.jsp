@@ -60,10 +60,10 @@
                     <td><%=thesesDonation.getGuides()%></td>
                     <td><%=thesesDonation.getCategory()%></td>
                     <td><%=thesesDonation.getDonationdate()%></td>
-                    
+
                     <td><button formaction="/admin/addDonatedTheses/<%= thesesDonation.getTdnid() %>" formmethod="get" style="background-color: green; color: white; border-radius: 10px; padding: 8px 10px; border: none; font-weight: bolder;cursor: pointer;">Approve</button></td>
                     <td><button formaction="/admin/rejectDonatedTheses/<%= thesesDonation.getTdnid() %>" formmethod="get" style="background-color: #e31747; color: white; border-radius: 10px; padding: 8px 10px; border: none; font-weight: bolder;cursor: pointer;">Reject</button> </td>
-                </tr>
+                </tr> 
                 <%}%>
                 <% } else { %>
                     <td colspan="8" style="text-align: left; font-weight: bolder; color: rgb(214, 6, 6);">No Data Found!</td>
