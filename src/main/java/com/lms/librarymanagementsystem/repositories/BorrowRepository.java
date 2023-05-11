@@ -29,6 +29,9 @@ public interface BorrowRepository extends JpaRepository<Borrow,Integer> {
     @Query(value="SELECT * FROM BORROW WHERE USERNAME=:username AND ITID=:itid AND STATUS='notreturned' AND APPROVED!='rejected'",nativeQuery = true)
     List<Borrow> getUnReturnedByItidByUsername(@Param("itid")String itid,@Param("username")String username);
 
+    @Query(value="SELECT * FROM BORROW WHERE USERNAME=:username AND ITID=:itid AND STATUS='return rejected' AND APPROVED!='rejected'",nativeQuery = true)
+    List<Borrow> getReturnRejectedByItidByUsername(@Param("itid")String itid,@Param("username")String username);
+
     @Query(value="SELECT * FROM BORROW WHERE USERNAME=:username AND RETURNDATE < CURDATE() AND STATUS='notreturned' AND APPROVED='approved'",nativeQuery = true)
     List<Borrow> getFinableBorrowByUsername(@Param("username")String username);
 
@@ -37,7 +40,7 @@ public interface BorrowRepository extends JpaRepository<Borrow,Integer> {
     Integer borrowAction(@Param("action")String action,@Param("username")String username,@Param("itid")String itid);
 
     @Modifying
-    @Query(value="UPDATE BORROW SET STATUS='requested' WHERE USERNAME=:username AND ITID=:itid AND STATUS='notreturned'",nativeQuery = true)
+    @Query(value="UPDATE BORROW SET STATUS='requested' WHERE USERNAME=:username AND ITID=:itid AND STATUS IN ('notreturned','return rejected')",nativeQuery = true)
     Integer returnRequest(@Param("username")String username,@Param("itid")String itid);
 
     @Modifying

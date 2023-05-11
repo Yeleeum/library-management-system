@@ -43,6 +43,11 @@ public class BorrowServices {
         return borrowRepository.getUnReturnedByItidByUsername(itid,username);
     }
 
+    public List<Borrow> findReturnRejectedByItidByUsername(String itid,String username){
+        System.out.println(itid);
+        return borrowRepository.getReturnRejectedByItidByUsername(itid,username);
+    }
+
     public List<Borrow> findApprovedUnReturnedByItidUsername(String itid,String username){
         System.out.println(itid);
         return borrowRepository.getApprovedUnReturnedByItidUsername(itid,username);

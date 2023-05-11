@@ -66,7 +66,7 @@
             console.log(data)
                 Borrow.disabled=!(data.status==='true')
                 Borrow.style.opacity=Borrow.disabled?"0.4":"1"
-                if(data.message==="You have already Borrowed this item."){
+                if(data.message==="You have already Borrowed this item." || data.message==="Your return for this item is rejected." ){
                     Return.disabled=!Borrow.disabled
                 }else if('<%=stock<0%>'=='true'){
                     Borrow.disabled=true

@@ -112,6 +112,9 @@ public class UserController {
         }else if(!borrowServices.findApprovedUnReturnedByItidUsername(itid,username).isEmpty()){
             keyValue.put("status", "false");
             keyValue.put("message", "You have already Borrowed this item.");
+        }else if(!borrowServices.findReturnRejectedByItidByUsername(itid,username).isEmpty()){
+            keyValue.put("status", "false");
+            keyValue.put("message", "Your return for this item is rejected.");
         }else if(!borrowServices.findUnReturnedByItidByUsername(itid,username).isEmpty()){
             keyValue.put("status", "false");
             keyValue.put("message", "You Borrow request haven't been approved yet.");
