@@ -12,6 +12,7 @@
     integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="/css/admin.css">
+    <link rel="stylesheet" href="/css/searchInputForTables.css">
 </head>
 <%
     List<Registration> registrations=(List<Registration>)request.getAttribute("registrations");
@@ -36,7 +37,10 @@
                         <span>Pending Return Requests</span>
                     </p>
                 </div>
-        <div class="registrations">
+                <div>
+                    <input type="text" id="searchInput" placeholder="Enter Username to filter">
+                </div>
+        <div class="registrations" id="myTable">
             <div class="registrations-inner-wrapper">
                 <h1>Pending Returns</h1>
                 <table class="registrations">
@@ -71,5 +75,6 @@
 </div>
 <script src="/js/adminPanel.js"></script>
 <script src="/js/pendingReturns.js"></script>
+<script src="/js/searchInTable.js"></script>
 </body>
 </html>

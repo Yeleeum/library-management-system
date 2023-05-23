@@ -12,6 +12,7 @@
     integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="/css/admin.css">
+    <link rel="stylesheet" href="/css/searchInputForTables.css">
 </head>
 <%
     List<Registration> registrations=(List<Registration>)request.getAttribute("registrations");
@@ -39,10 +40,13 @@
                         <span>Pending <%=type.substring(0, 1).toUpperCase() + type.substring(1)%> Requests</span>
                     </p>
                 </div>
+                <div>
+                    <input type="text" id="searchInput" placeholder="Enter Username to filter">
+                </div>
         <div class="registrations">
             <div class="registrations-inner-wrapper">
                 <h1>Pending <%=type.substring(0, 1).toUpperCase() + type.substring(1)%> Payments</h1>
-                <table class="registrations">
+                <table class="registrations" id="myTable">
                 <!--            this.pid = pid;
                                 this.username = username;
                                 this.paydate = paydate;
@@ -101,5 +105,6 @@
        })
     }
 </script>
+<script src="/js/searchInTable.js"></script>
 </body>
 </html>
