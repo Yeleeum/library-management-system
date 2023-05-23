@@ -12,6 +12,7 @@
     integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="/css/admin.css">
+    <link rel="stylesheet" href="/css/searchInputForTables.css">
     <style>
         .rejection {
             border-radius: 5px;
@@ -109,11 +110,14 @@
                         <span><%=category%></span>
                     </p>
                 </div>
+                <div>
+                    <input type="text" id="searchInput" placeholder="Enter Username to filter">
+                </div>
         <div class="registrations">
             <h1 style="margin-top: 5px;margin-bottom: 15px;"><%=category%></h1>
             <div class="registrations-inner-wrapper" style="overflow-x: scroll;">
                 
-                <table class="registrations" >
+                <table class="registrations" id="myTable">
                 <tr>
                     <th>RSID</th>
                     <th>USERNAME</th>
@@ -182,5 +186,6 @@
 <script src="/js/adminPanel.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.min.js"></script>
 <script src="/js/pendingRegistrations.js"></script>
+<script src="/js/searchInTable.js"></script>
 
 </html>
