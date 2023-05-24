@@ -8,30 +8,150 @@
         
         <p>Choose Type</p>
         <div>
-            <button type="submit" formaction="/books/search" form="search">Books</button>
-            <button type="submit" formaction="/journals/search" form="search">Journals</button>
-            <button type="submit" formaction="/magazines/search" form="search">Magazines</button>
-            <button type="submit" formaction="/theses/search" form="search">Theses</button>
-            <button type="submit" formaction="/softcopy/search" form="search">SoftCopy</button>
+            <button type="submit" name="itemtype" formaction="/search/filter" form="search" value="books">Books</button>
+            <button type="submit" name="itemtype" formaction="/search/filter" form="search" value="journals">Journals</button>
+            <button type="submit" name="itemtype" formaction="/search/filter" form="search" value="magazines">Magazines</button>
+            <button type="submit" name="itemtype" formaction="/search/filter" form="search" value="theses">Theses</button>
+            <button type="submit" name="itemtype" formaction="/search/filter" form="search" value="softcopy">SoftCopy</button>
             <%if(type!=null){%>
                 <br><br>
                 <div class="exclusivfilter">
                     <p>Exclusive filters on <%= type %></p>
                     
                         <%if(type.equals("books")){%>
-                            <button type="submit" formaction="/books/author" form="search">Author</button>
-                            <button type="submit" formaction="/books/publisher" form="search">Publisher</button>
-                            <button type="submit" formaction="/books/title" form="search">Title</button>
+                            <form action="/search/filter" method="Get" id="book_filter">
+                                <div>
+                                    <label>Title</label>
+                                    <input id="title" name="title" class="filter" type="text" placeholder="Enter Title">
+                                
+                                    <label>Author</label>
+                                    <input id="author" name="author" class="filter" type="text" placeholder="Enter Author">
+                                    
+                                    <label>Publisher</label>
+                                    <input id="publisher" name="publisher" class="filter" type="text" placeholder="Enter Publisher">
+                    
+                                    <label>Category</label>
+                                    <input id="category" name="category" class="filter" type="text" placeholder="Enter Category">
+                    
+                                    <label>Keywords</label>
+                                    <input id="keywords" name="keywords" class="filter" type="text" placeholder="Enter Keywords">
+                    
+                                    <label>Edition</label>
+                                    <input id="edition" name="edition" class="filter" type="text" placeholder="Enter Edition">
+                                    
+                                    <input id="edition" name="itemtype" class="filter" type="text" value="<%=type%>" hidden>
+            
+                                    <button type="submit" form="book_filter">Apply Filter</button>
+                                </div>
+                            </form>
                         <%}else if(type.equals("journals")){%>
-                            <button type="submit" formaction="/journals/editor" form="search">Editor</button>
-                            <button type="submit" formaction="/journals/publisher" form="search">Publisher</button>
-                            <button type="submit" formaction="/journals/title" form="search">Title</button>
+                            <form action="/search/filter" method="Get" id="journals_filter">
+                                <div>
+                                    <label>Title</label>
+                                    <input id="title" name="title" class="filter" type="text" placeholder="Enter Title">
+                                
+                                    <label>Publisher</label>
+                                    <input id="publisher" name="publisher" class="filter" type="text" placeholder="Enter Publisher">
+                    
+                                    <label>Editor</label>
+                                    <input id="editor" name="editor" class="filter" type="text" placeholder="Enter Editor">
+                                    
+                                    <label>Category</label>
+                                    <input id="category" name="category" class="filter" type="text" placeholder="Enter Category">
+                                    
+                                    <label>Keywords</label>
+                                    <input id="keywords" name="keywords" class="filter" type="text" placeholder="Enter Keywords">
+                                    
+                                    <label>Start Year</label>
+                                    <input id="startyear" name="startyear" class="filter" type="text" placeholder="Enter Start Year">
+                    
+                                    <label>End Year</label>
+                                    <input id="endyear" name="endyear" class="filter" type="text" placeholder="Enter End Year">
+                                    <input id="edition" name="itemtype" class="filter" type="text" value="<%=type%>" hidden>
+                                    <button type="submit" form="journals_filter">Apply Filter</button>
+                                </div>
+                            </form>
                         <%}else if(type.equals("magazines")){%>
-                            <button type="submit" formaction="/magazines/title" form="search">Title</button>
+                            <form action="/search/filter" method="Get" id="magazine_filter">
+                                <div>
+                                    <label>Title</label>
+                                    <input id="title" name="title" class="filter" type="text" placeholder="Enter Title">
+                                
+                                    <label>Publisher</label>
+                                    <input id="publisher" name="publisher" class="filter" type="text" placeholder="Enter Publisher">
+                    
+                                    <label>Issue Date</label>
+                                    <input id="issuedate" name="issuedate" class="filter" type="text" placeholder="Enter Issue Date">
+                                    
+                                    <label>Issue Number</label>
+                                    <input id="issuenumber" name="issuenumber" class="filter" type="text" placeholder="Enter Issue Number">
+                                    
+                                    <label>Frequency</label>
+                                    <input id="frequency" name="frequency" class="filter" type="text" placeholder="Enter Frequency">
+                                    
+                                    <label>Keywords</label>
+                                    <input id="keywords" name="keywords" class="filter" type="text" placeholder="Enter Keywords">
+                    
+                                    <label>Special Issue</label>
+                                    <input id="specialissue" name="specialissue" class="filter" type="text" placeholder="Enter Special Issue">
+                                    
+                                    <label>Category</label>
+                                    <input id="category" name="category" class="filter" type="text" placeholder="Enter Category">
+                                    <input id="edition" name="itemtype" class="filter" type="text" value="<%=type%>" hidden>
+                                    
+                                    <button type="submit" form="magazine_filter">Apply Filter</button>
+                                </div>
+                            </form>
                         <%}else if(type.equals("theses")){%>
-                            <button type="submit" formaction="/theses/title" form="search">Title</button>
+                            <form action="/search/filter" method="Get" id="theses_filter">
+                                <div>
+                                    <label>Title</label>
+                                    <input id="title" name="title" class="filter" type="text" placeholder="Enter Title">
+                                
+                                    <label>Researcher</label>
+                                    <input id="researcher" name="researcher" class="filter" type="text" placeholder="Enter Researcher">
+                    
+                                    <label>Guides</label>
+                                    <input id="guides" name="guides" class="filter" type="text" placeholder="Enter Guides">
+                                    
+                                    <label>Category</label>
+                                    <input id="category" name="category" class="filter" type="text" placeholder="Enter Category">
+                                    
+                                    <label>Keywords</label>
+                                    <input id="keywords" name="keywords" class="filter" type="text" placeholder="Enter Keywords">
+                                    
+                                    <label>Complete Date</label>
+                                    <input id="completedate" name="completedate" class="filter" type="text" placeholder="Enter Complete Date">
+                    
+                                    <label>Place</label>
+                                    <input id="place" name="place" class="filter" type="text" placeholder="Enter Place">
+                                    <input id="edition" name="itemtype" class="filter" type="text" value="<%=type%>" hidden>
+            
+                                    <button type="submit" form="theses_filter">Apply Filter</button>
+                                </div>
+                            </form>
                         <%}else if(type.equals("softcopy")){%>
-                            <button type="submit" formaction="/softcopy/title" form="search">Title</button>
+                            <form action="/search/filter" method="Get" id="softcopy_filter" >
+                                <div>
+                                    <label>Title</label>
+                                    <input id="title" name="title" class="filter" type="text" placeholder="Enter Title">
+                                
+                                    <label>Owner</label>
+                                    <input id="owner" name="owner" class="filter" type="text" placeholder="Enter Owner">
+                    
+                                    <label>Publisher</label>
+                                    <input id="publisher" name="publisher" class="filter" type="text" placeholder="Enter Publisher">
+                                    
+                                    <label>Category</label>
+                                    <input id="category" name="category" class="filter" type="text" placeholder="Enter Category">
+                                    
+                                    <label>Keywords</label>
+                                    <input id="keywords" name="keywords" class="filter" type="text" placeholder="Enter Keywords">
+                                    <input id="edition" name="itemtype" class="filter" type="text" value="<%=type%>" hidden>
+            
+                                    <button type="submit" form="softcopy_filter">Apply Filter</button>
+                                </div>
+                            </form>
                         <%}%>
                 </div>
             <%}%>

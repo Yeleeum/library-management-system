@@ -123,6 +123,10 @@ button {
     height: 100vh;
 }
 
+.headerview{
+    overflow-y: scroll;
+}
+
 input[type=text] {
     width: 20vw;
     padding: 10px 15px;

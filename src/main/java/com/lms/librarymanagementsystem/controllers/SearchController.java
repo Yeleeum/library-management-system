@@ -1,7 +1,9 @@
 package com.lms.librarymanagementsystem.controllers;
 
+import java.awt.print.Book;
 // import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,9 +11,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestHeader;
 // import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.lms.librarymanagementsystem.Handlers.CustomQueryHandler;
 import com.lms.librarymanagementsystem.models.Books;
 import com.lms.librarymanagementsystem.models.Journals;
 import com.lms.librarymanagementsystem.models.Magazines;
@@ -20,6 +25,7 @@ import com.lms.librarymanagementsystem.models.Theses;
 import com.lms.librarymanagementsystem.services.AlternativeServices;
 import com.lms.librarymanagementsystem.services.BooksServices;
 import com.lms.librarymanagementsystem.services.ConnectorServices;
+import com.lms.librarymanagementsystem.services.CustomQueryServices;
 import com.lms.librarymanagementsystem.services.JournalsServices;
 import com.lms.librarymanagementsystem.services.MagazinesServices;
 import com.lms.librarymanagementsystem.services.SoftCopyServices;
@@ -35,8 +41,9 @@ public class SearchController {
     private MagazinesServices magazinesServices;
     private ThesesServices thesesServices;
     private SoftCopyServices softCopyServices;
+    private CustomQueryServices customQueryServices;
 
-    public SearchController(AlternativeServices alternativeServices, BooksServices booksServices, ConnectorServices connectorServices, JournalsServices journalsServices, MagazinesServices magazinesServices, ThesesServices thesesServices,SoftCopyServices softCopyServices) {
+    public SearchController(AlternativeServices alternativeServices, BooksServices booksServices, ConnectorServices connectorServices, JournalsServices journalsServices, MagazinesServices magazinesServices, ThesesServices thesesServices,SoftCopyServices softCopyServices,CustomQueryServices customQueryServices) {
         this.alternativeServices = alternativeServices;
         this.booksServices = booksServices;
         this.connectorServices = connectorServices;
@@ -44,6 +51,7 @@ public class SearchController {
         this.magazinesServices = magazinesServices;
         this.thesesServices = thesesServices;
         this.softCopyServices= softCopyServices;
+        this.customQueryServices=customQueryServices;
     }
 
     @GetMapping
@@ -224,5 +232,45 @@ public class SearchController {
         SoftCopy softcopy=softCopyServices.findSingleSoftCopyById(sid);
         model.addAttribute("softcopy", softcopy);
         return "softCopyDetails";
+    }
+
+    @GetMapping("/filter")
+    public String getItemByFilter(String searchParam,@RequestParam Map<String,String> filters,Model model){
+        String type=filters.get("itemtype");
+        if(searchParam!=null){
+            return "redirect:/"+type+"/search?searchParam="+searchParam;
+        }
+        
+        String query="SELECT * FROM "+type;
+        String whereOrand=" WHERE";
+        for (Map.Entry<String,String> filter : filters.entrySet()) {
+            if(!filter.getValue().equals("") && !filter.getKey().equals("itemtype")){
+                query=query+whereOrand+" "+filter.getKey()+" like '%"+filter.getValue()+"%'";
+                whereOrand=" and";
+            }
+        }
+        if (type.equals("books")) {
+            List<Books> books=customQueryServices.executeCustomQuery(query, Books.class);
+            model.addAttribute("books", books);
+        } else if (type.equals("journals")) {
+            List<Journals> journals=customQueryServices.executeCustomQuery(query, Journals.class);
+            model.addAttribute("journals", journals);
+        } else if (type.equals("theses")) {
+            List<Theses> theses=customQueryServices.executeCustomQuery(query, Theses.class);
+            model.addAttribute("theses", theses);
+        } else if (type.equals("magazines")) {
+            List<Magazines> magazines=customQueryServices.executeCustomQuery(query, Magazines.class);
+            model.addAttribute("magazines", magazines);
+        } else if (type.equals("softcopy")) {
+            List<SoftCopy> softcopies=customQueryServices.executeCustomQuery(query, SoftCopy.class);
+            model.addAttribute("softcopies", softcopies);
+        } else {
+            // Handle unknown type
+            System.out.println("Unknown type");
+        }
+        System.out.println(query);
+        model.addAttribute("type", type);
+        model.addAttribute("filtersearches", filters);
+        return "searchResult";
     }
 }

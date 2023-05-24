@@ -36,7 +36,6 @@
         }
     </style>
 </head>
-
 <body>
     <% String searchValue=((String) request.getAttribute("searchValue"))==null?"":(String)
         request.getAttribute("searchValue");%>
