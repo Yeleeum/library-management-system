@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.lms.librarymanagementsystem.Handlers.UniqueSoftCopyHandler;
 import com.lms.librarymanagementsystem.models.Books;
 import com.lms.librarymanagementsystem.models.Journals;
 import com.lms.librarymanagementsystem.models.Magazines;
@@ -194,7 +195,7 @@ public class SearchController {
         Books book = booksServices.findSingleBook(bookId);
         List<SoftCopy> softCopies=softCopyServices.findRelatedSoftCopy(book.getItid());
         model.addAttribute("book", book);
-        model.addAttribute("softcopies", softCopies);
+        model.addAttribute("softcopies", UniqueSoftCopyHandler.filterSoftCopies(softCopies));
         return "bookDetails";
     }
 
@@ -203,7 +204,7 @@ public class SearchController {
         Journals journal=journalsServices.findSingleJournalById(jid);
         model.addAttribute("journal", journal);
         List<SoftCopy> softCopies=softCopyServices.findRelatedSoftCopy(journal.getItid());
-        model.addAttribute("softcopies", softCopies);
+        model.addAttribute("softcopies", UniqueSoftCopyHandler.filterSoftCopies(softCopies));
         return "journalDetails";
     }
 
@@ -212,7 +213,7 @@ public class SearchController {
         Magazines magazine=magazinesServices.findSingleMagazineById(mid);
         model.addAttribute("magazine", magazine);
         List<SoftCopy> softCopies=softCopyServices.findRelatedSoftCopy(magazine.getItid());
-        model.addAttribute("softcopies", softCopies);
+        model.addAttribute("softcopies", UniqueSoftCopyHandler.filterSoftCopies(softCopies));
         return "magazineDetails";
     }
 
@@ -221,7 +222,7 @@ public class SearchController {
         Theses theses=thesesServices.findSingleThesesById(tid);
         model.addAttribute("theses", theses);
         List<SoftCopy> softCopies=softCopyServices.findRelatedSoftCopy(theses.getItid());
-        model.addAttribute("softcopies", softCopies);
+        model.addAttribute("softcopies", UniqueSoftCopyHandler.filterSoftCopies(softCopies));
         return "thesesDetails";
     }
 
