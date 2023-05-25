@@ -118,8 +118,8 @@
 					<i class="fa-solid fa-angle-right"></i>
 					<span>Add Book</span>
 				</p>
-			</div>
-			<form action='/admin/addbook' method="POST" enctype="multipart/form-data" class="bookForm">
+		</div>
+		<form action='/admin/addbook' method="POST" enctype="multipart/form-data" class="bookForm">
 			<div class="left-container">
 				<% if(activity.equals("donation")) { %>
 					<input id="prevthumbnail" value='<%= bookDonation.getThumbnail() %>' name="thumbnail" hidden/>

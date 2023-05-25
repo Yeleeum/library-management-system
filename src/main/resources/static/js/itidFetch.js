@@ -21,6 +21,8 @@ itidinput.addEventListener('change', () => {
                         <h2 class="itid-suggested-value" style="color:green"></h2>
                     </div>
                 `;
+                document.querySelector('input[type="submit"]').disabled = true;
+                document.querySelector('input[type="submit"]').style = "filter: brightness(0.5)";
                 document.body.appendChild(modal);
 
                 // Add close button functionality
@@ -45,6 +47,9 @@ itidinput.addEventListener('change', () => {
                         suggestedValue.textContent = nextITID;
                     })
                     .catch(error => console.error(error));
+            } else {
+                document.querySelector('input[type="submit"]').disabled = false;
+                document.querySelector('input[type="submit"]').style = "";
             }
         })
         .catch(error => console.error(error));

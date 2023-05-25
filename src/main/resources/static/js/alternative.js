@@ -1,6 +1,16 @@
 let container = document.querySelector(".sid-container");
 let sidInputs = document.querySelectorAll(".sid");
 let softcopyTitles = document.querySelectorAll(".softcopytitle");
+let availableItid = false;
+let availableSid = false;
+let availableSidAll = true;
+
+const isAvailable = () => { return (availableItid && availableSid && availableSidAll) };
+
+const disableInputSubmit = () => {
+    document.querySelector('input[type="submit"]').disabled = !isAvailable();
+    document.querySelector('input[type="submit"]').style = (!isAvailable()) ? "filter: brightness(0.5)" : "";
+}
 
 function addAnotherSoftcopy() {
     let sids = document.querySelectorAll(".sid");
@@ -41,12 +51,15 @@ function addAnotherSoftcopy() {
                 .then(response => response.text())
                 .then(data => {
                     if (data === "false") {
+                        availableSidAll = false;
                         softcopyTitles[index].textContent = "No data found";
                         softcopyTitles[index].style.color = "red";
                     } else {
+                        availableSidAll = true;
                         softcopyTitles[index].textContent = data;
                         softcopyTitles[index].style.color = "black";
                     }
+                    disableInputSubmit();
                 })
                 .catch(error => console.error(error));
         });
@@ -67,11 +80,14 @@ itidinput.addEventListener('input', () => {
             const titleElement = document.querySelector('.title');
             if (data !== "false") {
                 titleElement.textContent = data;
+                availableItid = true;
                 titleElement.style.color = "black";
             } else {
                 titleElement.textContent = "No data found";
+                availableItid = false;
                 titleElement.style.color = "red";
             }
+            disableInputSubmit();
         })
         .catch(error => console.error(error));
 })
@@ -87,12 +103,15 @@ sidInputs.forEach((input, index) => {
             .then(response => response.text())
             .then(data => {
                 if (data === "false") {
+                    availableSid = false;
                     softcopyTitles[index].textContent = "No data found";
                     softcopyTitles[index].style.color = "red";
                 } else {
+                    availableSid = true;
                     softcopyTitles[index].textContent = data;
                     softcopyTitles[index].style.color = "black";
                 }
+                disableInputSubmit();
             })
             .catch(error => console.error(error));
     })
