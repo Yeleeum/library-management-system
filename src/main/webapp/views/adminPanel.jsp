@@ -46,7 +46,6 @@
             </div>
             <!-- Add another admin modal ends -->
 
-
             <!-- Change Password Modal -->
             <div id="passwordModal" class="modal">
                 <div class="modal-content">

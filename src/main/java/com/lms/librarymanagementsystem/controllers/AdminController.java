@@ -132,6 +132,7 @@ public class AdminController {
         model.addAttribute("noOfPendingRenewals", renewals.size());
         model.addAttribute("pendingDonations", bookDonations.size() + journalDonations.size() + thesesDonations.size()
                 + magazineDonations.size() + softCopyDonations.size());
+        model.addAttribute("title", "Dashboard");
         System.out.println(top5Registrations);
         return "adminPanel";
     }
