@@ -530,12 +530,20 @@ public class AdminController {
         if (action.equals("rejected")) {
             if (type.equals("book")) {
                 booksServices.increaseStock(itid);
+                Books book = booksServices.findOneBookByItid(itid);
+                usersServices.sendBorrowRejection(username, book.getTitle() , type);
             } else if (type.equals("journal")) {
                 journalsServices.increaseStock(itid);
+                Journals journal = journalsServices.findOneJournalByItid(itid);
+                usersServices.sendBorrowRejection(username, journal.getTitle(), type);
             } else if (type.equals("magazine")) {
                 magazinesServices.increaseStock(itid);
+                Magazines magazine = magazinesServices.findOneMagazineByItid(itid);
+                usersServices.sendBorrowRejection(username, magazine.getTitle(), type);
             } else {
                 thesesServices.increaseStock(itid);
+                Theses theses = thesesServices.findOneThesesByItid(itid);
+                usersServices.sendBorrowRejection(username, theses.getTitle(), type);
             }
         } else {
             if (type.equals("book")) {

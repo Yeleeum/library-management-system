@@ -89,6 +89,20 @@ public class UsersServices {
 
     }
 
+    public void sendBorrowRejection(String username,String title,String type){
+        Users user=usersRepository.getUserByUsername(username);
+        String subject="Subject: Approval of Your Library Borrow Request";
+        String message = "Dear " + user.getFirstName() + " " + user.getLastName() + ",\n\n" +
+        "I regret to inform you that your request to borrow " + title + "(" + type + ") from our library has been rejected by the library administration.\n\n" +
+        "We apologize for any inconvenience caused. If you have any questions or concerns regarding this decision, please feel free to contact us. We are always here to assist you.\n\n" +
+        "Thank you for considering our library, and we appreciate your understanding.\n\n" +
+        "Sincerely,\n\n" +
+        "Admin,\n" +
+        "Library Authorities\n";
+        emailServices.sendMail(user.getEmail(), subject, message);
+
+    }
+
     public Integer updateUserPasswordByusername(String username,String password){
         return usersRepository.changePasswordByUsername(username, EncryptionHandlers.encodePassword(password));
     }
