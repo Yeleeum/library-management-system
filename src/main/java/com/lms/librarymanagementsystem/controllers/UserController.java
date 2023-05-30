@@ -118,7 +118,7 @@ public class UserController {
         }else if(!borrowServices.findUnReturnedByItidByUsername(itid,username).isEmpty()){
             keyValue.put("status", "false");
             keyValue.put("message", "You Borrow request haven't been approved yet.");
-        }else if(borrowServices.findUnReturnedByUsername(username).size()==2){
+        }else if(borrowServices.findUnReturnedByUsername(username).size()==2 || borrowServices.findNotReturnedRequestedListByUsername(username).size()==2){
             keyValue.put("status", "false");
             keyValue.put("message", "You have already Borrowed Two Items.");
         }else if(!fineServices.findUnpaidFineByUsername(username).isEmpty()){
