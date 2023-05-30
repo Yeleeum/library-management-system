@@ -255,6 +255,7 @@ public class UserController {
     @GetMapping("/payment")
     public String getPaymentForm(Model model,HttpServletRequest req){
         List<Fine> fines=fineServices.findUnpaidFineByUsername(SessionHandler.getUserSession(req));
+        List<Borrow> borrows=borrowServices.findFinableBorrowByUsername(SessionHandler.getUserSession(req));
         Integer totalFine=0;
         for(Fine fine:fines){
             totalFine+=fine.getAmount();
@@ -265,6 +266,7 @@ public class UserController {
         model.addAttribute("pending", !(finepayments.isEmpty()&&renewalpayments.isEmpty()));
         model.addAttribute("fine", totalFine);
         model.addAttribute("renewal", renewal);
+        model.addAttribute("borrows", borrows);
         return "payment";
     }
 

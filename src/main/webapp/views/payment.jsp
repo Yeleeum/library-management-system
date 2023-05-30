@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <%@ page import="com.lms.librarymanagementsystem.models.Users" %>
+<%@ page import="com.lms.librarymanagementsystem.models.Borrow" %>
 <%@ page import="java.util.List" %>
 <html lang="en">
     <head>
@@ -17,6 +18,7 @@
     <% Integer fine=(Integer)request.getAttribute("fine"); %>
     <% Integer renewal=(Integer)request.getAttribute("renewal"); %>
     <% boolean pending=(boolean)request.getAttribute("pending"); %>
+    <% List<Borrow> borrows=(List<Borrow>)request.getAttribute("borrows"); %>
     <body>
         <div class="alertContainer modal hide">
             <h1 id="myAlertBox" class="message"></h1>
@@ -41,7 +43,7 @@
                                 <h1 class="amountfine" <%if(fine==0){%>style="color:green"<%}%>><i style="font-size: 5rem;" class="fa-solid fa-indian-rupee-sign"></i><%=fine%></h1>
                                 <h3 class="headingrenew" hidden>Renewal Amount is</h3>
                                 <h1 class="amountrenew" hidden><i style="font-size: 5rem;" class="fa-solid fa-indian-rupee-sign"></i><%=renewal%><%if(fine>0){%><sup style="font-size: 25px;">+ <i class="fa-solid fa-indian-rupee-sign"></i> <%=fine%> (Due Fine)</sup><%}%></h1>
-                                
+                                <% if(borrows==null || borrows.isEmpty()){%>
                                 <div class="payment-options">
                                     <div class="online-payment">
                                         <img src="/img/QR.jpg" class="Qr_Code" alt="online-payment" />
@@ -58,6 +60,9 @@
                                         <button onclick="postAmount('offline')"  id="offline-pay-btn"><i class="fa-solid fa-wallet"></i> Pay Offline</button>
                                     </div>
                                 </div>
+                                <%}else{%>
+                                    <center><h3 style="padding: 30px;">Please return the borrowed item(s) to proceed to pay your due fine.</h3></center>
+                                <%}%>
                                 <div class="nofine">
                                     <img src="/img/thumbsup.gif" style="-webkit-clip-path: polygon(0 0, 96% 0, 97% 100%, 0% 100%);
                                     clip-path: polygon(0 0, 96% 0, 97% 100%, 0% 100%)" alt="">
