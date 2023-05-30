@@ -256,6 +256,7 @@ public class UserController {
     public String getPaymentForm(Model model,HttpServletRequest req){
         List<Fine> fines=fineServices.findUnpaidFineByUsername(SessionHandler.getUserSession(req));
         List<Borrow> borrows=borrowServices.findFinableBorrowByUsername(SessionHandler.getUserSession(req));
+        List<Borrow> finedRequested=borrowServices.findFinedRequestedReturn(SessionHandler.getUserSession(req));
         Integer totalFine=0;
         for(Fine fine:fines){
             totalFine+=fine.getAmount();
@@ -267,6 +268,7 @@ public class UserController {
         model.addAttribute("fine", totalFine);
         model.addAttribute("renewal", renewal);
         model.addAttribute("borrows", borrows);
+        model.addAttribute("finedRequested", finedRequested);
         return "payment";
     }
 

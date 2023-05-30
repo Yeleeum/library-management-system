@@ -19,6 +19,7 @@
     <% Integer renewal=(Integer)request.getAttribute("renewal"); %>
     <% boolean pending=(boolean)request.getAttribute("pending"); %>
     <% List<Borrow> borrows=(List<Borrow>)request.getAttribute("borrows"); %>
+    <% List<Borrow> finedRequested=(List<Borrow>)request.getAttribute("finedRequested"); %>
     <body>
         <div class="alertContainer modal hide">
             <h1 id="myAlertBox" class="message"></h1>
@@ -43,7 +44,7 @@
                                 <h1 class="amountfine" <%if(fine==0){%>style="color:green"<%}%>><i style="font-size: 5rem;" class="fa-solid fa-indian-rupee-sign"></i><%=fine%></h1>
                                 <h3 class="headingrenew" hidden>Renewal Amount is</h3>
                                 <h1 class="amountrenew" hidden><i style="font-size: 5rem;" class="fa-solid fa-indian-rupee-sign"></i><%=renewal%><%if(fine>0){%><sup style="font-size: 25px;">+ <i class="fa-solid fa-indian-rupee-sign"></i> <%=fine%> (Due Fine)</sup><%}%></h1>
-                                <% if(borrows==null || borrows.isEmpty()){%>
+                                <% if((borrows==null || borrows.isEmpty()) && (finedRequested ==null || finedRequested.isEmpty())){%>
                                 <div class="payment-options">
                                     <div class="online-payment">
                                         <img src="/img/QR.jpg" class="Qr_Code" alt="online-payment" />
@@ -60,6 +61,8 @@
                                         <button onclick="postAmount('offline')"  id="offline-pay-btn"><i class="fa-solid fa-wallet"></i> Pay Offline</button>
                                     </div>
                                 </div>
+                                <%}else if(finedRequested!=null && !finedRequested.isEmpty()){%>
+                                    <center><h3 style="padding: 30px;">You can pay fine once the admin approves your return request for the fined item(s).</h3></center>
                                 <%}else{%>
                                     <center><h3 style="padding: 30px;">Please return the borrowed item(s) to proceed to pay your due fine.</h3></center>
                                 <%}%>

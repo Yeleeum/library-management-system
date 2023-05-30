@@ -76,4 +76,8 @@ public class BorrowServices {
     public List<Borrow> findReturnedOrRejectedListByUsername(String username){
         return borrowRepository.getReturnedOrRejectedListByUsername(username);
     }
+
+    public List<Borrow> findFinedRequestedReturn(String username){
+        return borrowRepository.getFinedReturnRequestedByUsername(username);
+    }
 }
